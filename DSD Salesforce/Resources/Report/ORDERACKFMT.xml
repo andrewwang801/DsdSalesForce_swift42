@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document pageWidth="210" marginLeft="10" marginRight="10" marginTop="10" marginBottom="10">
+  <Table columnCount="2" column1Weight="1" column2Weight="2">
+    <Cell horzAlignment="center">
+      <Image width="100" height="100">
+        <Object name="logo" />
+      </Image>
+    </Cell>
+    <Cell vertAlignment="center" horzAlignment="center">
+      <Table>
+        <ObjectArray name="HeaderDocText">
+          <Cell vertAlignment="center" horzAlignment="right">
+            <Phrase size="7" type="bold">
+              <Object name="HeaderDocText" />
+            </Phrase>
+          </Cell>
+        </ObjectArray>
+      </Table>
+    </Cell>
+  </Table>
+  <Table columnCount="4" column1Weight="2" column2Weight="2" column3Weight="2" column4Weight="2">
+    <Cell horzAlignment="center" padding="20" span="4">
+      <Phrase size="9" type="bold">ORDER ACKNOWLEDGEMENT</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">Invoice No:</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="InvoiceNo" />
+      </Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">PO No:</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="PONo" />
+      </Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">Date:</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="InvoiceDate" />
+      </Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">Time:</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="Time" />
+      </Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">Terms:</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="Terms" />
+      </Phrase>
+    </Cell>
+  </Table>
+  
+  <Table columnCount="2" column1Weight="3" column2Weight="1">
+    <Cell>
+      <Table>
+        <Cell horzAlignment="left" paddingTop="10">
+          <Phrase size="7" type="bold">Invoice To:</Phrase>
+        </Cell>
+        <Cell horzAlignment="left" paddingTop="5">
+          <Phrase size="7">
+            <Object name="InvoiceCustomerCode" />
+          </Phrase>
+        </Cell>
+        <Cell horzAlignment="left" paddingTop="5">
+          <Phrase size="7">
+            <Object name="InvoiceTo1" />
+          </Phrase>
+        </Cell>
+        <Cell horzAlignment="left" paddingTop="5">
+          <Phrase size="7">
+            <Object name="InvoiceTo2" />
+          </Phrase>
+        </Cell>
+        <Cell horzAlignment="left" paddingTop="5">
+          <Phrase size="7">
+            <Object name="InvoiceTo4" />
+          </Phrase>
+        </Cell>
+        <Cell horzAlignment="left" paddingTop="5">
+          <Phrase size="7">
+            <Object name="InvoiceTo3" />
+          </Phrase>
+        </Cell>
+      </Table>
+    </Cell>
+    <Cell>
+      <Table>
+        <Cell horzAlignment="left" paddingTop="10">
+          <Phrase size="7" type="bold"> </Phrase>
+        </Cell>
+        <Cell horzAlignment="left" paddingTop="5">
+          <Phrase size="7">
+            <Object name=" " />
+          </Phrase>
+        </Cell>
+      </Table>
+    </Cell>
+  </Table>
+
+  <Table columnCount="5" column1Weight="6" column2Weight="11" column3Weight="4" column4Weight="4" column5Weight="5">
+    <ObjectArray name="IsDelivery">
+      <Cell horzAlignment="left" paddingBottom="5" paddingTop="5" span="5" border="top">
+        <Phrase size="6" type="bold">DELIVERIES </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> CODE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> DESCRIPTION</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> QTY</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> PRICE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> TOTAL</Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="Delivery">
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Delivery" property="code" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Delivery" property="description" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Delivery" property="qty_un" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Delivery" property="price" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Delivery" property="total" />
+        </Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="IsBuyBacks">
+      <Cell horzAlignment="left" paddingTop="15" span="5" paddingBottom="5">
+        <Phrase size="6" type="bold">BUYBACKS </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> CODE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> DESCRIPTION</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> QTY</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> PRICE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> TOTAL</Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="BuyBacks">
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="BuyBacks" property="code" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="BuyBacks" property="description" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="BuyBacks" property="qty_un" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="BuyBacks" property="price" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="BuyBacks" property="total" />
+        </Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="IsCredits">
+      <Cell horzAlignment="left" paddingTop="15" span="5" paddingBottom="5">
+        <Phrase size="6" type="bold"> CREDITS</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> CODE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> DESCRIPTION</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> QTY</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> PRICE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> TOTAL</Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="Credits">
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Credits" property="code" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Credits" property="description" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Credits" property="qty_un" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Credits" property="price" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Credits" property="total" />
+        </Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="IsContainer">
+      <Cell horzAlignment="left" paddingBottom="5" paddingTop="5" span="5" border="top">
+        <Phrase size="6" type="bold">CONTAINERS </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> CODE</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> DESCRIPTION</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> QTY</Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6"> </Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="Container">
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Container" property="code" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Container" property="description" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Container" property="" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Container" property="qty_un" />
+        </Phrase>
+      </Cell>
+      <Cell horzAlignment="left">
+        <Phrase size="6">
+          <Object name="Container" property="" />
+        </Phrase>
+      </Cell>
+    </ObjectArray>
+    <Cell horzAlignment="left" paddingTop="5" span="5" border="bottom">
+      <Phrase size="6" type="bold"></Phrase>
+    </Cell>
+  </Table>
+  <Table columnCount="5" column1Weight="6" column2Weight="11" column3Weight="4" column4Weight="4" column5Weight="5">
+  <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7"></Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">Total Quantity</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="TotalQty" />
+      </Phrase>
+    </Cell>
+      <Cell horzAlignment="right" paddingTop="5">
+      <Phrase size="7"> </Phrase>
+    </Cell>
+      <Cell horzAlignment="right" paddingTop="5">
+      <Phrase size="7"> </Phrase>
+    </Cell>
+  </Table>
+  
+  <Table columnCount="4" column1Weight="1" column2Weight="2" column3Weight="1" column4Weight="1">
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7"></Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">Sub Total </Phrase>
+    </Cell>
+    <Cell horzAlignment="right" paddingTop="5">
+      <Phrase size="7">$ </Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="SubTotal" />
+      </Phrase>
+    </Cell>
+    <ObjectArray name="GST">
+      <Cell horzAlignment="left" paddingTop="5">
+        <Phrase size="7"></Phrase>
+      </Cell>
+      <Cell horzAlignment="left" paddingTop="5">
+        <Phrase size="7">GST </Phrase>
+      </Cell>
+      <Cell horzAlignment="right" paddingTop="5">
+        <Phrase size="7">$ </Phrase>
+      </Cell>
+      <Cell horzAlignment="left" paddingTop="5">
+        <Phrase size="7">
+          <Object name="GST" />
+        </Phrase>
+      </Cell>
+    </ObjectArray>
+    <ObjectArray name="CentsRounding">
+      <Cell horzAlignment="left" paddingTop="5">
+        <Phrase size="7"></Phrase>
+      </Cell>
+      <Cell horzAlignment="left" paddingTop="5">
+        <Phrase size="7">Cents Rounding </Phrase>
+      </Cell>
+      <Cell horzAlignment="right" paddingTop="5">
+        <Phrase size="7">$ </Phrase>
+      </Cell>
+      <Cell horzAlignment="left" paddingTop="5">
+        <Phrase size="7">
+          <Object name="CentsRounding" />
+        </Phrase>
+      </Cell>
+    </ObjectArray>
+    <Cell horzAlignment="left" paddingTop="5" paddingBottom="5">
+      <Phrase size="7"></Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5" paddingBottom="5">
+      <Phrase size="7" type="bold">Invoice Total inc GST</Phrase>
+    </Cell>
+    <Cell horzAlignment="right" paddingTop="5" paddingBottom="5">
+      <Phrase size="7" type="bold">$ </Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5" paddingBottom="5">
+      <Phrase size="7" type="bold">
+        <Object name="InvoiceGSTTotal" />
+      </Phrase>
+    </Cell>
+  </Table>
+  <Table>
+    <Cell horzAlignment="left" border="top" paddingTop="5" paddingBottom="5">
+      <Phrase size="7">* Denotes item subject to GST</Phrase>
+    </Cell>
+    <Cell horzAlignment="left">
+      <Image>
+        <Object name="Sign" />
+      </Image>
+    </Cell>
+    <Cell horzAlignment="left" border="bottom" paddingTop="5" paddingBottom="5">
+      <Phrase size="7">
+        <Object name="ReceivedBy" />
+      </Phrase>
+    </Cell>
+  </Table>
+  <Table columnCount="3" column1Weight="12" column2Weight="1" column3Weight="4">
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">Total Paid Today</Phrase>
+    </Cell>
+    <Cell horzAlignment="right" paddingTop="5">
+      <Phrase size="7">$</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="TotalPaid" />
+      </Phrase>
+    </Cell>
+   
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">Total Due for this Invoice</Phrase>
+    </Cell>
+    <Cell horzAlignment="right" type="bold" paddingTop="5">
+      <Phrase size="7">$</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" type="bold" paddingTop="5">
+      <Phrase size="7">
+        <Object name="TotalDue" />
+      </Phrase>
+    </Cell>
+  </Table>
+  
+  <Table>
+  	<ObjectArray name="IsInvoiceNote">
+  	<Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7" type="bold">Invoice Note</Phrase>
+    </Cell>
+    <Cell horzAlignment="left" paddingTop="5">
+      <Phrase size="7">
+        <Object name="InvoiceNote" />
+      </Phrase>
+    </Cell>
+      </ObjectArray>
+  </Table>
+
+   <Table>
+  	<Cell horzAlignment="left">
+        	<Phrase size="7" type="bold"> Thank you for your business</Phrase>
+      </Cell>
+      <Cell horzAlignment="left" paddingTop="5">
+        	<Phrase size="7" type="bold"> Please retain this document for your records</Phrase>
+      </Cell>
+  </Table>
+</Document>

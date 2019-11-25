@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "LoginVC.onLogin(_:):LoginVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "globalInfo">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in OrderVC.doComplete():OrderVCLogic.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.salesOrderArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -1,0 +1,27 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'DSD Salesforce' do
+    pod 'GooglePlaces'
+    pod 'GooglePlacePicker'
+    pod 'GoogleMaps'
+    pod 'TYAttributedLabel', '~> 2.6.2'
+    pod 'SSZipArchive'
+    pod 'TTTAttributedLabel'
+    pod 'SDWebImage'
+    pod 'FFCircularProgressView'
+    pod 'Bolts'
+    pod 'XLPagerTabStrip', '~> 8.1'
+    pod 'CCBottomRefreshControl'
+    pod 'QBImagePickerController'
+    pod 'Alamofire'
+    pod 'ReachabilitySwift'
+    pod 'BNHtmlPdfKit', :git => 'https://github.com/brentnycum/BNHtmlPdfKit'
+    pod 'MBCircularProgressBar'
+    pod 'Fabric'
+    pod 'Crashlytics'
+    pod 'IBAnimatable'
+    pod 'RSBarcodes_Swift', '~> 4.2.1'
+    pod 'Charts'
+    pod 'eWAYPaymentsSDK'
+end
