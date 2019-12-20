@@ -104,10 +104,13 @@ class FTPManager: NSObject {
             return
         }
 
+        //measure time
+        var startTime = CFAbsoluteTimeGetCurrent()
+        
         // create catalog directory
         let localDirPath = CommData.getFilePathAppended(byCacheDir: localDirName) ?? ""
         CommData.createDirectory(localDirPath)
-
+        
         self.ftpHostName = hostname
         self.ftpUserName = user
         self.ftpPassword = password
@@ -128,9 +131,13 @@ class FTPManager: NSObject {
         if shouldShowHUD == true {
             hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
         }
-
+        
         requestsManager.addRequestForListDirectory(atPath: downloadRemotePath)
         requestsManager.startProcessingRequests()
+        
+        //measure time
+        var timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+        print("Time elapsed internal for DownloadDirectory: \(timeElapsed) s.")
     }
 
     func downloadDirectoryFiles(hostname: String, user: String, password: String, root: String, territory: String, remoteDirName: String, remoteFileNames: [String], localDirName: String, shouldShowHUD: Bool, completion: ((Bool, String) -> ())?) {

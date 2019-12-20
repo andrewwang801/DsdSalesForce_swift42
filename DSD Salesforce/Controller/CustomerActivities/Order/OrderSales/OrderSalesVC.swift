@@ -738,3 +738,10 @@ extension OrderSalesVC: UIPopoverPresentationControllerDelegate {
         return .none
     }
 }
+
+extension OrderSalesVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
+       textField.resignFirstResponder()
+       return true
+    }
+}

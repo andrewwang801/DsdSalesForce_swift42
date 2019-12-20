@@ -23,6 +23,7 @@ class SelectCustomerVC: UIViewController {
     @IBOutlet weak var showAllButton: UIButton!
     @IBOutlet weak var showAllCheckImageView: UIImageView!
     @IBOutlet weak var optimizationButton: AnimatableButton!
+    @IBOutlet weak var addCustomerButton: AnimatableButton!
     @IBOutlet weak var customerMapView: GMSMapView!
     @IBOutlet weak var noteButton: UIButton!
 
@@ -100,6 +101,14 @@ class SelectCustomerVC: UIViewController {
         customerTableView.reorder.delegate = self
         customerTableView.reorder.cellScale = 0.9
         customerTableView.delaysContentTouches = false
+
+        //show or hide addCustomerButton
+        if self.globalInfo.routeControl?.custaddNew == nil || self.globalInfo.routeControl?.custaddNew == "0" {
+            addCustomerButton.isHidden = true
+        }
+        else {
+            addCustomerButton.isHidden = false
+        }
     }
     
     func initMap() {

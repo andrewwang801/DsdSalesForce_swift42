@@ -126,6 +126,7 @@ class OrderSalesOrderCell: UITableViewCell {
         let orderDetail = parentVC.orderDetailArray[index]
         orderDetail.enterQty = newQty.int32
         GlobalInfo.saveCache()
+        parentVC.refreshOrders()
     }
 
     @IBAction func onPlusQty(_ sender: Any) {

@@ -32,7 +32,8 @@ class ProductCatalogVC: UIViewController {
     @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
-
+    @IBOutlet weak var marketGroup: UILabel!
+    
     @IBOutlet weak var baseCasePriceTitleLabel: UILabel!
     @IBOutlet weak var qtyView: UIView!
     @IBOutlet weak var qtyTextField: AnimatableTextField!
@@ -59,7 +60,15 @@ class ProductCatalogVC: UIViewController {
     let kProductGroupDescTypeID = "ProductGroup"
     let kProductLineDescTypeID = "ProductLine"
     let kMarketGroupDescTypeID = "MarketGroup"
-
+    
+    //type dictionary
+    var kCatalogDic = ["Brand":"BRAND",
+                       "SubBrand":"SUB BRAND",
+                       "ItemType":"TYPE",
+                       "ProductGroup":"GROUP",
+                       "ProductLine":"PRODUCT LINE",
+                       "MarketGroup":"MARKET GROUP"]
+    
     var kFilterTitleArray = [String]()
     var kFilterDescTypeIDArray = [String]()
 
@@ -89,11 +98,32 @@ class ProductCatalogVC: UIViewController {
 
         mainVC.setTitleBarText(title: "PRODUCT CATALOG")
     }
+    
+    
+    func getCatalogTypes() {
+        if let catalogString:String = globalInfo.routeControl?.catalog {
+            if catalogString != "" {
+                let trimmed = catalogString.replace(string: " ", replacement: "")
+                let catalogArr = trimmed.components(separatedBy:",")
+                
+                for item in catalogArr {
+                    kFilterDescTypeIDArray.append(item)
+                    kFilterTitleArray.append(kCatalogDic[item] ?? "")
+                }
+            }
+            else {
+                kFilterTitleArray = [kBrandTitle, kSubBrandTitle, kTypeTitle, kGroupTitle, kProductLineTitle, kMarketGroupTitle]
+                kFilterDescTypeIDArray = [kBrandDescTypeID, kSubBrandDescTypeID, kItemTypeDescTypeID, kProductGroupDescTypeID, kProductLineDescTypeID, kMarketGroupDescTypeID]
+            }
+        }
+    }
 
     func initData() {
-        kFilterTitleArray = [kBrandTitle, kSubBrandTitle, kTypeTitle, kGroupTitle, kProductLineTitle, kMarketGroupTitle]
-        kFilterDescTypeIDArray = [kBrandDescTypeID, kSubBrandDescTypeID, kItemTypeDescTypeID, kProductGroupDescTypeID, kProductLineDescTypeID, kMarketGroupDescTypeID]
-
+        //kFilterTitleArray = [kBrandTitle, kSubBrandTitle, kTypeTitle, kGroupTitle, kProductLineTitle, kMarketGroupTitle]
+        //kFilterDescTypeIDArray = [kBrandDescTypeID, kSubBrandDescTypeID, kItemTypeDescTypeID, kProductGroupDescTypeID, kProductLineDescTypeID, kMarketGroupDescTypeID]
+        
+        getCatalogTypes();
+        
         // load filter desc type array
         filterDescTypeArray.removeAll()
         selectedFilterIndexArray.removeAll()
@@ -276,7 +306,12 @@ class ProductCatalogVC: UIViewController {
         itemDescLabel.text = productDetail.desc ?? ""
 
         barcodeLabel.text = productDetail.itemUPC ?? ""
-
+        //marketGroup.text = productDetail.marketGrp ?? ""
+        
+        //add by rsb 2019-11-30
+        let marketGrp = productDetail.marketGrp ?? ""
+        marketGroup.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "MarketGroup", alphaKey: marketGrp)?.desc ?? ""
+        
         productImageView.image = Utils.getProductImage(itemNo: itemNo)
 
         lastZoomScale = -1
@@ -596,3 +631,13 @@ extension ProductCatalogVC: UITextFieldDelegate {
     }
 
 }
+
+extension String {
+   func replace(string:String, replacement:String) -> String {
+       return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+   }
+
+   func removeWhitespace() -> String {
+       return self.replace(string: " ", replacement: "")
+   }
+ }

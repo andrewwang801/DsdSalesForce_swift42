@@ -83,9 +83,11 @@ class Utils {
                 }
                 dicArray.append(dic)
             }
+            
             return dicArray
         }
         catch let error as NSError {
+            
             NSLog("Load \(xmlName) XML failed: \(error.localizedDescription)")
             return []
         }

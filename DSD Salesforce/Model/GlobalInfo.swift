@@ -127,7 +127,6 @@ extension GlobalInfo {
     }
 
     func loadCoreDataFromXML() {
-
         let _ = RouteControl.loadFromXML(context: managedObjectContext, forSave: true).first
         let _ = Target.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = DescType.loadFromXML(context: managedObjectContext, forSave: true)
@@ -143,7 +142,7 @@ extension GlobalInfo {
         let _ = TripUser.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = CustInfo.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = CustNote.loadFromXML(context: managedObjectContext, forSave: true)
-
+        
         UploadService.deleteAll(context: managedObjectContext)
         Visit.deleteAll(context: managedObjectContext)
 
@@ -166,7 +165,7 @@ extension GlobalInfo {
                 }
             }
         }
-
+        
         let _ = ShelfStatus.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = PromotionHeader.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = PromotionNoVo.loadFromXML(context: managedObjectContext, forSave: true)
@@ -174,7 +173,6 @@ extension GlobalInfo {
         let _ = PromotionOption.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = EquipAss.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = Equipment.loadFromXML(context: managedObjectContext, forSave: true)
-
         let _ = DocText.loadFromXML(context: managedObjectContext, forSave: true)
         EquipCompleteStatus.deleteAll(context: managedObjectContext)
 
@@ -182,12 +180,20 @@ extension GlobalInfo {
         let _ = AuthDetail.loadFromXML(context: managedObjectContext, forSave: true)
 
         let productStructArray = ProductStruct.loadFromXML(context: managedObjectContext, forSave: true)
+        
+        //measure time
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         for productStruct in productStructArray {
             let reference = productStruct.reference ?? ""
             let productDetail = ProductDetail.getBy(context: managedObjectContext, itemNo: reference)
             productStruct.shortDesc = productDetail?.shortDesc ?? ""
             productStruct.fullDesc = productDetail?.desc ?? ""
         }
+        
+        //measure time
+        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+        print("XML loading time: \(timeElapsed).")
 
         let productLocnArray = ProductLocn.loadFromXML(context: managedObjectContext, forSave: true)
         for productLocn in productLocnArray {
@@ -196,7 +202,6 @@ extension GlobalInfo {
                 productDetail.productLocn = productLocn
             }
         }
-
         //let productLevlPath = CommData.getFilePathAppended(byCacheDir: "\(kXMLDirName)/PRODLEVL.XML") ?? ""
         //let isProductLevelExist = CommData.isExistingFile(atPath: productLevlPath)
         let productLevlArray = ProductLevl.loadFromXML(context: managedObjectContext, forSave: true)
@@ -218,7 +223,7 @@ extension GlobalInfo {
         let _ = TaxCodes.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = TaxRates.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = ARHeader.loadFromXML(context: managedObjectContext, forSave: true)
-
+        
         OrderHeader.deleteAll(context: managedObjectContext)
         OrderDetail.deleteAll(context: managedObjectContext)
         UTax.deleteAll(context: managedObjectContext)

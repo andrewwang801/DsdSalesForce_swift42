@@ -86,7 +86,7 @@ let kMaxAmericanExpressLength = 15
 let kMaxDinersClubLength = 14
 
 /// String constants
-let kProductCatalogDirName = "ProductCatalog"
+let kProductCatalogDirName = "ProductCatalogXX"
 let kEquipmentCatalogDirName = "EquipmentCatalog"
 let kPDFDirName = "pdf"
 let kPDFLocalDirName = "pdf_local"
