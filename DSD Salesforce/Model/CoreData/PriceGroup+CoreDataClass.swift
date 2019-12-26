@@ -11,6 +11,8 @@ import CoreData
 
 public class PriceGroup: NSManagedObject {
     
+    static var priceGrpDic = [String: [String: [PriceGroup]]]()
+    
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
     }
@@ -26,6 +28,23 @@ public class PriceGroup: NSManagedObject {
             return priceGroups
         }
         return []
+    }
+
+    static func getByForTodayFromDic(context: NSManagedObjectContext, priceGroup: String, itemNo: String) -> PriceGroup? {
+
+        let now = Date()
+        let nowString = now.toDateString(format: kTightJustDateFormat) ?? ""
+        guard let _priceGrpArray = priceGrpDic[itemNo]?[priceGroup] else {return nil}
+        var priceGrpArray = [PriceGroup]()
+        for item in _priceGrpArray {
+            if item.dateStart! <= nowString && item.dateEnd! >= nowString {
+                priceGrpArray.append(item)
+            }
+        }
+        if priceGrpArray.isEmpty {
+            return nil
+        }
+        return priceGrpArray.first
     }
 
     static func getByForToday(context: NSManagedObjectContext, priceGroup: String, itemNo: String) -> PriceGroup? {
@@ -75,10 +94,13 @@ public class PriceGroup: NSManagedObject {
 
         let dicArray = Utils.loadFromXML(xmlName: "PRICEGRP", xPath: "//PriceGrp/Records/PriceGrp")
         var priceGroupArray = [PriceGroup]()
+        var nestedDic = [String: [PriceGroup]]()
         for dic in dicArray {
             let priceGroup = PriceGroup(context: context, forSave: forSave)
             priceGroup.updateBy(xmlDictionary: dic)
             priceGroupArray.append(priceGroup)
+            nestedDic[dic["PriceGrp"]!]?.append(priceGroup)
+            priceGrpDic[dic["ItemNo"]!] = nestedDic
         }
         return priceGroupArray
     }

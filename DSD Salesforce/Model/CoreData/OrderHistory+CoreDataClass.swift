@@ -11,10 +11,12 @@ import CoreData
 
 public class OrderHistory: NSManagedObject {
     
+    static var orderHistoryDic = [String: [String: [String: [OrderHistory]]]]()
+    
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
     }
-
+    
     static func getBy(context: NSManagedObjectContext, chainNo: String, custNo: String) -> [OrderHistory] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderHistory")
@@ -72,7 +74,11 @@ public class OrderHistory: NSManagedObject {
         }
         return []
     }
-
+    
+    static func getFirstByFromDic(chainNo: String, custNo: String, itemNo: String) -> OrderHistory? {
+        return orderHistoryDic[chainNo]?[custNo]?[itemNo]?.first
+    }
+    
     static func getFirstBy(context: NSManagedObjectContext, chainNo: String, custNo: String, itemNo: String) -> OrderHistory? {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderHistory")
@@ -136,6 +142,7 @@ public class OrderHistory: NSManagedObject {
             let orderHistory = OrderHistory(context: context, forSave: forSave)
             orderHistory.updateBy(xmlDictionary: dic)
             orderHistoryArray.append(orderHistory)
+            orderHistoryDic[dic["ChainNo"]!]?[dic["CustNo"]!]?[dic["ItemNo"]!]?.append(orderHistory)
         }
         return orderHistoryArray
     }

@@ -10,6 +10,19 @@ import Foundation
 import CoreData
 
 public class Pricing: NSManagedObject {
+
+    //use Dif as Loading Speed Issue
+    /*static var chainNoDic = [String: [Pricing]]()
+    typealias ChainNoDic = [String: [Pricing]]
+    static var custNoDic = [String: [ChainNoDic]]()
+    typealias CustNoDic = [String: [ChainNoDic]]
+    
+    static var chainNoExistingArray: [Pricing] = []
+    static  var custNoExistingArray: [ChainNoDic] = []
+    static var itemNoExistingArray: [CustNoDic] = []
+    static var pricingDicForToday = [String: [CustNoDic]]()*/
+    
+    static var pricingDicForToday = [String: [Pricing]]()
     
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
@@ -53,7 +66,42 @@ public class Pricing: NSManagedObject {
         }
         return nil
     }
+    
+    //
+    static func binarySearchForAscending<T: Comparable>(array: Array<T>, item: T) -> Int {
+        var low = 0
+        var high = array.count - 1
+        
+        while low <= high {
+            let mid = (low + high) / 2
+            let guess = array[mid]
+            if guess == item {
+                return mid
+            } else if guess > item {
+                high = mid - 1
+            } else {
+                low = mid + 1
+            }
+        }
+        
+        return -1
+    }
+    
+    static func getByForTodayFromDic(context: NSManagedObjectContext, chainNo: String, custNo: String, itemNo: String) -> Pricing? {
+        
+        let now = Date()
+        let nowString = now.toDateString(format: kTightJustDateFormat) ?? ""
+ 
+        guard let _pricingArray = pricingDicForToday[itemNo] else {return nil}
 
+        for item in _pricingArray {
+            if item.custNo == custNo && item.chainNo == chainNo && item.dateStart! <= nowString && item.dateEnd! >= nowString {
+                return item
+            }
+        }
+        return nil
+    }
+    
     static func getAll(context: NSManagedObjectContext) -> [Pricing] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Pricing")
@@ -83,10 +131,51 @@ public class Pricing: NSManagedObject {
 
         let dicArray = Utils.loadFromXML(xmlName: "PRICING", xPath: "//Pricing/Records/Pricing")
         var pricingArray = [Pricing]()
+        var existingArray = [Pricing]()
         for dic in dicArray {
             let pricing = Pricing(context: context, forSave: forSave)
             pricing.updateBy(xmlDictionary: dic)
             pricingArray.append(pricing)
+            
+            if let _existingArray = pricingDicForToday[dic["ItemNo"]!] {
+                existingArray = _existingArray
+            }
+            else {
+                existingArray = []
+            }
+            existingArray.append(pricing)
+            pricingDicForToday[dic["ItemNo"]!] = existingArray
+            
+            //Use Dic for Loading Speed Issue
+            //chainNo
+            /*if let _existingArray = chainNoDic[dic["ChainNo"]!] {
+                chainNoExistingArray = _existingArray
+            }
+            else {
+                chainNoExistingArray = []
+            }
+            chainNoExistingArray.append(pricing)
+            chainNoDic[dic["ChainNo"]!] = chainNoExistingArray
+            
+            //custNo
+            if let _existingArray = custNoDic[dic["CustNo"]!] {
+                custNoExistingArray = _existingArray
+            }
+            else {
+                custNoExistingArray = []
+            }
+            custNoExistingArray.append(chainNoDic)
+            custNoDic[dic["CustNo"]!] = custNoExistingArray
+            
+            //itemNo
+            if let _existingArray = pricingDicForToday[dic["ItemNo"]!] {
+                itemNoExistingArray = _existingArray
+            }
+            else {
+                itemNoExistingArray = []
+            }
+            itemNoExistingArray.append(custNoDic)
+            pricingDicForToday[dic["ItemNo"]!] = itemNoExistingArray*/
         }
         return pricingArray
     }

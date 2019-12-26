@@ -11,10 +11,16 @@ import CoreData
 
 public class ProductLocn: NSManagedObject {
     
+    static var productLocnDic = [String: [ProductLocn]]()
+    
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
     }
-
+    
+    static func getByFromDic(itemNo: String) -> [ProductLocn]? {
+        return productLocnDic[itemNo]
+    }
+    
     static func getBy(context: NSManagedObjectContext, itemNo: String) -> [ProductLocn] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ProductLocn")
@@ -99,6 +105,7 @@ public class ProductLocn: NSManagedObject {
             let productLocn = ProductLocn(context: context, forSave: forSave)
             productLocn.updateBy(xmlDictionary: dic)
             productLocnArray.append(productLocn)
+            productLocnDic[dic["ItemNo"]!]?.append(productLocn)
         }
         return productLocnArray
     }

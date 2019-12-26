@@ -185,7 +185,7 @@
                                                             <color key="textColor" red="0.18431372549019609" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FSx-Ac-t2r">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="FSx-Ac-t2r">
                                                             <rect key="frame" x="20" y="20" width="101" height="60"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lP-0y-FpK">
@@ -720,5 +720,6 @@
         <image name="Screen_Details_Qty_Plus" width="28" height="28"/>
         <image name="Select_Customer_Top_Back_Normal" width="20" height="20"/>
         <image name="Select_Customer_Top_Back_Selected" width="20" height="20"/>
+        <image name="loading" width="100" height="100"/>
     </resources>
 </document>

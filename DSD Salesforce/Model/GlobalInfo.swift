@@ -69,7 +69,7 @@ class GlobalInfo: NSObject {
 
     var productItemDictionary = [String: ProductDetail]()
     var productUPCDictionary = [String: ProductDetail]()
-
+    
     static var shared: GlobalInfo {
         if gbInstance == nil {
             gbInstance = GlobalInfo()
@@ -186,7 +186,7 @@ extension GlobalInfo {
         
         for productStruct in productStructArray {
             let reference = productStruct.reference ?? ""
-            let productDetail = ProductDetail.getBy(context: managedObjectContext, itemNo: reference)
+            let productDetail = ProductDetail.getByFromDic(context: managedObjectContext, itemNo: reference)
             productStruct.shortDesc = productDetail?.shortDesc ?? ""
             productStruct.fullDesc = productDetail?.desc ?? ""
         }
@@ -198,7 +198,7 @@ extension GlobalInfo {
         let productLocnArray = ProductLocn.loadFromXML(context: managedObjectContext, forSave: true)
         for productLocn in productLocnArray {
             let itemNo = productLocn.itemNo ?? ""
-            if let productDetail = ProductDetail.getBy(context: managedObjectContext, itemNo: itemNo) {
+            if let productDetail = ProductDetail.getByFromDic(context: managedObjectContext, itemNo: itemNo) {
                 productDetail.productLocn = productLocn
             }
         }
@@ -213,7 +213,7 @@ extension GlobalInfo {
             if locNo != defLocNo {
                 continue
             }
-            if let productDetail = ProductDetail.getBy(context: managedObjectContext, itemNo: itemNo) {
+            if let productDetail = ProductDetail.getByFromDic(context: managedObjectContext, itemNo: itemNo) {
                 productDetail.productLevl = productLevl
             }
         }
@@ -523,8 +523,13 @@ extension GlobalInfo {
                 continue
             }
             let itemNo = prodLocn.itemNo ?? ""
-            guard let productDetail = ProductDetail.getBy(context: managedObjectContext, itemNo: itemNo) else {continue}
-            let pricing = Pricing.getByForToday(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+            
+            //use Dic as Loading Speed Issue
+            //guard let _productDetail = ProductDetail.getBy(context: managedObjectContext, itemNo: itemNo) else {continue}
+            //let _pricing = Pricing.getByForToday(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+            
+            guard let productDetail = ProductDetail.getByFromDic(context: managedObjectContext, itemNo: itemNo) else {continue}
+            let pricing = Pricing.getByForTodayFromDic(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
             let pricingItem = CustomerPricingItem()
             pricingItem.productDetail = productDetail
             pricingItem.pricing = pricing
