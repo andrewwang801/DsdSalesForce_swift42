@@ -67,12 +67,10 @@ public class ProductLevl: NSManagedObject {
 
         let dicArray = Utils.loadFromXML(xmlName: "PRODLEVL", xPath: "//ProdLevl/Records/ProdLevl")
         var productLevlArray = [ProductLevl]()
-        var productLevlDic = [String: [String: ProductLevl]]()
         for dic in dicArray {
             let productLevl = ProductLevl(context: context, forSave: forSave)
             productLevl.updateBy(xmlDictionary: dic)
             productLevlArray.append(productLevl)
-            productLevlDic[dic["ItemNo"]!] = [dic["LocNo"]!: productLevl]
         }
         return productLevlArray
     }

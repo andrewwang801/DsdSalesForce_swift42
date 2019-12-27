@@ -105,7 +105,7 @@ class FTPManager: NSObject {
         }
 
         //measure time
-        var startTime = CFAbsoluteTimeGetCurrent()
+        let startTime = CFAbsoluteTimeGetCurrent()
         
         // create catalog directory
         let localDirPath = CommData.getFilePathAppended(byCacheDir: localDirName) ?? ""
@@ -136,7 +136,7 @@ class FTPManager: NSObject {
         requestsManager.startProcessingRequests()
         
         //measure time
-        var timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
         print("Time elapsed internal for DownloadDirectory: \(timeElapsed) s.")
     }
 
