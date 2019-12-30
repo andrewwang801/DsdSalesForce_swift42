@@ -14,14 +14,17 @@ class SearchProductVC: UIViewController {
     @IBOutlet weak var searchByButton: UIButton!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var productTableView: UITableView!
-
+    
+    let globalInfo = GlobalInfo.shared
+    
     enum SearchByType: Int {
         case productName = 0
-        case itemType = 1
-        case productGroup = 2
-        case productLine = 3
-        case brand = 4
-        case subBrand = 5
+        case productCode = 1
+        case itemType = 2
+        case productGroup = 3
+        case productLine = 4
+        case brand = 5
+        case subBrand = 6
     }
 
     enum DismissOption {
@@ -29,12 +32,12 @@ class SearchProductVC: UIViewController {
         case added
     }
 
-    let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     var productDetailArray = [ProductDetail]()
     var searchedArray = [ProductDetail]()
 
-    let searchByTypeNameArray = ["Product Name", "Item Type", "Product Group", "Product Line", "Brand", "Sub Brand"]
+    let searchByTypeNameArray = ["Product Name", "Product Code", "Item Type", "Product Group", "Product Line", "Brand", "Sub Brand"]
+    
     var selectedSearchByType: SearchByType = .productName {
         didSet {
             let index = selectedSearchByType.rawValue
@@ -54,10 +57,15 @@ class SearchProductVC: UIViewController {
     var selectedItemNo = ""
 
     var dismissHandler: ((SearchProductVC, DismissOption)->())?
-
+    
+//    required init?(coder aCoder: NSCoder) {
+//
+//        super.init(coder: aCoder)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         initData()
         initUI()
@@ -87,11 +95,17 @@ class SearchProductVC: UIViewController {
         let prodDetailArray = ProductDetail.getAll(context: managedObjectContext)
 
         for prodDetail in prodDetailArray {
-            prodDetail.desc1 = DescType.getBy(context: managedObjectContext, descTypeID: "ITEMTYPE", alphaKey: prodDetail.itemType ?? "")?.desc ?? ""
-            prodDetail.desc2 = DescType.getBy(context: managedObjectContext, descTypeID: "PRODGROUP", alphaKey: prodDetail.prodGrp ?? "")?.desc ?? ""
-            prodDetail.desc3 = DescType.getBy(context: managedObjectContext, descTypeID: "PRODLINE", alphaKey: prodDetail.prodLine ?? "")?.desc ?? ""
-            prodDetail.desc4 = DescType.getBy(context: managedObjectContext, descTypeID: "BRAND", alphaKey: prodDetail.brand ?? "")?.desc ?? ""
-            prodDetail.desc5 = DescType.getBy(context: managedObjectContext, descTypeID: "SUBBRAND", alphaKey: prodDetail.subBrand ?? "")?.desc ?? ""
+//            prodDetail.desc1 = DescType.getBy(context: managedObjectContext, descTypeID: "ITEMTYPE", alphaKey: prodDetail.itemType ?? "")?.desc ?? ""
+//            prodDetail.desc2 = DescType.getBy(context: managedObjectContext, descTypeID: "PRODGROUP", alphaKey: prodDetail.prodGrp ?? "")?.desc ?? ""
+//            prodDetail.desc3 = DescType.getBy(context: managedObjectContext, descTypeID: "PRODLINE", alphaKey: prodDetail.prodLine ?? "")?.desc ?? ""
+//            prodDetail.desc4 = DescType.getBy(context: managedObjectContext, descTypeID: "BRAND", alphaKey: prodDetail.brand ?? "")?.desc ?? ""
+//            prodDetail.desc5 = DescType.getBy(context: managedObjectContext, descTypeID: "SUBBRAND", alphaKey: prodDetail.subBrand ?? "")?.desc ?? ""
+            
+            prodDetail.desc1 = DescType.getByFromDic(context: managedObjectContext, descTypeID: "ItemType", alphaKey: prodDetail.itemType ?? "")?.desc ?? ""
+            prodDetail.desc2 = DescType.getByFromDic(context: managedObjectContext, descTypeID: "ProdGroup", alphaKey: prodDetail.prodGrp ?? "")?.desc ?? ""
+            prodDetail.desc3 = DescType.getByFromDic(context: managedObjectContext, descTypeID: "ProdLine", alphaKey: prodDetail.prodLine ?? "")?.desc ?? ""
+            prodDetail.desc4 = DescType.getByFromDic(context: managedObjectContext, descTypeID: "Brand", alphaKey: prodDetail.brand ?? "")?.desc ?? ""
+            prodDetail.desc5 = DescType.getByFromDic(context: managedObjectContext, descTypeID: "SubBrand", alphaKey: prodDetail.subBrand ?? "")?.desc ?? ""
         }
 
         productDetailArray.removeAll()
@@ -111,6 +125,31 @@ class SearchProductVC: UIViewController {
 
     func initUI() {
 
+        //set SearchByKey
+        if let _selectedSearchByType = self.globalInfo.routeControl?.prodSearchDef, _selectedSearchByType != "" {
+            
+            let _trimedSelectedSearchByType = _selectedSearchByType.replace(string: " ", replacement: "").lowercased()
+            switch _trimedSelectedSearchByType {
+                
+                case "productname":
+                    selectedSearchByType = .productName
+                case "productcode":
+                    selectedSearchByType = .productCode
+                case "itemtype":
+                    selectedSearchByType = .itemType
+                case "productgroup":
+                    selectedSearchByType = .productGroup
+                case "productline":
+                    selectedSearchByType = .productLine
+                case "brand":
+                    selectedSearchByType = .brand
+                case "subbrand":
+                    selectedSearchByType = .subBrand
+                default:
+                    selectedSearchByType = .productName
+            }
+        }
+        
         searchText.delegate = self
         searchText.addTarget(self, action: #selector(SearchProductVC.onSearchTextDidChanged), for: .editingChanged)
         searchText.returnKeyType = .done
@@ -135,7 +174,14 @@ class SearchProductVC: UIViewController {
                 searchedArray.append(productDetail)
                 continue
             }
-            if selectedSearchByType == .productName {
+            if selectedSearchByType == .productCode {
+                let desc = (productDetail.itemNo ?? "").lowercased()
+                //let descUpc = (productDetail.itemUPC ?? "").lowercased()
+                if desc.contains(searchKey) == true {
+                    searchedArray.append(productDetail)
+                }
+            }
+            else if selectedSearchByType == .productName {
                 let desc = (productDetail.desc ?? "").lowercased()
                 if desc.contains(searchKey) == true {
                     searchedArray.append(productDetail)

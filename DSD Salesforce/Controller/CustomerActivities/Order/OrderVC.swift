@@ -101,10 +101,8 @@ class OrderVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
         initData()
         initUI()
-        //hud?.hide(true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
