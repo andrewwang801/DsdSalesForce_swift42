@@ -98,6 +98,9 @@ public class RouteControl: NSManagedObject {
         self.catalog = xmlDictionary["CATALOG"] ?? ""
         
         self.prodSearchDef = xmlDictionary["PRODSEARCHDEF"] ?? ""
+        
+        self.orderFunction = xmlDictionary["ORDERFUNCTION"] ?? ""
+        self.omSupplierId = xmlDictionary["OMSUPPLIERID"] ?? ""
 
         let locnNoGPS = xmlDictionary["LocnNoGPS"] ?? ""
         let parts = locnNoGPS.components(separatedBy: ",")
@@ -202,4 +205,7 @@ extension RouteControl {
     @NSManaged public var invoiceNumFormat: String?
     
     @NSManaged public var prodSearchDef: String?
+    
+    @NSManaged public var orderFunction: String?
+    @NSManaged public var omSupplierId: String?
 }

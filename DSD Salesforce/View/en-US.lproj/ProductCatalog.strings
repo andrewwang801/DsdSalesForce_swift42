@@ -1,0 +1,60 @@
+
+/* Class = "UIButton"; normalTitle = "Add to Order"; ObjectID = "0Qi-LZ-Z35"; */
+"0Qi-LZ-Z35.normalTitle" = "Add to Order";
+
+/* Class = "UILabel"; text = "12"; ObjectID = "1uP-VH-ESr"; */
+"1uP-VH-ESr.text" = "12";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "4T3-IH-eog"; */
+"4T3-IH-eog.text" = "1";
+
+/* Class = "UILabel"; text = "Barcode"; ObjectID = "6wA-Uk-tJe"; */
+"6wA-Uk-tJe.text" = "Barcode";
+
+/* Class = "UILabel"; text = "AC01"; ObjectID = "CjX-lU-WUm"; */
+"CjX-lU-WUm.text" = "AC01";
+
+/* Class = "UILabel"; text = "Allie's Cold Pressed Juices Valencia Orange 300ml"; ObjectID = "Eii-BJ-jwb"; */
+"Eii-BJ-jwb.text" = "Allie's Cold Pressed Juices Valencia Orange 300ml";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "Hpx-CP-cfh"; */
+"Hpx-CP-cfh.text" = "There is no data.";
+
+/* Class = "UILabel"; text = "Base Case Price"; ObjectID = "KDC-fe-JvO"; */
+"KDC-fe-JvO.text" = "Base Case Price";
+
+/* Class = "UITextField"; text = "777"; ObjectID = "SUE-rY-Lr4"; */
+"SUE-rY-Lr4.text" = "777";
+
+/* Class = "UILabel"; text = "Please select a product"; ObjectID = "bWn-ag-xTX"; */
+"bWn-ag-xTX.text" = "Please select a product";
+
+/* Class = "UILabel"; text = "Units per case"; ObjectID = "bmw-zp-8qe"; */
+"bmw-zp-8qe.text" = "Units per case";
+
+/* Class = "UILabel"; text = "Store Type 1"; ObjectID = "c4Q-29-5nZ"; */
+"c4Q-29-5nZ.text" = "Store Type 1";
+
+/* Class = "UIButton"; normalTitle = "TYPE"; ObjectID = "cCt-WT-VDK"; */
+"cCt-WT-VDK.normalTitle" = "TYPE";
+
+/* Class = "UILabel"; text = "Allie's Cold Pressed Juices"; ObjectID = "dgi-An-Tab"; */
+"dgi-An-Tab.text" = "Allie's Cold Pressed Juices";
+
+/* Class = "UILabel"; text = "$24.00"; ObjectID = "kGs-qa-bSJ"; */
+"kGs-qa-bSJ.text" = "$24.00";
+
+/* Class = "UILabel"; text = "Unit Price"; ObjectID = "lPM-KG-U5e"; */
+"lPM-KG-U5e.text" = "Unit Price";
+
+/* Class = "UILabel"; text = "MarketGroup"; ObjectID = "q5V-AZ-cmH"; */
+"q5V-AZ-cmH.text" = "MarketGroup";
+
+/* Class = "UILabel"; text = "SI06"; ObjectID = "qeP-GO-mgu"; */
+"qeP-GO-mgu.text" = "SI06";
+
+/* Class = "UILabel"; text = "AC01"; ObjectID = "ra0-r0-EQ7"; */
+"ra0-r0-EQ7.text" = "AC01";
+
+/* Class = "UILabel"; text = "$2.00"; ObjectID = "wgm-yT-FtM"; */
+"wgm-yT-FtM.text" = "$2.00";

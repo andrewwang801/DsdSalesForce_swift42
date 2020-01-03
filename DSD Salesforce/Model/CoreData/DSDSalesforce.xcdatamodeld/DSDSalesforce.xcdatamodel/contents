@@ -496,8 +496,10 @@
         <attribute name="invoiceNumFormat" optional="YES" attributeType="String"/>
         <attribute name="loconNoGPSLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="loconNoGPSLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="omSupplierId" optional="YES" attributeType="String"/>
         <attribute name="orderDayWindow" optional="YES" attributeType="String"/>
         <attribute name="orderFulfil" optional="YES" attributeType="String"/>
+        <attribute name="orderFunction" optional="YES" attributeType="String"/>
         <attribute name="paymentAdjust" optional="YES" attributeType="String"/>
         <attribute name="primeContact" optional="YES" attributeType="String"/>
         <attribute name="printType" optional="YES" attributeType="String"/>
@@ -761,7 +763,7 @@
         <element name="PromotionNoVo" positionX="9" positionY="162" width="128" height="105"/>
         <element name="PromotionOption" positionX="27" positionY="180" width="128" height="240"/>
         <element name="ProMulti" positionX="18" positionY="171" width="128" height="135"/>
-        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="748"/>
+        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="778"/>
         <element name="ShelfStatus" positionX="-18" positionY="135" width="128" height="285"/>
         <element name="Survey" positionX="-18" positionY="135" width="128" height="195"/>
         <element name="SurveyAnswerOption" positionX="0" positionY="153" width="128" height="90"/>
