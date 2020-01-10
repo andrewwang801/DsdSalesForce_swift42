@@ -14,6 +14,19 @@ import ExternalAccessory
 
 class GlobalInfo: NSObject {
 
+    enum Lang: String {
+        case en_gb = "EUK"
+        case gn_us = "EUS"
+    }
+    
+    enum DateFmt: String {
+        case dmy = "dmy"
+        case mdy = "mdy"
+    }
+    
+    static var language: Lang = .en_gb
+    static var dateFmt: DateFmt = .dmy
+    
     var ftpManager: FTPManager!
     var uploadManager: UploadManager!
     var productImageDownloadManager: ProductImageDownloadManager!
@@ -288,6 +301,8 @@ extension GlobalInfo {
     func loadCoreData() {
 
         routeControl = RouteControl.getAll(context: managedObjectContext).first
+        GlobalInfo.language = Lang(rawValue: routeControl?.language ?? "EUK") ?? .en_gb
+        GlobalInfo.dateFmt = DateFmt(rawValue: routeControl?.dateFmt ?? "dmy") ?? .dmy
         target = Target.getAll(context: managedObjectContext).first
         
         descTypeArrary = DescType.getAll(context: managedObjectContext)

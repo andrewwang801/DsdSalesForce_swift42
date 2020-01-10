@@ -23,13 +23,13 @@ class DialogTableViewCellModel: NSObject {
 
         switch (dialog.type){
         case .publicGroup:
-            self.detailTextLabelText = "SA_STR_PUBLIC_GROUP".localized
+            self.detailTextLabelText = L10n.publicGroup()
             break
         case .group:
-            self.detailTextLabelText = "SA_STR_GROUP".localized
+            self.detailTextLabelText = L10n.group()
             break
         case .private:
-            self.detailTextLabelText = "SA_STR_PRIVATE".localized
+            self.detailTextLabelText = L10n.private()
             break
 
             //if dialog.recipientID == -1 {

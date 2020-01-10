@@ -15,7 +15,7 @@ class CollectionsBalancingPaymentCell: UITableViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
-
+    
     var parentVC: CollectionsBalancingVC!
     var indexPath: IndexPath!
 
@@ -38,7 +38,7 @@ class CollectionsBalancingPaymentCell: UITableViewCell {
 
     func configCell() {
 
-        let typeTitleArray = ["Cash", "Cheque", "Card"]
+        let typeTitleArray = [L10n.cash(), L10n.check(), L10n.card()]
         selectionStyle = .none
         let index = indexPath.row
         let paymentGroup = parentVC.uarPaymentArray[index]

@@ -80,7 +80,7 @@ class ChatsVC: UIViewController, QMAuthServiceDelegate {
     func loadDialogsFromQb(isSilentUpdate: Bool, isClearDialogs: Bool) {
 
         if isSilentUpdate == false {
-            SVProgressHUD.show(withStatus: "SA_STR_LOADING_DIALOGS".localized, maskType: SVProgressHUDMaskType.clear)
+            SVProgressHUD.show(withStatus: L10n.loadingDialogs(), maskType: SVProgressHUDMaskType.clear)
         }
 
         var dialogsToLoad = [QBChatDialog]()
@@ -118,7 +118,7 @@ class ChatsVC: UIViewController, QMAuthServiceDelegate {
         self.isNewDataLoading = false
 
         guard response != nil && response!.isSuccess else {
-            SVProgressHUD.showError(withStatus: "SA_STR_FAILED_LOAD_DIALOGS".localized)
+            SVProgressHUD.showError(withStatus: L10n.loadingDialogs())
             return
         }
 

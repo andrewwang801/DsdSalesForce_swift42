@@ -61,7 +61,8 @@ class PresoldOrderCell: UITableViewCell {
     }
 
     func configCell() {
-
+        editButton.setTitleForAllState(title: L10n.edit())
+        
         selectionStyle = .none
         let presoldOrderHeader = parentVC.presoldOrderHeader!
         var orderHeader: OrderHeader?

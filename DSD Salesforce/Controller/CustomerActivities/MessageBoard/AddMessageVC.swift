@@ -15,7 +15,13 @@ class AddMessageVC: UIViewController {
     @IBOutlet weak var messageTypeButton: AnimatableButton!
     @IBOutlet weak var messageNoteTextView: AnimatableTextView!
     @IBOutlet weak var attachmentButton: AnimatableButton!
-
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var messageTypeLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var attachmentLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var addButton: AnimatableButton!
+    
     enum DismissOption {
         case back
         case add
@@ -77,6 +83,13 @@ class AddMessageVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.addNewMessage()
+        messageLabel.text = L10n.Message()
+        messageTypeLabel.text = L10n.messageType()
+        attachmentLabel.text = L10n.attachment()
+        backButton.setTitleForAllState(title: L10n.Back())
+        addButton.setTitleForAllState(title: L10n.Add())
+        
         setupMessageTypeDropDown()
     }
 
@@ -242,10 +255,10 @@ extension AddMessageVC: QBImagePickerControllerDelegate {
         }
         DispatchQueue.main.async {
             if assets.count > self.attachmentFileNameArray.count {
-                Utils.showAlert(vc: self, title: "", message: "Failed in adding some photos.\nPlease Toggle 'iCloud Photo Sharing' switch in iOS Setting -> Accounts & Passwords -> iCloud -> Photos and try again.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.failedInAddingSomePhotos(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
             }
             else {
-                SVProgressHUD.showSuccess(withStatus: "Added selected photos successfully")
+                SVProgressHUD.showSuccess(withStatus: L10n.addedSelectedPhotosSuccessfully())
             }
         }
         imagePickerController.dismiss(animated: true, completion: {

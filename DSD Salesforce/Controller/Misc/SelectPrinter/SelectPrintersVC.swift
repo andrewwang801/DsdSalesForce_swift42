@@ -13,7 +13,9 @@ class SelectPrinterVC: UIViewController {
 
     @IBOutlet weak var printerTableView: UITableView!
     @IBOutlet weak var noPrinterLabel: UILabel!
-
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    
     var selectedPrinter: EAAccessory?
     var bluetoothPrinters = [EAAccessory]()
 
@@ -41,6 +43,10 @@ class SelectPrinterVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.selectPrinter()
+        backButton.setTitleForAllState(title: L10n.back())
+        noPrinterLabel.text = L10n.noPrinterLabel()
+        
         printerTableView.delegate = self
         printerTableView.dataSource = self
     }

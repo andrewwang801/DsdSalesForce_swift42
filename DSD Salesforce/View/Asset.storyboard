@@ -755,27 +755,37 @@
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
-                        <outlet property="alternativeAssetNumberLabel" destination="D0b-tw-vaq" id="96o-Uc-snO"/>
+                        <outlet property="alternativeAssetNumberLabel" destination="D0b-tw-vaq" id="Kgd-IX-iQd"/>
+                        <outlet property="alternativeAssetNumberTitleLabel" destination="lzZ-uR-BKF" id="NUY-hT-XqB"/>
                         <outlet property="assetImageView" destination="dLA-q7-r6X" id="l7z-cC-jFj"/>
                         <outlet property="assetTableView" destination="WPf-Xv-zja" id="3rK-jL-178"/>
                         <outlet property="assetTitleLabel" destination="NN5-iu-skI" id="dto-23-49p"/>
                         <outlet property="centerView" destination="N0r-el-aXj" id="l1r-eE-y7H"/>
+                        <outlet property="doneButton" destination="A3C-pH-p9l" id="MjB-OE-vRL"/>
+                        <outlet property="foundAndDetailsUpdatedLabel" destination="0iY-86-mxv" id="1wz-4r-E4D"/>
                         <outlet property="foundUpdatedLabel" destination="IcN-MB-WBt" id="Ldm-s9-Yxl"/>
                         <outlet property="foundUpdatedView" destination="w92-qR-6JI" id="cJu-kq-U6U"/>
-                        <outlet property="locationInStoreLabel" destination="3pL-mu-jxL" id="SWQ-JQ-nNQ"/>
-                        <outlet property="makeLabel" destination="o5s-Bq-J9Y" id="j6U-Fe-c53"/>
-                        <outlet property="modelLabel" destination="0Vm-Ni-0II" id="hTE-jm-sow"/>
+                        <outlet property="locationInStoreLabel" destination="3pL-mu-jxL" id="eSx-yd-Dy2"/>
+                        <outlet property="locationInStoreTitleLabel" destination="QTO-Wm-Zov" id="q8j-nx-bP7"/>
+                        <outlet property="makeLabel" destination="o5s-Bq-J9Y" id="XaC-cY-o7S"/>
+                        <outlet property="makeTitleLabel" destination="SYl-fV-fJe" id="DYW-wV-KTF"/>
+                        <outlet property="modelLabel" destination="0Vm-Ni-0II" id="nnM-yw-n2e"/>
+                        <outlet property="modelTitleLabel" destination="TJY-aJ-Wrr" id="hct-rN-J7y"/>
+                        <outlet property="newAssetFoundButton" destination="DrG-dE-flw" id="z7h-aQ-fLD"/>
                         <outlet property="noDataLabel" destination="rdQ-W7-2Pc" id="S0q-F9-mXx"/>
                         <outlet property="noDataRightLabel" destination="ko0-lW-PPF" id="i4v-Se-VTE"/>
-                        <outlet property="notFoundLabel" destination="iAM-Mq-PQ3" id="Yti-9q-k1v"/>
+                        <outlet property="notFound" destination="5g1-FN-6Hf" id="Eog-dF-6av"/>
                         <outlet property="notFoundView" destination="TZa-ex-EOh" id="5Be-bO-Wuo"/>
                         <outlet property="repairButton" destination="SXT-0d-zNJ" id="HLD-b7-C6G"/>
+                        <outlet property="requestNewPlacementButton" destination="CNv-w5-Wdy" id="bUM-Ft-RDi"/>
                         <outlet property="searchCloseButton" destination="0aT-hu-O85" id="hIY-2p-auk"/>
                         <outlet property="searchText" destination="tiq-L0-HiN" id="D50-Tf-b9v"/>
                         <outlet property="searchViewRightConstraint" destination="V6n-zH-6UQ" id="rEi-gx-AgM"/>
-                        <outlet property="serialNumberLabel" destination="n47-q0-7cG" id="uVu-JU-hk9"/>
-                        <outlet property="statusLabel" destination="Zgc-QN-tZa" id="rq2-SG-ld0"/>
-                        <outlet property="verifiedLabel" destination="gHi-qZ-afa" id="uw7-ST-W0f"/>
+                        <outlet property="serialNumberLabel" destination="n47-q0-7cG" id="N0F-uN-ku8"/>
+                        <outlet property="serialNumberTitleLabel" destination="tBO-0V-Kdp" id="uxy-7y-x3a"/>
+                        <outlet property="statusLabel" destination="Zgc-QN-tZa" id="Kh2-hU-Wca"/>
+                        <outlet property="statusTitleLabel" destination="1aa-No-dfF" id="s3W-pZ-eOF"/>
+                        <outlet property="verified" destination="4XM-46-waj" id="ObE-Ug-4jz"/>
                         <outlet property="verifiedView" destination="DNG-r1-fA0" id="YQ3-Ep-INe"/>
                     </connections>
                 </viewController>
@@ -1494,21 +1504,29 @@
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
+                        <outlet property="addAssetToStoreButton" destination="uji-ve-loq" id="65V-85-TT0"/>
                         <outlet property="alternativeAssetNoText" destination="iiu-sT-O8k" id="eMS-Oy-Mvy"/>
                         <outlet property="assetTableView" destination="7e0-dI-HyH" id="E7j-ab-Zhe"/>
                         <outlet property="assetTypeButton" destination="JAs-94-rvP" id="BX0-YR-qbl"/>
+                        <outlet property="assetTypeLabel" destination="OVI-fK-QlP" id="Pa6-Ha-lWG"/>
                         <outlet property="centerView" destination="2Ft-52-NyZ" id="6yZ-pR-b4g"/>
                         <outlet property="locationInStoreButton" destination="mV7-kS-bm1" id="vET-M8-AD5"/>
-                        <outlet property="makeLabel" destination="Omy-NM-nfq" id="gGW-i5-dGi"/>
-                        <outlet property="modelLabel" destination="Dbb-LP-U2S" id="QED-S5-gtW"/>
+                        <outlet property="locationInStoreLabel" destination="SfI-d8-bNE" id="TZZ-2S-K0c"/>
+                        <outlet property="makeLabel" destination="Omy-NM-nfq" id="prR-HT-bSR"/>
+                        <outlet property="makeTitleLabel" destination="dDo-3S-t91" id="bzE-ZD-9Om"/>
+                        <outlet property="modelLabel" destination="Dbb-LP-U2S" id="ak6-So-RV3"/>
+                        <outlet property="modelTitleLabel" destination="0vi-v5-AO7" id="JAo-q9-rbA"/>
                         <outlet property="noDataLabel" destination="EGf-uG-asV" id="YsE-8f-gBj"/>
                         <outlet property="noDataRightLabel" destination="4FS-3U-8v5" id="O3J-mh-KKy"/>
+                        <outlet property="returnButton" destination="VPu-M4-Uy2" id="lff-Gg-A0C"/>
                         <outlet property="searchCloseButton" destination="NzY-bn-FPn" id="mgi-ed-TgZ"/>
                         <outlet property="searchText" destination="3iR-eE-wqN" id="4De-5z-qgi"/>
                         <outlet property="searchView" destination="8nH-Sd-JhY" id="aZC-Tg-zHm"/>
                         <outlet property="searchViewRightMarginConstraint" destination="M9n-8Y-G21" id="zsT-KR-7om"/>
                         <outlet property="serialNoText" destination="DNX-SL-Jr3" id="qpB-2F-SzE"/>
+                        <outlet property="serialNumberLabel" destination="JwP-7p-pUA" id="vGA-AA-64c"/>
                         <outlet property="statusButton" destination="nQn-Nv-rnL" id="kTT-FL-jn9"/>
+                        <outlet property="statusLabel" destination="7qD-Rf-VNb" id="3qz-la-BgN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1VT-h6-xsl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1958,12 +1976,15 @@
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
+                        <outlet property="agredByLabel" destination="0iG-MI-mC2" id="oeS-lc-HDd"/>
                         <outlet property="agreedNameText" destination="2RL-xT-8pU" id="cUl-f3-YAo"/>
                         <outlet property="assetTableView" destination="gRQ-QQ-ftk" id="O0O-gt-bVr"/>
                         <outlet property="centerView" destination="0r4-gZ-W1n" id="ePV-6U-Eln"/>
                         <outlet property="customerNameLabel" destination="hSl-Fj-Fuz" id="AED-uY-IDC"/>
                         <outlet property="noDataLabel" destination="pHm-rq-g4t" id="nuF-nu-02q"/>
                         <outlet property="noDataRightLabel" destination="0Wn-Iv-oy7" id="XLq-ue-oo4"/>
+                        <outlet property="requestPlacement" destination="72y-LU-wNU" id="0VE-fp-cwP"/>
+                        <outlet property="returnButton" destination="sOj-xC-yZM" id="0qa-ll-qRq"/>
                         <outlet property="searchCloseButton" destination="GSO-b4-Gma" id="jPD-pm-KA4"/>
                         <outlet property="searchText" destination="G9o-AA-dga" id="5gu-JW-oEE"/>
                         <outlet property="searchView" destination="te4-6G-s8w" id="apm-Ih-Lqt"/>
@@ -2806,15 +2827,24 @@
                     </view>
                     <connections>
                         <outlet property="altAssetNumberText" destination="RVD-C5-qAS" id="RCW-QY-2V5"/>
+                        <outlet property="alternativeAssetNumberLabel" destination="4Th-Py-5o4" id="olt-6O-gy7"/>
                         <outlet property="assetTypeButton" destination="K5e-pB-Fus" id="sUv-IC-TbP"/>
+                        <outlet property="assetTypeLabel" destination="iVh-3y-2Yg" id="7C3-rb-ckh"/>
+                        <outlet property="backButton" destination="U9k-6a-GAn" id="rFg-dA-OCx"/>
+                        <outlet property="confirmButton" destination="7Yx-ec-jfr" id="sXE-Fl-8DG"/>
                         <outlet property="customerNameLabel" destination="uSt-vq-QJ1" id="CLL-Dy-AiV"/>
                         <outlet property="equipmentImageView" destination="Pmr-ok-yfq" id="wqI-dj-Xgl"/>
                         <outlet property="equipmentNameLabel" destination="0ZG-kH-yRi" id="MV6-BA-cBA"/>
                         <outlet property="locationInStoreButton" destination="Lj9-ED-Tkj" id="wlW-S5-KDt"/>
+                        <outlet property="locationInStoreLabel" destination="4cf-Hg-oyh" id="kl7-yK-Nnt"/>
+                        <outlet property="makeLabel" destination="Nmk-Um-suv" id="HeC-Pg-CR4"/>
                         <outlet property="makeText" destination="GzV-Mv-g0W" id="jfa-qg-gTV"/>
+                        <outlet property="modelLabel" destination="2Lh-d6-HST" id="18P-Of-vcr"/>
                         <outlet property="modelText" destination="L18-ov-V27" id="jvK-7p-88p"/>
+                        <outlet property="serialNumberLabel" destination="6LN-41-HSj" id="ZJc-pP-ZQm"/>
                         <outlet property="serialNumberText" destination="kt7-HL-viu" id="Cu8-w4-DPj"/>
                         <outlet property="statusButton" destination="4vC-PN-hv4" id="V2Z-Mo-74z"/>
+                        <outlet property="statusLabel" destination="xd9-9u-cJu" id="Cdy-dK-JRH"/>
                         <outlet property="titleLabel" destination="b0u-jf-u0T" id="rFC-eD-S3r"/>
                     </connections>
                 </viewController>
@@ -3137,9 +3167,13 @@
                         <viewLayoutGuide key="safeArea" id="Gjt-iY-8YT"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="IAA-hI-cpS" id="5HZ-ep-60y"/>
+                        <outlet property="confirmButton" destination="5hm-vD-UEd" id="L10-nI-C1R"/>
                         <outlet property="customerNameLabel" destination="jNL-Df-KiJ" id="qzP-ea-Xcq"/>
                         <outlet property="faultButton" destination="a6O-2V-Mug" id="oc1-88-L01"/>
+                        <outlet property="faultLabel" destination="OkZ-Ll-bSt" id="ol7-Da-AMp"/>
                         <outlet property="noteTextView" destination="fkS-wu-z67" id="PX6-MY-95Y"/>
+                        <outlet property="notesLabel" destination="mfm-Jw-uks" id="0qV-Pm-vf5"/>
                         <outlet property="titleLabel" destination="YGd-CY-oGv" id="SNf-VT-VO1"/>
                     </connections>
                 </viewController>

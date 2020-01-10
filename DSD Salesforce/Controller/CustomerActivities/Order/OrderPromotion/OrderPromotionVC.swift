@@ -14,7 +14,9 @@ class OrderPromotionVC: PromotionBaseVC {
     @IBOutlet weak var promotionTableView: UITableView!
     @IBOutlet weak var promotionsHeaderView: UIView!
     @IBOutlet weak var noDataLabel: UILabel!
-
+    @IBOutlet weak var checkPlanner: AnimatableButton!
+    @IBOutlet weak var promotionsLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var orderVC: OrderVC!
     var productDetailArray = [ProductDetail?]()
@@ -36,6 +38,10 @@ class OrderPromotionVC: PromotionBaseVC {
     }
 
     func initUI() {
+        checkPlanner.setTitleForAllState(title: L10n.checkPlanner())
+        promotionsLabel.text = L10n.promotions()
+        noDataLabel.text = L10n.thereIsNoData()
+        
         promotionTableView.dataSource = self
         promotionTableView.delegate = self
     }

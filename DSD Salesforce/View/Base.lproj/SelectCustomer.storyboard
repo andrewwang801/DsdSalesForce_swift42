@@ -1293,6 +1293,7 @@ Cessnock, NSW 2320</string>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="ep4-7n-6wL" id="ojO-Hw-f1X"/>
+                        <outlet property="okButton" destination="ubt-RD-Ouz" id="DlU-BV-ueI"/>
                         <outlet property="titleLabel" destination="t6V-5X-2jm" id="ljJ-E4-pkA"/>
                     </connections>
                 </viewController>
@@ -1602,6 +1603,10 @@ Cessnock, NSW 2320</string>
                         <viewLayoutGuide key="safeArea" id="bCl-6d-Jbm"/>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="eqe-5v-ar9" id="D1s-M4-Ykz"/>
+                        <outlet property="itemLabel" destination="LVp-xZ-Qrh" id="VVZ-ht-iik"/>
+                        <outlet property="lastOrdersLabel" destination="L5R-mh-cBx" id="qBv-t6-0dD"/>
+                        <outlet property="mtdLabel" destination="ZyS-Rl-vUC" id="FeB-ps-BNF"/>
                         <outlet property="noDataLabel" destination="4iV-CJ-nb6" id="Apn-QC-tr1"/>
                         <outlet property="numberLabel" destination="hU5-nN-T4t" id="VXh-hx-edO"/>
                         <outlet property="numberLabelWidthConstraint" destination="9bR-AI-qqX" id="dKa-ly-jZn"/>
@@ -1869,9 +1874,13 @@ Cessnock, NSW 2320</string>
                     </view>
                     <connections>
                         <outlet property="customerTypeButton" destination="mHu-84-NDn" id="0Z0-00-Sv0"/>
+                        <outlet property="inPostcodeLabel" destination="cOZ-bs-mPE" id="qql-dI-Erh"/>
+                        <outlet property="itemLabel" destination="61r-Qv-nXf" id="Jrg-QR-xSk"/>
                         <outlet property="noDataLabel" destination="msC-7D-3t1" id="S82-vw-XD3"/>
                         <outlet property="postCodeTextField" destination="1ce-R4-rTI" id="dv6-V7-d3P"/>
                         <outlet property="productTableView" destination="1Qv-zq-gMx" id="Tci-ub-M1Q"/>
+                        <outlet property="rankingLabel" destination="KGY-lf-enG" id="0ap-yX-nll"/>
+                        <outlet property="topProductsLabel" destination="Eiw-Zv-vVr" id="4bw-Jo-SFf"/>
                         <segue destination="S98-t3-24j" kind="show" id="sjo-16-esf"/>
                     </connections>
                 </viewController>
@@ -2240,10 +2249,12 @@ get 1 free
                                                 <connections>
                                                     <outlet property="descLabel" destination="2Dd-m4-sL0" id="Oiq-Ks-Qqj"/>
                                                     <outlet property="fromLabel" destination="CnF-Cz-Rh8" id="WzF-SB-IYP"/>
+                                                    <outlet property="fromTitleLabel" destination="htK-iN-cyN" id="UXy-oA-dNd"/>
                                                     <outlet property="mainView" destination="mBA-4u-omq" id="7g0-Mb-9XL"/>
                                                     <outlet property="nameLabel" destination="R8R-b2-Cyp" id="F5s-D6-s8f"/>
                                                     <outlet property="pricingLabel" destination="wVq-2k-7AV" id="1GI-RU-fyP"/>
                                                     <outlet property="untilLabel" destination="r35-yV-6Mp" id="Uvm-gy-r3Q"/>
+                                                    <outlet property="untilTitleLabel" destination="cmw-2z-Tqy" id="3am-E7-Ky1"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -2333,6 +2344,7 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="yEK-Sf-CKQ"/>
                     </view>
                     <connections>
+                        <outlet property="checkPlannerButton" destination="jSS-34-UyH" id="6lk-Op-hT4"/>
                         <outlet property="filterButton" destination="5Pa-ZS-6AT" id="ZEd-xc-ziZ"/>
                         <outlet property="noDataLabel" destination="mc0-7b-WKn" id="T3b-9j-MjT"/>
                         <outlet property="numberLabel" destination="GVG-bB-PXx" id="Hgs-vs-IDP"/>
@@ -2342,6 +2354,7 @@ get 1 free
                         <outlet property="productTableView" destination="gmg-tN-vZC" id="534-EL-EIf"/>
                         <outlet property="promotionTableView" destination="waD-wP-EdH" id="10E-fq-YTN"/>
                         <outlet property="promotionsHeaderView" destination="Imo-i7-Fgi" id="qn5-Xy-1Ee"/>
+                        <outlet property="promotionsLabel" destination="BpR-IN-Sfj" id="frG-mh-TuI"/>
                         <outlet property="titleLabel" destination="8dp-rk-Z1R" id="5ds-7u-xH9"/>
                         <outlet property="viewPricingButton" destination="qgR-5k-w3c" id="4wb-ve-Kop"/>
                         <outlet property="viewPromotionWidthConstraint" destination="rtp-oW-wId" id="gOn-lA-Hzl"/>
@@ -2568,6 +2581,7 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="yPB-BT-nmD"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="EyE-oH-HqB" id="mvc-98-3YV"/>
                         <outlet property="completeButton" destination="Y8W-h7-Q6X" id="DMc-b3-HsB"/>
                         <outlet property="tableView" destination="GKK-W3-fdl" id="4ar-mt-lbU"/>
                         <outlet property="titleLabel" destination="KUF-nr-ibl" id="Uql-eg-lsV"/>
@@ -3181,6 +3195,7 @@ get 1 free
                         <outlet property="noDataLabel" destination="v0W-kg-6PQ" id="c3z-7e-shR"/>
                         <outlet property="returnButton" destination="n7H-zJ-ap3" id="94j-vc-je1"/>
                         <outlet property="tableView" destination="I9W-ob-HnK" id="OVv-Rh-dUT"/>
+                        <outlet property="titleLabel" destination="4mJ-8g-lCH" id="TY8-wW-Ar8"/>
                         <outlet property="webView" destination="dzH-Wg-Fia" id="Uua-SI-b8n"/>
                     </connections>
                 </viewController>

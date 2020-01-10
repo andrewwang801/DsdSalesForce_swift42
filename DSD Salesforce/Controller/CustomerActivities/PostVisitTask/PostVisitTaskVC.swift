@@ -14,7 +14,10 @@ class PostVisitTaskVC: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nextVisitDateButton: UIButton!
     @IBOutlet weak var visitNoteTextView: UITextView!
-
+    @IBOutlet weak var nextVisitDateLabel: UILabel!
+    @IBOutlet weak var visitNotesLabel: UILabel!
+    @IBOutlet weak var okButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     var nextVisitDate = Date()
@@ -48,7 +51,10 @@ class PostVisitTaskVC: UIViewController {
     }
 
     func initUI() {
-
+        nextVisitDateLabel.text = L10n.nextVisitDate()
+        visitNotesLabel.text = L10n.visitNotes()
+        okButton.setTitleForAllState(title: L10n.ok())
+        
         datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         nextVisitDateButton.setTitleForAllState(title: nextVisitDate.toDateString(format: kDateFormat) ?? "")
@@ -76,7 +82,7 @@ class PostVisitTaskVC: UIViewController {
         if visitNotes == "2" {
             // mandatory
             if visitNoteTextView.text.trimed() == "" {
-                SVProgressHUD.showInfo(withStatus: "You should enter Visit Notes.")
+                SVProgressHUD.showInfo(withStatus: L10n.youShouldEnterVisitNotes())
                 return
             }
         }

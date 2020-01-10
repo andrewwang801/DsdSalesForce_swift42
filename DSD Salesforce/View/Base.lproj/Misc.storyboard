@@ -747,6 +747,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="addButton" destination="Y3D-tC-czg" id="NHe-q4-2qn"/>
                                                             <outlet property="bottomSeparatorLabel" destination="Nbe-BF-hJ0" id="EfJ-G0-qWT"/>
                                                             <outlet property="nameLabel" destination="Pmm-jk-l6l" id="gio-g5-XBA"/>
                                                             <outlet property="topSeparatorLabel" destination="nMO-pW-Qp0" id="Ffz-H9-7e4"/>
@@ -825,11 +826,17 @@
                         <viewLayoutGuide key="safeArea" id="tpZ-QW-Ezh"/>
                     </view>
                     <connections>
+                        <outlet property="addAllButton" destination="qfC-VR-7iM" id="QKi-rB-6FU"/>
                         <outlet property="customerTableView" destination="OVm-lj-VM5" id="3K4-Lb-i4Z"/>
-                        <outlet property="noDataLabel" destination="9jM-hQ-zK4" id="jTZ-Mk-cny"/>
+                        <outlet property="noDataLabel" destination="9jM-hQ-zK4" id="0Dm-m2-EZJ"/>
+                        <outlet property="returnButton" destination="m59-9E-Yf0" id="Wcc-Gw-RCf"/>
+                        <outlet property="salesDistrictLabel" destination="1YZ-JT-KwZ" id="vna-IU-LYH"/>
                         <outlet property="salesDistrictTypeButton" destination="1YZ-JT-KwZ" id="Uhn-71-qTn"/>
                         <outlet property="searchByButton" destination="24b-Ud-wbC" id="5Qz-dD-M5B"/>
+                        <outlet property="searchField" destination="9u5-6d-o0b" id="QOa-9r-kh0"/>
+                        <outlet property="searchLabel" destination="SlH-xX-JTZ" id="SaA-mi-KFS"/>
                         <outlet property="searchText" destination="9u5-6d-o0b" id="6Uu-Zu-Deg"/>
+                        <outlet property="titleLabel" destination="3my-US-ARN" id="yQa-zv-RHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bug-00-KZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -923,6 +930,7 @@
                         <viewLayoutGuide key="safeArea" id="aaj-60-jqg"/>
                     </view>
                     <connections>
+                        <outlet property="customerLocationLabel" destination="IHO-Tl-tZH" id="L3a-t2-jWh"/>
                         <outlet property="mapView" destination="4zA-1T-g40" id="lSt-ip-Ymj"/>
                     </connections>
                 </viewController>
@@ -1160,6 +1168,8 @@
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="clearButton" destination="mgA-5h-0DV" id="Qc6-2m-fUH"/>
+                        <outlet property="exitButton" destination="qCE-gP-kdq" id="hLr-Bj-tnr"/>
                         <outlet property="saveButton" destination="kGu-Zz-blt" id="2JQ-Qq-gsK"/>
                         <outlet property="signatureImageView" destination="H7r-EF-bGZ" id="TV0-9W-Epa"/>
                         <outlet property="signatureView" destination="opk-iN-lRD" id="31t-sg-T6M"/>
@@ -1501,6 +1511,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="addButton" destination="BPB-X4-PGq" id="Hnj-ur-acL"/>
                                                             <outlet property="bottomSeparatorLabel" destination="232-Yk-dOd" id="er7-Da-G5t"/>
                                                             <outlet property="brandLabel" destination="jad-lM-yDx" id="5bK-B9-Oy5"/>
                                                             <outlet property="descLabel" destination="bUv-6w-A5M" id="ML0-0b-d2n"/>
@@ -1587,10 +1598,14 @@
                         <viewLayoutGuide key="safeArea" id="adz-lA-GsH"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="ONp-FQ-Xnp" id="KTO-eT-Psz"/>
                         <outlet property="noDataLabel" destination="Wpf-YO-iTr" id="qia-Wn-wov"/>
                         <outlet property="productTableView" destination="JT9-fz-zeF" id="Sh6-MX-iac"/>
                         <outlet property="searchByButton" destination="nWf-dU-Xl9" id="vJT-qy-aHN"/>
+                        <outlet property="searchByLabel" destination="06W-o7-8AX" id="qRG-u9-YZf"/>
+                        <outlet property="searchField" destination="jNr-0V-shn" id="LE7-cg-3GH"/>
                         <outlet property="searchText" destination="jNr-0V-shn" id="sjT-A6-j6q"/>
+                        <outlet property="titleLabel" destination="g7Q-qK-3ew" id="bnK-CO-4r7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4x-Yg-8vg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1657,6 +1672,7 @@
                         <viewLayoutGuide key="safeArea" id="YJA-ox-qo4"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="LM8-iv-SEW" id="czv-R3-wQu"/>
                         <outlet property="mainBack" destination="oFg-sr-Xg5" id="dof-rE-8km"/>
                     </connections>
                 </viewController>
@@ -1874,8 +1890,10 @@ Title</string>
                         <viewLayoutGuide key="safeArea" id="O6r-Ak-owQ"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="xP2-Dn-1Ua" id="8sU-EI-3Jw"/>
                         <outlet property="noPrinterLabel" destination="JLf-4Q-Mpq" id="t5T-Tb-1tB"/>
                         <outlet property="printerTableView" destination="xTJ-bL-gYD" id="VsQ-we-7ei"/>
+                        <outlet property="titleLabel" destination="J6z-oF-9Sv" id="jMa-Oc-JOG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24Z-Rj-8TK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2252,12 +2270,15 @@ Title</string>
                         <viewLayoutGuide key="safeArea" id="gsF-RA-qa1"/>
                     </view>
                     <connections>
+                        <outlet property="barcodeLabel" destination="0dk-Zy-6B1" id="4xA-C5-E1D"/>
                         <outlet property="barcodeValueLabel" destination="pZj-pa-lgl" id="e0e-dh-sym"/>
                         <outlet property="brandHeight" destination="VsC-Hj-CKs" id="hLv-cC-qIV"/>
                         <outlet property="brandLabel" destination="729-DC-WRB" id="Gsv-ct-Hdq"/>
                         <outlet property="brandValueLabel" destination="dxZ-dw-onM" id="TRt-ka-YHF"/>
+                        <outlet property="casePriceLabel" destination="9zQ-qG-hpc" id="Syn-Pr-Il7"/>
                         <outlet property="casePriceValueLabel" destination="mBe-SQ-nHp" id="YnY-qV-Evb"/>
                         <outlet property="descLabel" destination="sUl-sU-oMJ" id="A6U-HX-xoZ"/>
+                        <outlet property="doneButton" destination="eFc-ZG-T4U" id="EPh-5H-Cps"/>
                         <outlet property="grossMarginTitleLabel" destination="mTb-Iv-29k" id="yTv-J8-FsH"/>
                         <outlet property="grossMarginValueLabel" destination="YDg-qh-hL5" id="jku-Bm-AD1"/>
                         <outlet property="groupHeight" destination="iwv-IU-PQC" id="uYC-us-vPU"/>
@@ -2267,6 +2288,7 @@ Title</string>
                         <outlet property="imageConstraintLeft" destination="TB9-0S-2yk" id="mXA-1X-Jec"/>
                         <outlet property="imageConstraintRight" destination="drh-wg-Qjz" id="ijv-1D-yxP"/>
                         <outlet property="imageConstraintTop" destination="nhI-kW-rPw" id="KTu-CM-HCW"/>
+                        <outlet property="inventoryLabel" destination="CIu-1M-eBz" id="bhL-wl-0An"/>
                         <outlet property="inventoryValueLabel" destination="uwh-2y-3Oj" id="e3t-Fd-10L"/>
                         <outlet property="itemNoLabel" destination="3th-Vi-EQr" id="QIy-Ct-war"/>
                         <outlet property="lineHeight" destination="Khn-cp-jX1" id="RAe-yo-0lT"/>
@@ -2281,6 +2303,9 @@ Title</string>
                         <outlet property="subBrandHeight" destination="VF0-U6-N7Z" id="2Gq-ey-lQC"/>
                         <outlet property="subBrandLabel" destination="mjV-Ap-jq3" id="Red-xb-JKw"/>
                         <outlet property="subBrandValueLabel" destination="kW1-RK-b95" id="J9D-hF-qVM"/>
+                        <outlet property="titleLabel" destination="4PT-1z-5Hj" id="0g4-3c-OqD"/>
+                        <outlet property="unitPercaseLabel" destination="2iZ-7x-dAh" id="lwW-Ut-sJx"/>
+                        <outlet property="unitPriceLabel" destination="hD5-hp-u9y" id="3Ac-cn-eKW"/>
                         <outlet property="unitRRPValueLabel" destination="Obu-xK-BpI" id="vz0-Xy-Dym"/>
                         <outlet property="unitsPerCaseValueLabel" destination="VVR-mN-LMQ" id="bjU-a2-kO5"/>
                     </connections>
@@ -2432,7 +2457,9 @@ Title</string>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="YAs-qW-I1e" id="ieJ-lr-jOc"/>
                         <outlet property="calendarView" destination="sz6-2D-v3g" id="oaa-aa-bso"/>
+                        <outlet property="doneButton" destination="FVq-3r-2Sy" id="hvb-cw-Evl"/>
                         <outlet property="monthTitleLabel" destination="Pky-cu-scc" id="wLF-1g-YUN"/>
                     </connections>
                 </viewController>

@@ -13,7 +13,8 @@ class SelectReasonCodeVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet weak var okButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var customerDetails: CustomerDetail!
     var reasonCodeDescTypeArray = [DescType]()
@@ -57,16 +58,18 @@ class SelectReasonCodeVC: UIViewController {
     }
 
     func initUI() {
+        okButton.setTitleForAllState(title: L10n.ok())
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.clear
         collectionView.backgroundView?.backgroundColor = UIColor.clear
 
         if reasonType == .noVisitReason {
-            titleLabel.text = "SELECT A REASON CODE?"
+            titleLabel.text = L10n.selectAReasonCode()
         }
         else {
-            titleLabel.text = "SELECT A VISIT REASON"
+            titleLabel.text = L10n.selectAVisitReason()
         }
     }
 

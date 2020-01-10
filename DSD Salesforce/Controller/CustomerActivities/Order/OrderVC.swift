@@ -30,7 +30,9 @@ class OrderVC: UIViewController {
     @IBOutlet weak var promotionsButton: UIButton!
     @IBOutlet weak var notAvailableLabel: UILabel!
     @IBOutlet weak var completedButton: AnimatableButton!
-
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var productCatalogButton: AnimatableButton!
+    
     @IBOutlet weak var containerView: UIView!
     
     var hud: MBProgressHUD?
@@ -107,7 +109,7 @@ class OrderVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mainVC.setTitleBarText(title: "ORDER")
+        mainVC.setTitleBarText(title: L10n.order())
         reloadProductTree()
     }
 
@@ -183,12 +185,12 @@ class OrderVC: UIViewController {
                 return orderDetail.itemNo
             }
             let itemNoString = itemNoArray.joined(separator: ", ")
-            let alert = UIAlertController(title: "Inventory Amount Issue", message: "There may not be inventory of these items in the warehouse: \(itemNoString)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { _ in
+            let alert = UIAlertController(title: L10n.inventoryAmountIssue(), message: "\(L10n.thereMayNotBeInventoryOfTheseItemsInTheWarehouse()): \(itemNoString)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: L10n.continue(), style: .default, handler: { _ in
                 // continue
                 self.doComplete()
             }))
-            alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: L10n.remove(), style: .default, handler: { _ in
                 // remove
                 for orderDetailSet in wholeOrderDetailSetArray {
                     orderDetailSet.removeObjects(in: orderDetailArrayInAlert)

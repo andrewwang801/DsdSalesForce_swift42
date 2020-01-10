@@ -386,6 +386,16 @@ extension OrderVC {
     }
 
     func initUI() {
+        salesButton.setTitleForAllState(title: L10n.sales())
+        returnsButton.setTitleForAllState(title: L10n.Returns())
+        samplesButton.setTitleForAllState(title: L10n.free())
+        historyButton.setTitleForAllState(title: L10n.HISTORY())
+        promotionsButton.setTitleForAllState(title: L10n.promotions())
+        returnButton.setTitleForAllState(title: L10n.Return())
+        productCatalogButton.setTitleForAllState(title: L10n.productCatalog())
+        completedButton.setTitleForAllState(title: L10n.COMPLETED())
+        notAvailableLabel.text = L10n.notAvailable()
+        
         // top option buttons
         topOptionButtonArray = [salesButton, returnsButton, samplesButton, historyButton, promotionsButton]
         for (index, button) in topOptionButtonArray.enumerated() {

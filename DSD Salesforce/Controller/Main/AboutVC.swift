@@ -22,6 +22,11 @@ class AboutVC: UIViewController {
     @IBOutlet weak var phone2HeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var companyInfoLabel: UILabel!
 
+    @IBOutlet weak var designedByLabel: UILabel!
+    @IBOutlet weak var termsLabel: UILabel!
+    
+    @IBOutlet weak var exitButton: UIButton!
+    
     let globalInfo = GlobalInfo.shared
 
     override func viewDidLoad() {
@@ -65,6 +70,11 @@ class AboutVC: UIViewController {
     }
 
     func initUI() {
+        
+        designedByLabel.text = L10n.dsdConnectIsDesignedBy()
+        termsLabel.text = L10n.termsOfUseAndPricacyAreGovernedByTheAgreementBetweenNumericComputerSystemsAndTheClientAndOurPoliciesMadeAvailableToTheClientAndAsMayBeAmendedFromTimeToTime()
+        exitButton.setTitleForAllState(title: L10n.exit())
+        
         // app version
         let version = Utility.getAppVersion()
         versionLabel.text = version

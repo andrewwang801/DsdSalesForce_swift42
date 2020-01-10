@@ -12,7 +12,9 @@ class CalendarVC: UIViewController {
 
     @IBOutlet weak var calendarView: JTHorizontalCalendarView!
     @IBOutlet weak var monthTitleLabel: UILabel!
-
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var doneButton: AnimatableButton!
+    
     var calendarManager: JTCalendarManager!
     var selectedDate: Date?
 
@@ -31,6 +33,10 @@ class CalendarVC: UIViewController {
     }
 
     func initUI() {
+        
+        backButton.setTitleForAllState(title: L10n.back())
+        doneButton.setTitleForAllState(title: L10n.done())
+        
         // calendar
         if selectedDate == nil {
             selectedDate = Date()

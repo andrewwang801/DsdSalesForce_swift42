@@ -19,7 +19,9 @@ class OrderDetailCollectionVC: UIViewController {
     @IBOutlet weak var invoiceTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var doneButton: AnimatableButton!
-
+    @IBOutlet weak var collectionRequiredLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    
     var customerDetail: CustomerDetail!
     var arHeaderArray = [ARHeader]()
     var selectedIndexArray = [Int]()
@@ -47,7 +49,11 @@ class OrderDetailCollectionVC: UIViewController {
     }
 
     func initUI() {
-
+        titleLabel.text = L10n.detailCollection()
+        collectionRequiredLabel.text = L10n.collectionRequired()
+        backButton.setTitleForAllState(title: L10n.back())
+        doneButton.setTitleForAllState(title: L10n.Done())
+        
         customerNameLabel.text = customerDetail.name ?? ""
 
         invoiceTableView.dataSource = self

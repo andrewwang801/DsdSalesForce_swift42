@@ -22,8 +22,15 @@ class OrderEWayDetailsVC: UIViewController {
     @IBOutlet weak var expiryMonthText: AnimatableTextField!
     @IBOutlet weak var expiryYearText: AnimatableTextField!
     @IBOutlet weak var amountText: AnimatableTextField!
-    @IBOutlet weak var payButton: AnimatableButton!
 
+    @IBOutlet weak var nameOnCardLabel: UILabel!
+    @IBOutlet weak var cardNumberLabel: UILabel!
+    @IBOutlet weak var cvvLabel: UILabel!
+    @IBOutlet weak var expiryDateLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var payButton: AnimatableButton!
+    
     var numberTextArray = [AnimatableTextField]()
 
     let globalInfo = GlobalInfo.shared
@@ -71,7 +78,14 @@ class OrderEWayDetailsVC: UIViewController {
     }
 
     func initUI() {
-
+        nameOnCardLabel.text = L10n.nameOnCard()
+        cardNumberLabel.text = L10n.cardNumber()
+        cvvLabel.text = L10n.cvv()
+        expiryDateLabel.text = L10n.expiryDate()
+        amountLabel.text = L10n.amount()
+        returnButton.setTitleForAllState(title: L10n.return())
+        payButton.setTitleForAllState(title: L10n.pay())
+        
         let expiryDate = Date().getDateAddedBy(months: 1)
         expiryYearText.text = expiryDate.toDateString(format: "yy") ?? ""
         expiryMonthText.text = expiryDate.toDateString(format: "MM") ?? ""

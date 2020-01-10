@@ -20,7 +20,10 @@ class TripStatusVC: UIViewController {
     @IBOutlet weak var deliverRefusedValueLabel: UILabel!
     @IBOutlet weak var deliveredValueLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var toDeliverLabel: UILabel!
+    @IBOutlet weak var deliveryRefusedLabel: UILabel!
+    @IBOutlet weak var DeliveredLabel: UILabel!
+    
     var loaded_cnt = 0
     var delivered_cnt = 0
     var not_delivered_cnt = 0
@@ -32,7 +35,7 @@ class TripStatusVC: UIViewController {
     var currentTripInfo: TripInfo? {
         didSet {
             if currentTripInfo == nil {
-                tripComboButton.setTitleForAllState(title: "No Trip Selected")
+                tripComboButton.setTitleForAllState(title: L10n.noTripSelected())
             }
             else {
                 let tripTitle = currentTripInfo!.getTripString()
@@ -64,6 +67,11 @@ class TripStatusVC: UIViewController {
     }
 
     func initUI() {
+        tripComboButton.setTitleForAllState(title: L10n.noTripSelected())
+        toDeliverLabel.text = L10n.toDeliver()
+        deliveryRefusedLabel.text = L10n.deliveryRefused()
+        DeliveredLabel.text = L10n.delivered()
+        
         tableView.delaysContentTouches = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -85,7 +93,7 @@ class TripStatusVC: UIViewController {
         let baseURL = Utils.getBaseURL(pinNumber: strPinNumber)
         APIManager.doNormalRequest(baseURL: baseURL, methodName: "api/trip", httpMethod: "GET", headers: headers, params: params, shouldShowHUD: true) { (response, message) in
             if response == nil {
-                Utils.showAlert(vc: self, title: "", message: "Refresh token is failed.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.refreshTokenIsFailed(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
             }
             else {
                 let json = JSON(data: response as! Data)
@@ -146,7 +154,7 @@ class TripStatusVC: UIViewController {
                 self.refreshData()
                 self.isRefreshing = false
 
-                Utils.showAlert(vc: self, title: "", message: "Api Failed.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.apiFailed(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
             }
             else {
                 self.tripStatusInfoList.removeAll()
@@ -216,7 +224,7 @@ class TripStatusVC: UIViewController {
     func showTripStatusInfo() {
 
         if currentTripInfo == nil {
-            Utils.showAlert(vc: self, title: "", message: "PDF not able to be retrieved", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pdfNotAbleToBeRetrieved(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
         }
         else {
             let dateString = Date.convertDateFormat(dateString: currentTripStatusInfo!.trxnDate, fromFormat: "yyyy-MM-dd", toFormat: kTightJustDateFormat)
@@ -278,16 +286,16 @@ extension TripStatusVC: UITableViewDataSource {
         let statusInfo = tripStatusInfoList[index]
         cell.captionLabel.text = statusInfo.customerName
         if statusInfo.status == "1" {
-            cell.statusLabel.text = "To Deliver"
+            cell.statusLabel.text = L10n.toDeliver()
         }
         else if statusInfo.status == "4" {
-            cell.statusLabel.text = "Delivery Refused"
+            cell.statusLabel.text = L10n.deliveryRefused()
         }
         else if statusInfo.status == "5" {
-            cell.statusLabel.text = "Delivered"
+            cell.statusLabel.text = L10n.delivered()
         }
         else {
-            cell.statusLabel.text = "Not Loaded"
+            cell.statusLabel.text = L10n.notLoaded()
         }
 
         if statusInfo.status != "1" && statusInfo.status != "2" && statusInfo.status != "3" {

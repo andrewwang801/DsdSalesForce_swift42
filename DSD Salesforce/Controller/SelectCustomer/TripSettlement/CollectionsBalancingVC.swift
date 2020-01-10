@@ -14,7 +14,8 @@ class CollectionsBalancingVC: UIViewController {
     @IBOutlet weak var returnButton: AnimatableButton!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var webView: UIWebView!
-
+    @IBOutlet weak var titleLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var uarPaymentArray = [[UARPayment]]()
 
@@ -70,6 +71,9 @@ class CollectionsBalancingVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.collectionsBalancing()
+        returnButton.setTitleForAllState(title: L10n.return())
+        
         tableView.dataSource = self
         tableView.delegate = self
         noDataLabel.isHidden = true

@@ -15,7 +15,11 @@ class SelectCustomerOpportunitiesVC: UIViewController {
     @IBOutlet weak var customerTypeButton: AnimatableButton!
     @IBOutlet weak var postCodeTextField: AnimatableTextField!
     @IBOutlet weak var noDataLabel: UILabel!
-
+    @IBOutlet weak var topProductsLabel: UILabel!
+    @IBOutlet weak var inPostcodeLabel: UILabel!
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var rankingLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var selectCustomerVC: SelectCustomerVC!
     var customerDescTypeArray = [DescType]()
@@ -70,7 +74,13 @@ class SelectCustomerOpportunitiesVC: UIViewController {
     }
 
     func initUI() {
-
+        customerTypeButton.setTitleForAllState(title: L10n.supermarkets())
+        topProductsLabel.text = L10n.topProductsFromOther()
+        inPostcodeLabel.text = L10n.inPostcode()
+        itemLabel.text = L10n.item()
+        rankingLabel.text = L10n.ranking()
+        noDataLabel.text = L10n.thereIsNoData()
+        
         postCodeTextField.delegate = self
         postCodeTextField.addTarget(self, action: #selector(SelectCustomerOpportunitiesVC.onPostCodeTextDidChanged), for: .editingChanged)
 

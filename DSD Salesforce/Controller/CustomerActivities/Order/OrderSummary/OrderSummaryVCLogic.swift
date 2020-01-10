@@ -63,6 +63,26 @@ extension OrderSummaryVC  {
 
     func initUI() {
 
+        salesLabel.text = L10n.sales()
+        returnsLabel.text = L10n.Returns()
+        freeLabel.text = L10n.free()
+        totalLabel.text = L10n.total()
+        priorBalance.text = L10n.priorBalance()
+        thisOrderLabel.text = L10n.thisOrder()
+        termsLabel.text = L10n.terms()
+        total.text = L10n.total()
+        cardLabel.text = L10n.card()
+        cashLabel.text = L10n.cash()
+        checkLabel.text = L10n.check()
+        poReferenceNumberLabel.text = L10n.poReferenceNumber()
+        deliveryDateLabel.text = L10n.deliveryDate()
+        signatureLabel.text = L10n.signature()
+        nameLabel.text = L10n.name()
+        notesLabel.text = L10n.notes()
+        returnToOrderLabel.setTitleForAllState(title: L10n.returnToOrder())
+        printButton.setTitleForAllState(title: L10n.print())
+        confirmButton.setTitleForAllState(title: L10n.CONFIRM())
+        
         // Order review screen
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(OrderSummaryVC.onHeaderTapped))
         headerView.addGestureRecognizer(tapGestureRecognizer)
@@ -1049,18 +1069,18 @@ extension OrderSummaryVC  {
         let customerName = customerDetail.name ?? ""
         let name = nameText.text ?? ""
         if name.isEmpty == true {
-            Utils.showAlert(vc: self, title: customerName, message: "You must capture both the contact name and signature before proceeding", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Return", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: customerName, message: L10n.captureBoth(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
             return false
         }
 
         if self.signatureImageName == "" {
-            Utils.showAlert(vc: self, title: customerName, message: "You must capture both the contact name and signature before proceeding", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Return", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: customerName, message: L10n.captureBoth(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
             return false
         }
 
         let payType = customerDetail.getSummaryType()
         if payType == kCustomerSummaryCod && selectedFulfilbyOption == .vehicle && selectedPaybyOption == .none {
-            Utils.showAlert(vc: self, title: customerName, message: "You should select a payby option in your customer type", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Return", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: customerName, message: L10n.paybyOption(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
             return false
         }
 

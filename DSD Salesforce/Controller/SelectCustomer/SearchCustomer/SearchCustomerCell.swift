@@ -13,7 +13,8 @@ class SearchCustomerCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var topSeparatorLabel: UILabel!
     @IBOutlet weak var bottomSeparatorLabel: UILabel!
-
+    @IBOutlet weak var addButton: AnimatableButton!
+    
     var parentVC: SearchCustomerVC?
     var indexPath: IndexPath?
 
@@ -35,6 +36,7 @@ class SearchCustomerCell: UITableViewCell {
     }
 
     func configCell() {
+        addButton.setTitleForAllState(title: L10n.add())
 
         let index = indexPath!.row
         let customerDetail = parentVC!.customerDetailArray[index]

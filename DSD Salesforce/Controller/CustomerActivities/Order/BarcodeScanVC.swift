@@ -13,7 +13,8 @@ import RSBarcodes_Swift
 class BarcodeScanVC: RSCodeReaderViewController {
 
     @IBOutlet weak var mainBack: UIView!
-
+    @IBOutlet weak var cancelButton: AnimatableButton!
+    
     var dispatched: Bool = false
     var scanBounds = CGRect.zero
 
@@ -28,6 +29,7 @@ class BarcodeScanVC: RSCodeReaderViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        cancelButton.setTitleForAllState(title: L10n.cancel())
         // Do any additional setup after loading the view.
         initBarcode()
     }

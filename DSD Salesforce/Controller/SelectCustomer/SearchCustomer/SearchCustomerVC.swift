@@ -16,6 +16,13 @@ class SearchCustomerVC: UIViewController {
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var customerTableView: UITableView!
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var salesDistrictLabel: UIButton!
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var addAllButton: AnimatableButton!
+    
     enum SearchByType: Int {
         case customerName = 0
         case customerPostcode = 1
@@ -30,7 +37,7 @@ class SearchCustomerVC: UIViewController {
     var customerDetailArray = [CustomerDetail]()
 
     var salesDistrictDescTypeArray = [DescType]()
-    let searchByTypeNameArray = ["Customer Name", "Customer Postcode", "Customer Suburb", "Sales District"]
+    let searchByTypeNameArray = ["Customer Name", L10n.customerPostcode(), "Customer Suburb", "Sales District"]
 
     var selectedSearchByType: SearchByType = .customerName {
         didSet {
@@ -102,6 +109,14 @@ class SearchCustomerVC: UIViewController {
 
     func initUI() {
 
+        titleLabel.text = L10n.addCustomersToTrip()
+        searchLabel.text = L10n.search()
+        noDataLabel.text = L10n.thereIsNoData()
+        returnButton.setTitleForAllState(title: L10n.Return1())
+        addAllButton.setTitleForAllState(title: L10n.addAll())
+        searchField.placeholder = L10n.pleaseEnterSearchKey()
+        salesDistrictLabel.setTitleForAllState(title: L10n.salesDistrict())
+        
         searchText.delegate = self
         searchText.addTarget(self, action: #selector(SearchCustomerVC.onSearchTextDidChanged), for: .editingChanged)
         searchText.returnKeyType = .done
@@ -319,7 +334,7 @@ class SearchCustomerVC: UIViewController {
         if addingCustomerCount == 0 {
             return
         }
-        Utils.showAlert(vc: self, title: "", message: "You are about to add \(addingCustomerCount) customers to your trip", failed: false, customerName: "", leftString: "Return", middleString: "", rightString: "Proceed") { (returnCode) in
+        Utils.showAlert(vc: self, title: "", message: "\(L10n.aboutToAdd()) \(addingCustomerCount) \(L10n.customersToYourTrip())", failed: false, customerName: "", leftString: L10n.return(), middleString: "", rightString: L10n.proceed()) { (returnCode) in
             if returnCode == .right {
                 self.addAllCustomers()
             }

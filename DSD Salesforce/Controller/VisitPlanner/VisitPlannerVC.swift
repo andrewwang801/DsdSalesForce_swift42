@@ -15,7 +15,10 @@ class VisitPlannerVC: UIViewController {
     @IBOutlet weak var customerTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var customerMapView: GMSMapView!
-
+    @IBOutlet weak var addAVisitButton: AnimatableButton!
+    @IBOutlet weak var mapDay: AnimatableButton!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    
     var mainVC: MainVC!
     let globalInfo = GlobalInfo.shared
 
@@ -42,10 +45,15 @@ class VisitPlannerVC: UIViewController {
         refreshCustomers()
         refreshWeekdays()
 
-        mainVC.setTitleBarText(title: "VISIT PLANNER")
+        mainVC.setTitleBarText(title: L10n.visitPlanner())
     }
 
     func initUI() {
+        addAVisitButton.setTitleForAllState(title: L10n.addAVisit())
+        mapDay.setTitleForAllState(title: L10n.mapDay())
+        returnButton.setTitleForAllState(title: L10n.Return())
+        noDataLabel.text = L10n.thereIsNoData()
+        
         customerTableView.dataSource = self
         customerTableView.delegate = self
 

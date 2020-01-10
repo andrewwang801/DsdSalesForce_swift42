@@ -23,6 +23,16 @@ class AddEquipmentVC: UIViewController {
     @IBOutlet weak var statusButton: AnimatableButton!
     @IBOutlet weak var assetTypeButton: AnimatableButton!
 
+    @IBOutlet weak var serialNumberLabel: UILabel!
+    @IBOutlet weak var alternativeAssetNumberLabel: UILabel!
+    @IBOutlet weak var makeLabel: UILabel!
+    @IBOutlet weak var modelLabel: UILabel!
+    @IBOutlet weak var locationInStoreLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var confirmButton: AnimatableButton!
+    @IBOutlet weak var assetTypeLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     var equipment: Equipment?
@@ -68,6 +78,21 @@ class AddEquipmentVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.addEquipment()
+        equipmentNameLabel.text = L10n.equipmentBeingAdded()
+        serialNumberLabel.text = L10n.serialNumber()
+        alternativeAssetNumberLabel.text = L10n.alternativeAssetNumber()
+        makeLabel.text = L10n.make()
+        modelLabel.text = L10n.model()
+        locationInStoreLabel.text = L10n.locationInStore()
+        statusLabel.text = L10n.Status()
+        locationInStoreButton.setTitleForAllState(title: L10n.demoEquipment())
+        statusButton.setTitleForAllState(title: L10n.inStockAndAvailable())
+        assetTypeLabel.text = L10n.assetType()
+        assetTypeButton.setTitleForAllState(title: L10n.fridgeUpright())
+        backButton.setTitleForAllState(title: L10n.back())
+        confirmButton.setTitleForAllState(title: L10n.confirm())
+        
         customerNameLabel.text = customerDetail.name ?? ""
         altAssetNumberText.text = equipment?.altEquipment ?? ""
         let image = equipment?.getEquipmentImage()

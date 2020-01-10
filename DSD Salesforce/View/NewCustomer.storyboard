@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -893,6 +891,9 @@
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <connections>
+                                                                    <outlet property="conatctPhoneLabel" destination="g6X-wG-FYE" id="8ux-fr-fR0"/>
+                                                                    <outlet property="contactEmailLabel" destination="Jt9-co-jOv" id="cM6-mP-e65"/>
+                                                                    <outlet property="contactNameLabel" destination="CQI-Hr-zDO" id="Chp-VR-QkH"/>
                                                                     <outlet property="emailText" destination="ShE-sf-jcO" id="H44-bs-LJi"/>
                                                                     <outlet property="nameText" destination="0Gk-wv-2R0" id="KzE-Ck-1fT"/>
                                                                     <outlet property="nameTopConstraint" destination="Qdv-Ry-yHK" id="2JE-Nl-y3J"/>
@@ -1006,26 +1007,40 @@
                         <viewLayoutGuide key="safeArea" id="WcT-QI-Rre"/>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="5PE-nr-W3Y" id="1Pp-4h-xTa"/>
+                        <outlet property="addButton" destination="5PE-nr-W3Y" id="9ak-5m-ipi"/>
+                        <outlet property="addressLine1Label" destination="yXa-hj-YJ6" id="iup-xd-M36"/>
                         <outlet property="addressLine1Text" destination="jWU-XM-k6c" id="kdJ-sc-T7U"/>
+                        <outlet property="addressLine2Label" destination="TbI-RG-aJv" id="y3d-D6-gVP"/>
                         <outlet property="addressLine2Text" destination="KDx-ow-UzA" id="k28-Wo-79L"/>
+                        <outlet property="backButton" destination="gp3-FS-Ya3" id="BMU-Sm-8Uh"/>
+                        <outlet property="cityLabel" destination="ysZ-Gr-6Id" id="ghC-RQ-GtB"/>
                         <outlet property="cityText" destination="PJU-xW-j4I" id="UL0-2C-WRv"/>
+                        <outlet property="companyNameLabel" destination="mNa-RX-WaQ" id="eQ5-Ek-GoL"/>
                         <outlet property="companyNameText" destination="CVx-mk-SLH" id="Woa-et-aQy"/>
                         <outlet property="companyTaxIDText" destination="koN-r3-NoN" id="J5h-Fy-9xI"/>
+                        <outlet property="companyTaxIdLabel" destination="iBw-al-t4m" id="ViS-MB-iou"/>
                         <outlet property="contactDetailsLabel" destination="hjw-Jx-6Ep" id="4mm-uV-e0E"/>
                         <outlet property="contactTableHeightConstraint" destination="vH8-Mu-XZU" id="F8S-Ol-kx9"/>
                         <outlet property="contactTableView" destination="ris-QI-OXX" id="S2W-v7-H34"/>
+                        <outlet property="customerLabel" destination="nCO-tD-uab" id="aDB-42-q6Z"/>
                         <outlet property="customerRadioLabel" destination="eEE-IB-iIF" id="6IX-Ca-oeb"/>
                         <outlet property="customerView" destination="q5S-Nl-egB" id="sH3-bs-dgL"/>
                         <outlet property="deliveryDetailsLabel" destination="HVk-dA-HWU" id="j2N-Wd-eRb"/>
+                        <outlet property="deliveryFromLabel" destination="iio-xK-iHe" id="7rw-9R-Jm8"/>
                         <outlet property="deliveryFromText" destination="lGP-NM-eqn" id="tE7-tq-fFF"/>
+                        <outlet property="deliveryToLabel" destination="XNb-KI-CYt" id="GEd-qV-QWy"/>
                         <outlet property="deliveryToText" destination="emZ-1x-XNS" id="dOy-Q0-OOQ"/>
+                        <outlet property="phoneLabel" destination="7nx-Zp-S3w" id="iFx-xI-bZJ"/>
                         <outlet property="phoneText" destination="bZL-mf-kcT" id="Irw-6N-MKe"/>
+                        <outlet property="postcodeLabel" destination="gJH-Sb-qfC" id="64O-re-FX0"/>
                         <outlet property="postcodeText" destination="TDx-Vy-rlQ" id="RHf-IE-sE4"/>
+                        <outlet property="prospectLabel" destination="eBv-XZ-0Yn" id="cOx-pN-Wpj"/>
                         <outlet property="prospectRadioLabel" destination="hGu-gF-k6r" id="fcR-zw-AhK"/>
                         <outlet property="prospectView" destination="ksJ-bI-U2s" id="8Hf-aI-4je"/>
+                        <outlet property="stateLabel" destination="DoZ-go-zOv" id="XxE-XM-Zrf"/>
                         <outlet property="stateText" destination="1Th-Bz-EsW" id="agW-bW-fqg"/>
                         <outlet property="titleLabel" destination="cX6-JA-RXX" id="os3-ai-A1K"/>
+                        <outlet property="tripLabel" destination="BIE-XP-IAk" id="zlT-W5-kEU"/>
                         <outlet property="tripNoLabel" destination="BIE-XP-IAk" id="sQg-Th-Uvd"/>
                     </connections>
                 </viewController>

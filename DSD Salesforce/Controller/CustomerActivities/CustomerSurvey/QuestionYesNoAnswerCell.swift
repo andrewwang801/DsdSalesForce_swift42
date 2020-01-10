@@ -17,7 +17,7 @@ class QuestionYesNoAnswerCell: UICollectionViewCell {
 
     var questionCell: SurveyYesNoQuestionCell!
     var indexPath: IndexPath!
-    static let kAnswerValueArray = ["Yes", "No"]
+    static let kAnswerValueArray = [L10n.yes(), L10n.no()]
 
     override func awakeFromNib() {
         super.awakeFromNib()

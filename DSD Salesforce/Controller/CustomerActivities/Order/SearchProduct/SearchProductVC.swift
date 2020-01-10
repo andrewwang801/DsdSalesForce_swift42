@@ -14,6 +14,10 @@ class SearchProductVC: UIViewController {
     @IBOutlet weak var searchByButton: UIButton!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var productTableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var searchByLabel: UILabel!
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var backButton: AnimatableButton!
     
     let globalInfo = GlobalInfo.shared
     
@@ -36,7 +40,7 @@ class SearchProductVC: UIViewController {
     var productDetailArray = [ProductDetail]()
     var searchedArray = [ProductDetail]()
 
-    let searchByTypeNameArray = ["Product Name", "Product Code", "Item Type", "Product Group", "Product Line", "Brand", "Sub Brand"]
+    let searchByTypeNameArray = [L10n.productName(), L10n.productCode(), L10n.ItemSType(), L10n.productGroup(), L10n.ProductLine(), L10n.brand(), L10n.SubSBrand()]
     
     var selectedSearchByType: SearchByType = .productName {
         didSet {
@@ -57,11 +61,6 @@ class SearchProductVC: UIViewController {
     var selectedItemNo = ""
 
     var dismissHandler: ((SearchProductVC, DismissOption)->())?
-    
-//    required init?(coder aCoder: NSCoder) {
-//
-//        super.init(coder: aCoder)
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +123,11 @@ class SearchProductVC: UIViewController {
     }
 
     func initUI() {
+        
+        titleLabel.text = L10n.searchProduct()
+        searchByLabel.text = L10n.searchBy()
+        backButton.setTitleForAllState(title: L10n.Back())
+        searchField.placeholder = L10n.pleaseEnterSearchKey()
 
         //set SearchByKey
         if let _selectedSearchByType = self.globalInfo.routeControl?.prodSearchDef, _selectedSearchByType != "" {

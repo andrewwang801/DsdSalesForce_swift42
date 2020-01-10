@@ -234,6 +234,7 @@ public class CustomerDetail: NSManagedObject {
     static func getScheduled(context: NSManagedObjectContext, shouldExcludeCompleted: Bool = true) -> [CustomerDetail] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
+        request.returnsObjectsAsFaults = false
         let predicate1 = NSPredicate(format: "isCompleted=false")
         let predicate2 = NSPredicate(format: "isRouteScheduled=true")
         if shouldExcludeCompleted == true {
@@ -436,6 +437,69 @@ public class CustomerDetail: NSManagedObject {
         self.arrivalTime = theSource.arrivalTime
         
         self.surveys = theSource.surveys
+    }
+    
+    func updateByAfter(theSource: CustomerDetail) {
+
+        self.address1 = theSource.address1
+        self.address2 = theSource.address2
+        self.chainNo = theSource.chainNo
+        self.city = theSource.city
+        self.custNo = theSource.custNo
+        self.driverLatitude = theSource.driverLatitude
+        self.driverLongitude = theSource.driverLongitude
+        self.location = theSource.location
+        self.name = theSource.name
+        self.orderType = theSource.orderType
+        self.payType = theSource.payType
+        self.phone = theSource.phone
+        self.priceGrp = theSource.priceGrp
+        self.routeNo = theSource.routeNo
+        self.terms = theSource.terms
+        self.type = theSource.type
+        self.creditHold = theSource.creditHold
+        self.shipToState = theSource.shipToState
+        self.shipToZip = theSource.shipToZip
+        self.delivFreq = theSource.delivFreq
+        self.storeNo = theSource.storeNo
+        self.zip = theSource.zip
+        self.companyTaxID = theSource.companyTaxID
+        self.orgSeqNo = theSource.orgSeqNo
+        self.promoPlan = theSource.promoPlan
+        self.authGrp = theSource.authGrp
+        self.salEntryMode = theSource.salEntryMode
+        self.taxCode = theSource.taxCode
+        self.showPrice = theSource.showPrice
+        self.altCustNo = theSource.altCustNo
+        self.billName = theSource.billName
+        self.custPriceMaintFlag = theSource.custPriceMaintFlag
+        self.featGrp = theSource.featGrp
+        self.tempGrp = theSource.tempGrp
+        self.visitReason = theSource.visitReason
+        self.nextVisitDate = theSource.nextVisitDate
+        self.visitNote = theSource.visitNote
+        self.googlePlaceID = theSource.googlePlaceID
+        self.printType = theSource.printType
+
+        self.routeNumber = theSource.routeNumber
+        self.dayNo = theSource.dayNo
+        self.deliveryDate = theSource.deliveryDate
+        self.periodNo = theSource.periodNo
+        self.seqNo = theSource.seqNo
+        self.startTime1 = theSource.startTime1
+        self.endTime1 = theSource.endTime1
+        self.startTime2 = theSource.startTime2
+        self.endTime2 = theSource.endTime2
+
+        self.latitude = theSource.latitude
+        self.longitude = theSource.longitude
+
+        self.isRouteScheduled = theSource.isRouteScheduled
+        self.isCompleted = theSource.isCompleted
+        self.orderNo = theSource.orderNo
+        self.isFromSameNextVisit = theSource.isFromSameNextVisit
+        self.arrivalTime = theSource.arrivalTime
+        
     }
 
     func fillSurveys(context: NSManagedObjectContext, surveyArray: [Survey]) {

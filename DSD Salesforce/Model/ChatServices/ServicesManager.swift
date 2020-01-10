@@ -60,7 +60,7 @@ class ServicesManager: QMServicesManager {
             return
         }
         
-        var dialogName = "SA_STR_NEW_MESSAGE".localized
+        var dialogName = L10n.newMessage()
         
         if dialog.type != QBChatDialogType.private {
             
@@ -83,11 +83,11 @@ class ServicesManager: QMServicesManager {
     var lastActivityDate: NSDate? {
         get {
             let defaults = UserDefaults.standard
-            return defaults.value(forKey: "SA_STR_LAST_ACTIVITY_DATE".localized) as! NSDate?
+            return defaults.value(forKey: "SA_STR_LAST_ACTIVITY_DATE") as! NSDate?
         }
         set {
             let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "SA_STR_LAST_ACTIVITY_DATE".localized)
+            defaults.set(newValue, forKey: "SA_STR_LAST_ACTIVITY_DATE")
             defaults.synchronize()
         }
     }
@@ -104,9 +104,9 @@ class ServicesManager: QMServicesManager {
         var errorMessage : String
         
         if response.status.rawValue == 502 {
-            errorMessage = "SA_STR_BAD_GATEWAY".localized
+            errorMessage = L10n.badGatewayPleaseTryAgain()
         } else if response.status.rawValue == 0 {
-            errorMessage = "SA_STR_NETWORK_ERROR".localized
+            errorMessage = L10n.connectionNetworkErrorPleaseTryAgain()
         } else {
             
             errorMessage = (response.error?.error?.localizedDescription.replacingOccurrences(of: "(", with: "", options: String.CompareOptions.caseInsensitive, range: nil).replacingOccurrences(of: ")", with: "", options: String.CompareOptions.caseInsensitive, range: nil))!

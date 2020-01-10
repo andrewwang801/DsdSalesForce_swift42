@@ -49,7 +49,7 @@ class ChatMainVC: ButtonBarPagerTabStripViewController {
         self.observer = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.main) { (notification) -> Void in
 
             if !QBChat.instance.isConnected {
-                SVProgressHUD.show(withStatus: "SA_STR_CONNECTING_TO_CHAT".localized, maskType: SVProgressHUDMaskType.none)
+                SVProgressHUD.show(withStatus: L10n.connectingToChat(), maskType: SVProgressHUDMaskType.none)
             }
         }
     }
@@ -118,11 +118,11 @@ extension ChatMainVC: QMChatConnectionDelegate {
     }
 
     func chatServiceChatDidAccidentallyDisconnect(_ chatService: QMChatService) {
-        SVProgressHUD.showError(withStatus: "SA_STR_DISCONNECTED".localized)
+        SVProgressHUD.showError(withStatus: L10n.disconnected())
     }
 
     func chatServiceChatDidConnect(_ chatService: QMChatService) {
-        SVProgressHUD.showSuccess(withStatus: "SA_STR_CONNECTED".localized, maskType:.clear)
+        SVProgressHUD.showSuccess(withStatus: L10n.connected(), maskType:.clear)
     }
 
     func chatService(_ chatService: QMChatService,chatDidNotConnectWithError error: Error){
@@ -131,6 +131,6 @@ extension ChatMainVC: QMChatConnectionDelegate {
 
 
     func chatServiceChatDidReconnect(_ chatService: QMChatService) {
-        SVProgressHUD.showSuccess(withStatus: "SA_STR_CONNECTED".localized, maskType: .clear)
+        SVProgressHUD.showSuccess(withStatus: L10n.connected(), maskType: .clear)
     }
 }

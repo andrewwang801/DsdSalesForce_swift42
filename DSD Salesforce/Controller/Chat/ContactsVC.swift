@@ -81,7 +81,7 @@ class ContactsVC: UIViewController {
                 SVProgressHUD.dismiss()
             }
             else {
-                SVProgressHUD.showError(withStatus: "Getting user Failed")
+                SVProgressHUD.showError(withStatus: L10n.gettingUserFailed())
                 SVProgressHUD.dismiss()
             }
             return nil
@@ -182,7 +182,7 @@ extension ContactsVC: UITableViewDelegate {
                 self.openPrivateChat(privateDialog: privateDialog!)
             }
             else {
-                SVProgressHUD.show(withStatus: "Creating Dialogue...", maskType: .clear)
+                SVProgressHUD.show(withStatus: L10n.creatingDialogs(), maskType: .clear)
 
                 ServicesManager.instance().chatService.createPrivateChatDialog(withOpponent: targetUser).continueOnSuccessWith(block: { (bfTask) -> Any? in
                     SVProgressHUD.dismiss()

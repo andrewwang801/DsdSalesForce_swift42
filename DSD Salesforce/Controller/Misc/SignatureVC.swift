@@ -16,7 +16,9 @@ class SignatureVC: UIViewController {
     @IBOutlet weak var signatureView: AnimatableView!
     @IBOutlet weak var signatureImageView: UIImageView!
     @IBOutlet weak var templateImageView: UIImageView!
-
+    @IBOutlet weak var exitButton: AnimatableButton!
+    @IBOutlet weak var clearButton: AnimatableButton!
+    
     var lastPoint = CGPoint.zero
     var lineWidth: CGFloat = 3.0
     var dismissHandler: ((UIImage) -> ())?
@@ -28,6 +30,13 @@ class SignatureVC: UIViewController {
 
         // Do any additional setup after loading the view.
         disableAccept()
+        initUI()
+    }
+    
+    func initUI() {
+        exitButton.setTitleForAllState(title: L10n.exit())
+        saveButton.setTitleForAllState(title: L10n.save())
+        clearButton.setTitleForAllState(title: L10n.clear())
     }
 
     func enableAccept() {

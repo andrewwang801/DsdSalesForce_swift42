@@ -60,7 +60,8 @@ class ExistingOrderCell: UITableViewCell {
     }
 
     func configCell() {
-
+        editButton.setTitleForAllState(title: L10n.edit())
+        
         selectionStyle = .none
         let rowIndex = indexPath.row
         let orderIndex = parentVC.getOrderHeaderIndex(rowIndex: rowIndex)

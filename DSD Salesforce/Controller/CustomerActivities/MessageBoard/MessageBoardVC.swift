@@ -12,7 +12,9 @@ class MessageBoardVC: UIViewController {
 
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
-
+    @IBOutlet weak var addNewMessageLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
     var customerDetail: CustomerDetail!
@@ -34,6 +36,9 @@ class MessageBoardVC: UIViewController {
     }
 
     func initUI() {
+        addNewMessageLabel.text = L10n.addNewMessage()
+        doneButton.setTitleForAllState(title: L10n.done())
+        
         // search view
         messageTableView.delegate = self
         messageTableView.dataSource = self

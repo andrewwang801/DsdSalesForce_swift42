@@ -36,6 +36,20 @@ class AssetManagementVC: UIViewController {
     @IBOutlet weak var assetImageView: UIImageView!
     @IBOutlet weak var assetTitleLabel: UILabel!
 
+    @IBOutlet weak var foundAndDetailsUpdatedLabel: UILabel!
+    @IBOutlet weak var notFound: UILabel!
+    @IBOutlet weak var newAssetFoundButton: AnimatableButton!
+    @IBOutlet weak var requestNewPlacementButton: AnimatableButton!
+    @IBOutlet weak var doneButton: UIButton!
+    
+    @IBOutlet weak var serialNumberTitleLabel: UILabel!
+    @IBOutlet weak var alternativeAssetNumberTitleLabel: UILabel!
+    @IBOutlet weak var makeTitleLabel: UILabel!
+    @IBOutlet weak var modelTitleLabel: UILabel!
+    @IBOutlet weak var locationInStoreTitleLabel: UILabel!
+    @IBOutlet weak var statusTitleLabel: UILabel!
+    @IBOutlet weak var verified: UILabel!
+    
     enum AssetOption: Int {
         case none = -1
         case verified = 0
@@ -82,7 +96,7 @@ class AssetManagementVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        mainVC.setTitleBarText(title: "ASSET MANAGEMENT")
+        mainVC.setTitleBarText(title: L10n.assetManagement())
         reloadEquipments()
     }
 
@@ -93,7 +107,20 @@ class AssetManagementVC: UIViewController {
     }
 
     func initUI() {
-
+        verified.text = L10n.verified()
+        foundAndDetailsUpdatedLabel.text = L10n.foundAndDetailsUpdated()
+        notFound.text = L10n.notFound()
+        serialNumberTitleLabel.text = L10n.serialNumber()
+        alternativeAssetNumberTitleLabel.text = L10n.alternativeAssetNumber()
+        makeTitleLabel.text = L10n.make()
+        modelTitleLabel.text = L10n.model()
+        locationInStoreTitleLabel.text = L10n.locationInStore()
+        statusTitleLabel.text = L10n.Status()
+        newAssetFoundButton.setTitleForAllState(title: L10n.newAssetFound())
+        requestNewPlacementButton.setTitleForAllState(title: L10n.requestNewPlacement())
+        doneButton.setTitleForAllState(title: L10n.Done())
+        noDataLabel.text = L10n.thereIsNoData()
+        
         searchText.delegate = self
         searchText.addTarget(self, action: #selector(AssetManagementVC.onSearchTextDidChanged), for: .editingChanged)
         searchText.returnKeyType = .done
@@ -242,7 +269,7 @@ class AssetManagementVC: UIViewController {
         }
         else if index == 1 {
             selectedEquipmentWithAss.equipAss.verified = "U"
-            Utils.showInput(vc: self, title: "Update Fridge Serial No", placeholder: "Unique Asset ID", enteredString: selectedEquipmentWithAss.equipment?.altEquipment ?? "", leftString: "Return", middleString: "", rightString: "Update", dismissHandler: { (returnCode, inputString) in
+            Utils.showInput(vc: self, title: "Update Fridge Serial No", placeholder: L10n.uniqueAssetID(), enteredString: selectedEquipmentWithAss.equipment?.altEquipment ?? "", leftString: L10n.return(), middleString: "", rightString: L10n.update(), dismissHandler: { (returnCode, inputString) in
                 if returnCode == InputDialogVC.ReturnCode.right {
                     selectedEquipmentWithAss.equipment?.altEquipment = inputString
                     GlobalInfo.saveCache()
@@ -376,7 +403,7 @@ class AssetManagementVC: UIViewController {
     @IBAction func onRepair(_ sender: Any) {
         guard let equipmentWithAss = self.selectedEquipmentWithAss else {return}
         if repairDescCount == 0 {
-            Utils.showAlert(vc: self, title: "", message: "There is no equipment repair reason code", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.noEquipModel(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
         }
         else {
             doRepair(equipmentWithAss: equipmentWithAss)
@@ -392,7 +419,7 @@ class AssetManagementVC: UIViewController {
             mainVC.pushChild(newVC: assetAddVC, containerView: mainVC.containerView)
         }
         else {
-            Utils.showAlert(vc: self, title: "", message: "There is no equipment model to select", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.noEquipModel(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
         }
     }
 
@@ -405,7 +432,7 @@ class AssetManagementVC: UIViewController {
             mainVC.pushChild(newVC: newAssetPlacementVC, containerView: mainVC.containerView)
         }
         else {
-            Utils.showAlert(vc: self, title: "", message: "There is no equipment model to select", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.noEquipModel(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
         }
     }
 
@@ -423,7 +450,7 @@ class AssetManagementVC: UIViewController {
             let verifyFlag = equipmentWithAss.equipAss.verifyFlag ?? ""
             let verified = equipmentWithAss.equipAss.verified ?? ""
             if verifyFlag == "Y" && verified.isEmpty == true {
-                Utils.showAlert(vc: self, title: "", message: "You must verify the in store equipment", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.verifyEquip(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
                 return
             }
         }

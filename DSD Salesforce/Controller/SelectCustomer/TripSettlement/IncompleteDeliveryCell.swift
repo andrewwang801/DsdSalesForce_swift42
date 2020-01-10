@@ -57,7 +57,7 @@ class IncompleteDeliveryCell: UITableViewCell {
 
         let nReasonIndex = incompleteInfo.nReasonIdx
         if nReasonIndex == -1 {
-            reasonCodeButton.setTitleForAllState(title: "No Sale Reason")
+            reasonCodeButton.setTitleForAllState(title: L10n.noSaleReason())
             reasonCodeButton.setTitleColor(UIColor.lightGray, for: .normal)
         }
         else {
@@ -66,8 +66,8 @@ class IncompleteDeliveryCell: UITableViewCell {
             reasonCodeButton.setTitleColor(kBlackTextColor, for: .normal)
         }
 
-        caseLabel.text = "\(incompleteInfo.nCases) cases"
-        unitLabel.text = "\(incompleteInfo.nUnits) units"
+        caseLabel.text = "\(incompleteInfo.nCases) \(L10n.cases())"
+        unitLabel.text = "\(incompleteInfo.nUnits) \(L10n.units())"
     }
 
     @IBAction func onReasonCode(_ sender: Any) {

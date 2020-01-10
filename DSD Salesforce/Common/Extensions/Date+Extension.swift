@@ -229,6 +229,59 @@ extension Date {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        switch format {
+            case "dd-MM-yyyy":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "dd-MM-yyyy"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "MM-dd-yyyy"
+                }
+            case "dd-mm-yyyy":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "dd-mm-yyyy"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "mm-dd-yyyy"
+                }
+            case "dd/MM/yyyy":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "dd/MM/yyyy"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "MM/dd/yyyy"
+                }
+            case "dd/MM/yy":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "dd/MM/yy"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "MM/dd/yy"
+                }
+            case "d/M":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "d/M"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "M/d"
+                }
+            case "EEE dd/MM/yyyy":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "EEE dd/MM/yyyy"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "EEE MM/dd/yyyy"
+                }
+            case "EEEE dd/MM/yyyy":
+                if GlobalInfo.dateFmt == .dmy {
+                    dateFormatter.dateFormat = "EEEE dd/MM/yyyy"
+                }
+                else if GlobalInfo.dateFmt == .mdy {
+                    dateFormatter.dateFormat = "EEEE MM/dd/yyyy"
+                }
+            default:
+                dateFormatter.dateFormat = format
+        }
         return dateFormatter.string(from: self)
     }
     

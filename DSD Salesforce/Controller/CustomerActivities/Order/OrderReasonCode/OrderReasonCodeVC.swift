@@ -15,7 +15,8 @@ class OrderReasonCodeVC: UIViewController {
     @IBOutlet weak var reasonCodeTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var doneButton: AnimatableButton!
-
+    @IBOutlet weak var returnButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var orderVC: OrderVC!
 
@@ -26,7 +27,7 @@ class OrderReasonCodeVC: UIViewController {
     var shouldUseCase = false
     let kSectionHeight: CGFloat = 40.0
 
-    let kTitleArray = ["ORDER ADJUSTMENTS", "RETURN REASONS", "FREE REASONS"]
+    let kTitleArray = [L10n.orderAdjustments, L10n.returnReasons(), L10n.freeReasons()] as [Any]
     let kNoReasonArray = ["Select Reason", "Select Reason", "Select Reason"]
 
     enum DismissOption {
@@ -78,6 +79,10 @@ class OrderReasonCodeVC: UIViewController {
     }
 
     func initUI() {
+        returnButton.setTitleForAllState(title: L10n.return())
+        doneButton.setTitleForAllState(title: L10n.proceed())
+        noDataLabel.text = L10n.thereIsNoData()
+        
         noDataLabel.isHidden = true
         reasonCodeTableView.dataSource = self
         reasonCodeTableView.delegate = self
@@ -154,7 +159,7 @@ extension OrderReasonCodeVC: UITableViewDataSource {
         let viewBounds = view.bounds.insetBy(dx: 10.0, dy: 0)
         let titleLabel = UILabel(frame: viewBounds)
         titleLabel.font = UIFont(name: "Roboto-Medium", size: 16.0)
-        titleLabel.text = kTitleArray[orderTypeArray[section]]
+        titleLabel.text = kTitleArray[orderTypeArray[section]] as! String
         titleLabel.textColor = kBlackTextColor
         titleLabel.backgroundColor = UIColor.clear
         view.addSubview(titleLabel)

@@ -55,12 +55,12 @@ class LoginVC: UIViewController {
     var selectedTripUser: TripUser? {
         didSet {
             if selectedTripUser == nil {
-                usernameButton.setTitleForAllState(title: "USER NAME")
+                usernameButton.setTitleForAllState(title: L10n.userName())
                 usernameButton.setTitleColor(kTextNormalBorderColor, for: .normal)
 
                 passwordText.text = ""
 
-                territoryLabel.text = "TERRITORY"
+                territoryLabel.text = L10n.territory()
                 territoryLabel.textColor = kTextNormalBorderColor
             }
             else {
@@ -90,6 +90,13 @@ class LoginVC: UIViewController {
 
     func initUI() {
 
+        titleLabel.text = L10n.logIn()
+        usernameText.placeholderText = L10n.userName()
+        companyPinText.placeholderText = L10n.companyPin()
+        passwordText.placeholderText = L10n.password()
+        territoryText.placeholderText = L10n.territory()
+        loginButton.setTitleForAllState(title: L10n.logIn())
+        
         initTitleBar()
 
         usernameText.delegate = self
@@ -146,13 +153,13 @@ class LoginVC: UIViewController {
             // initial sign on
             companyPin = companyPinText.text ?? ""
             if companyPin.length != 6 {
-                Utils.showAlert(vc: self, title: "", message: "Company Pin format is invalid.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: "Company Pin format is invalid.", failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                 return
             }
 
             territory = territoryText.text ?? ""
             if territory.isEmpty == true {
-                Utils.showAlert(vc: self, title: "", message: "Please input trip number", failed: false, customerName: "", leftString: "", middleString: "Ok", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: "Please input trip number", failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                 return
             }
 
@@ -162,7 +169,7 @@ class LoginVC: UIViewController {
             let strKey2 = _pin.substring(with: NSMakeRange(2, 2))
             let strKey3 = _pin.substring(with: NSMakeRange(4, 2))
             if globalInfo.urlBaseMap[strKey1] == nil || globalInfo.urlBaseMap[strKey2] == nil || globalInfo.urlBaseMap[strKey3] == nil {
-                Utils.showAlert(vc: self, title: "", message: "Company Pin format is invalid.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: "Company Pin format is invalid.", failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                 return
             }
 
@@ -176,14 +183,14 @@ class LoginVC: UIViewController {
             let params = ["username": username, "password": password]
             APIManager.doNormalRequest(baseURL: strBaseURL, methodName: "api/sftp", httpMethod: "POST", params: params, shouldShowHUD: true) { (ftpResponse, message) in
                 if ftpResponse == nil {
-                    Utils.showAlert(vc: self, title: "", message: "You have used wrong information to login.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                    Utils.showAlert(vc: self, title: "", message: L10n.youHaveUsedWrongInformationToLogin(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                 }
                 else {
                     // login with delivery
                     let params = ["username": username, "password": password]
                     APIManager.doNormalRequest(baseURL: strBaseURL, methodName: "api/login", httpMethod: "POST", params: params, shouldShowHUD: true) { (loginResponse, message) in
                         if loginResponse == nil {
-                            Utils.showAlert(vc: self, title: "", message: "You have used wrong information to login.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                            Utils.showAlert(vc: self, title: "", message: L10n.youHaveUsedWrongInformationToLogin(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                         }
                         else {
                             // save delivery login information
@@ -226,11 +233,11 @@ class LoginVC: UIViewController {
                                     self.doFirstLogin(ftpInfo: ftpInfo)
                                 }
                                 else {
-                                    Utils.showAlert(vc: self, title: "", message: "You have used wrong information for Company Pin", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                                    Utils.showAlert(vc: self, title: "", message: L10n.wrongInfoCompanyPin(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                                 }
                             }
                             else {
-                                Utils.showAlert(vc: self, title: "", message: "You have used wrong information to login.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                                Utils.showAlert(vc: self, title: "", message: L10n.youHaveUsedWrongInformationToLogin(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                             }
                         }
                     }
@@ -254,7 +261,7 @@ class LoginVC: UIViewController {
             }
 
             if username.isEmpty == true || password.isEmpty == true || territory.isEmpty == true {
-                Utils.showAlert(vc: self, title: "", message: "Please fill in the login information field.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.pleaseFillInTheLoginInformationField(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                 return
             }
 
@@ -302,7 +309,7 @@ class LoginVC: UIViewController {
                             self.loginToQBAndOpenMain()
                         }
                         else {
-                            Utils.showAlert(vc: self, title: "Refresh Data", message: "Refresh the data on your device?\nThis will reset the visit plan and may cause loss of transactions you have completed today!", failed: false, customerName: "", leftString: "No", middleString: "", rightString: "Yes") { returnCode in
+                            Utils.showAlert(vc: self, title: L10n.refreshData(), message: L10n.refreshTheDataOnYourDeviceThisWillResetTheVisitPlanAndMayCauseLossOfTranscationsYouHaveCompletedToday(), failed: false, customerName: "", leftString: "No", middleString: "", rightString: L10n.yes()) { returnCode in
                                 if returnCode == MessageDialogVC.ReturnCode.left {
                                     //self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                                     //let _ = Pricing.loadFromXML(context: self.managedObjectContext, forSave: true)
@@ -323,7 +330,7 @@ class LoginVC: UIViewController {
                                         self.doReLogin(ftpInfo: ftpInfo)
                                     }
                                     else {
-                                        Utils.showInput(vc: self, title: "PIN CODE", placeholder: "PIN code for communication", enteredString: "", leftString: "Enter", middleString: "", rightString: "Return", dismissHandler: { (returnCode, inputString) in
+                                        Utils.showInput(vc: self, title: L10n.PINCODE(), placeholder: L10n.pinCodeForCommunication(), enteredString: "", leftString: "Enter", middleString: "", rightString: "Return", dismissHandler: { (returnCode, inputString) in
                                             if returnCode == InputDialogVC.ReturnCode.left {
                                                 if realPinCode == inputString {
                                                     self.globalInfo.loadFTPSetting()
@@ -336,7 +343,7 @@ class LoginVC: UIViewController {
                                                     self.doReLogin(ftpInfo: ftpInfo)
                                                 }
                                                 else {
-                                                    Utils.showAlert(vc: self, title: "ALERT", message: "Invalid code", failed: false, customerName: "", leftString: "", middleString: "Ok", rightString: "", dismissHandler: nil)
+                                                    Utils.showAlert(vc: self, title: L10n.alert(), message: L10n.invalidCode(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                                                 }
                                             }
                                         })
@@ -346,7 +353,7 @@ class LoginVC: UIViewController {
                         }
                     }
                     else {
-                        Utils.showAlert(vc: self, title: "NO DATA", message: "Trip \(territory) is not the current loaded trip on your device.\nContinue to load new trip?", failed: false, customerName: "", leftString: "No", middleString: "", rightString: "Yes") { returnCode in
+                        Utils.showAlert(vc: self, title: L10n.noData(), message: "\(L10n.trip()) \(territory) \(L10n.notCurrentLoadedTrip())", failed: false, customerName: "", leftString: L10n.no(), middleString: "", rightString: L10n.yes()) { returnCode in
                             if returnCode == MessageDialogVC.ReturnCode.right {
                                 self.globalInfo.loadFTPSetting()
                                 let ftpInfo = FTPInfo()
@@ -629,11 +636,11 @@ class LoginVC: UIViewController {
     }
 
     func showNotFoundMatchedTripData() {
-        Utils.showAlert(vc: self, title: "ALERT", message: "Can't find the matched trip data", failed: false, customerName: "", leftString: "", middleString: "Ok", rightString: "", dismissHandler: nil)
+        Utils.showAlert(vc: self, title: L10n.alert(), message: L10n.canTFindTheMatchedTripData(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
     }
 
     func showInvalidSignOn() {
-        Utils.showAlert(vc: self, title: "INVALID SIGN ON", message: "Username or Password is invalid", failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
+        Utils.showAlert(vc: self, title: L10n.invalidSignOn(), message: L10n.usernameOrPasswordIsInvalid(), failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
     }
 
     @IBAction func onUsernameButton(_ sender: Any) {
@@ -719,7 +726,7 @@ extension LoginVC: UITextFieldDelegate {
 extension LoginVC: NotificationServiceDelegate {
 
     func notificationServiceDidStartLoadingDialogFromServer() {
-        SVProgressHUD.show(withStatus: "SA_STR_LOADING_DIALOG".localized, maskType: SVProgressHUDMaskType.clear)
+        SVProgressHUD.show(withStatus: L10n.loadingDialog(), maskType: SVProgressHUDMaskType.clear)
     }
 
     func notificationServiceDidFinishLoadingDialogFromServer() {

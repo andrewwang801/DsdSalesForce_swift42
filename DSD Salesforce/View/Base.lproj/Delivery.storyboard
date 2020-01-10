@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -608,11 +606,14 @@
                         <viewLayoutGuide key="safeArea" id="u3d-VL-uMf"/>
                     </view>
                     <connections>
+                        <outlet property="DeliveredLabel" destination="ZKD-jz-7vD" id="PSf-MB-SR0"/>
                         <outlet property="deliverRefusedProgress" destination="mx9-Lg-r5T" id="KaA-cw-wme"/>
                         <outlet property="deliverRefusedValueLabel" destination="koz-iN-I76" id="OW6-0D-dSm"/>
                         <outlet property="deliveredProgress" destination="niu-hp-f6l" id="ab6-8A-y8E"/>
                         <outlet property="deliveredValueLabel" destination="NE2-Fi-GmA" id="7e1-W4-64C"/>
+                        <outlet property="deliveryRefusedLabel" destination="oiU-gU-YNR" id="I6J-uD-k4N"/>
                         <outlet property="tableView" destination="zC7-Ic-JV4" id="UUf-PF-STf"/>
+                        <outlet property="toDeliverLabel" destination="YtF-Rm-Xe1" id="WHy-Qj-pfj"/>
                         <outlet property="toDeliverProgress" destination="Et9-GN-MjV" id="H6B-OT-zM0"/>
                         <outlet property="toDeliverValueLabel" destination="SA7-67-0M9" id="A6x-gV-sxV"/>
                         <outlet property="tripComboButton" destination="zMq-cn-WDx" id="wYL-fM-uem"/>
@@ -648,7 +649,7 @@
                                 <color key="barTintColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-ar-pNj">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="704"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -665,6 +666,7 @@
                         <viewLayoutGuide key="safeArea" id="Smx-hF-DUR"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="GM0-7O-av6" id="czn-08-i7L"/>
                         <outlet property="webView" destination="4CG-ar-pNj" id="ye1-1g-wiS"/>
                     </connections>
                 </viewController>
@@ -830,8 +832,10 @@
                         <viewLayoutGuide key="safeArea" id="uBq-pt-Wi8"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="p17-ma-AYP" id="4Ra-AW-8kZ"/>
                         <outlet property="heightConstraint" destination="j5c-Bn-Gxp" id="1Lx-2w-chG"/>
                         <outlet property="mainView" destination="3rH-MU-6Sz" id="GmF-PK-Alf"/>
+                        <outlet property="okButton" destination="aaT-68-yjj" id="ZIZ-t9-HfR"/>
                         <outlet property="tableView" destination="Ped-ji-bSa" id="Lbl-mF-Rgu"/>
                         <outlet property="titleLabel" destination="TtL-jf-dmF" id="QqE-Pm-2uq"/>
                     </connections>
