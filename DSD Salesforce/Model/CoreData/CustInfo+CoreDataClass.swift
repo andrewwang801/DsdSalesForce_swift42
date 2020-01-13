@@ -46,7 +46,22 @@ public class CustInfo: NSManagedObject {
         }
         return nil
     }
+    
+    static func getByArray(context: NSManagedObjectContext, infoType: String, custNo: String) -> [CustInfo] {
 
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustInfo")
+        let predicate1 = NSPredicate(format: "infoType=%@", infoType)
+        let predicate2 = NSPredicate(format: "custNo=%@", custNo)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+
+        let result = try? context.fetch(request) as? [CustInfo]
+
+        if let result = result, let custInfoArray = result {
+            return custInfoArray
+        }
+        return []
+    }
+    
     func updateBy(xmlDictionary: [String: String]) {
 
         self.infoType = xmlDictionary["InfoType"] ?? ""

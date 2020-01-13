@@ -226,8 +226,10 @@ class SearchCustomerVC: UIViewController {
 
         GlobalInfo.saveCache()
         reloadCustomers()
+        //uploadVisit(selectedCustomer: newCustomerDetail)
+        globalInfo.uploadManager?.uploadVisit(selectedCustomer: newCustomerDetail)
     }
-
+    
     func addAllCustomers() {
 
         let dayNo = "\(Utils.getWeekday(date: addingDate))"
