@@ -505,7 +505,7 @@ class NewCustomerVC: UIViewController {
 
         let transactionPath = UTransaction.saveToXML(transactionArray: [customerFMTransaction, gpsLogTransaction], shouldIncludeLog: true)
 
-        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [customerFMPath, gpsLogPath, transactionPath])
+        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [customerFMPath, gpsLogPath, transactionPath], completionHandler: nil)
     }
 
 }

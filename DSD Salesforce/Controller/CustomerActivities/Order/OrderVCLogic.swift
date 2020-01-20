@@ -45,9 +45,49 @@ extension OrderVC {
 
     func loadTreeItems() {
 
-        let prodStructArray = ProductStruct.getAll(context: globalInfo.managedObjectContext)
+        let _prodStructArray = ProductStruct.getAll(context: globalInfo.managedObjectContext)
         rootItemArray.removeAll()
-
+    
+        var rootNode: ProductStruct?
+        var parentNodes: [ProductStruct] = []
+        var childNodes: [ProductStruct] = []
+        var prodStructArray: [ProductStruct] = []
+        var index = 0
+        
+        for prodStruct in _prodStructArray {
+            if prodStruct.parentID == "0"{
+                rootNode = prodStruct
+            }
+            else if prodStruct.groupNo == "0"{
+                childNodes.append(prodStruct)
+            }
+            else {
+                parentNodes.append(prodStruct)
+            }
+        }
+        
+        //sort according to TreeOrder
+        var sortedChildNodes: [ProductStruct] = []
+        var sortedParentNodes: [ProductStruct] = []
+        
+        if let treeOrder = self.globalInfo.routeControl?.treeOrder, treeOrder == "DESC" {
+            sortedChildNodes = childNodes.sorted(by: { $0.desc ?? "" < $1.desc ?? "" })
+            sortedParentNodes = parentNodes.sorted(by: { $0.desc ?? "" < $1.desc ?? "" })
+        }
+        else {
+            sortedChildNodes = childNodes.sorted(by: { $0.entryID ?? "" < $1.entryID ?? "" })
+            sortedParentNodes = parentNodes.sorted(by: { $0.entryID ?? "" < $1.entryID ?? "" })
+        }
+        
+        if let _rootNode = rootNode {
+            prodStructArray.insert(_rootNode, at: index)
+            index += 1
+        }
+        prodStructArray.insert(contentsOf: sortedParentNodes, at: index)
+        index += sortedParentNodes.count
+    
+        prodStructArray.insert(contentsOf: sortedChildNodes, at: index)
+        
         for prodStruct in prodStructArray {
 
             let objectType = prodStruct.objectType ?? ""

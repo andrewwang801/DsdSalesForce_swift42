@@ -104,6 +104,7 @@ public class RouteControl: NSManagedObject {
         
         self.language = xmlDictionary["LANGUAGE"] ?? "EUK"
         self.dateFmt = xmlDictionary["DATEFMT"] ?? "dmy"
+        self.treeOrder = xmlDictionary["TreeOrder"] ?? ""
         if self.language == "" {
             self.language = "EUK"
         }
@@ -220,4 +221,5 @@ extension RouteControl {
     
     @NSManaged public var language: String?
     @NSManaged public var dateFmt: String?
+    @NSManaged public var treeOrder: String?
 }

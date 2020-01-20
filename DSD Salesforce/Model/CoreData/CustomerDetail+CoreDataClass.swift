@@ -88,7 +88,24 @@ public class CustomerDetail: NSManagedObject {
         }
         return nil
     }
+    
+    static func getBy(context: NSManagedObjectContext, dayNo: String, chainNo: String, custNo: String) -> CustomerDetail? {
 
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
+        let predicate1 = NSPredicate(format: "chainNo=%@", chainNo)
+        let predicate2 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate3 = NSPredicate(format: "dayNo=%@", dayNo)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3])
+        request.fetchLimit = 1
+
+        let result = try? context.fetch(request) as? [CustomerDetail]
+
+        if let result = result, let customerDetails = result {
+            return customerDetails.first
+        }
+        return nil
+    }
+    
     static func getBy(context: NSManagedObjectContext, type: String, zip: String) -> [CustomerDetail] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")

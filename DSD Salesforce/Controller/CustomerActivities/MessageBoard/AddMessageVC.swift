@@ -70,7 +70,7 @@ class AddMessageVC: UIViewController {
     }
 
     func initData() {
-        messageTypeDescTypeArray = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "NOTETYPE")
+        messageTypeDescTypeArray = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "NOTETYPE".lowercased())
         messageTypeDescTypeArray = messageTypeDescTypeArray.filter({ (descType) -> Bool in
             let numericKey = descType.numericKey ?? ""
             if numericKey == "99" {
@@ -215,7 +215,7 @@ class AddMessageVC: UIViewController {
         let transactionPath = UTransaction.saveToXML(transactionArray: transactionArray, shouldIncludeLog: true)
         zipFilePathArray.append(transactionPath)
 
-        uploadManager?.zipAndScheduleUpload(filePathArray: zipFilePathArray)
+        uploadManager?.zipAndScheduleUpload(filePathArray: zipFilePathArray, completionHandler: nil)
 
         // add new cust note
         let now = Date()

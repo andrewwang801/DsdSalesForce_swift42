@@ -606,7 +606,7 @@ class AssetManagementVC: UIViewController {
         let transactionPath = UTransaction.saveToXML(transactionArray: transactionArray, shouldIncludeLog: true)
         zipFilePathArray.append(transactionPath)
 
-        uploadManager?.zipAndScheduleUpload(filePathArray: zipFilePathArray)
+        uploadManager?.zipAndScheduleUpload(filePathArray: zipFilePathArray, completionHandler: nil)
 
         mainVC.popChild(containerView: mainVC.containerView)
     }

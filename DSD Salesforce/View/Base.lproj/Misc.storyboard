@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -31,35 +31,35 @@
                         <viewControllerLayoutGuide type="bottom" id="yFC-BJ-Vsr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FOc-cv-0SP">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K4c-iX-C8L">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuComboCell" rowHeight="55" id="wEJ-4N-y6d" customClass="MenuComboCell" customModule="DSD_Salesforce" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1024" height="55"/>
+                                        <rect key="frame" x="0.0" y="28" width="834" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wEJ-4N-y6d" id="KAc-EL-POi">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="834" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqV-qO-pVz" userLabel="back label">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="55"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="834" height="55"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Type 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH9-z4-Ojr" userLabel="content">
-                                                    <rect key="frame" x="15" y="11" width="994" height="33"/>
+                                                    <rect key="frame" x="15" y="11" width="804" height="33"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                                     <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j34-LD-MWG" userLabel="Separator">
-                                                    <rect key="frame" x="0.0" y="54.5" width="1024" height="0.5"/>
+                                                    <rect key="frame" x="0.0" y="54.5" width="834" height="0.5"/>
                                                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="0.5" id="3Bu-IT-jzr"/>
@@ -113,38 +113,38 @@
             <objects>
                 <viewController storyboardIdentifier="MessageDialogVC" id="84F-Ox-mat" customClass="MessageDialogVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AWb-lt-lAw">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ueh-1h-vPB" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="280" y="263.5" width="464" height="241.5"/>
+                                <rect key="frame" x="280" y="476.5" width="274" height="241.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSz-Gf-nqQ">
-                                        <rect key="frame" x="25" y="20" width="414" height="33"/>
+                                        <rect key="frame" x="25" y="20" width="224" height="33"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="25"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAILED" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReR-Us-8gy">
-                                        <rect key="frame" x="25" y="58" width="414" height="26.5"/>
+                                        <rect key="frame" x="25" y="58" width="224" height="26.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="customer name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9a-4m-AZY">
-                                        <rect key="frame" x="25" y="89.5" width="414" height="26.5"/>
+                                        <rect key="frame" x="25" y="89.5" width="224" height="26.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8i-Pu-yKf">
-                                        <rect key="frame" x="25" y="131" width="414" height="26.5"/>
+                                        <rect key="frame" x="25" y="131" width="224" height="26.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1W-It-e0k" userLabel="Button View">
-                                        <rect key="frame" x="25" y="177.5" width="414" height="44"/>
+                                        <rect key="frame" x="25" y="177.5" width="224" height="44"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTh-sy-6Si" customClass="AnimatableButton" customModule="IBAnimatable">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
@@ -165,7 +165,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSv-Xo-vx5" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                <rect key="frame" x="314" y="0.0" width="100" height="44"/>
+                                                <rect key="frame" x="124" y="0.0" width="100" height="44"/>
                                                 <color key="backgroundColor" red="0.22352941179999999" green="0.70980392160000005" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="fbr-43-XE1"/>
@@ -183,7 +183,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXl-Nv-9DZ" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                <rect key="frame" x="157" y="0.0" width="100" height="44"/>
+                                                <rect key="frame" x="62" y="0.0" width="100" height="44"/>
                                                 <color key="backgroundColor" red="0.22352941179999999" green="0.70980392160000005" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="GpE-nx-JNy"/>
@@ -286,26 +286,26 @@
             <objects>
                 <viewController storyboardIdentifier="InputDialogVC" id="IiS-pB-Ihc" customClass="InputDialogVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xqj-bu-eQj">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDD-Ua-cDr" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heK-Y6-4zq" userLabel="Skeleton">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G05-4F-xkc" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                        <rect key="frame" x="280" y="277.5" width="464" height="213"/>
+                                        <rect key="frame" x="280" y="480.5" width="274" height="213"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8k-ew-Y8H">
-                                                <rect key="frame" x="25" y="20" width="414" height="33"/>
+                                                <rect key="frame" x="25" y="20" width="224" height="33"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="25"/>
                                                 <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPI-PY-CVN" userLabel="Button View">
-                                                <rect key="frame" x="25" y="149" width="414" height="44"/>
+                                                <rect key="frame" x="25" y="149" width="224" height="44"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntI-d1-B04" customClass="AnimatableButton" customModule="IBAnimatable">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
@@ -326,7 +326,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fg9-uT-sOo" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                        <rect key="frame" x="314" y="0.0" width="100" height="44"/>
+                                                        <rect key="frame" x="124" y="0.0" width="100" height="44"/>
                                                         <color key="backgroundColor" red="0.22352941179999999" green="0.70980392160000005" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="s2r-yg-gdh"/>
@@ -344,7 +344,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nf-Mc-y31" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                        <rect key="frame" x="157" y="0.0" width="100" height="44"/>
+                                                        <rect key="frame" x="62" y="0.0" width="100" height="44"/>
                                                         <color key="backgroundColor" red="0.22352941179999999" green="0.70980392160000005" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="c2R-uM-AyC"/>
@@ -377,10 +377,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sru-vI-Lmt" userLabel="Text View" customClass="AnimatableView" customModule="IBAnimatable">
-                                                <rect key="frame" x="25" y="78" width="414" height="46"/>
+                                                <rect key="frame" x="25" y="78" width="224" height="46"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PIN code for communication" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f86-Xz-9VT" userLabel="Text Field" customClass="AnimatableTextField" customModule="IBAnimatable">
-                                                        <rect key="frame" x="10" y="0.0" width="394" height="46"/>
+                                                        <rect key="frame" x="10" y="0.0" width="204" height="46"/>
                                                         <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -497,17 +497,17 @@
             <objects>
                 <viewController storyboardIdentifier="SearchCustomerVC" id="LIe-mU-I2T" customClass="SearchCustomerVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fGm-SW-WOe">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMJ-GQ-ZqN" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOW-FA-2Ax" userLabel="Skeleton">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLR-UH-jPS" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                        <rect key="frame" x="212" y="59" width="600" height="650"/>
+                                        <rect key="frame" x="117" y="262" width="600" height="650"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD CUSTOMERS TO TRIP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3my-US-ARN">
                                                 <rect key="frame" x="25" y="20" width="550" height="33"/>
@@ -848,17 +848,17 @@
             <objects>
                 <viewController storyboardIdentifier="CustomerLocationVC" id="fJ4-bi-QqC" customClass="CustomerLocationVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AA3-qC-3H9">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puv-uW-bzW" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="100" y="100" width="824" height="568"/>
+                                <rect key="frame" x="100" y="100" width="634" height="994"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWp-bC-JM7" userLabel="HeaderView">
-                                        <rect key="frame" x="0.0" y="0.0" width="824" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="634" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fg2-Cw-nSI">
-                                                <rect key="frame" x="779" y="7.5" width="35" height="35"/>
+                                                <rect key="frame" x="589" y="7.5" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="dsc-7l-wTp"/>
                                                     <constraint firstAttribute="width" constant="35" id="pil-rO-JVF"/>
@@ -870,7 +870,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer Location" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHO-Tl-tZH">
-                                                <rect key="frame" x="20" y="12" width="739" height="26.5"/>
+                                                <rect key="frame" x="20" y="12" width="549" height="26.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -887,7 +887,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zA-1T-g40" customClass="GMSMapView">
-                                        <rect key="frame" x="0.0" y="50" width="824" height="518"/>
+                                        <rect key="frame" x="0.0" y="50" width="634" height="944"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -943,11 +943,11 @@
             <objects>
                 <viewController storyboardIdentifier="SignatureVC" id="GCX-uK-1gz" customClass="SignatureVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mj7-VL-6Bk">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKY-0o-JPj" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="312" y="134" width="400" height="500"/>
+                                <rect key="frame" x="217" y="347" width="400" height="500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMw-uC-ZT3" userLabel="Header View">
                                         <rect key="frame" x="15" y="15" width="370" height="60"/>
@@ -1189,7 +1189,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cOd-8h-1dn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dPa-Lf-pjO">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zG-vt-EjE">
@@ -1214,11 +1214,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-5l-Z1k">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="704"/>
+                                <rect key="frame" x="0.0" y="20" width="834" height="1130"/>
                                 <color key="backgroundColor" red="0.28958413" green="0.31462949509999999" blue="0.32950475810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2WG-bf-xNt">
-                                <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="1150" width="834" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="T8b-Py-dxY"/>
                                 </constraints>
@@ -1258,17 +1258,17 @@
             <objects>
                 <viewController storyboardIdentifier="SearchProductVC" id="ylP-AE-I2b" customClass="SearchProductVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AMF-VX-XDL">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZW-De-z1I" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTo-fR-avR" userLabel="Skeleton">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-60-vjP" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                        <rect key="frame" x="312" y="59" width="400" height="650"/>
+                                        <rect key="frame" x="217" y="262" width="400" height="650"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH PRODUCT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7Q-qK-3ew">
                                                 <rect key="frame" x="25" y="20" width="350" height="33"/>
@@ -1617,14 +1617,14 @@
             <objects>
                 <viewController storyboardIdentifier="BarcodeScanVC" id="L5w-B0-CmG" customClass="BarcodeScanVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aXv-jA-d8m">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFg-sr-Xg5">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-iv-SEW" customClass="AnimatableButton" customModule="IBAnimatable">
-                                <rect key="frame" x="412" y="633" width="200" height="45"/>
+                                <rect key="frame" x="317" y="1039" width="200" height="45"/>
                                 <color key="backgroundColor" red="0.59607843140000005" green="0.58039215690000001" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="oPr-C4-2th"/>
@@ -1643,7 +1643,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan Area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KJ-w8-Qmv" customClass="AnimatableLabel" customModule="IBAnimatable">
-                                <rect key="frame" x="256" y="224" width="512" height="320"/>
+                                <rect key="frame" x="208.5" y="456.5" width="417" height="261"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6KJ-w8-Qmv" secondAttribute="height" multiplier="480:300" id="mKe-Qm-WG9"/>
@@ -1685,17 +1685,17 @@
             <objects>
                 <viewController storyboardIdentifier="SelectPrinterVC" id="Hcd-u2-GlK" customClass="SelectPrinterVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pxW-tF-RsB">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZy-4e-H25" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9F-sk-oe6" userLabel="Skeleton">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMq-Qw-xS5" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                        <rect key="frame" x="312" y="59" width="400" height="650"/>
+                                        <rect key="frame" x="217" y="262" width="400" height="650"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT PRINTER" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6z-oF-9Sv">
                                                 <rect key="frame" x="25" y="20" width="350" height="33"/>
@@ -1905,17 +1905,17 @@ Title</string>
             <objects>
                 <viewController storyboardIdentifier="ProductDetailVC" id="sY5-q7-Rcf" customClass="ProductDetailVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BeL-bV-5UR">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmg-zQ-d6k" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3w-Rx-NXJ" userLabel="Skeleton">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGj-BQ-s3N" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                                <rect key="frame" x="112" y="104" width="800" height="560"/>
+                                                <rect key="frame" x="17" y="317" width="800" height="560"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRODUCT DETAILS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PT-1z-5Hj">
                                                         <rect key="frame" x="25" y="25" width="750" height="33"/>
@@ -2319,11 +2319,11 @@ Title</string>
             <objects>
                 <viewController storyboardIdentifier="CalendarVC" id="mM5-fe-LQF" customClass="CalendarVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NAI-xl-pkD">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMm-o0-hnj" userLabel="Calendar View" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="302" y="209" width="420" height="350"/>
+                                <rect key="frame" x="207" y="422" width="420" height="350"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sz6-2D-v3g" customClass="JTHorizontalCalendarView">
                                         <rect key="frame" x="20" y="50" width="380" height="230"/>

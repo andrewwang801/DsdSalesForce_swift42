@@ -42,7 +42,7 @@ class GPSLogger: NSObject {
 
         // transaction file
         let transactionPath = UTransaction.saveToXML(transactionArray: [gpsLogTransaction], shouldIncludeLog: true)
-        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [gpsLogPath, transactionPath])
+        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [gpsLogPath, transactionPath], completionHandler: nil)
     }
     
 }

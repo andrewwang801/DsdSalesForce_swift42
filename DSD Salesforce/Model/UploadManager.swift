@@ -26,13 +26,13 @@ class UploadManager: NSObject {
 
     func initManager() {
         initReachabiltyService()
-        startIfNeeded()
+        startIfNeeded(completionHandler: nil)
     }
 
     func initReachabiltyService() {
         reachability = Reachability()
         reachability.whenReachable = { _reachability in
-            self.startIfNeeded()
+            self.startIfNeeded(completionHandler: nil)
         }
         reachability.whenUnreachable = { _reachability in
             self.stop()
@@ -44,7 +44,7 @@ class UploadManager: NSObject {
         shouldStop = true
     }
 
-    func startIfNeeded() {
+    func startIfNeeded(completionHandler: (() -> ())?) {
 
         if isBusy == true {
             NSLog("Upload manager is busy")
@@ -120,7 +120,11 @@ class UploadManager: NSObject {
                 }
                 self.isBusy = false
             }
+            if let _completionHandler = completionHandler {
+                _completionHandler()
+            }
         }
+
     }
     
     func uploadFile(hostname: String, username: String, password: String, companyName: String, localPath: String, uploadPath: String, shouldShowHUD: Bool) -> Bool {
@@ -289,7 +293,7 @@ class UploadManager: NSObject {
         return zipFileName
     }
     
-    func zipAndScheduleUpload(filePathArray: [String]) {
+    func zipAndScheduleUpload(filePathArray: [String], completionHandler: (() -> ())?)  {
 
         let date = Date()
         let timeString = date.toDateString(format: kTightFullDateFormat) ?? ""
@@ -323,7 +327,7 @@ class UploadManager: NSObject {
             
             GlobalInfo.saveCache()
 
-            self.startIfNeeded()
+            self.startIfNeeded(completionHandler: completionHandler)
         }
     }
 
@@ -353,10 +357,10 @@ class UploadManager: NSObject {
         
         GlobalInfo.saveCache()
 
-        self.startIfNeeded()
+        self.startIfNeeded(completionHandler: nil)
     }
 
-    func uploadVisit(selectedCustomer: CustomerDetail) {
+    func uploadVisit(selectedCustomer: CustomerDetail, completionHandler: (() -> ())?) {
         
         let chainNo = selectedCustomer.chainNo ?? ""
         let custNo = selectedCustomer.custNo ?? ""
@@ -368,7 +372,6 @@ class UploadManager: NSObject {
         for orderHeader in notUploadedHeaderArray {
             orderHeader.scheduleUpload()
         }
-        selectedCustomer.isCompleted = true
 
         let now = Date()
 
@@ -384,7 +387,7 @@ class UploadManager: NSObject {
         filePathArray.append(visitPath)
 
         let uploadManager = globalInfo.uploadManager
-        uploadManager?.zipAndScheduleUpload(filePathArray: filePathArray)
+        uploadManager?.zipAndScheduleUpload(filePathArray: filePathArray, completionHandler: completionHandler)
     }
     /*
     func recoverAllPostpones() {
