@@ -70,6 +70,9 @@ public class CustomerDetail: NSManagedObject {
         isAssetsChecked = false
         isAssetRequested = false
 
+        visitFrequency = 0
+        preferredVisitDay = 0
+        
         arrivalTime = ""
     }
 
@@ -454,6 +457,9 @@ public class CustomerDetail: NSManagedObject {
         self.arrivalTime = theSource.arrivalTime
         
         self.surveys = theSource.surveys
+        
+        self.visitFrequency = theSource.visitFrequency
+        self.preferredVisitDay = theSource.preferredVisitDay
     }
     
     func updateByAfter(theSource: CustomerDetail) {
@@ -516,6 +522,9 @@ public class CustomerDetail: NSManagedObject {
         self.orderNo = theSource.orderNo
         self.isFromSameNextVisit = theSource.isFromSameNextVisit
         self.arrivalTime = theSource.arrivalTime
+        
+        self.visitFrequency = theSource.visitFrequency
+        self.preferredVisitDay = theSource.preferredVisitDay
         
     }
 
@@ -816,7 +825,8 @@ extension CustomerDetail {
 
     // for visit
     @NSManaged public var isVisitPlanned: Bool
-
+    @NSManaged public var visitFrequency: Int32
+    @NSManaged public var preferredVisitDay: Int32
     @NSManaged public var surveys: NSOrderedSet?
 }
 

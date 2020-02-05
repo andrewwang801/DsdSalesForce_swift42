@@ -100,6 +100,7 @@
         <attribute name="payType" optional="YES" attributeType="String"/>
         <attribute name="periodNo" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="preferredVisitDay" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="priceGrp" optional="YES" attributeType="String"/>
         <attribute name="printType" optional="YES" attributeType="String"/>
         <attribute name="promoPlan" optional="YES" attributeType="String"/>
@@ -120,6 +121,7 @@
         <attribute name="tripNumber" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="visitEndDate" optional="YES" attributeType="String"/>
+        <attribute name="visitFrequency" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="visitNote" optional="YES" attributeType="String"/>
         <attribute name="visitReason" optional="YES" attributeType="String"/>
         <attribute name="visitStartDate" optional="YES" attributeType="String"/>
@@ -720,6 +722,7 @@
         <attribute name="docType" optional="YES" attributeType="String"/>
         <attribute name="nextVisit" optional="YES" attributeType="String"/>
         <attribute name="orderCreated" optional="YES" attributeType="String"/>
+        <attribute name="preferredVisitDay" optional="YES" attributeType="String"/>
         <attribute name="printedFlag" optional="YES" attributeType="String"/>
         <attribute name="rangeChecked" optional="YES" attributeType="String"/>
         <attribute name="reference" optional="YES" attributeType="String"/>
@@ -730,6 +733,7 @@
         <attribute name="trxnNo" optional="YES" attributeType="String"/>
         <attribute name="trxnTime" optional="YES" attributeType="String"/>
         <attribute name="visitEnd" optional="YES" attributeType="String"/>
+        <attribute name="visitFrequency" optional="YES" attributeType="String"/>
         <attribute name="visitMessage" optional="YES" attributeType="String"/>
         <attribute name="visitReason" optional="YES" attributeType="String"/>
         <attribute name="visitStart" optional="YES" attributeType="String"/>
@@ -743,7 +747,7 @@
         <element name="CustInfo" positionX="-18" positionY="135" width="128" height="105"/>
         <element name="CustNote" positionX="-18" positionY="135" width="128" height="210"/>
         <element name="CustomerContact" positionX="18" positionY="180" width="128" height="165"/>
-        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1050"/>
+        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1078"/>
         <element name="DescType" positionX="-54" positionY="144" width="128" height="225"/>
         <element name="DocText" positionX="-9" positionY="144" width="128" height="135"/>
         <element name="EquipAss" positionX="-18" positionY="135" width="128" height="330"/>
@@ -781,6 +785,6 @@
         <element name="UploadService" positionX="0" positionY="144" width="128" height="330"/>
         <element name="UPromotion" positionX="-18" positionY="135" width="128" height="270"/>
         <element name="UTax" positionX="0" positionY="153" width="128" height="180"/>
-        <element name="Visit" positionX="-18" positionY="135" width="128" height="375"/>
+        <element name="Visit" positionX="-18" positionY="135" width="128" height="403"/>
     </elements>
 </model>

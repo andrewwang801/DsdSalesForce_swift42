@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FAE811123E36B7500AC4842 /* MarginCalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */; };
+		0FAE811323E36CCA00AC4842 /* MarginCalculatorOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */; };
 		0FD8803B23BF84880065A6B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FD8803D23BF84880065A6B2 /* Localizable.strings */; };
 		0FD8804223BFA7830065A6B2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD8804123BFA7820065A6B2 /* Strings.swift */; };
 		4437ABA4235421C200F72A56 /* RABatchChangeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437AB86235421C200F72A56 /* RABatchChangeEntity.m */; };
@@ -592,6 +594,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginCalculatorVC.swift; sourceTree = "<group>"; };
+		0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginCalculatorOrderCell.swift; sourceTree = "<group>"; };
 		0FD8803C23BF84880065A6B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0FD8803E23BF84B90065A6B2 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0FD8804123BFA7820065A6B2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -1446,6 +1450,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FAE810F23E36B5A00AC4842 /* MarginCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */,
+				0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */,
+			);
+			path = MarginCalculator;
+			sourceTree = "<group>";
+		};
 		0FD8804023BFA6670065A6B2 /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -1990,6 +2003,7 @@
 		644E6F6920F75BA300ED037B /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				0FAE810F23E36B5A00AC4842 /* MarginCalculator */,
 				645FFD6922B8E23500BEB832 /* OrderReview */,
 				640ECCC1229E2B7A00ED74C3 /* OrderEWayDetails */,
 				6427A5A72143607200944F90 /* OrderChequeDetails */,
@@ -4311,6 +4325,7 @@
 				6454577D2101139600368E51 /* QMChatCellLayoutAttributes.m in Sources */,
 				64312FF020F127CD004CDD64 /* CustomSwitch.swift in Sources */,
 				6454574F2101139600368E51 /* QBChatMessage+QBDateDivider.m in Sources */,
+				0FAE811123E36B7500AC4842 /* MarginCalculatorVC.swift in Sources */,
 				6454572A2101139500368E51 /* QMOpenGraphCache.m in Sources */,
 				6410C67E20EB57BB00B52129 /* String+Extension.swift in Sources */,
 				6410C67D20EB57BB00B52129 /* Int+Extension.swift in Sources */,
@@ -4448,6 +4463,7 @@
 				64FEE73721182AE100F3D672 /* GPSLog.swift in Sources */,
 				645457512101139600368E51 /* QMChatLocationSnapshotter.m in Sources */,
 				645457222101139500368E51 /* QMCDRecordStack.m in Sources */,
+				0FAE811323E36CCA00AC4842 /* MarginCalculatorOrderCell.swift in Sources */,
 				6454570D2101139500368E51 /* QMContactListCache.m in Sources */,
 				64CCB7A72101C59F00A19A3D /* ChatVC.swift in Sources */,
 				644D8EAF212C5A6F00FD265D /* AuthDetail+CoreDataClass.swift in Sources */,

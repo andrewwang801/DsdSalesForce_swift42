@@ -66,6 +66,7 @@ let kHamburgerAdjustVehicleStockName = L10n.addjustVehicleStock()
 let kHamburgerCountVehicleStockName = L10n.countVehicleStock()
 let kHamburgerDeliveriesTodayName = L10n.deliveriesToday()
 let kHamburgerDeliveryTripStatusName = L10n.deliveryTripStatus()
+let kHamburgerMarginCalculator = "MARGIN CALCULATOR"
 let kHamburgerVisitPlannerName = L10n.visitPlanner()
 let kHamburgerProductCatalog = L10n.productCatalog()
 let kHamburgerHelpName = L10n.help()
@@ -353,3 +354,10 @@ let kCustomerSelectedNotificationName = "CustomerSelectedNotification"
 let kChatServiceChangedNotificationName = "ChatServiceNotification"
 
 let kProductImageSampleURL = "https://firebasestorage.googleapis.com/v0/b/plant-check.appspot.com/o/01BDC817-4B56-41DD-A4D2-2D92BC8A63A7.jpg?alt=media&token=a48aec8c-c05e-4319-929c-c606297b635b"
+
+
+//MarginCalculator
+let kInitVal = -1.0
+let kSuffixCnt = 2
+let kStrFormat = "%0.2f"
+let kSuffixStr = "00"

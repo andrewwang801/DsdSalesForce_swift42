@@ -26,6 +26,7 @@ class PostVisitTaskVC: UIViewController {
     var now = Date()
     var visitNote = ""
     var deliveryFreq = 0
+    var preferredVisitDay = 0
     var weekDayStart = Date()
     var isNextVisitDateChanged = false
 
@@ -73,9 +74,12 @@ class PostVisitTaskVC: UIViewController {
         
         datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
+        
+        let visitDay = now.toDateString(format: "EEEE") ?? ""
         nextVisitDateButton.setTitleForAllState(title: nextVisitDate.toDateString(format: kDateFormat) ?? "")
         visitNoteTextView.text = ""
-        visitDayButton.setTitleForAllState(title: now.toDateString(format: "EEEE") ?? "")
+        visitDayButton.setTitleForAllState(title: visitDay)
+        preferredVisitDay = getPreferredDayFromFormattedStr(weekday: visitDay)
         visitFreq.text = customerDetail.delivFreq ?? "0"
         visitFreq.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         setupVisitDayDropDown()
@@ -84,6 +88,27 @@ class PostVisitTaskVC: UIViewController {
     func updateUI() {
         
         nextVisitDateButton.setTitleForAllState(title: nextVisitDate.toDateString(format: kDateFormat) ?? "")
+    }
+    
+    func getPreferredDayFromFormattedStr(weekday: String) -> Int {
+        switch weekday {
+        case "Monday":
+            return 1
+        case "Tuesday":
+            return 2
+        case "Wednesday":
+            return 3
+        case "Thursday":
+            return 4
+        case "Friday":
+            return 5
+        case "Saturday":
+            return 6
+        case "Sunday":
+            return 7
+        default:
+            return 0
+        }
     }
     
     @objc func textFieldDidChange(textField: UITextField) {
@@ -113,7 +138,9 @@ class PostVisitTaskVC: UIViewController {
         visitDayDropDown.selectionAction = { index, item in
             self.now = self.visitDayArray[index]
             self.nextVisitDate = self.now.getDateAddedBy(days: self.deliveryFreq*7)
-            self.visitDayButton.setTitleForAllState(title: self.now.toDateString(format: "EEEE") ?? "")
+            let visitDay = self.now.toDateString(format: "EEEE") ?? ""
+            self.visitDayButton.setTitleForAllState(title: visitDay)
+            self.preferredVisitDay = self.getPreferredDayFromFormattedStr(weekday: visitDay)
             self.updateUI()
         }
     }
@@ -192,6 +219,8 @@ class PostVisitTaskVC: UIViewController {
         newCustomerDetail.dayNo = dayNo
         newCustomerDetail.deliveryDate = nextVisitDate.toDateString(format: kTightJustDateFormat)
         newCustomerDetail.isVisitPlanned = true
+        newCustomerDetail.visitFrequency = Int32(deliveryFreq)
+        newCustomerDetail.preferredVisitDay = Int32(preferredVisitDay)
 
         GlobalInfo.saveCache()
     }

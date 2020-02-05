@@ -20,6 +20,7 @@ class HamburgerMenuVC: UIViewController {
         case countVehicleStock
         case deliveriesToday
         case deliveryTripStatus
+        case marginCalculator
         case visitPlanner
         case productCatalog
         case help
@@ -46,7 +47,7 @@ class HamburgerMenuVC: UIViewController {
 
     func initData() {
         menuTitleArray = [kHamburgerDashboardName, kHamburgerVisitPlannerName, kHamburgerProductCatalog,
-                          kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveriesTodayName, kHamburgerDeliveryTripStatusName]
+                          kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveriesTodayName, kHamburgerDeliveryTripStatusName, kHamburgerMarginCalculator]
         let vehicleInventory = globalInfo.routeControl?.vehicleInventory ?? "0"
         let vehicleInventoryCount = Int(vehicleInventory) ?? 0
         if vehicleInventoryCount == 0 {
@@ -127,6 +128,11 @@ class HamburgerMenuVC: UIViewController {
         else if menuTitle == kHamburgerDeliveriesTodayName {
             dismiss(animated: false) {
                 self.dismissHandler?(.deliveriesToday)
+            }
+        }
+        else if menuTitle == kHamburgerMarginCalculator {
+            dismiss(animated: false) {
+                self.dismissHandler?(.marginCalculator)
             }
         }
         else if menuTitle == kHamburgerDeliveryTripStatusName {

@@ -714,3 +714,6 @@
 "pdfSentToPrinterSuccessfully" = "PDF file sent to printer successfully";
 "couldnotRenderPDF" = "Could not render PDF document.";
 "imageSendToPrinterSuccessfully" = "Image sent to printer successfully";
+"dataInputIsInvalid" = "Invalid entry for Quick Calculator";
+"ValuesAreInputed" = "Enter any 2 values and the 3rd will be calculated for you";
+"invalid" = "Invalid";

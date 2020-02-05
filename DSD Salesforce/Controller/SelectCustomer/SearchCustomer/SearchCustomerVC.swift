@@ -226,7 +226,9 @@ class SearchCustomerVC: UIViewController {
 
         GlobalInfo.saveCache()
         self.reloadCustomers()
-        self.globalInfo.uploadManager?.uploadVisit(selectedCustomer: newCustomerDetail, completionHandler: nil)
+        if isFromVisitPlanner {
+            self.globalInfo.uploadManager?.uploadVisit(selectedCustomer: newCustomerDetail, completionHandler: nil)
+        }
     }
     
     func addAllCustomers() {

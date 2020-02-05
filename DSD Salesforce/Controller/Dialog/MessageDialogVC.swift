@@ -31,7 +31,8 @@ class MessageDialogVC: UIViewController {
 
     var dismissHandler: ((ReturnCode) -> ())?
 
-    var strMessage = ""
+    var strMessage: String = ""
+    var strAttributedMessage: NSMutableAttributedString = NSMutableAttributedString(string: "")
     var strTitle = ""
     var strLeft = ""
     var strMiddle = ""
@@ -71,8 +72,13 @@ class MessageDialogVC: UIViewController {
         else {
             customerNameTopConstraint.constant = 10
         }
+        if strMessage != "" {
+            messageLabel.text = strMessage
+        }
+        else if strAttributedMessage.length != 0 {
+            messageLabel.attributedText = strAttributedMessage
+        }
         customerNameLabel.text = strCustomerName
-        messageLabel.text = strMessage
 
         if strMiddle.isEmpty == true {
             middleButton.isHidden = true

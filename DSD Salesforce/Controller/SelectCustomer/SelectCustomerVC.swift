@@ -69,6 +69,7 @@ class SelectCustomerVC: UIViewController {
         initUI()
         reloadCustomers()
         selectedCustomer = customerDetailArray.first
+        globalInfo.selectedCustomer = selectedCustomer
         selectedPresoldOrHeader = presoldOrHeaderArray.first as? PresoldOrHeader
         onSelectedCustomer()
     }
@@ -744,7 +745,7 @@ class SelectCustomerVC: UIViewController {
         }
     }
 
-    func openCustomerActivities() {
+    func  openCustomerActivities() {
         guard let selectedCustomer = self.selectedCustomer else {return}
 
         print(selectedCustomer.surveys!)
@@ -818,9 +819,13 @@ class SelectCustomerVC: UIViewController {
 
                         let nextVisitDateString = vc.nextVisitDate.toDateString(format: kTightJustDateFormat) ?? ""
                         let visitNote = vc.visitNote
+                        let visitFrequency = vc.deliveryFreq
+                        let preferredVisitDay = vc.preferredVisitDay
 
                         selectedCustomerDetail.nextVisitDate = nextVisitDateString
                         selectedCustomerDetail.visitNote = visitNote
+                        selectedCustomerDetail.visitFrequency = Int32(visitFrequency)
+                        selectedCustomerDetail.preferredVisitDay = Int32(preferredVisitDay)
 
                         self.onSelectedNoVisitReasonCode(reasonCode: selectedReasonCode)
                     }
