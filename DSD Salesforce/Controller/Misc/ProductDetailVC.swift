@@ -46,6 +46,8 @@ class ProductDetailVC: UIViewController {
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
 
+    @IBOutlet var retailLabel: UILabel!
+    @IBOutlet var retailStackView: UIStackView!
     
     @IBOutlet weak var marketGoupDescLabel: UILabel!
     //heights
@@ -96,7 +98,7 @@ class ProductDetailVC: UIViewController {
         
         lineValueLabel.isHidden = true
         lineLabel.isHidden = true
-        lineHeight.constant = 0
+        //lineHeight.constant = 0
         
         /*marketGruop.isHidden = true
         marketGoupDescLabel.isHidden = true
@@ -175,6 +177,16 @@ class ProductDetailVC: UIViewController {
         //add by rsb 2019-11-30
         let marketGroup = productDetail.marketGrp ?? ""
         marketGoupDescLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "MarketGroup", alphaKey: marketGroup)?.desc ?? ""
+        
+        //add by rsb 2020-2-17, retail price
+        if let _retailPrice = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first?.retailPrice, _retailPrice != "0", let retailPrice = Double(_retailPrice) {
+
+            retailStackView.isHidden = false
+            retailLabel.text = Utils.getMoneyString(moneyValue: retailPrice / 100000)
+        }
+        else {
+            retailStackView.isHidden = true
+        }
         
         setDesctypeUI()
         

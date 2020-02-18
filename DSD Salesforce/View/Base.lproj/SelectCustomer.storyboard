@@ -2911,9 +2911,11 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="nZT-GE-1Bz"/>
                     </view>
                     <connections>
+                        <outlet property="descLabel" destination="lGB-dX-hNC" id="0nF-Yy-Hf9"/>
                         <outlet property="doneButton" destination="yMc-Kl-HcZ" id="YwY-g0-6Wa"/>
                         <outlet property="noDataLabel" destination="uE3-rS-GkC" id="oRb-zD-7E8"/>
                         <outlet property="reasonCodeTableView" destination="zrt-Jo-BNR" id="MU4-5v-Mpv"/>
+                        <outlet property="titleLabel" destination="c3A-Vq-f7Y" id="gux-w9-P7l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Dq-be-zRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>803255295539-feg6089eu165b7gb9hlm0mtci42ivkbf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.803255295539-feg6089eu165b7gb9hlm0mtci42ivkbf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDRGEG5knLS5GYJjqpreBJXE0FAN5TJhGs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>803255295539</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dsd.deliverysalesforce</string>
+	<key>PROJECT_ID</key>
+	<string>dsdsalesforce-dc09d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dsdsalesforce-dc09d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:803255295539:ios:a15bba81da2f1e6452cd46</string>
+	<key>DATABASE_URL</key>
+	<string>https://dsdsalesforce-dc09d.firebaseio.com</string>
+</dict>
+</plist>

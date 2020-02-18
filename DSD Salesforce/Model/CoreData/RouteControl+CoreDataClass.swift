@@ -105,6 +105,9 @@ public class RouteControl: NSManagedObject {
         self.language = xmlDictionary["LANGUAGE"] ?? "EUK"
         self.dateFmt = xmlDictionary["DATEFMT"] ?? "dmy"
         self.treeOrder = xmlDictionary["TreeOrder"] ?? ""
+        self.catalogView = xmlDictionary["CATALOGVIEW"] ?? ""
+        self.topProducts = xmlDictionary["TOPPRODUCTS"] ?? "5"
+        
         if self.language == "" {
             self.language = "EUK"
         }
@@ -222,4 +225,6 @@ extension RouteControl {
     @NSManaged public var language: String?
     @NSManaged public var dateFmt: String?
     @NSManaged public var treeOrder: String?
+    @NSManaged public var catalogView: String?
+    @NSManaged public var topProducts: String?
 }

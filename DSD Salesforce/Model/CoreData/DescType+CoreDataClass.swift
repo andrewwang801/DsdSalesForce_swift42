@@ -94,10 +94,10 @@ public class DescType: NSManagedObject {
 
         self.descriptionEntryKey = xmlDictionary["DescriptionEntryKey"] ?? "0"
         self.systemDescriptionTypeYN = xmlDictionary["SystemDescriptionTypeYN"] ?? "0"
+        self.descriptionTypeID = xmlDictionary["DescriptionTypeID"] ?? "0"
         if xmlDictionary["DescriptionTypeID"]?.lowercased() == "notetype" {
             self.descriptionTypeID = xmlDictionary["DescriptionTypeID"]?.lowercased() ?? "0"
         }
-        self.descriptionTypeID = xmlDictionary["DescriptionTypeID"] ?? "0"
         self.numericCodeYN = xmlDictionary["NumericCodeYN"] ?? "0"
         self.numericKey = xmlDictionary["NumericKey"] ?? "0"
         self.alphaKey = xmlDictionary["AlphaKey"] ?? "0"
