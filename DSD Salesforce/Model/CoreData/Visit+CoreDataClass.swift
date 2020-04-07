@@ -11,7 +11,7 @@ import CoreData
 
 public class Visit: NSManagedObject {
 
-    static var keyArray = ["TrxnNo", "DocType", "ChainNo", "CustNo", "TrxnDate", "TrxnTime", "VoidFlag", "PrintedFlag", "Reference", "TCOMStatus", "SaleDate", "VisitStart", "VisitEnd", "VisitReason", "NextVisit", "VisitMessage", "CustomerUpdated", "RangeChecked", "OrderCreated", "SurveyCompleted", "AssetChecked", "AssetRequested", "VisitFrequency", "PreferredVisitDay"]
+    static var keyArray = ["TrxnNo", "DocType", "ChainNo", "CustNo", "TrxnDate", "TrxnTime", "VoidFlag", "PrintedFlag", "Reference", "TCOMStatus", "SaleDate", "VisitStart", "VisitEnd", "VisitReason", "NextVisit", "VisitMessage", "CustomerUpdated", "RangeChecked", "OrderCreated", "SurveyCompleted", "AssetChecked", "AssetRequested", "VisitFrequency", "PreferredVisitDay", "PlannedVisitTime"]
 
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
@@ -82,6 +82,8 @@ public class Visit: NSManagedObject {
         self.assetRequested = theSource.assetRequested
         self.visitFrequency = theSource.visitFrequency
         self.preferredVisitDay = theSource.preferredVisitDay
+        ///SF71
+        self.plannedVisitTime = theSource.plannedVisitTime
     }
 
     func getDictionary() -> [String: String] {
@@ -111,7 +113,8 @@ public class Visit: NSManagedObject {
         dic["AssetRequested"] = assetRequested
         dic["VisitFrequency"] = visitFrequency
         dic["PreferredVisitDay"] = preferredVisitDay
-
+        ///SF71, 2020-3-13
+        dic["PlannedVisitTime"] = plannedVisitTime
         return dic
     }
 
@@ -156,6 +159,8 @@ public class Visit: NSManagedObject {
         visit.assetRequested = customerDetail.isAssetRequested.intString
         visit.visitFrequency = String(customerDetail.visitFrequency)
         visit.preferredVisitDay = String(customerDetail.preferredVisitDay)
+        ///SF71, 2020-3-13
+        visit.plannedVisitTime = customerDetail.plannedVisitTime
 
         return visit
     }
@@ -221,5 +226,7 @@ extension Visit {
     @NSManaged public var assetRequested: String?
     @NSManaged public var visitFrequency: String?
     @NSManaged public var preferredVisitDay: String?
+    ///SF71, 2020-3-13
+    @NSManaged public var plannedVisitTime: String?
 }
 

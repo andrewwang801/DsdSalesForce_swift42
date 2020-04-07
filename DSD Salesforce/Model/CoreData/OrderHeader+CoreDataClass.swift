@@ -66,6 +66,10 @@ class OrderHeader: NSManagedObject {
 
         isSaved = false
         isPostponed = false
+        
+        isInProgress = true
+        /// SF75
+        isSavedOrder = false
     }
 
     static func getBy(context: NSManagedObjectContext, chainNo: String, custNo: String) -> [OrderHeader] {
@@ -87,6 +91,21 @@ class OrderHeader: NSManagedObject {
         }
         return []
     }
+    
+    static func getBy(context: NSManagedObjectContext, isSavedOrder: Bool) -> [OrderHeader] {
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderHeader")
+        let predicate = NSPredicate(format: "isSavedOrder == %@", NSNumber(value: true))
+        request.predicate = predicate
+
+        let result = try? context.fetch(request) as? [OrderHeader]
+
+        if let result = result, let orderHeaderArray = result {
+            return orderHeaderArray
+        }
+        return []
+    }
+    
 
     static func getAll(context: NSManagedObjectContext) -> [OrderHeader] {
 
@@ -156,25 +175,30 @@ class OrderHeader: NSManagedObject {
         self.realPayment = theSource.realPayment
         self.fulfilby = theSource.fulfilby
 
+        self.isInProgress = theSource.isInProgress
+        self.isSaved = theSource.isSaved
+        self.isSavedOrder = theSource.isSavedOrder
+        
         deleteOrderDetails(context: context)
 
         for _orderDetail in theSource.deliverySet {
             let orderDetail = _orderDetail as! OrderDetail
-            let newOrderDetail = OrderDetail(context: context, forSave: true)
-            newOrderDetail.updateBy(context: context, theSource: orderDetail)
-            deliverySet.add(newOrderDetail)
+                let newOrderDetail = OrderDetail(context: context, forSave: true)
+                newOrderDetail.updateBy(context: context, theSource: orderDetail)
+                deliverySet.add(newOrderDetail)
+            
         }
         for _orderDetail in theSource.pickupSet {
             let orderDetail = _orderDetail as! OrderDetail
-            let newOrderDetail = OrderDetail(context: context, forSave: true)
-            newOrderDetail.updateBy(context: context, theSource: orderDetail)
-            pickupSet.add(newOrderDetail)
+                let newOrderDetail = OrderDetail(context: context, forSave: true)
+                newOrderDetail.updateBy(context: context, theSource: orderDetail)
+                pickupSet.add(newOrderDetail)
         }
         for _orderDetail in theSource.sampleSet {
             let orderDetail = _orderDetail as! OrderDetail
-            let newOrderDetail = OrderDetail(context: context, forSave: true)
-            newOrderDetail.updateBy(context: context, theSource: orderDetail)
-            sampleSet.add(newOrderDetail)
+                let newOrderDetail = OrderDetail(context: context, forSave: true)
+                newOrderDetail.updateBy(context: context, theSource: orderDetail)
+                sampleSet.add(newOrderDetail)
         }
 
         if uar != nil {
@@ -195,17 +219,23 @@ class OrderHeader: NSManagedObject {
 
     func saveHeader() {
         self.isSaved = true
+        self.isInProgress = false
+        self.isSavedOrder = false
+        
         for _orderDetail in deliverySet {
             let orderDetail = _orderDetail as! OrderDetail
             orderDetail.isSaved = true
+            orderDetail.isInProgress = false
         }
         for _orderDetail in pickupSet {
             let orderDetail = _orderDetail as! OrderDetail
             orderDetail.isSaved = true
+            orderDetail.isInProgress = false
         }
         for _orderDetail in sampleSet {
             let orderDetail = _orderDetail as! OrderDetail
             orderDetail.isSaved = true
+            orderDetail.isInProgress = false
         }
     }
 
@@ -232,30 +262,32 @@ class OrderHeader: NSManagedObject {
 
     func deleteUploadFiles() {
         // invoice file
-        let invoiceFileNameArray = invoiceUpload.components(separatedBy: ",")
-        if invoiceFileNameArray.count == 2 {
-            // remove local file
-            let filePath = CommData.getFilePathAppended(byCacheDir: invoiceFileNameArray[0])
-            CommData.deleteFileIfExist(filePath)
-            self.invoiceUpload = ""
-        }
+        if invoiceUpload != nil {
+            let invoiceFileNameArray = invoiceUpload.components(separatedBy: ",")
+            if invoiceFileNameArray.count == 2 {
+                // remove local file
+                let filePath = CommData.getFilePathAppended(byCacheDir: invoiceFileNameArray[0])
+                CommData.deleteFileIfExist(filePath)
+                self.invoiceUpload = ""
+            }
 
-        // photo file
-        let photoFileNameArray = photoUpload.components(separatedBy: ",")
-        if photoFileNameArray.count == 2 {
-            // remove local file
-            let filePath = CommData.getFilePathAppended(byCacheDir: photoFileNameArray[0])
-            CommData.deleteFileIfExist(filePath)
-            self.photoUpload = ""
-        }
+            // photo file
+            let photoFileNameArray = photoUpload.components(separatedBy: ",")
+            if photoFileNameArray.count == 2 {
+                // remove local file
+                let filePath = CommData.getFilePathAppended(byCacheDir: photoFileNameArray[0])
+                CommData.deleteFileIfExist(filePath)
+                self.photoUpload = ""
+            }
 
-        // zip file
-        let zipFileNameArray = zipUpload.components(separatedBy: ",")
-        if zipFileNameArray.count == 2 {
-            // remove local file
-            let filePath = CommData.getFilePathAppended(byCacheDir: zipFileNameArray[0])
-            CommData.deleteFileIfExist(filePath)
-            self.zipUpload = ""
+            // zip file
+            let zipFileNameArray = zipUpload.components(separatedBy: ",")
+            if zipFileNameArray.count == 2 {
+                // remove local file
+                let filePath = CommData.getFilePathAppended(byCacheDir: zipFileNameArray[0])
+                CommData.deleteFileIfExist(filePath)
+                self.zipUpload = ""
+            }
         }
     }
 
@@ -348,6 +380,9 @@ extension OrderHeader {
 
     @NSManaged public var isSaved: Bool
     @NSManaged public var isPostponed: Bool
+    @NSManaged public var isInProgress: Bool
+    ///SF75
+    @NSManaged public var isSavedOrder: Bool
 
     @NSManaged public var uar: UAR?
     @NSManaged public var arHeader: ARHeader?

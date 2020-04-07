@@ -305,6 +305,12 @@ let kProductCatalogFilterNormalTextColor = UIColor(red: 140.0/255, green: 140.0/
 let kOrderProductSelectedNotificationName = "OrderProductSelectedNotification"
 let kOrderProductAddNotificationName = "OrderProductAddNotification"
 let kOrderProductUpdateNotificationName = "OrderProductUpdateNotification"
+let kUnsavedOrderDetailsLoaded = "UnsavedOrderDetailsLoaded"
+
+let kOrderProductSelectedNotificationNameMargin = "OrderProductSelectedNotificationMargin"
+let kOrderProductAddNotificationNameMargin = "OrderProductAddNotificationMargin"
+let kOrderProductUpdateNotificationNameMargin = "OrderProductUpdateNotificationMargin"
+let kUnsavedOrderDetailsLoadedMargin = "UnsavedOrderDetailsLoadedMargin"
 
 let kTestMode = false
 

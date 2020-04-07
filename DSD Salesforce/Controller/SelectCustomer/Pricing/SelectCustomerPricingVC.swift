@@ -89,7 +89,7 @@ class SelectCustomerPricingVC: PromotionBaseVC {
 
         productSeqDictionary = ProductStruct.getProductStructObjectEntryIDDictionary(context: globalInfo.managedObjectContext)
 
-        hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
+        //hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
         
         initUI()
         updateUIProgress()
@@ -127,7 +127,7 @@ class SelectCustomerPricingVC: PromotionBaseVC {
 
         DispatchQueue.main.async {
             self.updateUI()
-            self.hud?.hide(true)
+            //self.hud?.hide(true)
         }
         
     }

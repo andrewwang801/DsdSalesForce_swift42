@@ -42,6 +42,7 @@ class LoginVC: UIViewController {
 
     var managedObjectContext = GlobalInfo.getManagedObjectContext()
     var hud: MBProgressHUD?
+    var isFreshData = true
     
     let globalInfo = GlobalInfo.shared
     var ftpLoginInfo: FTPLoginInfo?
@@ -327,6 +328,7 @@ class LoginVC: UIViewController {
                                         ftpInfo.password = self.globalInfo.ftpPassword
                                         ftpInfo.root = self.globalInfo.ftpRoot
                                         ftpInfo.territory = territory
+                                        self.isFreshData = false
                                         self.doReLogin(ftpInfo: ftpInfo)
                                     }
                                     else {
@@ -416,7 +418,7 @@ class LoginVC: UIViewController {
 
                             //measure time
                             startTime = CFAbsoluteTimeGetCurrent()
-                            self.globalInfo.loadCoreDataFromXML()
+                            self.globalInfo.loadCoreDataFromXML(isReLogin: false)
                         
                             //measure time
                             timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
@@ -477,7 +479,7 @@ class LoginVC: UIViewController {
 
                         }
 
-                        self.globalInfo.loadCoreDataFromXML()
+                    self.globalInfo.loadCoreDataFromXML(isReLogin: self.isFreshData)
                         guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
                             self.showNotFoundMatchedTripData()
                             return
@@ -620,7 +622,7 @@ class LoginVC: UIViewController {
 
     func openMain() {
 
-        // remove unsaved order headers
+        /// comment when continue work in order screen
         globalInfo.adjustCoreData()
 
         globalInfo.productImageDownloadManager.start()

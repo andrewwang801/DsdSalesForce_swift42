@@ -82,23 +82,39 @@ class VisitPlannerVC: UIViewController {
         let selectedDay = weekdayStart.getDateAddedBy(days: selectedWeekdayIndex)
         let dayNo = Utils.getWeekday(date: selectedDay)
 
+        
         // all customers in the routesch
         
         // all customers manually added by the user during the day on Monday 15 July(if any)
-        var scheduledCustomerArray = CustomerDetail.getScheduled(context: globalInfo.managedObjectContext, dayNo: "\(dayNo)", shouldExcludeCompleted: false)
-        scheduledCustomerArray = scheduledCustomerArray.filter({ (customerDetail) -> Bool in
-            if customerDetail.isVisitPlanned == true {
-                let nowDateString = selectedDay.toDateString(format: kTightJustDateFormat) ?? ""
-                if customerDetail.deliveryDate == nowDateString {
-                    return true
+        var scheduledCustomerArray: [CustomerDetail] = []
+        
+        // Liang, 2020-3-12, SF70
+        let today = Date().toDateString(format: kTightJustDateFormat) ?? ""
+        let nowDateString = selectedDay.toDateString(format: kTightJustDateFormat) ?? ""
+        
+        // Liang, 2020-3-12, SF70, get all customers using Routesch for today and using VisitPlan for the other days
+        if today == nowDateString {
+            scheduledCustomerArray = CustomerDetail.getScheduled(context: globalInfo.managedObjectContext, dayNo: "\(dayNo)", shouldExcludeCompleted: false)
+            scheduledCustomerArray = scheduledCustomerArray.filter({ (customerDetail) -> Bool in
+                if customerDetail.isVisitPlanned == true {
+                    if customerDetail.deliveryDate == nowDateString {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
                 }
-                else {
-                    return false
-                }
-            }
-            return true
-        })
+                return true
+            })
+        }
+        else {
+            scheduledCustomerArray = CustomerDetail.getScheduledByNextVisitDate(context: globalInfo.managedObjectContext, nextVisitDate: nowDateString)
+        }
+        
         customerDetailArray.append(contentsOf: scheduledCustomerArray)
+        
+        ///SF71, 2020-3-13
+        customerDetailArray = CustomerDetail.sortBySeqNo(customerDetailArray: customerDetailArray)
         
         // all customers with a presold header record
         let allPresoldorHeaders = PresoldOrHeader.getAll(context: globalInfo.managedObjectContext)
@@ -312,7 +328,8 @@ extension VisitPlannerVC: UITableViewDelegate {
 extension VisitPlannerVC: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return kWeekdayCount
+//        return kWeekdayCount
+        return 100000
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

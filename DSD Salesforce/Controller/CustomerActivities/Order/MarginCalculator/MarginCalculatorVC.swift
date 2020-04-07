@@ -115,12 +115,19 @@ class MarginCalculatorVC: UIViewController {
         refreshOrders()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+        
+        ///RSB 2020-3-9
+        if globalInfo.isFromProductCatalog == 0 {
+            OrderHeader.delete(context: globalInfo.managedObjectContext, orderHeader: orderVC.orderHeader)
+            globalInfo.isFromMarginCalculator = 0
+        }
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
-        if isBeingDismissed == true || isMovingFromParent == true {
-            NotificationCenter.default.removeObserver(self)
-        }
     }
 
     func initUI() {
@@ -139,15 +146,15 @@ class MarginCalculatorVC: UIViewController {
         orderTableView.dataSource = self
         orderTableView.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductSelected(notification:)), name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductSelected(notification:)), name: Notification.Name(rawValue: kOrderProductSelectedNotificationNameMargin), object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductAdd(notification:)), name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductAdd(notification:)), name: Notification.Name(rawValue: kOrderProductAddNotificationNameMargin), object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductUpdate(notification:)), name: Notification.Name(rawValue: kOrderProductUpdateNotificationName), object: nil)
 
         for (index, sortButton) in sortTypeButtonArray.enumerated() {
             sortButton.tag = index+500
-            sortButton.addTarget(self, action: #selector(OrderSalesVC.onSortTypeButton(_:)), for: .touchUpInside)
+            sortButton.addTarget(self, action: #selector(self.onSortTypeButton(_:)), for: .touchUpInside)
         }
 
         selectedSortType = .code
@@ -378,8 +385,8 @@ class MarginCalculatorVC: UIViewController {
             if enterQty > inventoryQty && bShouldConfirmInventoryAmount == true {
                 let alert = UIAlertController(title: itemNo, message: L10n.thereMayNotBeInventoryOfTheseItemsInTheWarehouse(), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: L10n.continue(), style: .default, handler: { _ in
-                    self.doAddSelectedProduct()
 
+                    self.doAddSelectedProduct()
                     GlobalInfo.saveCache()
                     self.sortAndFilterOrders()
                     self.refreshOrders()
@@ -390,11 +397,11 @@ class MarginCalculatorVC: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else {
-                doAddSelectedProduct()
 
+                doAddSelectedProduct()
                 GlobalInfo.saveCache()
-                sortAndFilterOrders()
-                refreshOrders()
+                self.sortAndFilterOrders()
+                self.refreshOrders()
             }
         }
         else {
@@ -447,8 +454,9 @@ class MarginCalculatorVC: UIViewController {
         let chainNo = orderVC.customerDetail.chainNo ?? ""
         let custNo = orderVC.customerDetail.custNo ?? ""
         let managedObjectContext = globalInfo.managedObjectContext!
-        // not found a sales order
         let orderDetail = OrderDetail(context: managedObjectContext, forSave: true)
+
+        orderDetail.isInProgress = true
         orderDetail.isFromPresoldOrDetail = false
         orderDetail.isFromOrderHistoryItem = false
         orderDetail.isFromAuthDetail = false
@@ -483,6 +491,7 @@ class MarginCalculatorVC: UIViewController {
 
         self.selectedSortType = .input
         orderVC.orderDetailSetArray[selectedOrderType.rawValue].insert(orderDetail, at: 0)
+
     }
 
     func doOpenProductDetail() {
@@ -501,69 +510,6 @@ class MarginCalculatorVC: UIViewController {
         }
     }
 
-    func onSelectedOrderHistoryItemArray(orderHistoryItemArray: [OrderHistoryItem]) {
-
-        let managedObjectContext = globalInfo.managedObjectContext!
-        var orderDetailArray = [OrderDetail]()
-        for orderHistoryItem in orderHistoryItemArray {
-            let itemNo = orderHistoryItem.itemNo
-            let productDetail = orderVC.productItemDictionary[itemNo]
-            if orderHistoryItem.nSAQty > 0 && productDetail != nil {
-                let orderDetail = OrderDetail(context: managedObjectContext, forSave: true)
-                if orderVC.authHeader != nil && orderVC.isAuthorizedItem(itemNo: itemNo) == false {
-                    continue
-                }
-                orderDetail.itemNo = itemNo
-                orderDetail.custNo = orderVC.customerDetail.custNo ?? ""
-                orderDetail.desc = productDetail?.desc ?? ""
-                orderDetail.shortDesc = productDetail?.shortDesc ?? ""
-
-                let prodLoconSCWType = Utils.getProductLoconSCWType(itemNo: itemNo)
-                if prodLoconSCWType != kWeightItem {
-                    orderDetail.enterQty = orderHistoryItem.nSAQty.int32/1000
-                }
-                orderDetail.price = productDetail!.price
-                orderDetail.trxnType = trxnTypeArray[selectedOrderType.rawValue].int32
-                
-                isModified = true
-                orderDetailArray.append(orderDetail)
-            }
-        }
-        if orderDetailArray.count > 0 {
-            let orderNo = orderVC.orderHeader.orderNo
-            if orderNo == "0" || orderNo == "" {
-                var dictionary = [String: OrderDetail]()
-                for _orderDetail in orderVC.orderDetailSetArray[selectedOrderType.rawValue] {
-                    let orderDetail = _orderDetail as! OrderDetail
-                    let _itemNo = orderDetail.itemNo ?? ""
-                    dictionary[_itemNo] = orderDetail
-                }
-                for historyInfo in orderDetailArray {
-                    let _itemNo = historyInfo.itemNo!
-                    let orderDetail = dictionary[_itemNo]
-                    if orderDetail != nil {
-                        let prodLoconSCWType = Utils.getProductLoconSCWType(itemNo: _itemNo)
-                        if prodLoconSCWType != kWeightItem {
-                            orderDetail!.enterQty = historyInfo.enterQty
-                        }
-                    }
-                    else {
-                        orderVC.orderDetailSetArray[selectedOrderType.rawValue].add(historyInfo)
-                    }
-                }
-                GlobalInfo.saveCache()
-                sortAndFilterOrders()
-                refreshOrders()
-            }
-            else {
-                orderVC.orderDetailSetArray[selectedOrderType.rawValue].removeAllObjects()
-                orderVC.orderDetailSetArray[selectedOrderType.rawValue].addObjects(from: orderDetailArray)
-                GlobalInfo.saveCache()
-                sortAndFilterOrders()
-                refreshOrders()
-            }
-        }
-    }
 
     func updateSortButtonUI() {
         for (index, sortTypeButton) in sortTypeButtonArray.enumerated() {

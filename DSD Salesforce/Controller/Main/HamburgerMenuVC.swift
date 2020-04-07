@@ -36,7 +36,7 @@ class HamburgerMenuVC: UIViewController {
     var shouldDashboardEnabled = true
 
     let kMenuCellHeight: CGFloat = 35.0
-    let kProductCatalogCellHeight: CGFloat = 55.0
+    let kProductCatalogCellHeight: CGFloat = 35.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +46,8 @@ class HamburgerMenuVC: UIViewController {
     }
 
     func initData() {
-        menuTitleArray = [kHamburgerDashboardName, kHamburgerVisitPlannerName, kHamburgerProductCatalog,
-                          kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveriesTodayName, kHamburgerDeliveryTripStatusName, kHamburgerMarginCalculator]
+        menuTitleArray = [kHamburgerDashboardName, kHamburgerVisitPlannerName, kHamburgerProductCatalog, kHamburgerMarginCalculator, "", 
+                          kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveryTripStatusName, kHamburgerDeliveriesTodayName]
         let vehicleInventory = globalInfo.routeControl?.vehicleInventory ?? "0"
         let vehicleInventoryCount = Int(vehicleInventory) ?? 0
         if vehicleInventoryCount == 0 {

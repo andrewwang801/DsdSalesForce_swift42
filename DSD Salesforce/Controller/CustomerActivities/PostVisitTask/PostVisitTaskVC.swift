@@ -19,6 +19,9 @@ class PostVisitTaskVC: UIViewController {
     @IBOutlet weak var okButton: AnimatableButton!
     @IBOutlet var visitDayButton: AnimatableButton!
     @IBOutlet var visitFreq: UITextField!
+    ///SF71
+    @IBOutlet weak var plannedVisitTimeLabel: UILabel!
+    @IBOutlet weak var dropDownButton: AnimatableButton!
     
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
@@ -28,12 +31,19 @@ class PostVisitTaskVC: UIViewController {
     var deliveryFreq = 0
     var preferredVisitDay = 0
     var weekDayStart = Date()
+    var visitFreqStr = ""
+    var plannedVisitTimeStr = ""
     var isNextVisitDateChanged = false
 
     var datePicker = UIDatePicker()
 
     let kDateFormat = "EEEE dd/MM/yyyy"
-
+    
+    
+    var dropDown = DropDown()
+    var dropDownArray: [String] = []
+    var dropDownDic: [String: String] = [:]
+    
     enum DismissOption {
         case cancelled
         case done
@@ -59,6 +69,7 @@ class PostVisitTaskVC: UIViewController {
         let deliveryFreqString = customerDetail.delivFreq ?? "0"
         deliveryFreq = Int(deliveryFreqString) ?? 0
         nextVisitDate = now.getDateAddedBy(days: deliveryFreq*7)
+        visitFreqStr = customerDetail.delivFreq ?? "0"
         
         for index in 0...6 {
             let date = weekDayStart.getDateAddedBy(days: index)
@@ -80,9 +91,19 @@ class PostVisitTaskVC: UIViewController {
         visitNoteTextView.text = ""
         visitDayButton.setTitleForAllState(title: visitDay)
         preferredVisitDay = getPreferredDayFromFormattedStr(weekday: visitDay)
-        visitFreq.text = customerDetail.delivFreq ?? "0"
+        visitFreq.text = visitFreqStr
+        
+        ///SF71
+        if let date = Date.fromDateString(dateString: customerDetail.seqNo ?? "0", format: "HHmm") {
+            plannedVisitTimeStr = date.toDateString(format: "h:mm a") ?? "0"
+            self.dropDownButton.setTitleForAllState(title: plannedVisitTimeStr)
+        }
+        ///SF71 END
+        
         visitFreq.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         setupVisitDayDropDown()
+        initVisitTimeData(startHour: 7, endHour: 17, interval: 15)
+        initDropDownData()
     }
     
     func updateUI() {
@@ -118,6 +139,60 @@ class PostVisitTaskVC: UIViewController {
         nextVisitDate = now.getDateAddedBy(days: deliveryFreq*7)
         updateUI()
     }
+    
+    
+    @IBAction func onVisitTimeDropDown(_ sender: Any) {
+        dropDown.show()
+    }
+    
+    ///SF71, 2020-3-13
+    
+    func initVisitTimeData(startHour: Int, endHour: Int, interval: Int) {
+        
+        ///set mandatory or not
+        if globalInfo.routeControl?.visitTime == 1 {
+            dropDownArray.append("Any Time")
+            dropDownDic["Any Time"] = "0000"
+        }
+        
+        var dateComponent = DateComponents()
+        dateComponent.year = 2020
+        dateComponent.month = 3
+        dateComponent.day = 13
+        dateComponent.hour = startHour
+        let startDate = Calendar.current.date(from: dateComponent)
+        
+        dateComponent.hour = endHour
+        dateComponent.minute = 15
+        let endDate = Calendar.current.date(from: dateComponent)
+        
+        var date = startDate
+        
+        while date != endDate {
+            let key = date!.toDateString(format: "h:mm a") ?? ""
+            let value = date!.toDateString(format: "HHmm") ?? ""
+            dropDownDic[key] = value
+            dropDownArray.append(key)
+            date = Calendar.current.date(byAdding: .minute, value: interval, to: date!)
+        }
+    }
+    
+    func initDropDownData() {
+        dropDown.cellHeight = dropDownButton.bounds.height
+        dropDown.anchorView = dropDownButton
+        dropDown.bottomOffset = CGPoint(x: 0, y: dropDownButton.bounds.height)
+        dropDown.backgroundColor = .white
+        dropDown.textFont = dropDownButton.titleLabel!.font
+        dropDown.dataSource = dropDownArray
+        dropDown.cellNib = UINib(nibName: "GeneralDropDownCell", bundle: nil)
+        dropDown.customCellConfiguration = {_index, item, cell in
+        }
+        dropDown.selectionAction = { index, item in
+            self.plannedVisitTimeStr = self.dropDownDic[self.dropDownArray[index]] ?? ""
+            self.dropDownButton.setTitleForAllState(title: self.dropDownArray[index])
+        }
+    }
+    ///SF71, 2020-3-13
     
     var visitDayDropDown = DropDown()
     var selectedVisitDay = ""
@@ -208,17 +283,21 @@ class PostVisitTaskVC: UIViewController {
                 continue
             }
             let originalSeqNo = Int(customer.seqNo ?? "") ?? 0
-            customer.seqNo = "\(originalSeqNo+1)"
+            //customer.seqNo = "\(originalSeqNo+1)"
+            customer.seqNo = plannedVisitTimeStr
         }
 
         let newCustomerDetail = CustomerDetail(context: globalInfo.managedObjectContext, forSave: true)
         newCustomerDetail.updateBy(theSource: customerDetail)
 
-        newCustomerDetail.seqNo = "0"
         newCustomerDetail.isRouteScheduled = true
         newCustomerDetail.dayNo = dayNo
         newCustomerDetail.deliveryDate = nextVisitDate.toDateString(format: kTightJustDateFormat)
         newCustomerDetail.isVisitPlanned = true
+        ///SF71
+        newCustomerDetail.plannedVisitTime = plannedVisitTimeStr
+
+        ///SF71 END
         newCustomerDetail.visitFrequency = Int32(deliveryFreq)
         newCustomerDetail.preferredVisitDay = Int32(preferredVisitDay)
 

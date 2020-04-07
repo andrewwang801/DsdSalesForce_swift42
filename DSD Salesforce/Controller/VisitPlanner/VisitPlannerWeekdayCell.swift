@@ -55,6 +55,7 @@ class VisitPlannerWeekdayCell: UICollectionViewCell, UIDropInteractionDelegate {
             self.selectedCustomer = self.parentVC.customerDetailArray[draggegdIndex!]
             self.selectedCustomer.setValue(nowDateString, forKey: "deliveryDate")
             self.selectedCustomer.setValue(String(dayNo), forKey: "dayNo")
+            self.selectedCustomer.nextVisitDate = nowDateString
             GlobalInfo.saveCache()
             
             self.parentVC.onWeekdayTapped(index: self.indexPath.row)

@@ -32,21 +32,29 @@ class ProductCatalogFilterCell: UICollectionViewCell {
     func configCell() {
         let index = indexPath.row
         let selectedIndexArray = parentVC.selectedFilterIndexArray[index]
-        if selectedIndexArray.count == 0 && index < parentVC.kFilterTitleArray.count{
+        if parentVC.isSearched {
             filterButton.setTitle(parentVC.kFilterTitleArray[index], for: .normal)
             filterButton.setTitleColor(kProductCatalogFilterNormalTextColor, for: .normal)
             bottomSeparator.isHidden = true
         }
         else {
-            filterButton.setTitle(parentVC.kFilterTitleArray[index], for: .normal)
-            filterButton.setTitleColor(kBlackTextColor, for: .normal)
-            bottomSeparator.isHidden = false
+            if selectedIndexArray.count == 0 && index < parentVC.kFilterTitleArray.count{
+                filterButton.setTitle(parentVC.kFilterTitleArray[index], for: .normal)
+                filterButton.setTitleColor(kProductCatalogFilterNormalTextColor, for: .normal)
+                bottomSeparator.isHidden = true
+            }
+            else {
+                filterButton.setTitle(parentVC.kFilterTitleArray[index], for: .normal)
+                filterButton.setTitleColor(kBlackTextColor, for: .normal)
+                bottomSeparator.isHidden = false
+            }
         }
     }
 
     @objc func onFilterButtonTapped(_ sender: Any) {
 
         let index = indexPath.row
+        parentVC.isSearched = false
         parentVC.onFilterTapped(index: index)
 
         let menuPopoverVC = UIViewController.getViewController(storyboardName: "ProductCatalog", storyboardID: "MultiSelectMenuPopoverVC") as! MultiSelectMenuPopoverVC

@@ -40,6 +40,12 @@ class SearchProductCell: UITableViewCell {
     }
 
     func configCell() {
+        if parentVC!.isFromCatalog {
+            addButton.isHidden = true
+        }
+        else {
+            addButton.isHidden = false
+        }
         addButton.setTitleForAllState(title: L10n.add())
         
         let index = indexPath!.row

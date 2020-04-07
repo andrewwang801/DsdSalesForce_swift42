@@ -73,6 +73,12 @@ extension OrderSummaryVC  {
         total.text = L10n.total()
         cardLabel.text = L10n.card()
         cashLabel.text = L10n.cash()
+        if customerDetail.payType == "A" || customerDetail.payType == "B" {
+            thisOrder.text = "Payment Due"
+        }
+        else {
+            thisOrder.text = "This Order"
+        }
         checkLabel.text = L10n.check()
         poReferenceNumberLabel.text = L10n.poReferenceNumber()
         deliveryDateLabel.text = L10n.deliveryDate()
@@ -424,7 +430,13 @@ extension OrderSummaryVC  {
                 taxTotal += tax
             }
 
-            let total = subTotal+taxTotal
+            let defaultFulfilbyOptionValue = globalInfo.routeControl?.orderFulfil ?? ""
+            if let fulFilbyOptionIndex = kFulfilbyValueArray.index(of: defaultFulfilbyOptionValue) {
+                selectedFulfilbyOption = FulfilbyOption(rawValue: fulFilbyOptionIndex) ?? .warehouse
+            }
+            
+            var total = 0.0
+            total = subTotal+taxTotal
             priceArray.append(total)
             quantityArray.append(quantityTotal)
             caseArray.append(caseTotal)
@@ -447,7 +459,14 @@ extension OrderSummaryVC  {
         orderVC.orderHeader.saleAmount = subTotalArray[0]-subTotalArray[1]
         orderVC.orderHeader.taxAmount = taxArray[0]-taxArray[1]
         orderVC.orderHeader.pickupAmount = subTotalArray[1]
-
+        
+        if selectedFulfilbyOption == .warehouse {
+            if customerDetail.payType == "B" {
+                let minimumPayment = (Double(customerDetail.minimumPayment) ?? 0.0) / 100000
+                thisOrderAmount = priceArray[0]-priceArray[1] + minimumPayment
+                return
+            }
+        }
         thisOrderAmount = priceArray[0]-priceArray[1]
     }
 
@@ -619,8 +638,19 @@ extension OrderSummaryVC  {
 
             fulfilbyStackView.removeArrangedSubview(distributorButton)
             distributorButton.isHidden = true
-
-            confirmButton.isEnabled = true
+            
+            let payType = customerDetail.payType ?? ""
+            if payType == "B" || payType == "A" {
+                if selectedPaybyOption == .none {
+                    confirmButton.isEnabled = false
+                }
+                else {
+                    confirmButton.isEnabled = true
+                }
+            }
+            else {
+                confirmButton.isEnabled = true
+            }
         }
         else if selectedFulfilbyOption == .vehicle {
 
@@ -1052,6 +1082,7 @@ extension OrderSummaryVC  {
         else {
             orderVC.originalOrderHeader!.updateBy(context: managedObjectContext, theSource: orderVC.orderHeader)
             orderVC.originalOrderHeader!.saveHeader()
+            orderVC.orderHeader.saveHeader()
         }
 
         orderVC.orderHeader.isPostponed = true
@@ -1189,6 +1220,12 @@ extension OrderSummaryVC  {
             orderVC.orderHeader.orderNo = docNo
         }
 
+        if ( orderVC.originalOrderHeader != nil && orderVC.originalOrderHeader?.orderName == "" ) {
+            
+            orderVC.originalOrderHeader?.orderNo = docNo
+            orderVC.orderHeader.orderNo = docNo
+        }
+        
         let presoldOrHeader = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
 
         let order = UOrder()

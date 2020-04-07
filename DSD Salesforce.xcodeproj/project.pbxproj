@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F125824241C38C600E8F303 /* DropDownDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F125823241C38C600E8F303 /* DropDownDialogVC.swift */; };
 		0F81381123F3151200237D9E /* titleProductCatalogProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */; };
 		0F9A7CB923EC0B280079AF24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */; };
+		0FA7A221243CECF5004B0D22 /* AddOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7A220243CECF5004B0D22 /* AddOrderVC.swift */; };
 		0FAE811123E36B7500AC4842 /* MarginCalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */; };
 		0FAE811323E36CCA00AC4842 /* MarginCalculatorOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */; };
 		0FD8803B23BF84880065A6B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FD8803D23BF84880065A6B2 /* Localizable.strings */; };
@@ -596,8 +598,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F125823241C38C600E8F303 /* DropDownDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDialogVC.swift; sourceTree = "<group>"; };
 		0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleProductCatalogProductCell.swift; sourceTree = "<group>"; };
 		0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0FA7A220243CECF5004B0D22 /* AddOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderVC.swift; sourceTree = "<group>"; };
 		0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginCalculatorVC.swift; sourceTree = "<group>"; };
 		0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginCalculatorOrderCell.swift; sourceTree = "<group>"; };
 		0FD8803C23BF84880065A6B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3464,6 +3468,7 @@
 			children = (
 				645F2C5B20FFD4D3006E204F /* InputDialogVC.swift */,
 				645F2C5520FFA7F9006E204F /* MessageDialogVC.swift */,
+				0F125823241C38C600E8F303 /* DropDownDialogVC.swift */,
 			);
 			path = Dialog;
 			sourceTree = "<group>";
@@ -3566,6 +3571,7 @@
 				64669A3C2121997600242475 /* SignatureVC.swift */,
 				64EACD0E216B14A100624BC6 /* CalendarVC.swift */,
 				64E08472222404780089C2E5 /* ProductDetailVC.swift */,
+				0FA7A220243CECF5004B0D22 /* AddOrderVC.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -4522,6 +4528,7 @@
 				641D901F20ED060A00272C89 /* MainVC.swift in Sources */,
 				641D901E20ED060A00272C89 /* HamburgerMenuVC.swift in Sources */,
 				64A0DBC121CEB2C2008F1766 /* LogoutInfo.swift in Sources */,
+				0FA7A221243CECF5004B0D22 /* AddOrderVC.swift in Sources */,
 				64DC007E2127A9E800F068AC /* FileTransaction.swift in Sources */,
 				645455202100EBBC00368E51 /* PromotionPlan.swift in Sources */,
 				641DEBE021197F1000687CD6 /* CustomerPlaceMarkerInfoView.swift in Sources */,
@@ -4657,6 +4664,7 @@
 				6453DC1A22082B3200A5CF0E /* NewAssetPlacementVC.swift in Sources */,
 				0F81381123F3151200237D9E /* titleProductCatalogProductCell.swift in Sources */,
 				645456F92101139500368E51 /* QMChatService+Bolts.m in Sources */,
+				0F125824241C38C600E8F303 /* DropDownDialogVC.swift in Sources */,
 				64DDB7FD212CFFBE00499E97 /* UInvenD.swift in Sources */,
 				6454575C2101139600368E51 /* QMChatContactRequestCell.m in Sources */,
 				645F2C4220FEEF05006E204F /* GRStreamInfo.m in Sources */,
@@ -4983,7 +4991,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 127;
 				DEVELOPMENT_TEAM = UVTRFS9YVZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5002,7 +5010,7 @@
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK/include\"",
 				);
 				INFOPLIST_FILE = "DSD Salesforce/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5011,7 +5019,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 3.4;
+				MARKETING_VERSION = 4.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5077,7 +5085,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 121;
+				CURRENT_PROJECT_VERSION = 127;
 				DEVELOPMENT_TEAM = UVTRFS9YVZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5096,7 +5104,7 @@
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK/include\"",
 				);
 				INFOPLIST_FILE = "DSD Salesforce/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5105,7 +5113,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 3.4;
+				MARKETING_VERSION = 4.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

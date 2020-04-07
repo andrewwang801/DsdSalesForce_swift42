@@ -16,7 +16,8 @@ class ExistingOrderCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var editButton: AnimatableButton!
     @IBOutlet weak var bottomSeparatorLabel: UILabel!
-
+    @IBOutlet var inProgressLabel: UILabel!
+    
     var parentVC: ExistingOrdersVC!
     var indexPath: IndexPath!
     
@@ -66,6 +67,16 @@ class ExistingOrderCell: UITableViewCell {
         let rowIndex = indexPath.row
         let orderIndex = parentVC.getOrderHeaderIndex(rowIndex: rowIndex)
         let orderHeader = parentVC.orderHeaderArray[orderIndex]
+        
+        if orderHeader.isInProgress {
+            parentVC.globalInfo.isFromInProgressExistingOrder = true
+            inProgressLabel.isHidden = false
+        }
+        else {
+            parentVC.globalInfo.isFromInProgressExistingOrder = false
+            inProgressLabel.isHidden = true
+        }
+        
         orderNoLabel.text = "Order \(orderHeader.orderNo ?? "")"
         let dateString = orderHeader.trxnDate!
         let timeString = orderHeader.trxnTime!

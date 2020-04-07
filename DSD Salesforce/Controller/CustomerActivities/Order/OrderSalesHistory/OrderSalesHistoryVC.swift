@@ -309,14 +309,18 @@ extension OrderSalesHistoryVC: UITableViewDataSource {
             cell.selectionStyle = .none
             let index = indexPath.row
             var desc = ""
+            var itemCode = ""
             if isDeliver == true {
                 let saItem = saItemArray[index]
                 desc = productDetailDictionary[saItem]?.desc ?? ""
+                itemCode = productDetailDictionary[saItem]?.itemNo ?? ""
             }
             else {
                 let bbItem = bbItemArray[index]
                 desc = productDetailDictionary[bbItem]?.desc ?? ""
+                itemCode = productDetailDictionary[bbItem]?.itemNo ?? ""
             }
+            cell.itemCodeLabel.text = itemCode
             cell.titleLabel.text = desc
             cell.parentVC = self
             cell.indexPath = indexPath

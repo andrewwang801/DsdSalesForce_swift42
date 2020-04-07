@@ -23,7 +23,10 @@ class OrderSalesOrderCell: UITableViewCell {
 
     var parentVC: OrderSalesVC!
     var indexPath: IndexPath!
-
+    var orderDetail: OrderDetail!
+    var caseFactor: Int32 = 1
+    var customerDetail: CustomerDetail!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,7 +35,7 @@ class OrderSalesOrderCell: UITableViewCell {
         mainView.addGestureRecognizer(longPressGestureRecognizer)
 
         qtyText.delegate = self
-        qtyText.addTarget(self, action: #selector(OrderSalesOrderCell.onQtyEditingChanged(_:)), for: .editingChanged)
+        qtyText.addTarget(self, action: #selector(OrderSalesOrderCell.onQtyEditingChanged(_:)), for: .editingDidEnd)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -61,9 +64,18 @@ class OrderSalesOrderCell: UITableViewCell {
         }
     }
 
+    func initData() {
+        let index = indexPath.row
+        orderDetail = parentVC.orderDetailArray[index]
+        customerDetail = parentVC!.orderVC.customerDetail!
+        if let prodLocn = ProductLocn.getBy(context: parentVC!.globalInfo.managedObjectContext, itemNo: orderDetail.itemNo).first {
+            caseFactor = Int32(prodLocn.caseFactor ?? "1") ?? 1
+        }
+    }
     func setupCell(parentVC: OrderSalesVC, indexPath: IndexPath) {
         self.parentVC = parentVC
         self.indexPath = indexPath
+        initData()
         configCell()
     }
 
@@ -109,10 +121,16 @@ class OrderSalesOrderCell: UITableViewCell {
         if parentVC.orderVC.isEdit == false {
             plusQtyButton.isHidden = true
             minusQtyButton.isHidden = true
+            qtyText.borderWidth = 0
+            qtyText.isEnabled = false
+            qtyText.isUserInteractionEnabled = false
         }
         else {
             plusQtyButton.isHidden = false
             minusQtyButton.isHidden = false
+            qtyText.borderWidth = 1
+            qtyText.isEnabled = true
+            qtyText.isUserInteractionEnabled = true
         }
         productImageVIew.image = Utils.getProductImage(itemNo: itemNo)
     }
@@ -120,34 +138,123 @@ class OrderSalesOrderCell: UITableViewCell {
     @objc func onQtyEditingChanged(_ sender: Any) {
         let newQty = Int(qtyText.text ?? "") ?? 0
         let index = indexPath.row
-        //let selectedOrderIndex = parentVC.selectedOrderType.rawValue
-        //let _orderDetail = parentVC.orderVC.orderDetailSetArray[selectedOrderIndex][index]
-        //let orderDetail = _orderDetail as! OrderDetail
         let orderDetail = parentVC.orderDetailArray[index]
-        orderDetail.enterQty = newQty.int32
+        
+        switch parentVC!.selectedOrderType.rawValue {
+        case 1:
+            switch customerDetail.rtnEntryMode {
+            case "C":
+                if newQty.int32 % caseFactor == 0 {
+                    orderDetail.enterQty = newQty.int32
+                }
+                else {
+                    Utils.showAlert(vc: parentVC!, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                }
+                break
+            default:
+                orderDetail.enterQty = newQty.int32
+                break
+            }
+            break
+            
+        case 0, 2:
+            switch customerDetail.salEntryMode {
+                case "C":
+                if newQty.int32 % caseFactor == 0 {
+                    orderDetail.enterQty = newQty.int32
+                }
+                else {
+                    Utils.showAlert(vc: parentVC!, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be sold in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                }
+                break
+            default:
+                orderDetail.enterQty = newQty.int32
+                break
+            }
+            break
+            
+        default:
+            break
+        }
         GlobalInfo.saveCache()
         parentVC.refreshOrders()
     }
 
     @IBAction func onPlusQty(_ sender: Any) {
-        let index = indexPath.row
-        //let selectedOrderIndex = parentVC.selectedOrderType.rawValue
-        //let _orderDetail = parentVC.orderVC.orderDetailSetArray[selectedOrderIndex][index]
-        //let orderDetail = _orderDetail as! OrderDetail
-        let orderDetail = parentVC.orderDetailArray[index]
-        orderDetail.enterQty += 1
+        
+        switch parentVC!.selectedOrderType.rawValue {
+        case 1:
+            switch customerDetail.rtnEntryMode {
+            case "B", "U":
+                orderDetail.enterQty += 1
+                break
+            case "C":
+                orderDetail.enterQty += caseFactor
+                break
+            default:
+                orderDetail.enterQty += 1
+                break
+            }
+            break
+            
+        case 0, 2:
+            switch customerDetail.salEntryMode {
+            case "B", "U":
+                orderDetail.enterQty += 1
+                break
+            case "C":
+                orderDetail.enterQty += caseFactor
+                break
+            default:
+                orderDetail.enterQty += 1
+                break
+            }
+            break
+            
+        default:
+            break
+        }
         GlobalInfo.saveCache()
         parentVC.refreshOrders()
     }
 
     @IBAction func onMinusQty(_ sender: Any) {
-        let index = indexPath.row
-        //let selectedOrderIndex = parentVC.selectedOrderType.rawValue
-        //let _orderDetail = parentVC.orderVC.orderDetailSetArray[selectedOrderIndex][index]
-        //let orderDetail = _orderDetail as! OrderDetail
-        let orderDetail = parentVC.orderDetailArray[index]
+        
         let enterQty = orderDetail.enterQty
-        orderDetail.enterQty = max(enterQty-1, 0)
+        
+        switch parentVC!.selectedOrderType.rawValue {
+        case 1:
+            switch customerDetail.rtnEntryMode {
+            case "B", "U":
+                orderDetail.enterQty = max(enterQty-1, 0)
+                break
+            case "C":
+                orderDetail.enterQty = max(enterQty-caseFactor, 0)
+                break
+            default:
+                orderDetail.enterQty = max(enterQty-1, 0)
+                break
+            }
+            break
+            
+        case 0, 2:
+            switch customerDetail.salEntryMode {
+            case "B", "U":
+                orderDetail.enterQty = max(enterQty-1, 0)
+                break
+            case "C":
+                orderDetail.enterQty = max(enterQty-caseFactor, 0)
+                break
+            default:
+                orderDetail.enterQty = max(enterQty-1, 0)
+                break
+            }
+            break
+            
+        default:
+            break
+        }
+        
         GlobalInfo.saveCache()
         parentVC.refreshOrders()
     }
@@ -181,6 +288,14 @@ extension OrderSalesOrderCell: UITextFieldDelegate {
             default:
                 return false
             }
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == qtyText {
+            textField.resignFirstResponder()
+            return false
         }
         return true
     }

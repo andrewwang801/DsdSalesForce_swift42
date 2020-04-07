@@ -12,7 +12,8 @@ class OrderHistoryTitleCell: UITableViewCell {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet weak var itemCodeLabel: UILabel!
+    
     var parentVC: OrderHistoryBaseVC!
     var indexPath: IndexPath!
 

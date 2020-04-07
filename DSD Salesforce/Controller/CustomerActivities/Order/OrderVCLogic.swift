@@ -11,6 +11,7 @@ import Foundation
 extension OrderVC {
 
     func initData() {
+        
         // load product detail dictionary
         // load product detail
         productSeqDictionary = ProductStruct.getProductStructObjectEntryIDDictionary(context: globalInfo.managedObjectContext)
@@ -241,24 +242,36 @@ extension OrderVC {
         let managedObjectContext = globalInfo.managedObjectContext!
 
         orderHeader = OrderHeader(context: managedObjectContext, forSave: true)
-        orderHeader.custNo = customerDetail.custNo ?? ""
-        orderHeader.chainNo = customerDetail.chainNo ?? ""
-
+        
+        //set order Date
+        let trxnDateValue = Date()
+        let trxnDate = trxnDateValue.toDateString(format: kTightJustDateFormat) ?? ""
+        let trxnTime = trxnDateValue.toDateString(format: kTightJustTimeFormat) ?? ""
+        orderHeader.trxnDate = trxnDate
+        orderHeader.trxnTime = trxnTime
+        
         if originalOrderHeader != nil {
+            isNew = false
             orderHeader.updateBy(context: managedObjectContext, theSource: originalOrderHeader!)
+            OrderHeader.delete(context: managedObjectContext, orderHeader: originalOrderHeader!)
+            originalOrderHeader = nil
+            GlobalInfo.saveCache()
         }
         else {
-            if isFromMarginCalculator == 0 {
+            if globalInfo.isFromMarginCalculator == 0 {
                 loadSalesSamplesOrders()
                 loadReturnsOrders()
             }
         }
+        orderHeader.custNo = customerDetail.custNo ?? ""
+        orderHeader.chainNo = customerDetail.chainNo ?? ""
         
-        if isFromMarginCalculator == 0 {
+        if globalInfo.isFromMarginCalculator == 0 {
             orderDetailSetArray = [orderHeader.deliverySet, orderHeader.pickupSet, orderHeader.sampleSet]
         }
         else {
-            orderDetailSetArray = globalInfo.orderDetailSetArray ?? [orderHeader.deliverySet, orderHeader.pickupSet, orderHeader.sampleSet]
+            orderDetailSetArray = globalInfo.orderDetailSetArray
+//            orderDetailSetArray = [orderHeader.deliverySet, orderHeader.pickupSet, orderHeader.sampleSet]
         }
     }
 
@@ -460,7 +473,7 @@ extension OrderVC {
         productTreeView.allowsSelection = true
         productTreeView.expandsChildRowsWhenRowExpands = false
         productTreeView.collapsesChildRowsWhenRowCollapses = true
-
+        
         if isEdit == false {
             completedButton.isHidden = true
         }
@@ -564,7 +577,15 @@ extension OrderVC {
     func selectProduct(selectType: Int, itemNo: String, itemUPC: String) {
 
         let info: [String: Any] = ["itemNo": itemNo, "type": selectType, "itemUPC": itemUPC]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil, userInfo: info)
+        
+        if globalInfo.isFromMarginCalculator == 0 {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil, userInfo: info)
+        }
+        else {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kOrderProductSelectedNotificationNameMargin), object: nil, userInfo: info)
+            
+        }
+        
     }
 
     func selectProductAndShowDetail(selectType: Int, itemNo: String, itemUPC: String) {
