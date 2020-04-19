@@ -546,26 +546,41 @@ class Utils {
         return ""
     }
 
-    static func showProductDetailVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, isForInputQty: Bool, inputQty: Int, dismissHandler: ((ProductDetailVC, ProductDetailVC.DismissOption)->())?) {
+    static func showProductDetailVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, isForInputQty: Bool, inputQty: Int, selectedOrderType: OrderSalesVC.OrderType = .none, dismissHandler: ((ProductDetailVC, ProductDetailVC.DismissOption)->())?) {
         let productDetailVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "ProductDetailVC") as! ProductDetailVC
         productDetailVC.productDetail = productDetail
         productDetailVC.customerDetail = customerDetail
         productDetailVC.isForInputQty = isForInputQty
         productDetailVC.dismissHandler = dismissHandler
         productDetailVC.inputedQty = inputQty
+        productDetailVC.selectedOrderType = selectedOrderType
         productDetailVC.setDefaultModalPresentationStyle()
+        
         vc.present(productDetailVC, animated: true, completion: nil)
     }
     
-    static func showAddOrderVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
+    static func showAddOrderVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, isAdd: Bool,  dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
         let addOrderVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "AddOrderVC") as! AddOrderVC
+        addOrderVC.parentVC = vc as! OrderSalesVC
         addOrderVC.productDetail = productDetail
         addOrderVC.customerDetail = customerDetail
         addOrderVC.dismissHandler = dismissHandler
+        addOrderVC.isAdd = isAdd
         addOrderVC.setDefaultModalPresentationStyle()
         vc.present(addOrderVC, animated: true, completion: nil)
     }
-
+    
+    static func showAddOrderVC(vc: UIViewController, orderDetail: OrderDetail, customerDetail: CustomerDetail, isAdd: Bool, dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
+        let addOrderVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "AddOrderVC") as! AddOrderVC
+        addOrderVC.parentVC = vc as! OrderSalesVC
+        addOrderVC.orderDetail = orderDetail
+        addOrderVC.customerDetail = customerDetail
+        addOrderVC.dismissHandler = dismissHandler
+        addOrderVC.isAdd = isAdd
+        addOrderVC.setDefaultModalPresentationStyle()
+        vc.present(addOrderVC, animated: true, completion: nil)
+    }
+    
     static func getCardLength(cardNo1: String) -> Int {
         if hasAnyPrefix(number: cardNo1, prefixes: kAmericanExpressPrefixes) {
             return 15

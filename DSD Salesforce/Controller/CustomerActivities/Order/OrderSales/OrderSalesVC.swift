@@ -20,7 +20,10 @@ class OrderSalesVC: UIViewController {
     @IBOutlet weak var lastOrderSortButton: AnimatableButton!
     @IBOutlet weak var priceSortButton: AnimatableButton!
     @IBOutlet weak var qtySortButton: AnimatableButton!
-
+    @IBOutlet weak var aisleSortButton: AnimatableButton!
+    @IBOutlet weak var aisleLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var aisleTitleLabel: UILabel!
+    
     @IBOutlet weak var codeSortLabel: UILabel!
     @IBOutlet weak var descSortLabel: UILabel!
     @IBOutlet weak var lastOrderLabel: UILabel!
@@ -45,7 +48,8 @@ class OrderSalesVC: UIViewController {
         case lastOrder = 2
         case price = 3
         case qty = 4
-        case input = 5
+        case aisle = 5
+        case input = 6
     }
 
     enum SortOrder: Int {
@@ -97,6 +101,7 @@ class OrderSalesVC: UIViewController {
         case sales = 0
         case returns = 1
         case samples = 2
+        case none = 3
     }
 
     var selectedOrderType: OrderType = .sales
@@ -106,7 +111,7 @@ class OrderSalesVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        sortTypeButtonArray = [codeSortButton, descSortButton, lastOrderSortButton, priceSortButton, qtySortButton]
+        sortTypeButtonArray = [codeSortButton, descSortButton, lastOrderSortButton, priceSortButton, qtySortButton, aisleSortButton]
         initUI()
         
         if globalInfo.isFromMarginCalculator == 0 {
@@ -150,6 +155,11 @@ class OrderSalesVC: UIViewController {
             NotificationCenter.default.removeObserver(self)
         }
     }
+    
+    override func updateViewConstraints() {
+        aisleLabelWidthConstraint.constant = 0
+        super.updateViewConstraints()
+    }
 
     func initUI() {
         codeSortLabel.text = L10n.code()
@@ -161,6 +171,13 @@ class OrderSalesVC: UIViewController {
         taxTitleLabel.text = L10n.tax()
         totalTitleLabel.text = L10n.total()
         noDataLabel.text = L10n.thereIsNoData()
+        
+        if globalInfo.routeControl?.detailEntry != "1" || selectedOrderType != .sales {
+            aisleSortButton.isHidden = true
+            aisleTitleLabel.isHidden = true
+            self.view.setNeedsUpdateConstraints()
+            self.view.layoutIfNeeded()
+        }
         
         let prefInventoryUOM = globalInfo.routeControl?.inventoryUOM ?? ""
         isShowCase = prefInventoryUOM != "U"
@@ -324,25 +341,24 @@ class OrderSalesVC: UIViewController {
         let salesAllowed = selectedProductDetail?.salesAllowed ?? ""
         if salesAllowed.uppercased() == "Y" {
             
-            DispatchQueue.main.async {
-                Utils.showAddOrderVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, dismissHandler: { addOrderVC, dismissOption in
-                    // we should replace the qty by the input
-                    if dismissOption == AddOrderVC.DismissOption.done {
-                        let inputedQty = addOrderVC.orderQty
-                        self.selectedQty = inputedQty
-
-                        // we should do Add
-                        self.addProduct(shouldRemoveZeroAmount: false)
-                    }
-                })
+            if showDetail == true {
+                self.doOpenProductDetail()
             }
-            
-//            if showDetail == true {
-//                self.doOpenProductDetail()
-//            }
-//            else {
+            else {
 //                self.addProduct(shouldRemoveZeroAmount: true)
-//            }
+                DispatchQueue.main.async {
+                    Utils.showAddOrderVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, isAdd: true, dismissHandler: { addOrderVC, dismissOption in
+                        // we should replace the qty by the input
+                        if dismissOption == AddOrderVC.DismissOption.done {
+                            let inputedQty = addOrderVC.orderQty
+                            self.selectedQty = inputedQty
+
+                            // we should do Add
+                            self.addProduct(shouldRemoveZeroAmount: false)
+                        }
+                    })
+                }
+            }
         }
         else {
             if selectedOrderType == .sales {
@@ -387,7 +403,8 @@ class OrderSalesVC: UIViewController {
                 let orderDetail = _orderDetail as! OrderDetail
                 let _itemNo = orderDetail.itemNo ?? ""
                 if _itemNo == itemNo {
-                    qty = orderDetail.enterQty.int
+//                    qty = orderDetail.enterQty.int
+                    orderDetail.enterQty = qty.int32
                     selectedIndex = index
                     break
                 }
@@ -556,9 +573,8 @@ class OrderSalesVC: UIViewController {
     func doOpenProductDetail() {
 
         let qty = selectedQty
-
         DispatchQueue.main.async {
-            Utils.showProductDetailVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, isForInputQty: true, inputQty: qty, dismissHandler: { productDetailVC, dismissOption in
+            Utils.showProductDetailVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, isForInputQty: self.orderVC.isEdit, inputQty: qty, selectedOrderType: self.selectedOrderType, dismissHandler: { productDetailVC, dismissOption in
                 // we should replace the qty by the input
                 let inputedQty = productDetailVC.inputedQty
                 self.selectedQty = inputedQty
@@ -688,6 +704,20 @@ class OrderSalesVC: UIViewController {
 
         for _orderDetail in orderDetailSet {
             let orderDetail = _orderDetail as! OrderDetail
+            
+            ///SF79
+            let shelfStatus = ShelfStatus.getBy(context: globalInfo.managedObjectContext, chainNo: orderVC.customerDetail.chainNo ?? "", custNo: orderDetail.custNo, itemNo: orderDetail.itemNo).first
+            
+            if let shelfStatus = shelfStatus {
+                let aisle = shelfStatus.aisle ?? ""
+                let stockCount = shelfStatus.stockCount ?? "0"
+                orderDetail.aisle = aisle
+                orderDetail.stockCount = stockCount
+            }
+            let orderHistory = OrderHistory.getFirstBy(context: globalInfo.managedObjectContext, chainNo: orderVC.customerDetail.chainNo ?? "", custNo: orderDetail.custNo, itemNo: orderDetail.itemNo)
+            if let _orderHisory = orderHistory {
+                orderDetail.orderHistory = _orderHisory.getOrderHistoryString()
+            }
             orderDetailArray.append(orderDetail)
         }
 
@@ -750,6 +780,14 @@ class OrderSalesVC: UIViewController {
                     return qty1 > qty2
                 }
             })
+        }
+        else if selectedSortType == .aisle {
+            if selectedSortOrder == .ascending {
+                orderDetailArray = orderDetailArray.sorted{ $0.aisle.localizedStandardCompare($1.aisle) == .orderedAscending }
+            }
+            else {
+                orderDetailArray = orderDetailArray.sorted{ $0.aisle.localizedStandardCompare($1.aisle) == .orderedDescending }
+            }
         }
         else if selectedSortType == .input {
             // we do nothing
@@ -816,14 +854,13 @@ extension OrderSalesVC: UITableViewDataSource {
 }
 
 extension OrderSalesVC: UITableViewDelegate {
-
+                
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 52.0
+        return 55.0
     }
 
 }

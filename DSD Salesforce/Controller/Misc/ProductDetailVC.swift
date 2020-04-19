@@ -67,8 +67,10 @@ class ProductDetailVC: UIViewController {
     var isForInputQty = false
     var inputedQty = 0
     var customerDetail: CustomerDetail!
+    var selectedOrderType: OrderSalesVC.OrderType = .sales
 
     var lastZoomScale: CGFloat = -1
+    var caseFactor = 1
 
     enum DismissOption {
         case done
@@ -80,6 +82,7 @@ class ProductDetailVC: UIViewController {
 
         // Do any additional setup after loading the view.
         initUI()
+        initData()
         updateConstraints()
     }
 
@@ -144,7 +147,9 @@ class ProductDetailVC: UIViewController {
             
         }
     }
-    
+    func initData() {
+        enterQty = Int(qtyText.text ?? "") ?? 0
+    }
     func initUI() {
 
         titleLabel.text = L10n.productDetails()
@@ -163,6 +168,22 @@ class ProductDetailVC: UIViewController {
         // populate the all components
         let itemNo = productDetail.itemNo ?? ""
         itemNoLabel.text = itemNo
+
+        if selectedOrderType == .returns {
+            if customerDetail!.rtnEntryMode == "C" {
+                if let prodLocn = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first {
+                    self.caseFactor = Int(prodLocn.caseFactor ?? "1") ?? 1
+                }
+            }
+        }
+        else {
+            if customerDetail!.salEntryMode == "C" {
+                if let prodLocn = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first {
+                    self.caseFactor = Int(prodLocn.caseFactor ?? "1") ?? 1
+                }
+            }
+        }
+        
         descLabel.text = productDetail.desc ?? ""
         let prodGroup = productDetail.prodGrp ?? ""
         groupLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "ProductGroup", alphaKey: prodGroup)?.desc ?? ""
@@ -277,11 +298,26 @@ class ProductDetailVC: UIViewController {
         else {
             qtyView.isHidden = true
         }
-
+        
+        qtyText.addTarget(self, action: #selector(onQtyEditingChanged(_:)), for: .editingDidEnd)
         productImageScrollView.delegate = self
         updateZoom()
     }
 
+    var enterQty = 0
+    @objc func onQtyEditingChanged(_ sender: Any) {
+        
+        let newQty = Int(qtyText.text ?? "0") ?? 0
+        if newQty % self.caseFactor == 0 {
+            qtyText.text = String(newQty)
+            self.enterQty = newQty
+        }
+        else {
+            qtyText.text = String(self.enterQty)
+            Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+        }
+    }
+    
     @available(iOS 8.0, *)
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -344,20 +380,90 @@ class ProductDetailVC: UIViewController {
     }
     
     @IBAction func onPlusQty(_ sender: Any) {
-        let qty = Int(qtyText.text ?? "") ?? 0
-        qtyText.text = "\(qty+1)"
+        //let qty = Int(qtyText.text ?? "") ?? 0
+        //qtyText.text = "\(qty+1)"
+        
+        var qty = Int(qtyText.text ?? "") ?? 0
+        switch selectedOrderType {
+        case .returns:
+            switch customerDetail!.rtnEntryMode {
+            case "B", "U":
+                qty += 1
+                break
+            case "C":
+                qty += caseFactor
+                break
+            default:
+                qty += 1
+                break
+            }
+            break
+
+        default:
+            switch customerDetail!.salEntryMode {
+            case "B", "U":
+                qty += 1
+                break
+            case "C":
+                qty += caseFactor
+                break
+            default:
+                qty += 1
+                break
+            }
+            break
+        }
+        enterQty = qty
+        qtyText.text = "\(qty)"
     }
 
     @IBAction func onMinusQty(_ sender: Any) {
-        var qty = (Int(qtyText.text ?? "") ?? 0)-1
-        if qty <= 0 {
-            qty = 0
+        
+        var qty = Int(qtyText.text ?? "") ?? 0
+        
+        switch selectedOrderType {
+        case .returns:
+            switch customerDetail!.rtnEntryMode {
+            case "B", "U":
+                qty = max(qty-1, 0)
+                break
+            case "C":
+                qty = max(qty-caseFactor, 0)
+                break
+            default:
+                qty = max(qty-caseFactor, 0)
+                break
+            }
+            break
+
+        default:
+            switch customerDetail!.salEntryMode {
+            case "B", "U":
+                qty = max(qty-1, 0)
+                break
+            case "C":
+                qty = max(qty-caseFactor, 0)
+                break
+            default:
+                qty = max(qty-1, 0)
+                break
+            }
+            break
         }
+        
+        enterQty = qty
         qtyText.text = "\(qty)"
     }
 
     @IBAction func onBack(_ sender: Any) {
-        inputedQty = Int(qtyText.text ?? "") ?? 0
+        if isForInputQty {
+            inputedQty = Int(qtyText.text ?? "0") ?? 0
+            if inputedQty % self.caseFactor != 0 {
+                qtyText.text = String(enterQty)
+                Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                return
+            }
+        }
         self.dismiss(animated: true) {
             self.dismissHandler?(self, .done)
         }

@@ -13,6 +13,7 @@ public class ShelfStatus: NSManagedObject {
     
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
+        self.isSaved = true
     }
 
     static func getBy(context: NSManagedObjectContext, chainNo: String, custNo: String) -> [ShelfStatus] {
@@ -21,6 +22,22 @@ public class ShelfStatus: NSManagedObject {
         let predicate1 = NSPredicate(format: "chainNo=%@", chainNo)
         let predicate2 = NSPredicate(format: "custNo=%@", custNo)
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+
+        let result = try? context.fetch(request) as? [ShelfStatus]
+
+        if let result = result, let shelfStatuses = result {
+            return shelfStatuses
+        }
+        return []
+    }
+    
+    static func getBy(context: NSManagedObjectContext, chainNo: String, custNo: String, itemNo: String) -> [ShelfStatus] {
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ShelfStatus")
+        let predicate1 = NSPredicate(format: "chainNo=%@", chainNo)
+        let predicate2 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate3 = NSPredicate(format: "itemNo=%@", itemNo)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3])
 
         let result = try? context.fetch(request) as? [ShelfStatus]
 
@@ -58,6 +75,7 @@ public class ShelfStatus: NSManagedObject {
         self.marketingNotes = theSource.marketingNotes
         self.otherNotes = theSource.otherNotes
         self.delisted = theSource.delisted
+        self.isSaved = theSource.isSaved
     }
 
     func updateBy(xmlDictionary: [String: String]) {
@@ -69,8 +87,8 @@ public class ShelfStatus: NSManagedObject {
         self.shelfPrice = xmlDictionary["ShelfPrice"] ?? ""
         self.oos = xmlDictionary["OOS"] ?? ""
         self.stockCount = xmlDictionary["StockCount"] ?? "0"
-        self.aisle = xmlDictionary["Aisle"] ?? "0"
-        self.expiry = xmlDictionary["Expiry"] ?? "0"
+        self.aisle = xmlDictionary["MarketingNotes"] ?? "0"
+        self.expiry = xmlDictionary["OtherNotes"] ?? "0"
         self.facings = xmlDictionary["Facings"] ?? "0"
         self.promo = xmlDictionary["Promo"] ?? "0"
         self.promoPrice = xmlDictionary["PromoPrice"] ?? "0"
@@ -84,7 +102,7 @@ public class ShelfStatus: NSManagedObject {
 
         deleteAll(context: context)
 
-        let dicArray = Utils.loadFromXML(xmlName: "ShelfSta", xPath: "//ShelfStatus/Records/ShelfStatus")
+        let dicArray = Utils.loadFromXML(xmlName: "SHELFSTA", xPath: "//ShelfStatus/Records/ShelfStatus")
         var shelfStatusArray = [ShelfStatus]()
         for dic in dicArray {
             let shelfStatus = ShelfStatus(context: context, forSave: forSave)
@@ -107,7 +125,8 @@ public class ShelfStatus: NSManagedObject {
 
     var isOnShelf: Bool {
         let oos = self.oos ?? "0"
-        return oos == "0"
+        let stockCount = self.stockCount ?? "0"
+        return (oos == "0" && stockCount != "0")
     }
 
 }
@@ -134,5 +153,6 @@ extension ShelfStatus {
     @NSManaged public var marketingNotes: String?
     @NSManaged public var otherNotes: String?
     @NSManaged public var delisted: String?
+    @NSManaged public var isSaved: Bool
 }
 

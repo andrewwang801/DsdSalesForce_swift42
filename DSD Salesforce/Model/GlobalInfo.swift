@@ -190,6 +190,9 @@ extension GlobalInfo {
             }
         }
         
+        if isReLogin == false {
+            ShelfStatus.deleteAll(context: managedObjectContext)
+        }
         let _ = ShelfStatus.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = PromotionHeader.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = PromotionNoVo.loadFromXML(context: managedObjectContext, forSave: true)
@@ -281,13 +284,12 @@ extension GlobalInfo {
     }
 
     func adjustCoreData() {
-
 //        if isFromInProgressExistingOrder {
 //            setInProgressFlag()
 //        }
-        
         setInProgressFlag()
         removeUnsavedOrderDetailsFromInProgressOrderHeader()
+        removeUnsavedShelfStatus()
         GlobalInfo.saveCache()
     }
 
@@ -301,7 +303,6 @@ extension GlobalInfo {
         for orderDetail in unsavedOrderDetails {
             OrderDetail.delete(context: managedObjectContext, orderDetail: orderDetail)
         }
-        
     }
     
     func removeUnsavedOrderDetailsFromInProgressOrderHeader() {
@@ -316,6 +317,29 @@ extension GlobalInfo {
         }
         
     }
+    
+    func removeUnsavedShelfStatus() {
+        let allShelfStatus = ShelfStatus.getAll(context: managedObjectContext)
+        let unsavedShelfStatus = allShelfStatus.filter{ (shelfStatus) -> Bool in
+            return shelfStatus.isSaved == false
+        }
+        for item in unsavedShelfStatus {
+            ShelfStatus.delete(context: managedObjectContext, shelfStatus: item)
+        }
+    }
+    
+     func removeSavedOrder() {
+
+         let allOrderHeaders = OrderHeader.getAll(context: managedObjectContext)
+         let savedOrderHeaders = allOrderHeaders.filter { (orderHeader) -> Bool in
+            return orderHeader.isSavedOrder == true
+         }
+
+         for orderHeader in savedOrderHeaders {
+             OrderHeader.delete(context: managedObjectContext, orderHeader: orderHeader)
+         }
+         
+     }
     
     func setInProgressFlag() {
         

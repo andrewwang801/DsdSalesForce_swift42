@@ -129,7 +129,7 @@ extension DistributionCheckCell: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-        if textField == shelfText || textField == expiryText {
+        if textField == shelfText {
 
             switch string {
             case "0","1","2","3","4","5","6","7","8","9":

@@ -300,6 +300,8 @@ class LoginVC: UIViewController {
                     ftpInfo.root = self.globalInfo.ftpRoot
                     ftpInfo.territory = territory
                     globalInfo.clearDataForNewTrip()
+                    globalInfo.removeSavedOrder()
+                    isFreshData = false
                     self.doReLogin(ftpInfo: ftpInfo)
                 }
                 else {

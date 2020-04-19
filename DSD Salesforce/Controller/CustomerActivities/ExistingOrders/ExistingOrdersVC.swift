@@ -106,7 +106,7 @@ class ExistingOrdersVC: UIViewController {
         }
         
         if orderHeaderArray.count == 0 {
-            orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, isSavedOrder: true)
+            orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo, isSavedOrder: true)
         }
         
 //        let firstOrderHeader = orderHeaderArray.first

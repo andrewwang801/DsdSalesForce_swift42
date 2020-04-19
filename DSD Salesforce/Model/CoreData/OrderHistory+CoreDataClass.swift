@@ -73,6 +73,32 @@ public class OrderHistory: NSManagedObject {
         return []
     }
     
+    static func getLastItem(context: NSManagedObjectContext, custNo: String, itemNo: String) -> OrderHistoryItem? {
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderHistory")
+
+        let predicate1 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate2 = NSPredicate(format: "itemNo=%@", itemNo)
+
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
+
+        let result = try? context.fetch(request) as? [OrderHistory]
+
+        if let result = result, let orderHistoryArray = result {
+            var orderHistoryItemArray = [OrderHistoryItem]()
+            for orderHistory in orderHistoryArray {
+                let items = orderHistory.getOrderHistoryItems()
+                orderHistoryItemArray = items.sorted(by: { $0.orderDate > $1.orderDate })
+            }
+            for item in orderHistoryItemArray {
+                if item.nSAQty / Int(kOrderHistoryDivider) != 0 {
+                    return item
+                }
+            }
+        }
+        return nil
+    }
+    
     static func getFirstBy(context: NSManagedObjectContext, chainNo: String, custNo: String, itemNo: String) -> OrderHistory? {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderHistory")
@@ -88,6 +114,17 @@ public class OrderHistory: NSManagedObject {
             return orderHistorys.first
         }
         return nil
+    }
+    
+    func getOrderHistoryString() -> String {
+        
+        let qty1 = (Double(saQty1 ?? "") ?? 0)/kOrderHistoryDivider
+        let qty2 = (Double(saQty2 ?? "") ?? 0)/kOrderHistoryDivider
+        let qty3 = (Double(saQty3 ?? "") ?? 0)/kOrderHistoryDivider
+        let qty4 = (Double(saQty4 ?? "") ?? 0)/kOrderHistoryDivider
+        let qty5 = (Double(saQty5 ?? "") ?? 0)/kOrderHistoryDivider
+        let qty6 = (Double(saQty6 ?? "") ?? 0)/kOrderHistoryDivider
+        return qty1.integerString + "-" + qty2.integerString + "-" + qty3.integerString + "-" + qty4.integerString + "-" + qty5.integerString + "-" + qty6.integerString
     }
 
     static func getAll(context: NSManagedObjectContext) -> [OrderHistory] {

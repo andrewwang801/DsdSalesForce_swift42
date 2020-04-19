@@ -224,7 +224,7 @@ class CustomerActivitiesVC: UIViewController {
             let presoldOrder = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
             let presoldOrderType = presoldOrder?.type ?? ""
             
-            let result = OrderHeader.getBy(context: globalInfo.managedObjectContext, isSavedOrder: true)
+            let result = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo, isSavedOrder: true)
             if result.count == 0 && savedUploadedHeaderArray.count == 0 && presoldOrderType.uppercased() != "P" {
                 self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: false, isEdit: true)
             }

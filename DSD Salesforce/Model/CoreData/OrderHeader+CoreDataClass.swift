@@ -92,11 +92,13 @@ class OrderHeader: NSManagedObject {
         return []
     }
     
-    static func getBy(context: NSManagedObjectContext, isSavedOrder: Bool) -> [OrderHeader] {
+    static func getBy(context: NSManagedObjectContext,chainNo: String, custNo: String, isSavedOrder: Bool) -> [OrderHeader] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderHeader")
-        let predicate = NSPredicate(format: "isSavedOrder == %@", NSNumber(value: true))
-        request.predicate = predicate
+        let predicate1 = NSPredicate(format: "chainNo=%@", chainNo)
+        let predicate2 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate3 = NSPredicate(format: "isSavedOrder == %@", NSNumber(value: true))
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3])
 
         let result = try? context.fetch(request) as? [OrderHeader]
 
@@ -221,22 +223,35 @@ class OrderHeader: NSManagedObject {
         self.isSaved = true
         self.isInProgress = false
         self.isSavedOrder = false
-        
+    
         for _orderDetail in deliverySet {
             let orderDetail = _orderDetail as! OrderDetail
             orderDetail.isSaved = true
             orderDetail.isInProgress = false
+            
+            if let shelfStatus = ShelfStatus.getBy(context: managedObjectContext!, chainNo: self.chainNo, custNo: self.custNo, itemNo: orderDetail.itemNo).first {
+                shelfStatus.isSaved = true
+            }
         }
         for _orderDetail in pickupSet {
             let orderDetail = _orderDetail as! OrderDetail
             orderDetail.isSaved = true
             orderDetail.isInProgress = false
+            
+            if let shelfStatus = ShelfStatus.getBy(context: managedObjectContext!, chainNo: self.chainNo, custNo: self.custNo, itemNo: orderDetail.itemNo).first {
+                shelfStatus.isSaved = true
+            }
         }
         for _orderDetail in sampleSet {
             let orderDetail = _orderDetail as! OrderDetail
             orderDetail.isSaved = true
             orderDetail.isInProgress = false
+            
+            if let shelfStatus = ShelfStatus.getBy(context: managedObjectContext!, chainNo: self.chainNo, custNo: self.custNo, itemNo: orderDetail.itemNo).first {
+                shelfStatus.isSaved = true
+            }
         }
+        GlobalInfo.saveCache()
     }
 
     func scheduleUpload() {
