@@ -159,7 +159,7 @@ class OrderSummaryVC: UIViewController {
     var previousInvoices: Double = 0
     var thisOrderAmount: Double = 0
     var realPayAmount: Double = 0
-
+    
     var distributorDescTypeArray = [DescType]()
     var selectedDistributorDescType: DescType? {
         didSet {
@@ -201,6 +201,10 @@ class OrderSummaryVC: UIViewController {
     var pdfFileName = ""
     var pdfPath = ""
     var isCreatePdfForPrint = true
+    
+    var pdfRMAFileName = ""
+    var pdfRMAPath = ""
+    var isCreatePdfRMAForPrint = true
 
     var shortDescForFile = ""
     var longDescForFile = ""
@@ -213,6 +217,7 @@ class OrderSummaryVC: UIViewController {
 
     var uar: UAR?
     var uOrder: UOrder?
+    var uOrderRMA: UOrder?
 
     var cardType = ""
     var transactionID = ""
@@ -223,6 +228,15 @@ class OrderSummaryVC: UIViewController {
     var deliveryDatePicker = UIDatePicker()
     let kDeliveryDateFormat = "EEEE d MMMM"
 
+    // upload transaction
+    var zipFilePathArray: [String] = []
+    var transactionArray = [UTransaction]()
+    var fileTransactionArray = [FileTransaction]()
+    var hasSales = false
+    var hasPickup = false
+    var cameraTransactionArray = [CameraTransaction]()
+    var uarArray = [UAR]()
+    
     enum DismissOption {
         case confirmed
         case cancelled
@@ -292,10 +306,52 @@ class OrderSummaryVC: UIViewController {
 
             if isCreatePdfForPrint == false {
                 self.doFinalizeOrder()
+                if self.customerDetail.invoiceFmt == "2" {
+                    if hasPickup {
+                        self.doCreateRMAPdfTask()
+                    }
+                }
             }
             else {
                 if pdfPath != "" {
-                    ZebraPrintEngine.tryPrint(vc: self, pdfPath: pdfPath, completionHandler: { success, message in
+                    if self.customerDetail.invoiceFmt == "2" {
+                        if hasPickup {
+                            self.doCreateRMAPdfTask()
+                        }
+                    }
+                    
+                    else {
+                        ZebraPrintEngine.tryPrint(vc: self, pdfPath: pdfPath, pdfRMAPath: "", completionHandler: { success, message in
+                            if success == true {
+                                self.isPrinted = true
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        else {
+            NSLog("PDF creation failed")
+        }
+    }
+    
+    func onRMAPDFCompleted(success: Bool, pdfPath: String) {
+
+        if success == true {
+            self.pdfRMAPath = pdfPath
+            NSLog("PDF creation success")
+
+            /*
+            let pdfViewerVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "PDFViewerVC") as! PDFViewerVC
+            pdfViewerVC.pdfPath = pdfPath
+            self.present(pdfViewerVC, animated: true, completion: nil)*/
+
+            if isCreatePdfForPrint == false {
+                self.doFinalizeRMAOrder()
+            }
+            else {
+                if pdfRMAPath != "" {
+                    ZebraPrintEngine.tryPrint(vc: self, pdfPath: self.pdfPath, pdfRMAPath: self.pdfRMAPath, completionHandler: { success, message in
                         if success == true {
                             self.isPrinted = true
                         }
@@ -395,9 +451,26 @@ class OrderSummaryVC: UIViewController {
         processConfirm()
         isCreatePdfForPrint = true
 
-        doCreatePdfTask()
-        
-        scheduleUOrderUploadWithPostpone()
+        if self.customerDetail.invoiceFmt == "2"
+        {
+            if hasSales && !hasPickup {
+                doCreatePdfTask()
+                scheduleUOrderUploadWithPostpone()
+            }
+            if !hasSales && hasPickup {
+                doCreateRMAPdfTask()
+                scheduleRMAUOrderUploadWithPostpone()
+            }
+            if hasSales && hasPickup {
+                doCreatePdfTask()
+                scheduleUOrderUploadWithPostpone()
+                scheduleRMAUOrderUploadWithPostpone()
+            }
+        }
+        else {
+            doCreatePdfTask()
+            scheduleUOrderUploadWithPostpone()
+        }
     }
 
     @IBAction func onConfirm(_ sender: Any) {
@@ -430,7 +503,27 @@ class OrderSummaryVC: UIViewController {
                     payment.updateBy(theSource: vc.resultUARPayment!)
                     self.processConfirm()
                     self.isCreatePdfForPrint = false
-                    self.doCreatePdfTask()
+
+                    if self.customerDetail.invoiceFmt == "2"
+                    {
+                        if self.hasSales && !self.hasPickup {
+                            self.doCreatePdfTask()
+                        }
+                        else if !self.hasSales && self.hasPickup {
+                            self.doCreateRMAPdfTask()
+                        }
+                        else if self.hasSales && self.hasPickup {
+                            self.doCreatePdfTask()
+                        }
+                        else {
+                            self.mainVC.popChild(containerView: self.mainVC.containerView) { (finished) in
+                                self.dismissHandler?(self, .confirmed)
+                            }
+                        }
+                    }
+                    else {
+                        self.doCreatePdfTask()
+                    }
                 }
             }
             self.present(orderChequeDetailsVC, animated: true, completion: nil)
@@ -448,7 +541,27 @@ class OrderSummaryVC: UIViewController {
                     payment.updateBy(theSource: vc.resultUARPayment!)
                     self.processConfirm()
                     self.isCreatePdfForPrint = false
-                    self.doCreatePdfTask()
+                    
+                    if self.customerDetail.invoiceFmt == "2"
+                    {
+                        if self.hasSales && !self.hasPickup {
+                            self.doCreatePdfTask()
+                        }
+                        else if !self.hasSales && self.hasPickup {
+                            self.doCreateRMAPdfTask()
+                        }
+                        else if self.hasSales && self.hasPickup {
+                            self.doCreatePdfTask()
+                        }
+                        else {
+                            self.mainVC.popChild(containerView: self.mainVC.containerView) { (finished) in
+                                self.dismissHandler?(self, .confirmed)
+                            }
+                        }
+                    }
+                    else {
+                        self.doCreatePdfTask()
+                    }
                 }
             }
             self.present(orderEWayDetailsVC, animated: true, completion: nil)
@@ -456,7 +569,26 @@ class OrderSummaryVC: UIViewController {
         else {
             self.processConfirm()
             self.isCreatePdfForPrint = false
-            self.doCreatePdfTask()
+            
+            if self.customerDetail.invoiceFmt == "2"
+            {
+                if hasSales {
+                    doCreatePdfTask()
+                }
+                else {
+                    if hasPickup {
+                        doCreateRMAPdfTask()
+                    }
+                    else {
+                        mainVC.popChild(containerView: mainVC.containerView) { (finished) in
+                            self.dismissHandler?(self, .confirmed)
+                        }
+                    }
+                }
+            }
+            else {
+                doCreatePdfTask()
+            }
         }
     }
 

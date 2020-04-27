@@ -83,6 +83,7 @@ public class CustomerDetail: NSManagedObject {
         
         ///SF71, 2020-3-13
         minimumPayment = "0.0"
+        invoiceFmt = ""
     }
 
     func getAddress() -> String? {
@@ -407,6 +408,7 @@ public class CustomerDetail: NSManagedObject {
         
         ///SF71 2020-3-27
         self.minimumPayment = xmlDictionary["MinimumPayment"] ?? "0.0"
+        self.invoiceFmt = xmlDictionary["InvoiceFmt"] ?? ""
     }
 
     func updateByRouteSchedule(xmlDictionary: [String: String]) {
@@ -509,6 +511,7 @@ public class CustomerDetail: NSManagedObject {
         
         ///SF71 2020-3-27
         self.minimumPayment = theSource.minimumPayment
+        self.invoiceFmt = theSource.invoiceFmt
     }
     
     func updateByAfter(theSource: CustomerDetail) {
@@ -580,6 +583,7 @@ public class CustomerDetail: NSManagedObject {
         self.plannedVisitTime = theSource.plannedVisitTime
         ///SF71 2020-3-27
         self.minimumPayment = theSource.minimumPayment
+        self.invoiceFmt = theSource.invoiceFmt
     }
 
     func fillSurveys(context: NSManagedObjectContext, surveyArray: [Survey]) {
@@ -906,6 +910,7 @@ extension CustomerDetail {
     @NSManaged public var plannedVisitTime: String
     ///SF71, 2020-3-27
     @NSManaged public var minimumPayment: String
+    @NSManaged public var invoiceFmt: String
 }
 
 extension CustomerDetail {

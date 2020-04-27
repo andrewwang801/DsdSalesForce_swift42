@@ -80,6 +80,7 @@
         <attribute name="endTime2" optional="YES" attributeType="String"/>
         <attribute name="featGrp" optional="YES" attributeType="String"/>
         <attribute name="googlePlaceID" optional="YES" attributeType="String"/>
+        <attribute name="invoiceFmt" optional="YES" attributeType="String"/>
         <attribute name="isAssetRequested" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isAssetsChecked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -251,6 +252,7 @@
         <attribute name="dTotalFree" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fulfilby" optional="YES" attributeType="String"/>
         <attribute name="invoiceUpload" optional="YES" attributeType="String"/>
+        <attribute name="invoiceUploadRMA" optional="YES" attributeType="String"/>
         <attribute name="isCentsRound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isInProgress" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPostponed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -264,6 +266,7 @@
         <attribute name="periodNo" optional="YES" attributeType="String"/>
         <attribute name="photoUpload" optional="YES" attributeType="String"/>
         <attribute name="pickupAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pickupTax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="poReference" optional="YES" attributeType="String"/>
         <attribute name="presoldChgd" optional="YES" attributeType="String"/>
         <attribute name="printedFlag" optional="YES" attributeType="String"/>
@@ -271,6 +274,9 @@
         <attribute name="realPayment" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="reference" optional="YES" attributeType="String"/>
         <attribute name="saleAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="saleAmountOri" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="saleQuantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="saleTax" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="signatureFilePath" optional="YES" attributeType="String"/>
         <attribute name="specialInstruments" optional="YES" attributeType="String"/>
         <attribute name="taxAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -777,7 +783,7 @@
         <element name="CustInfo" positionX="-18" positionY="135" width="128" height="105"/>
         <element name="CustNote" positionX="-18" positionY="135" width="128" height="210"/>
         <element name="CustomerContact" positionX="18" positionY="180" width="128" height="165"/>
-        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1183"/>
+        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1198"/>
         <element name="DescType" positionX="-54" positionY="144" width="128" height="225"/>
         <element name="DocText" positionX="-9" positionY="144" width="128" height="135"/>
         <element name="EquipAss" positionX="-18" positionY="135" width="128" height="330"/>
@@ -785,7 +791,7 @@
         <element name="Equipment" positionX="0" positionY="153" width="128" height="270"/>
         <element name="KPI" positionX="0" positionY="171" width="128" height="90"/>
         <element name="OrderDetail" positionX="-9" positionY="144" width="128" height="433"/>
-        <element name="OrderHeader" positionX="-18" positionY="135" width="128" height="913"/>
+        <element name="OrderHeader" positionX="-18" positionY="135" width="128" height="988"/>
         <element name="OrderHistory" positionX="0" positionY="144" width="128" height="360"/>
         <element name="PresoldOrDetail" positionX="-18" positionY="135" width="128" height="225"/>
         <element name="PresoldOrHeader" positionX="0" positionY="153" width="128" height="375"/>

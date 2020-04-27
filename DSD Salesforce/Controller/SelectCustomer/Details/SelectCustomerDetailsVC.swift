@@ -96,9 +96,14 @@ class SelectCustomerDetailsVC: UIViewController {
         let selectedPresoldOrHeader = selectCustomerVC.selectedPresoldOrHeader
 
         let tagNo = selectedCustomerDetails.getCustomerTag()
-        numberLabel.text = tagNo
+        if selectedCustomerDetails.altCustNo != "" {
+            numberLabel.text = selectedCustomerDetails.altCustNo
+        }
+        else {
+            numberLabel.text = tagNo
+        }
         let estimatedWidth = tagNo.width(withConstraintedHeight: numberLabel.bounds.width, attributes: [NSAttributedString.Key.font: numberLabel.font])
-        numberLabelWidthConstraint.constant = estimatedWidth+20
+        //numberLabelWidthConstraint.constant = estimatedWidth+20
 
         let custTitle = selectedCustomerDetails.getCustomerTitle()
         titleLabel.text = custTitle
