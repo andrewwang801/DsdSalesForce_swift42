@@ -111,7 +111,7 @@ class GPSLog: NSObject {
         }
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "GPS\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
         saveToXML(gpsLogArray: gpsLogArray, filePath: filePath)
         return filePath
     }

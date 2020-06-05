@@ -201,6 +201,11 @@
 
 + (BOOL)deleteFileIfExist:(NSString *)filePath {
     
+    NSLog(@"%@", filePath);
+    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    if ([documentsDirectoryPath isEqualToString:filePath]) {
+        return true;
+    }
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     if ([fileManager fileExistsAtPath:filePath] == true) {

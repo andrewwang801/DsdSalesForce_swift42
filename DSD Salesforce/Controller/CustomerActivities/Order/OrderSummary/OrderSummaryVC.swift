@@ -81,6 +81,9 @@ class OrderSummaryVC: UIViewController {
     @IBOutlet weak var printLabel: AnimatableButton!
     @IBOutlet weak var confirmLabel: AnimatableButton!
     
+    @IBOutlet weak var custNoLabel: UILabel!
+    @IBOutlet weak var custNameLabel: UILabel!
+    
     enum PaybyOption: Int {
         case none = -1
         case card = 0
@@ -380,7 +383,7 @@ class OrderSummaryVC: UIViewController {
         let signatureVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "SignatureVC") as! SignatureVC
         signatureVC.setDefaultModalPresentationStyle()
         signatureVC.dismissHandler = {signatureImage in
-            let imagePath = CommData.getFilePathAppended(byCacheDir: kSignatureFileName) ?? ""
+            let imagePath = CommData.getFilePathAppended(byDocumentDir: kSignatureFileName) ?? ""
             UIImage.saveImageToLocal(image: signatureImage, filePath: imagePath)
             self.signatureImageName = kSignatureFileName
         }
@@ -529,42 +532,85 @@ class OrderSummaryVC: UIViewController {
             self.present(orderChequeDetailsVC, animated: true, completion: nil)
         }
         else if selectedPaybyOption == .card {
-            let orderEWayDetailsVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderEWayDetailsVC") as! OrderEWayDetailsVC
-            orderEWayDetailsVC.customerDetail = self.customerDetail
-            orderEWayDetailsVC.amount = self.selectedARHeaderAmount
-            orderEWayDetailsVC.originalUARPayment = uar!.uarPaymentSet[0] as! UARPayment
-            orderEWayDetailsVC.setDefaultModalPresentationStyle()
-            orderEWayDetailsVC.dismissHandler = {vc, dismissOption in
-                if dismissOption == .done {
-                    self.realPayAmount = vc.amount
-                    let payment = self.uar!.uarPaymentSet[0] as! UARPayment
-                    payment.updateBy(theSource: vc.resultUARPayment!)
-                    self.processConfirm()
-                    self.isCreatePdfForPrint = false
-                    
-                    if self.customerDetail.invoiceFmt == "2"
-                    {
-                        if self.hasSales && !self.hasPickup {
-                            self.doCreatePdfTask()
-                        }
-                        else if !self.hasSales && self.hasPickup {
-                            self.doCreateRMAPdfTask()
-                        }
-                        else if self.hasSales && self.hasPickup {
-                            self.doCreatePdfTask()
-                        }
-                        else {
-                            self.mainVC.popChild(containerView: self.mainVC.containerView) { (finished) in
-                                self.dismissHandler?(self, .confirmed)
+            
+            if globalInfo.routeControl?.cardProc == "8" {
+                let orderStripeDetailsVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderStripeDetailsVC") as! OrderStripeDetailsVC
+                orderStripeDetailsVC.customerDetail = self.customerDetail
+                orderStripeDetailsVC.amount = self.selectedARHeaderAmount
+                orderStripeDetailsVC.isPaymentCollection = false
+                orderStripeDetailsVC.originalUARPayment = uar!.uarPaymentSet[0] as! UARPayment
+                orderStripeDetailsVC.setDefaultModalPresentationStyle()
+                orderStripeDetailsVC.dismissHandler = {vc, dismissOption in
+                    if dismissOption == .done {
+                        self.realPayAmount = vc.amount
+                        let payment = self.uar!.uarPaymentSet[0] as! UARPayment
+                        payment.updateBy(theSource: vc.resultUARPayment!)
+                        self.processConfirm()
+                        self.isCreatePdfForPrint = false
+                        
+                        if self.customerDetail.invoiceFmt == "2"
+                        {
+                            if self.hasSales && !self.hasPickup {
+                                self.doCreatePdfTask()
+                            }
+                            else if !self.hasSales && self.hasPickup {
+                                self.doCreateRMAPdfTask()
+                            }
+                            else if self.hasSales && self.hasPickup {
+                                self.doCreatePdfTask()
+                            }
+                            else {
+                                self.mainVC.popChild(containerView: self.mainVC.containerView) { (finished) in
+                                    self.dismissHandler?(self, .confirmed)
+                                }
                             }
                         }
-                    }
-                    else {
-                        self.doCreatePdfTask()
+                        else {
+                            self.doCreatePdfTask()
+                        }
                     }
                 }
+                self.present(orderStripeDetailsVC, animated: true, completion: nil)
             }
-            self.present(orderEWayDetailsVC, animated: true, completion: nil)
+            else {
+                let orderEWayDetailsVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderEWayDetailsVC") as! OrderEWayDetailsVC
+                orderEWayDetailsVC.customerDetail = self.customerDetail
+                orderEWayDetailsVC.amount = self.selectedARHeaderAmount
+                orderEWayDetailsVC.originalUARPayment = uar!.uarPaymentSet[0] as! UARPayment
+                orderEWayDetailsVC.setDefaultModalPresentationStyle()
+                orderEWayDetailsVC.dismissHandler = {vc, dismissOption in
+                    if dismissOption == .done {
+                        self.realPayAmount = vc.amount
+                        let payment = self.uar!.uarPaymentSet[0] as! UARPayment
+                        payment.updateBy(theSource: vc.resultUARPayment!)
+                        self.processConfirm()
+                        self.isCreatePdfForPrint = false
+
+                        if self.customerDetail.invoiceFmt == "2"
+                        {
+                            if self.hasSales && !self.hasPickup {
+                                self.doCreatePdfTask()
+                            }
+                            else if !self.hasSales && self.hasPickup {
+                                self.doCreateRMAPdfTask()
+                            }
+                            else if self.hasSales && self.hasPickup {
+                                self.doCreatePdfTask()
+                            }
+                            else {
+                                self.mainVC.popChild(containerView: self.mainVC.containerView) { (finished) in
+                                    self.dismissHandler?(self, .confirmed)
+                                }
+                            }
+                        }
+                        else {
+                            self.doCreatePdfTask()
+                        }
+                    }
+                }
+                self.present(orderEWayDetailsVC, animated: true, completion: nil)
+            }
+
         }
         else {
             self.processConfirm()
@@ -676,7 +722,7 @@ extension OrderSummaryVC: UIImagePickerControllerDelegate, UINavigationControlle
     func processSaveImage(image: UIImage) {
         let now = Date()
         let photoName = "\(now.getTimestamp()).jpg"
-        let photoPath = CommData.getFilePathAppended(byCacheDir: photoName) ?? ""
+        let photoPath = CommData.getFilePathAppended(byDocumentDir: photoName) ?? ""
         UIImage.saveImageToLocal(image: image, filePath: photoPath)
         self.photoPath = photoPath
     }

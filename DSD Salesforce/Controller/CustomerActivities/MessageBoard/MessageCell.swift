@@ -203,7 +203,7 @@ extension MessageCell: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let index = indexPath.row
         let attachmentType = attachmentTypeArray[index].lowercased()
         let attachmentName = attachmentNameArray[index]
-        let attachmentPath = CommData.getFilePathAppended(byCacheDir: noteId+"_"+attachmentName) ?? ""
+        let attachmentPath = CommData.getFilePathAppended(byDocumentDir: noteId+"_"+attachmentName) ?? ""
         if CommData.isExistingFile(atPath: attachmentPath) == true {
             // show file content
             showFileContent(fileType: attachmentType, filePath: attachmentPath)

@@ -27,6 +27,11 @@ public class RouteControl: NSManagedObject {
         ///SF71, 2020-3-13
         visitTime = 0
         detailEntry = "0"
+        documents = ""
+        
+        stripePubKey = ""
+        stripeSecKey = ""
+        currency = ""
     }
 
     /*
@@ -142,6 +147,11 @@ public class RouteControl: NSManagedObject {
         self.visitTime = Int32(xmlDictionary["VisitTime"] ?? "0") ?? 0
         ///SF79
         self.detailEntry = xmlDictionary["DetailEntry"] ?? "0"
+        self.documents = xmlDictionary["DOCUMENTS"] ?? ""
+        
+        self.stripePubKey = xmlDictionary["StripePubKey"] ?? ""
+        self.stripeSecKey = xmlDictionary["StripeSecKey"] ?? ""
+        self.currency = (xmlDictionary["Currency"] ?? "").lowercased()
 
     }
 
@@ -241,4 +251,9 @@ extension RouteControl {
     @NSManaged public var visitTime: Int32
     ///SF79
     @NSManaged public var detailEntry: String?
+    @NSManaged public var documents: String!
+    
+    @NSManaged public var stripePubKey: String
+    @NSManaged public var stripeSecKey: String
+    @NSManaged public var currency: String
 }

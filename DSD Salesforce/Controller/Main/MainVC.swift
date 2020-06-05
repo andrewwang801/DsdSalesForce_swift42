@@ -115,6 +115,9 @@ class MainVC: UIViewController {
                 self.globalInfo.isFromMarginCalculator = 1
                 self.pushChild(newVC: marginCalcVC, containerView: self.containerView)
             }
+            else if dismissOption == .documents {
+                self.openThirdPartyApp()
+            }
             else if dismissOption == .visitPlanner {
                 let visitPlannerVC = UIViewController.getViewController(storyboardName: "VisitPlanner", storyboardID: "VisitPlannerVC") as! VisitPlannerVC
                 visitPlannerVC.mainVC = self
@@ -176,5 +179,45 @@ class MainVC: UIViewController {
 
     @objc func onChangedChatService() {
          logoButton.isEnabled = Utils.isExistChatService()
+    }
+    
+    func openThirdPartyApp() {
+        let hook = globalInfo.routeControl?.documents
+        var url = ""
+        var msg = ""
+        switch hook {
+        case kDropboxHook:
+            msg = "Dropbox"
+            url = kDropboxUrl
+        case kOneDriveHook:
+            msg = "One Drive"
+            url = kOneDriveUrl
+        case kGoogleDriveHook:
+            msg = "Google Drive"
+            url = kGoogleDriveUrl
+        case kBoxHook:
+            msg = "Box"
+            url = kBoxUrl
+        default:
+            break
+        }
+        
+        if let _hook = URL(string: hook!) {
+            if UIApplication.shared.canOpenURL(_hook)
+            {
+                UIApplication.shared.open(_hook)
+
+            } else {
+                
+                Utils.showAlert(vc: self, title: "Warning", message: "The \(msg) application is not installed on your ipad. You need to install this from App Store", failed: false, customerName: "", leftString: "Install", middleString: "", rightString: "Return") { (returnCode) in
+                    if returnCode == MessageDialogVC.ReturnCode.left {
+                        if let url = URL(string: url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }

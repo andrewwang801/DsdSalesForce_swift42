@@ -1,0 +1,18 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script>
+
+function redirect(sessionID, pubKey) {
+    var stripe = Stripe(pubKey);
+    stripe.redirectToCheckout({
+      sessionId: sessionID
+    }).then(function (result) {
+        return result
+    });
+}
+</script>
+</body>
+</html>

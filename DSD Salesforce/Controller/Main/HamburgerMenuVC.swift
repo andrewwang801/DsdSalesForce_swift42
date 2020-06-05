@@ -21,6 +21,7 @@ class HamburgerMenuVC: UIViewController {
         case deliveriesToday
         case deliveryTripStatus
         case marginCalculator
+        case documents
         case visitPlanner
         case productCatalog
         case help
@@ -34,9 +35,11 @@ class HamburgerMenuVC: UIViewController {
     let globalInfo = GlobalInfo.shared
     var dismissHandler: ((DismissOption)->())?
     var shouldDashboardEnabled = true
+    var shouldDocumentsEnabled = true
 
     let kMenuCellHeight: CGFloat = 35.0
     let kProductCatalogCellHeight: CGFloat = 35.0
+    var hamburgerDocuments = "documents"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +49,26 @@ class HamburgerMenuVC: UIViewController {
     }
 
     func initData() {
-        menuTitleArray = [kHamburgerDashboardName, kHamburgerVisitPlannerName, kHamburgerProductCatalog, kHamburgerMarginCalculator, "", 
-                          kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveryTripStatusName, kHamburgerDeliveriesTodayName]
+        switch globalInfo.routeControl?.documents {
+        case kDropboxHook:
+            hamburgerDocuments = kDropbox
+        case kOneDriveHook:
+            hamburgerDocuments = kOneDrive
+        case kGoogleDriveHook:
+            hamburgerDocuments = kGoogleDrive
+        case kBoxHook:
+            hamburgerDocuments = kBox
+        default:
+            break
+        }
+        if hamburgerDocuments == "documents" {
+            menuTitleArray = [kHamburgerDashboardName, kHamburgerVisitPlannerName, kHamburgerProductCatalog, kHamburgerMarginCalculator, "",
+                              kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveryTripStatusName, kHamburgerDeliveriesTodayName]
+        }
+        else {
+            menuTitleArray = [kHamburgerDashboardName, kHamburgerVisitPlannerName, kHamburgerProductCatalog, kHamburgerMarginCalculator, hamburgerDocuments, "",
+                              kHamburgerViewVehicleStockName, kHamburgerAdjustVehicleStockName, kHamburgerCountVehicleStockName, kHamburgerDeliveryTripStatusName, kHamburgerDeliveriesTodayName]
+        }
         let vehicleInventory = globalInfo.routeControl?.vehicleInventory ?? "0"
         let vehicleInventoryCount = Int(vehicleInventory) ?? 0
         if vehicleInventoryCount == 0 {
@@ -78,6 +99,13 @@ class HamburgerMenuVC: UIViewController {
         }
         else {
             shouldDashboardEnabled = true
+        }
+        
+        if globalInfo.routeControl?.documents == "" {
+            shouldDocumentsEnabled = false
+        }
+        else {
+            shouldDocumentsEnabled = true
         }
     }
 
@@ -133,6 +161,11 @@ class HamburgerMenuVC: UIViewController {
         else if menuTitle == kHamburgerMarginCalculator {
             dismiss(animated: false) {
                 self.dismissHandler?(.marginCalculator)
+            }
+        }
+        else if menuTitle == hamburgerDocuments {
+            dismiss(animated: false) {
+                self.dismissHandler?(.documents)
             }
         }
         else if menuTitle == kHamburgerDeliveryTripStatusName {
@@ -220,6 +253,9 @@ extension HamburgerMenuVC: UITableViewDataSource, UITableViewDelegate {
 
             if menuTitle == kHamburgerDashboardName {
                 cell.menuButton.isEnabled = shouldDashboardEnabled
+            }
+            else if menuTitle == kHamburgerDocuments {
+                cell.menuButton.isEnabled = shouldDocumentsEnabled
             }
             else {
                 cell.menuButton.isEnabled = true

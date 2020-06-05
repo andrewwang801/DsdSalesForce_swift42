@@ -23,4 +23,5 @@ target 'DSD Salesforce' do
     pod 'RSBarcodes_Swift', '~> 4.2.1'
     pod 'Charts'
     pod 'eWAYPaymentsSDK'
+    pod 'SwiftGifOrigin', '~> 1.7.0'
 end

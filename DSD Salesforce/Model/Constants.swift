@@ -68,6 +68,7 @@ let kHamburgerCountVehicleStockName = L10n.countVehicleStock()
 let kHamburgerDeliveriesTodayName = L10n.deliveriesToday()
 let kHamburgerDeliveryTripStatusName = L10n.deliveryTripStatus()
 let kHamburgerMarginCalculator = "MARGIN CALCULATOR"
+let kHamburgerDocuments = "DOCUMENTS"
 let kHamburgerVisitPlannerName = L10n.visitPlanner()
 let kHamburgerProductCatalog = L10n.productCatalog()
 let kHamburgerHelpName = L10n.help()
@@ -368,3 +369,22 @@ let kInitVal = -1.0
 let kSuffixCnt = 2
 let kStrFormat = "%0.2f"
 let kSuffixStr = "00"
+
+//Documents
+let kDropbox = "DROPBOX"
+let kDropboxHook = "dbapi-1://app"
+let kDropboxUrl = "https://apps.apple.com/us/app/dropbox-backup-sync-share/id327630330"
+
+let kOneDrive = "ONEDRIVE"
+let kOneDriveHook = "ms-onedrive://app"
+let kOneDriveUrl = "https://apps.apple.com/us/app/microsoft-onedrive/id477537958"
+
+let kGoogleDrive = "GOOGLEDRIVE"
+let kGoogleDriveHook = "googledrive://app"
+let kGoogleDriveUrl = "https://apps.apple.com/us/app/google-drive/id507874739"
+
+let kBox = "BOX"
+let kBoxHook = "box://app"
+let kBoxUrl = "https://apps.apple.com/us/app/box-cloud-content-management/id290853822"
+
+

@@ -34,6 +34,7 @@ class AddOrderVC: UIViewController {
     var productDetail: ProductDetail!
     var customerDetail: CustomerDetail!
     var orderDetail: OrderDetail!
+    var orderDetailForAdd: OrderDetail?
     
     let globalInfo = GlobalInfo.shared
     var shelfStatus: ShelfStatus?
@@ -97,11 +98,18 @@ class AddOrderVC: UIViewController {
     }
     
     func initData() {
+        orderQty = 0
         let custNo = customerDetail.custNo ?? ""
         let chainNo = customerDetail.chainNo ?? ""
         if isAdd {
             itemNo = productDetail.itemNo ?? ""
-            orderQty = 0
+            if let orderDetail = orderDetailForAdd {
+                orderQty = orderDetail.enterQty.int
+            }
+            else {
+                orderQty = 0
+            }
+            totalValue = Double(orderQty) * price
         }
         else {
             orderQty = orderDetail.enterQty.int
@@ -114,11 +122,11 @@ class AddOrderVC: UIViewController {
             stockCount = (shelfStatus.stockCount ?? "0").intValue
         }
 
-        orderQty = 0
         if isAdd {
             productDetail.calculatePrice(context: globalInfo.managedObjectContext, customerDetail: customerDetail)
             price = productDetail.price
             productDescStr = productDetail.desc ?? ""
+            totalValue = Double(orderQty) * price
         }
         else {
             price = orderDetail.price
@@ -197,7 +205,7 @@ class AddOrderVC: UIViewController {
                 let shelfStatusTransaction = UTransaction.make(chainNo: customerDetail.chainNo ?? "", custNo: customerDetail.custNo ?? "", docType: "SURV", date: now, reference: "", trip: globalInfo.routeControl!.trip ?? "")
             let shelfAudit = ShelfAudit.make(chainNo: customerDetail.chainNo ?? "", custNo: customerDetail.custNo ?? "", docType: "SHF", date: now, reference: "", shelfStatusArray: [shelfStatus])
 
-            let shelfAuditPath = CommData.getFilePathAppended(byCacheDir: "ShelfAudits\(nowString).upl") ?? ""
+            let shelfAuditPath = CommData.getFilePathAppended(byDocumentDir: "ShelfAudits\(nowString).upl") ?? ""
             ShelfAudit.saveToXML(auditArray: [shelfAudit], filePath: shelfAuditPath)
 
             let transactionPath = UTransaction.saveToXML(transactionArray: [shelfStatusTransaction], shouldIncludeLog: true)
@@ -219,7 +227,7 @@ class AddOrderVC: UIViewController {
                 let shelfStatusTransaction = UTransaction.make(chainNo: customerDetail.chainNo ?? "", custNo: customerDetail.custNo ?? "", docType: "SURV", date: now, reference: "", trip: globalInfo.routeControl!.trip ?? "")
             let shelfAudit = ShelfAudit.make(chainNo: customerDetail.chainNo ?? "", custNo: customerDetail.custNo ?? "", docType: "SHF", date: now, reference: "", shelfStatusArray: [shelfStatus])
 
-            let shelfAuditPath = CommData.getFilePathAppended(byCacheDir: "ShelfAudits\(nowString).upl") ?? ""
+            let shelfAuditPath = CommData.getFilePathAppended(byDocumentDir: "ShelfAudits\(nowString).upl") ?? ""
             ShelfAudit.saveToXML(auditArray: [shelfAudit], filePath: shelfAuditPath)
 
             let transactionPath = UTransaction.saveToXML(transactionArray: [shelfStatusTransaction], shouldIncludeLog: true)

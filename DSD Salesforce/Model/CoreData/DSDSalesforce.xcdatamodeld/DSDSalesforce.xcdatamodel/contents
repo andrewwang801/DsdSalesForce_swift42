@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ARHeader" representedClassName=".ARHeader" syncable="YES">
         <attribute name="arTrxnType" optional="YES" attributeType="String"/>
         <attribute name="chainNo" optional="YES" attributeType="String"/>
@@ -117,6 +117,7 @@
         <attribute name="shipToState" optional="YES" attributeType="String"/>
         <attribute name="shipToZip" optional="YES" attributeType="String"/>
         <attribute name="showPrice" optional="YES" attributeType="String"/>
+        <attribute name="signature" optional="YES" attributeType="String"/>
         <attribute name="startTime" optional="YES" attributeType="String"/>
         <attribute name="startTime1" optional="YES" attributeType="String"/>
         <attribute name="startTime2" optional="YES" attributeType="String"/>
@@ -506,12 +507,14 @@
         <attribute name="catalogView" optional="YES" attributeType="String"/>
         <attribute name="centsRound" optional="YES" attributeType="String"/>
         <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="currency" optional="YES" attributeType="String"/>
         <attribute name="currencySymbol" optional="YES" attributeType="String"/>
         <attribute name="custaddNew" optional="YES" attributeType="String"/>
         <attribute name="dateFmt" optional="YES" attributeType="String"/>
         <attribute name="defLocNo" optional="YES" attributeType="String"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="detailEntry" optional="YES" attributeType="String"/>
+        <attribute name="documents" optional="YES" attributeType="String"/>
         <attribute name="equipCheck" optional="YES" attributeType="String"/>
         <attribute name="ewayAPI" optional="YES" attributeType="String"/>
         <attribute name="ewaySystem" optional="YES" attributeType="String"/>
@@ -540,6 +543,8 @@
         <attribute name="security3" optional="YES" attributeType="String"/>
         <attribute name="security4" optional="YES" attributeType="String"/>
         <attribute name="security5" optional="YES" attributeType="String"/>
+        <attribute name="stripePubKey" optional="YES" attributeType="String"/>
+        <attribute name="stripeSecKey" optional="YES" attributeType="String"/>
         <attribute name="tempCustChain" optional="YES" attributeType="String"/>
         <attribute name="tempCustPrefix" optional="YES" attributeType="String"/>
         <attribute name="templateChain" optional="YES" attributeType="String"/>
@@ -783,7 +788,7 @@
         <element name="CustInfo" positionX="-18" positionY="135" width="128" height="105"/>
         <element name="CustNote" positionX="-18" positionY="135" width="128" height="210"/>
         <element name="CustomerContact" positionX="18" positionY="180" width="128" height="165"/>
-        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1198"/>
+        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1213"/>
         <element name="DescType" positionX="-54" positionY="144" width="128" height="225"/>
         <element name="DocText" positionX="-9" positionY="144" width="128" height="135"/>
         <element name="EquipAss" positionX="-18" positionY="135" width="128" height="330"/>
@@ -806,7 +811,7 @@
         <element name="PromotionNoVo" positionX="9" positionY="162" width="128" height="105"/>
         <element name="PromotionOption" positionX="27" positionY="180" width="128" height="240"/>
         <element name="ProMulti" positionX="18" positionY="171" width="128" height="135"/>
-        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="883"/>
+        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="943"/>
         <element name="ShelfStatus" positionX="-18" positionY="135" width="128" height="298"/>
         <element name="Survey" positionX="-18" positionY="135" width="128" height="195"/>
         <element name="SurveyAnswerOption" positionX="0" positionY="153" width="128" height="90"/>

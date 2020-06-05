@@ -92,9 +92,9 @@ class TermsOfPlacementVC: UIViewController {
         printEngine = PrintEngine()
 
         let pdfName = Utils.getPDFFileName()
-        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName) ?? ""
+        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfName) ?? ""
 
-        let signaturePath = CommData.getFilePathAppended(byCacheDir: signatureImageName) ?? ""
+        let signaturePath = CommData.getFilePathAppended(byDocumentDir: signatureImageName) ?? ""
         printEngine.prepareTermsPrint(filePath: signaturePath, name: agreedByName, customerDetail: self.customerDetail, equipment: self.equipment!)
         printEngine.isForOnePage = false
         printEngine.createPDF(webView: webView, isDuplicated: false, path: pdfPath, type: kTermsPrint, shouldShowHUD: true) { (success) in
@@ -195,7 +195,7 @@ class TermsOfPlacementVC: UIViewController {
         let signatureVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "SignatureVC") as! SignatureVC
         signatureVC.setDefaultModalPresentationStyle()
         signatureVC.dismissHandler = {signatureImage in
-            let imagePath = CommData.getFilePathAppended(byCacheDir: kSignatureFileName) ?? ""
+            let imagePath = CommData.getFilePathAppended(byDocumentDir: kSignatureFileName) ?? ""
             UIImage.saveImageToLocal(image: signatureImage, filePath: imagePath)
             self.signatureImageName = kSignatureFileName
         }

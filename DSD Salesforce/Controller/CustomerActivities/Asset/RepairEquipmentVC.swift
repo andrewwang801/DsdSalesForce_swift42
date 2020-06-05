@@ -195,7 +195,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     func processSaveImage(image: UIImage) {
         let now = Date()
         let photoName = "\(now.getTimestamp()).jpg"
-        let photoPath = CommData.getFilePathAppended(byCacheDir: photoName) ?? ""
+        let photoPath = CommData.getFilePathAppended(byDocumentDir: photoName) ?? ""
         UIImage.saveImageToLocal(image: image, filePath: photoPath)
         self.photoPath = photoPath
     }

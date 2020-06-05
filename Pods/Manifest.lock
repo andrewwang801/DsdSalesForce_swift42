@@ -79,6 +79,7 @@ PODS:
     - SDWebImage/Core (= 4.3.0)
   - SDWebImage/Core (4.3.0)
   - SSZipArchive (2.1.1)
+  - SwiftGifOrigin (1.7.0)
   - TTTAttributedLabel (2.0.0)
   - TYAttributedLabel (2.6.6)
   - XLPagerTabStrip (8.1.1)
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - RSBarcodes_Swift (~> 4.2.1)
   - SDWebImage
   - SSZipArchive
+  - SwiftGifOrigin (~> 1.7.0)
   - TTTAttributedLabel
   - TYAttributedLabel (~> 2.6.2)
   - XLPagerTabStrip (~> 8.1)
@@ -137,6 +139,7 @@ SPEC REPOS:
     - RSBarcodes_Swift
     - SDWebImage
     - SSZipArchive
+    - SwiftGifOrigin
     - TTTAttributedLabel
     - TYAttributedLabel
     - XLPagerTabStrip
@@ -181,10 +184,11 @@ SPEC CHECKSUMS:
   RSBarcodes_Swift: c58d107e6d2149cc34a23f02828d400dbb708101
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   TYAttributedLabel: cb8fc910d97eb5224936d4f692a78e042af691b2
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
 
-PODFILE CHECKSUM: 1de819c35158b065c805d139d6604f5a5cffa2e4
+PODFILE CHECKSUM: ef06c08ad20ff3c70665f5bd1d2fbbc600fd606d
 
 COCOAPODS: 1.8.4

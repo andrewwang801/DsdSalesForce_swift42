@@ -295,7 +295,7 @@ class OrderHeader: NSManagedObject {
             let invoiceFileNameArray = invoiceUpload.components(separatedBy: ",")
             if invoiceFileNameArray.count == 2 {
                 // remove local file
-                let filePath = CommData.getFilePathAppended(byCacheDir: invoiceFileNameArray[0])
+                let filePath = CommData.getFilePathAppended(byDocumentDir: invoiceFileNameArray[0])
                 CommData.deleteFileIfExist(filePath)
                 self.invoiceUpload = ""
             }
@@ -304,7 +304,7 @@ class OrderHeader: NSManagedObject {
             let photoFileNameArray = photoUpload.components(separatedBy: ",")
             if photoFileNameArray.count == 2 {
                 // remove local file
-                let filePath = CommData.getFilePathAppended(byCacheDir: photoFileNameArray[0])
+                let filePath = CommData.getFilePathAppended(byDocumentDir: photoFileNameArray[0])
                 CommData.deleteFileIfExist(filePath)
                 self.photoUpload = ""
             }
@@ -313,7 +313,7 @@ class OrderHeader: NSManagedObject {
             let zipFileNameArray = zipUpload.components(separatedBy: ",")
             if zipFileNameArray.count == 2 {
                 // remove local file
-                let filePath = CommData.getFilePathAppended(byCacheDir: zipFileNameArray[0])
+                let filePath = CommData.getFilePathAppended(byDocumentDir: zipFileNameArray[0])
                 CommData.deleteFileIfExist(filePath)
                 self.zipUpload = ""
             }
@@ -322,7 +322,7 @@ class OrderHeader: NSManagedObject {
             let invoiceRMAFileNameArray = invoiceUploadRMA.components(separatedBy: ",")
             if invoiceRMAFileNameArray.count == 2 {
                 // remove local file
-                let filePath = CommData.getFilePathAppended(byCacheDir: invoiceRMAFileNameArray[0])
+                let filePath = CommData.getFilePathAppended(byDocumentDir: invoiceRMAFileNameArray[0])
                 CommData.deleteFileIfExist(filePath)
                 self.invoiceUploadRMA = ""
             }

@@ -90,7 +90,7 @@ class UARPayment: NSManagedObject {
             dic["TrxnType"] = "INV"
         }
         else {
-            dic["TrxnType"] = "CRN"
+            dic["TrxnType"] = "PAY"
         }
         dic["TrxnAmount"] = trxnAmount
         dic["InvROAAmt"] = trxnAmount

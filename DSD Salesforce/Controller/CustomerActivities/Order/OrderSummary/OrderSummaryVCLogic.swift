@@ -77,6 +77,41 @@ extension OrderSummaryVC  {
             hasPickup = true
         }
         
+        globalInfo.orderHeader = orderVC.orderHeader
+        let presoldOrHeader = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
+        var docNo = ""
+        let orderNo = presoldOrHeader?.orderNo ?? ""
+
+        if pdfFileName == "" {
+            let invoiceNum = globalInfo.routeControl?.invoiceNum ?? ""
+            if invoiceNum == "" {
+                if orderNo.length > 3 {
+                    docNo = orderNo
+                }
+                else {
+                    docNo = Utils.getOrderNo()
+                }
+            }
+            else {
+                if presoldOrHeader != nil {
+                    let qty = presoldOrHeader?.nQty ?? 0
+                    docNo = Utils.getOrderNo(value: "\(qty)", format: invoiceNum)
+                }
+                else {
+                    docNo = Utils.getOrderNo()
+                }
+            }
+        }
+
+        if orderVC.originalOrderHeader == nil {
+            orderVC.orderHeader.orderNo = docNo
+        }
+
+        if ( orderVC.originalOrderHeader != nil && orderVC.originalOrderHeader?.orderName == "" ) {
+
+            orderVC.originalOrderHeader?.orderNo = docNo
+            orderVC.orderHeader.orderNo = docNo
+        }
 
     }
 
@@ -269,6 +304,15 @@ extension OrderSummaryVC  {
             distributorView.isUserInteractionEnabled = false
         }*/
         distributorButton.isHidden = true
+        
+        let tagNo = customerDetail.getCustomerTag()
+        if customerDetail.altCustNo != "" {
+            custNoLabel.text = customerDetail.altCustNo
+        }
+        else {
+            custNoLabel.text = tagNo
+        }
+        custNameLabel.text = customerDetail.getShortenedCustomerTitle()
     }
 
     func updatePriceLabels() {
@@ -329,7 +373,7 @@ extension OrderSummaryVC  {
         if photoUpload != "" {
             let filePathArray = photoUpload.components(separatedBy: ",")
             let photoName = String.getFilenameFromPath(filePath: filePathArray[0])
-            self.photoPath = CommData.getFilePathAppended(byCacheDir: photoName)
+            self.photoPath = CommData.getFilePathAppended(byDocumentDir: photoName)
         }
 
         let deliveryDate = Date.fromDateString(dateString: orderVC.orderHeader.deliveryDate, format: kTightJustDateFormat)
@@ -508,7 +552,7 @@ extension OrderSummaryVC  {
             tempARHeader.arTrxnType = "INV"
         }
         else {
-            tempARHeader.arTrxnType = "CRN"
+            tempARHeader.arTrxnType = "PAY"
         }
         tempARHeader.trxnAmount = Utils.getXMLMultipliedString(value: thisOrderAmount)
         arHeaderArray.append(tempARHeader)
@@ -582,6 +626,7 @@ extension OrderSummaryVC  {
             GlobalInfo.saveCache()
         }
         else {
+            totalSelectedAmount = (totalSelectedAmount * 100).rounded() / 100
             if totalSelectedAmount == realPayAmount {
                 // if it is full payment, mark paid to existing arHeaders
                 for arHeader in arHeaderArray {
@@ -597,7 +642,7 @@ extension OrderSummaryVC  {
                 // if it is partial payment,
                 let partialARHeader = ARHeader(context: globalInfo.managedObjectContext, forSave: true)
                 partialARHeader.updateBy(theSource: lastARHeader)
-                partialARHeader.arTrxnType = "CRN"
+                partialARHeader.arTrxnType = "PAY"
                 partialARHeader.trxnAmount = Utils.getXMLMultipliedString(value: realPayAmount * -1)
                 GlobalInfo.saveCache()
             }
@@ -806,9 +851,10 @@ extension OrderSummaryVC  {
         let pdfName = self.pdfFileName
         orderVC.orderHeader.docNo = pdfName.subString(startIndex: 0, length: pdfName.length-4)
 
-        let fmtFilePath = CommData.getFilePathAppended(byCacheDir: kReportsDirName + "/" + fmtFileName)
+        let fmtFilePath = CommData.getFilePathAppended(byDocumentDir: kReportsDirName + "/" + fmtFileName)
 
         globalInfo.orderHeader = orderVC.orderHeader
+        globalInfo.preInvoiceFmt = customerDetail.invoiceFmt
 
         if CommData.isExistingFile(atPath: fmtFilePath) == true {
             self.printEngine.preparePrint(customerDetail: self.customerDetail, printArray: orderDetailArray, nPayType: self.selectedPaybyOption.rawValue+1, previousInvoiceAmount: previousInvoices)
@@ -817,8 +863,8 @@ extension OrderSummaryVC  {
         globalInfo.pageHeightWhenZero = kInvoiceEmptyDataHeight
         self.printEngine.isForOnePage = true
 
-        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName) ?? ""
-        let pdfLocalPath = CommData.getFilePathAppended(byCacheDir: kPDFLocalDirName+"/"+pdfName) ?? ""
+        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfName) ?? ""
+        let pdfLocalPath = CommData.getFilePathAppended(byDocumentDir: kPDFLocalDirName+"/"+pdfName) ?? ""
 
         if pdfFormat == "1" {
             let showPrice = self.customerDetail.showPrice ?? "0"
@@ -904,7 +950,7 @@ extension OrderSummaryVC  {
          let pdfName = self.pdfRMAFileName
          orderVC.orderHeader.docNo = pdfName.subString(startIndex: 0, length: pdfName.length-4)
 
-         let fmtFilePath = CommData.getFilePathAppended(byCacheDir: kReportsDirName + "/" + fmtFileName)
+         let fmtFilePath = CommData.getFilePathAppended(byDocumentDir: kReportsDirName + "/" + fmtFileName)
 
          globalInfo.orderHeader = orderVC.orderHeader
 
@@ -915,8 +961,8 @@ extension OrderSummaryVC  {
          globalInfo.pageHeightWhenZero = kInvoiceEmptyDataHeight
          self.printEngine.isForOnePage = true
 
-         let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName) ?? ""
-         let pdfLocalPath = CommData.getFilePathAppended(byCacheDir: kPDFLocalDirName+"/"+pdfName) ?? ""
+         let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfName) ?? ""
+         let pdfLocalPath = CommData.getFilePathAppended(byDocumentDir: kPDFLocalDirName+"/"+pdfName) ?? ""
 
          if pdfFormat == "1" {
              let showPrice = self.customerDetail.showPrice ?? "0"
@@ -1502,14 +1548,18 @@ extension OrderSummaryVC  {
 
         let customerName = customerDetail.name ?? ""
         let name = nameText.text ?? ""
-        if name.isEmpty == true {
-            Utils.showAlert(vc: self, title: customerName, message: L10n.captureBoth(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
-            return false
-        }
+        
+        // Liang 2020/5/28 SF85
+        if customerDetail.signature != "N" {
+            if name.isEmpty == true {
+                Utils.showAlert(vc: self, title: customerName, message: L10n.captureBoth(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                return false
+            }
 
-        if self.signatureImageName == "" {
-            Utils.showAlert(vc: self, title: customerName, message: L10n.captureBoth(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
-            return false
+            if self.signatureImageName == "" {
+                Utils.showAlert(vc: self, title: customerName, message: L10n.captureBoth(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                return false
+            }
         }
 
         let payType = customerDetail.getSummaryType()
@@ -1562,7 +1612,9 @@ extension OrderSummaryVC  {
                 
                 var pdfFileNameNo = Int64(subStr) ?? 0
                 if pdfFileNameNo != 0 {
-                    pdfFileNameNo += 1
+                    if hasSales && hasPickup {
+                        pdfFileNameNo += 1
+                    }
                     pdfRMAFileName = String(pdfFileNameNo)
                     pdfRMAFileName += ".pdf"
                 }
@@ -1599,7 +1651,7 @@ extension OrderSummaryVC  {
         orderVC.orderHeader.specialInstruments = notesTextView.text
 
         if self.signatureImageName != "" {
-            orderVC.orderHeader.signatureFilePath = CommData.getFilePathAppended(byCacheDir: self.signatureImageName)
+            orderVC.orderHeader.signatureFilePath = CommData.getFilePathAppended(byDocumentDir: self.signatureImageName)
         }
         else {
             orderVC.orderHeader.signatureFilePath = ""
@@ -1639,15 +1691,15 @@ extension OrderSummaryVC  {
             docNo = pdfName
         }
 
-        if orderVC.originalOrderHeader == nil {
-            orderVC.orderHeader.orderNo = docNo
-        }
-
-        if ( orderVC.originalOrderHeader != nil && orderVC.originalOrderHeader?.orderName == "" ) {
-            
-            orderVC.originalOrderHeader?.orderNo = docNo
-            orderVC.orderHeader.orderNo = docNo
-        }
+//        if orderVC.originalOrderHeader == nil {
+//            orderVC.orderHeader.orderNo = docNo
+//        }
+//
+//        if ( orderVC.originalOrderHeader != nil && orderVC.originalOrderHeader?.orderName == "" ) {
+//
+//            orderVC.originalOrderHeader?.orderNo = docNo
+//            orderVC.orderHeader.orderNo = docNo
+//        }
         
         let presoldOrHeader = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
 
@@ -1998,7 +2050,9 @@ extension OrderSummaryVC  {
        order.pallTrxnNo = ""
        order.ticketType = ""
        order.orderContact = nameText.text ?? ""
-
+        let descType = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "RouteNumber", numericKey: globalInfo.routeControl?.trip ?? "")
+        order.user1 = descType?.value2 ?? ""
+    
        for _orderDetail in orderVC.orderDetailSetArray[1] {
            let detail = _orderDetail as! OrderDetail
            let orderDetail = UOrderDetail()

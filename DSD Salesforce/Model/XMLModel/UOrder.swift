@@ -230,7 +230,7 @@ class UOrder: NSObject {
 
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "Orders\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
 
         CommData.deleteFileIfExist(filePath)
         let fileURL = URL(fileURLWithPath: filePath)

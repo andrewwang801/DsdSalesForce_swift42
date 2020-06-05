@@ -109,6 +109,23 @@ public class CustomerDetail: NSManagedObject {
         return nil
     }
     
+    static func getBy(context: NSManagedObjectContext, chainNo: String, custNo: String, isCompleted: Bool) -> CustomerDetail? {
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
+        let predicate1 = NSPredicate(format: "chainNo=%@", chainNo)
+        let predicate2 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate3 = NSPredicate(format: "isCompleted=false")
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3])
+        request.fetchLimit = 1
+
+        let result = try? context.fetch(request) as? [CustomerDetail]
+
+        if let result = result, let customerDetails = result {
+            return customerDetails.first
+        }
+        return nil
+    }
+    
     static func getBy(context: NSManagedObjectContext, dayNo: String, chainNo: String, custNo: String) -> CustomerDetail? {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
@@ -409,6 +426,7 @@ public class CustomerDetail: NSManagedObject {
         ///SF71 2020-3-27
         self.minimumPayment = xmlDictionary["MinimumPayment"] ?? "0.0"
         self.invoiceFmt = xmlDictionary["InvoiceFmt"] ?? ""
+        self.signature = xmlDictionary["Signature"] ?? ""
     }
 
     func updateByRouteSchedule(xmlDictionary: [String: String]) {
@@ -512,6 +530,7 @@ public class CustomerDetail: NSManagedObject {
         ///SF71 2020-3-27
         self.minimumPayment = theSource.minimumPayment
         self.invoiceFmt = theSource.invoiceFmt
+        self.signature = theSource.signature
     }
     
     func updateByAfter(theSource: CustomerDetail) {
@@ -584,6 +603,7 @@ public class CustomerDetail: NSManagedObject {
         ///SF71 2020-3-27
         self.minimumPayment = theSource.minimumPayment
         self.invoiceFmt = theSource.invoiceFmt
+        self.signature = theSource.signature
     }
 
     func fillSurveys(context: NSManagedObjectContext, surveyArray: [Survey]) {
@@ -739,6 +759,23 @@ public class CustomerDetail: NSManagedObject {
         let shipToZip = self.shipToZip ?? ""
         if shipToZip.isEmpty == false {
             itemArray.append(shipToZip)
+        }
+
+        return itemArray.joined(separator: ", ")
+    }
+    
+    
+    func getShortenedCustomerTitle() -> String {
+        
+        var itemArray = [String]()
+        let name = self.name ?? ""
+        if name.isEmpty == false {
+            itemArray.append(name)
+        }
+
+        let city = self.city ?? ""
+        if city.isEmpty == false {
+            itemArray.append(city)
         }
 
         return itemArray.joined(separator: ", ")
@@ -911,6 +948,9 @@ extension CustomerDetail {
     ///SF71, 2020-3-27
     @NSManaged public var minimumPayment: String
     @NSManaged public var invoiceFmt: String
+    
+    /// SF85
+    @NSManaged public var signature: String?
 }
 
 extension CustomerDetail {

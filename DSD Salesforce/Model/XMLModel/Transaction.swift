@@ -113,7 +113,7 @@ class UTransaction: NSObject {
         }
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "Transactions\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
 
         var newTransactionArray = transactionArray
         if shouldIncludeLog == true {

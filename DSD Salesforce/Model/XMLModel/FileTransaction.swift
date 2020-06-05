@@ -124,7 +124,7 @@ class FileTransaction: NSObject {
         }
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "Files\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
         saveToXML(fileTransactionArray: fileTransactionArray, filePath: filePath)
         return filePath
     }

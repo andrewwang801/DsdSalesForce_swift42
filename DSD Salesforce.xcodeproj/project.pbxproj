@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0980CB246EF7DF00070125 /* OrderStripeDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0980CA246EF7DF00070125 /* OrderStripeDetailsVC.swift */; };
 		0F125824241C38C600E8F303 /* DropDownDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F125823241C38C600E8F303 /* DropDownDialogVC.swift */; };
+		0F1AF8E52471EC0900AF7991 /* redirectToCheckout.html in Sources */ = {isa = PBXBuildFile; fileRef = 0F1AF8E42471EC0900AF7991 /* redirectToCheckout.html */; };
+		0F1AF8E72471F34500AF7991 /* redirectToCheckout.html in Resources */ = {isa = PBXBuildFile; fileRef = 0F1AF8E42471EC0900AF7991 /* redirectToCheckout.html */; };
 		0F81381123F3151200237D9E /* titleProductCatalogProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */; };
 		0F9A7CB923EC0B280079AF24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */; };
 		0FA7A221243CECF5004B0D22 /* AddOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7A220243CECF5004B0D22 /* AddOrderVC.swift */; };
@@ -598,7 +601,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F0980CA246EF7DF00070125 /* OrderStripeDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStripeDetailsVC.swift; sourceTree = "<group>"; };
 		0F125823241C38C600E8F303 /* DropDownDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDialogVC.swift; sourceTree = "<group>"; };
+		0F1AF8E42471EC0900AF7991 /* redirectToCheckout.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = redirectToCheckout.html; sourceTree = "<group>"; };
 		0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleProductCatalogProductCell.swift; sourceTree = "<group>"; };
 		0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0FA7A220243CECF5004B0D22 /* AddOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrderVC.swift; sourceTree = "<group>"; };
@@ -1458,6 +1463,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0980C9246EF79E00070125 /* OrderStripeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0F0980CA246EF7DF00070125 /* OrderStripeDetailsVC.swift */,
+			);
+			path = OrderStripeDetails;
+			sourceTree = "<group>";
+		};
 		0FAE810F23E36B5A00AC4842 /* MarginCalculator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1624,6 +1637,7 @@
 			children = (
 				64AB420C2220F0220098AC41 /* Report */,
 				648DEE0520EB660A00686609 /* roboto */,
+				0F1AF8E42471EC0900AF7991 /* redirectToCheckout.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2012,6 +2026,7 @@
 		644E6F6920F75BA300ED037B /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				0F0980C9246EF79E00070125 /* OrderStripeDetails */,
 				0FAE810F23E36B5A00AC4842 /* MarginCalculator */,
 				645FFD6922B8E23500BEB832 /* OrderReview */,
 				640ECCC1229E2B7A00ED74C3 /* OrderEWayDetails */,
@@ -4187,6 +4202,7 @@
 				648DEE2520EB660A00686609 /* Roboto-Regular.ttf in Resources */,
 				648DEE1E20EB660A00686609 /* Roboto-Bold.ttf in Resources */,
 				648DEE1C20EB660A00686609 /* Roboto-Black.ttf in Resources */,
+				0F1AF8E72471F34500AF7991 /* redirectToCheckout.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4441,6 +4457,7 @@
 				645457282101139500368E51 /* _CDOpenGraphModel.m in Sources */,
 				6454577F2101139600368E51 /* QMCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				645FFD6C22B8E23500BEB832 /* OrderReviewOrderCell.swift in Sources */,
+				0F0980CB246EF7DF00070125 /* OrderStripeDetailsVC.swift in Sources */,
 				64F63389211D6C61008F114C /* EquipAss+CoreDataClass.swift in Sources */,
 				64CE78FE21DE975D00A614BC /* RoutificErrorResponse.swift in Sources */,
 				6410C67920EB57BB00B52129 /* CommData.m in Sources */,
@@ -4544,6 +4561,7 @@
 				6427A5AC2143609000944F90 /* OrderChequeDetailsVC.swift in Sources */,
 				641F3EE6215393FD0071A2C2 /* ReorderController.swift in Sources */,
 				64A0DBE221CEC7DD008F1766 /* ComboCell.swift in Sources */,
+				0F1AF8E52471EC0900AF7991 /* redirectToCheckout.html in Sources */,
 				6410C64B20EB550400B52129 /* SplashVC.swift in Sources */,
 				648F17D9211567B100B1C7C2 /* SurveyPercentQuestionCell.swift in Sources */,
 				640ECCC3229E2B7B00ED74C3 /* OrderEWayDetailsVC.swift in Sources */,
@@ -5019,7 +5037,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 4.6;
+				MARKETING_VERSION = 5.14;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5113,7 +5131,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 4.6;
+				MARKETING_VERSION = 5.14;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

@@ -171,7 +171,7 @@ class TripSettlementVC: UIViewController {
                         isMenuCompleted = false
                     }
                     else {
-                        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName)
+                        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfName)
                         if CommData.isExistingFile(atPath: pdfPath) {
                             isMenuCompleted = true
                         }
@@ -208,7 +208,7 @@ class TripSettlementVC: UIViewController {
                         menuArray[index].isMenuCompleted = false
                     }
                     else {
-                        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName)
+                        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfName)
                         if CommData.isExistingFile(atPath: pdfPath) {
                             menuArray[index].isMenuCompleted = true
                         }

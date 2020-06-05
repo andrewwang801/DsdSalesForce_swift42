@@ -331,7 +331,7 @@ class DistributionCheckVC: UIViewController {
         }
         let shelfAudit = ShelfAudit.make(chainNo: customerDetail.chainNo ?? "", custNo: customerDetail.custNo ?? "", docType: "SHF", date: now, reference: "", shelfStatusArray: shelfStatusArray)
 
-        let shelfAuditPath = CommData.getFilePathAppended(byCacheDir: "ShelfAudits\(nowString).upl") ?? ""
+        let shelfAuditPath = CommData.getFilePathAppended(byDocumentDir: "ShelfAudits\(nowString).upl") ?? ""
         ShelfAudit.saveToXML(auditArray: [shelfAudit], filePath: shelfAuditPath)
 
         let transactionPath = UTransaction.saveToXML(transactionArray: [shelfStatusTransaction, gpsLogTransaction], shouldIncludeLog: true)

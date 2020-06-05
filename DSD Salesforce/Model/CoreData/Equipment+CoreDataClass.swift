@@ -105,7 +105,7 @@ public class Equipment: NSManagedObject {
 
     func getEquipmentImagePath() -> String {
         let itemName = self.model ?? ""
-        let catalogPath = CommData.getFilePathAppended(byCacheDir: kEquipmentCatalogDirName) ?? ""
+        let catalogPath = CommData.getFilePathAppended(byDocumentDir: kEquipmentCatalogDirName) ?? ""
         let itemImagePath = catalogPath+"/"+itemName+".jpg"
         return itemImagePath
     }

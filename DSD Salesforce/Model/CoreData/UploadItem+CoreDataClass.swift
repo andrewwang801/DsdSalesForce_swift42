@@ -46,7 +46,7 @@ public class UploadItem: NSManagedObject {
     }
 
     static func delete(context: NSManagedObjectContext, uploadItem: UploadItem) {
-        let localPath = CommData.getFilePathAppended(byCacheDir: uploadItem.localName ?? "") ?? ""
+        let localPath = CommData.getFilePathAppended(byDocumentDir: uploadItem.localName ?? "") ?? ""
         CommData.deleteFileIfExist(localPath)
         context.delete(uploadItem)
     }

@@ -492,7 +492,7 @@ class NewCustomerVC: UIViewController {
         customerFM.deliveryWindowFrom = customerDetail!.startTime1 ?? ""
         customerFM.deliveryWindowTo = customerDetail!.endTime1 ?? ""
 
-        let customerFMPath = CommData.getFilePathAppended(byCacheDir: "CustomerFM\(nowString).upl") ?? ""
+        let customerFMPath = CommData.getFilePathAppended(byDocumentDir: "CustomerFM\(nowString).upl") ?? ""
         CustomerFM.saveToXML(customerFMArray: [customerFM], filePath: customerFMPath)
 
         // make a transaction structure
