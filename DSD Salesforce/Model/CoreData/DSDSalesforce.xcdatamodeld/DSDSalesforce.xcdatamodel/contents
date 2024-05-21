@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A583" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ARHeader" representedClassName=".ARHeader" syncable="YES">
+        <attribute name="arTrxnType" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="invDate" optional="YES" attributeType="String"/>
+        <attribute name="invNo" optional="YES" attributeType="String"/>
+        <attribute name="nProcessStatus" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="trxnAmount" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="AuthDetail" representedClassName=".AuthDetail" syncable="YES">
+        <attribute name="authGrp" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="AuthHeader" representedClassName=".AuthHeader" syncable="YES">
+        <attribute name="authGrp" optional="YES" attributeType="String"/>
+        <attribute name="authType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CompanyContact" representedClassName=".CompanyContact" syncable="YES">
+        <attribute name="companyEmail" optional="YES" attributeType="String"/>
+        <attribute name="companyInfo" optional="YES" attributeType="String"/>
+        <attribute name="companyName" optional="YES" attributeType="String"/>
+        <attribute name="companyNumber" optional="YES" attributeType="String"/>
+        <attribute name="companyPhone1" optional="YES" attributeType="String"/>
+        <attribute name="companyPhone2" optional="YES" attributeType="String"/>
+        <attribute name="companyWeb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CustInfo" representedClassName=".CustInfo" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="infoType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CustNote" representedClassName=".CustNote" syncable="YES">
+        <attribute name="attachment" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="createdby" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="fileNames" optional="YES" attributeType="String"/>
+        <attribute name="fileTypes" optional="YES" attributeType="String"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="noteDate" optional="YES" attributeType="String"/>
+        <attribute name="noteId" optional="YES" attributeType="String"/>
+        <attribute name="noteTime" optional="YES" attributeType="String"/>
+        <attribute name="noteType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CustomerContact" representedClassName=".CustomerContact" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="contactEmailAddress" optional="YES" attributeType="String"/>
+        <attribute name="contactInfo" optional="YES" attributeType="String"/>
+        <attribute name="contactName" optional="YES" attributeType="String"/>
+        <attribute name="contactPhoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="contactType" optional="YES" attributeType="String"/>
+        <attribute name="contactTypeDesc" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CustomerDetail" representedClassName=".CustomerDetail" syncable="YES">
+        <attribute name="address1" optional="YES" attributeType="String"/>
+        <attribute name="address2" optional="YES" attributeType="String"/>
+        <attribute name="altCustNo" optional="YES" attributeType="String"/>
+        <attribute name="arrivalTime" optional="YES" attributeType="String"/>
+        <attribute name="authGrp" optional="YES" attributeType="String"/>
+        <attribute name="billName" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="companyTaxID" optional="YES" attributeType="String"/>
+        <attribute name="creditHold" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="custPriceMaintFlag" optional="YES" attributeType="String"/>
+        <attribute name="dayNo" optional="YES" attributeType="String"/>
+        <attribute name="deliveryDate" optional="YES" attributeType="String"/>
+        <attribute name="delivFreq" optional="YES" attributeType="String"/>
+        <attribute name="driverLatitude" optional="YES" attributeType="String"/>
+        <attribute name="driverLongitude" optional="YES" attributeType="String"/>
+        <attribute name="endTime1" optional="YES" attributeType="String"/>
+        <attribute name="endTime2" optional="YES" attributeType="String"/>
+        <attribute name="featGrp" optional="YES" attributeType="String"/>
+        <attribute name="googlePlaceID" optional="YES" attributeType="String"/>
+        <attribute name="isAssetRequested" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isAssetsChecked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isCustomerUpdated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFromSameNextVisit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isOrderCreated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRangeChecked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isRouteScheduled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSurveyCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isVisitPlanned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nextVisitDate" optional="YES" attributeType="String"/>
+        <attribute name="orderNo" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="orderType" optional="YES" attributeType="String"/>
+        <attribute name="orgSeqNo" optional="YES" attributeType="String"/>
+        <attribute name="payType" optional="YES" attributeType="String"/>
+        <attribute name="periodNo" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="priceGrp" optional="YES" attributeType="String"/>
+        <attribute name="printType" optional="YES" attributeType="String"/>
+        <attribute name="promoPlan" optional="YES" attributeType="String"/>
+        <attribute name="routeNo" optional="YES" attributeType="String"/>
+        <attribute name="routeNumber" optional="YES" attributeType="String"/>
+        <attribute name="salEntryMode" optional="YES" attributeType="String"/>
+        <attribute name="salesDistrict" optional="YES" attributeType="String"/>
+        <attribute name="seqNo" optional="YES" attributeType="String"/>
+        <attribute name="shipToState" optional="YES" attributeType="String"/>
+        <attribute name="shipToZip" optional="YES" attributeType="String"/>
+        <attribute name="showPrice" optional="YES" attributeType="String"/>
+        <attribute name="startTime1" optional="YES" attributeType="String"/>
+        <attribute name="startTime2" optional="YES" attributeType="String"/>
+        <attribute name="storeNo" optional="YES" attributeType="String"/>
+        <attribute name="taxCode" optional="YES" attributeType="String"/>
+        <attribute name="tempGrp" optional="YES" attributeType="String"/>
+        <attribute name="terms" optional="YES" attributeType="String"/>
+        <attribute name="tripNumber" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="visitEndDate" optional="YES" attributeType="String"/>
+        <attribute name="visitNote" optional="YES" attributeType="String"/>
+        <attribute name="visitReason" optional="YES" attributeType="String"/>
+        <attribute name="visitStartDate" optional="YES" attributeType="String"/>
+        <attribute name="zip" optional="YES" attributeType="String"/>
+        <relationship name="surveys" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Survey" inverseName="customerDetail" inverseEntity="Survey"/>
+    </entity>
+    <entity name="DescType" representedClassName=".DescType" syncable="YES">
+        <attribute name="alphaKey" optional="YES" attributeType="String"/>
+        <attribute name="alternateSeq" optional="YES" attributeType="String"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="descriptionEntryKey" optional="YES" attributeType="String"/>
+        <attribute name="descriptionTypeID" optional="YES" attributeType="String"/>
+        <attribute name="numericCodeYN" optional="YES" attributeType="String"/>
+        <attribute name="numericKey" optional="YES" attributeType="String"/>
+        <attribute name="systemDescriptionTypeYN" optional="YES" attributeType="String"/>
+        <attribute name="value1" optional="YES" attributeType="String"/>
+        <attribute name="value2" optional="YES" attributeType="String"/>
+        <attribute name="value3" optional="YES" attributeType="String"/>
+        <attribute name="value4" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="DocText" representedClassName=".DocText" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="docText" optional="YES" attributeType="String"/>
+        <attribute name="line" optional="YES" attributeType="String"/>
+        <attribute name="subType" optional="YES" attributeType="String"/>
+        <attribute name="textType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="EquipAss" representedClassName=".EquipAss" syncable="YES">
+        <attribute name="agreementDate" optional="YES" attributeType="String"/>
+        <attribute name="agreementNo" optional="YES" attributeType="String"/>
+        <attribute name="billFreq" optional="YES" attributeType="String"/>
+        <attribute name="billType" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="equipmentNo" optional="YES" attributeType="String"/>
+        <attribute name="features" optional="YES" attributeType="String"/>
+        <attribute name="installed" optional="YES" attributeType="String"/>
+        <attribute name="oldEquipmentNo" optional="YES" attributeType="String"/>
+        <attribute name="oldEquipmentType" optional="YES" attributeType="String"/>
+        <attribute name="ownership" optional="YES" attributeType="String"/>
+        <attribute name="payRentAmt" optional="YES" attributeType="String"/>
+        <attribute name="repairImage" optional="YES" attributeType="String"/>
+        <attribute name="repairNotes" optional="YES" attributeType="String"/>
+        <attribute name="repairReason" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="verified" optional="YES" attributeType="String"/>
+        <attribute name="verifyFlag" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="EquipCompleteStatus" representedClassName=".EquipCompleteStatus" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Equipment" representedClassName=".Equipment" syncable="YES">
+        <attribute name="altEquipment" optional="YES" attributeType="String"/>
+        <attribute name="application" optional="YES" attributeType="String"/>
+        <attribute name="assetType" optional="YES" attributeType="String"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="dollarCapacity" optional="YES" attributeType="String"/>
+        <attribute name="equipmentNo" optional="YES" attributeType="String"/>
+        <attribute name="equipmentType" optional="YES" attributeType="String"/>
+        <attribute name="lastRepair" optional="YES" attributeType="String"/>
+        <attribute name="make" optional="YES" attributeType="String"/>
+        <attribute name="model" optional="YES" attributeType="String"/>
+        <attribute name="newPlacementDocPath" optional="YES" attributeType="String"/>
+        <attribute name="serialNo" optional="YES" attributeType="String"/>
+        <attribute name="statusCode" optional="YES" attributeType="String"/>
+        <attribute name="totalRent" optional="YES" attributeType="String"/>
+        <attribute name="totalSales" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="KPI" representedClassName=".KPI" syncable="YES">
+        <attribute name="metricDay" optional="YES" attributeType="String"/>
+        <attribute name="metricKey" optional="YES" attributeType="String"/>
+        <attribute name="metricValue" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="OrderDetail" representedClassName=".OrderDetail" syncable="YES">
+        <attribute name="basePrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="creditCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="deliveryCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="enterQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isFromAuthDetail" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFromOrderHistoryItem" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFromPresoldOrDetail" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSaved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="lastOrder" optional="YES" attributeType="String"/>
+        <attribute name="locnNo" optional="YES" attributeType="String"/>
+        <attribute name="planQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="reasonCode" optional="YES" attributeType="String"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnType" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="promotions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="UPromotion"/>
+        <relationship name="tax" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UTax"/>
+    </entity>
+    <entity name="OrderHeader" representedClassName=".OrderHeader" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="dayNo" optional="YES" attributeType="String"/>
+        <attribute name="dDiscSales" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="deliveryDate" optional="YES" attributeType="String"/>
+        <attribute name="distributor" optional="YES" attributeType="String"/>
+        <attribute name="dMaxAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="docNo" optional="YES" attributeType="String"/>
+        <attribute name="dPromotionAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dSaleAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dTaxAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dTotalAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dTotalBuybacks" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dTotalDumps" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dTotalFree" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fulfilby" optional="YES" attributeType="String"/>
+        <attribute name="invoiceUpload" optional="YES" attributeType="String"/>
+        <attribute name="isCentsRound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isPostponed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isPrinted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSaved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isUploaded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="orderName" optional="YES" attributeType="String"/>
+        <attribute name="orderNo" optional="YES" attributeType="String"/>
+        <attribute name="orderType" optional="YES" attributeType="String"/>
+        <attribute name="periodNo" optional="YES" attributeType="String"/>
+        <attribute name="photoUpload" optional="YES" attributeType="String"/>
+        <attribute name="pickupAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="poReference" optional="YES" attributeType="String"/>
+        <attribute name="presoldChgd" optional="YES" attributeType="String"/>
+        <attribute name="printedFlag" optional="YES" attributeType="String"/>
+        <attribute name="promotionAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="realPayment" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="saleAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="signatureFilePath" optional="YES" attributeType="String"/>
+        <attribute name="specialInstruments" optional="YES" attributeType="String"/>
+        <attribute name="taxAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalBuyback" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalDump" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalFree" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalSale" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalSamples" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="trxnDate" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnTime" optional="YES" attributeType="String"/>
+        <attribute name="user1" optional="YES" attributeType="String"/>
+        <attribute name="user2" optional="YES" attributeType="String"/>
+        <attribute name="voidFlag" optional="YES" attributeType="String"/>
+        <attribute name="zipUpload" optional="YES" attributeType="String"/>
+        <relationship name="arHeader" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ARHeader"/>
+        <relationship name="deliverys" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="OrderDetail"/>
+        <relationship name="pickups" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="OrderDetail"/>
+        <relationship name="samples" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="OrderDetail"/>
+        <relationship name="uar" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UAR"/>
+    </entity>
+    <entity name="OrderHistory" representedClassName=".OrderHistory" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="date1" optional="YES" attributeType="String"/>
+        <attribute name="date2" optional="YES" attributeType="String"/>
+        <attribute name="date3" optional="YES" attributeType="String"/>
+        <attribute name="date4" optional="YES" attributeType="String"/>
+        <attribute name="date5" optional="YES" attributeType="String"/>
+        <attribute name="date6" optional="YES" attributeType="String"/>
+        <attribute name="duQty1" optional="YES" attributeType="String"/>
+        <attribute name="duQty2" optional="YES" attributeType="String"/>
+        <attribute name="duQty3" optional="YES" attributeType="String"/>
+        <attribute name="duQty4" optional="YES" attributeType="String"/>
+        <attribute name="duQty5" optional="YES" attributeType="String"/>
+        <attribute name="duQty6" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="saQty1" optional="YES" attributeType="String"/>
+        <attribute name="saQty2" optional="YES" attributeType="String"/>
+        <attribute name="saQty3" optional="YES" attributeType="String"/>
+        <attribute name="saQty4" optional="YES" attributeType="String"/>
+        <attribute name="saQty5" optional="YES" attributeType="String"/>
+        <attribute name="saQty6" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PresoldOrDetail" representedClassName=".PresoldOrDetail" syncable="YES">
+        <attribute name="detailFile" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="longDesc" optional="YES" attributeType="String"/>
+        <attribute name="orderQty" optional="YES" attributeType="String"/>
+        <attribute name="pickLocationCode" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="qtyOption" optional="YES" attributeType="String"/>
+        <attribute name="reasonCode" optional="YES" attributeType="String"/>
+        <attribute name="requestedQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String"/>
+        <attribute name="suggestedQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="trxnType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PresoldOrHeader" representedClassName=".PresoldOrHeader" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="credRef" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="dayNo" optional="YES" attributeType="String"/>
+        <attribute name="deliveryDate" optional="YES" attributeType="String"/>
+        <attribute name="deliverySequence" optional="YES" attributeType="String"/>
+        <attribute name="detailFile" optional="YES" attributeType="String"/>
+        <attribute name="distr" optional="YES" attributeType="String"/>
+        <attribute name="dsd" optional="YES" attributeType="String"/>
+        <attribute name="instrs" optional="YES" attributeType="String"/>
+        <attribute name="isVisited" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="modifiable" optional="YES" attributeType="String"/>
+        <attribute name="nQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="orderBarcode" optional="YES" attributeType="String"/>
+        <attribute name="orderNo" optional="YES" attributeType="String"/>
+        <attribute name="periodNo" optional="YES" attributeType="String"/>
+        <attribute name="poRef" optional="YES" attributeType="String"/>
+        <attribute name="routeNumber" optional="YES" attributeType="String"/>
+        <attribute name="tripNumber" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="user1" optional="YES" attributeType="String"/>
+        <attribute name="user2" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PriceGroup" representedClassName=".PriceGroup" syncable="YES">
+        <attribute name="dateEnd" optional="YES" attributeType="String"/>
+        <attribute name="dateStart" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="prcFilRecord" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="priceGrp" optional="YES" attributeType="String"/>
+        <attribute name="priceType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Pricing" representedClassName=".Pricing" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="dateEnd" optional="YES" attributeType="String"/>
+        <attribute name="dateStart" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="prcFilRecord" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="priceType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProductDetail" representedClassName=".ProductDetail" syncable="YES">
+        <attribute name="altItemNo" optional="YES" attributeType="String"/>
+        <attribute name="brand" optional="YES" attributeType="String"/>
+        <attribute name="consumerUnit" optional="YES" attributeType="String"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="desc1" optional="YES" attributeType="String"/>
+        <attribute name="desc2" optional="YES" attributeType="String"/>
+        <attribute name="desc3" optional="YES" attributeType="String"/>
+        <attribute name="desc4" optional="YES" attributeType="String"/>
+        <attribute name="desc5" optional="YES" attributeType="String"/>
+        <attribute name="desc6" optional="YES" attributeType="String"/>
+        <attribute name="discountValue" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dumpsAllowed" optional="YES" attributeType="String"/>
+        <attribute name="group1" optional="YES" attributeType="String"/>
+        <attribute name="group2" optional="YES" attributeType="String"/>
+        <attribute name="groupFilterKey" optional="YES" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="inactive" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="itemNoCompl" optional="YES" attributeType="String"/>
+        <attribute name="itemType" optional="YES" attributeType="String"/>
+        <attribute name="itemUPC" optional="YES" attributeType="String"/>
+        <attribute name="itemUPC20" optional="YES" attributeType="String"/>
+        <attribute name="marketGrp" optional="YES" attributeType="String"/>
+        <attribute name="packSize" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="priceConsol" optional="YES" attributeType="String"/>
+        <attribute name="prodGrp" optional="YES" attributeType="String"/>
+        <attribute name="prodLine" optional="YES" attributeType="String"/>
+        <attribute name="salesAllowed" optional="YES" attributeType="String"/>
+        <attribute name="serviceFee" optional="YES" attributeType="String"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String"/>
+        <attribute name="subBrand" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="productLevl" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductLevl"/>
+        <relationship name="productLocn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductLocn"/>
+    </entity>
+    <entity name="ProductLevl" representedClassName=".ProductLevl" syncable="YES">
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="locNo" optional="YES" attributeType="String"/>
+        <attribute name="qty" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProductLocn" representedClassName=".ProductLocn" syncable="YES">
+        <attribute name="basePrice" optional="YES" attributeType="String"/>
+        <attribute name="caseFactor" optional="YES" attributeType="String"/>
+        <attribute name="caseUOM" optional="YES" attributeType="String"/>
+        <attribute name="costPrice" optional="YES" attributeType="String"/>
+        <attribute name="custDiscountValid" optional="YES" attributeType="String"/>
+        <attribute name="discInLieuItem" optional="YES" attributeType="String"/>
+        <attribute name="driverPrice" optional="YES" attributeType="String"/>
+        <attribute name="fullCase" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="itemTaxCode" optional="YES" attributeType="String"/>
+        <attribute name="locnNo" optional="YES" attributeType="String"/>
+        <attribute name="minimumSalePrice" optional="YES" attributeType="String"/>
+        <attribute name="orderSeq" optional="YES" attributeType="String"/>
+        <attribute name="palletFactor" optional="YES" attributeType="String"/>
+        <attribute name="retailPrice" optional="YES" attributeType="String"/>
+        <attribute name="returnPrice" optional="YES" attributeType="String"/>
+        <attribute name="scwType" optional="YES" attributeType="String"/>
+        <attribute name="stackFactor" optional="YES" attributeType="String"/>
+        <attribute name="taxFlag" optional="YES" attributeType="String"/>
+        <attribute name="unitUOM" optional="YES" attributeType="String"/>
+        <attribute name="weightType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProductStruct" representedClassName=".ProductStruct" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="entryID" optional="YES" attributeType="String"/>
+        <attribute name="fullDesc" optional="YES" attributeType="String"/>
+        <attribute name="groupNo" optional="YES" attributeType="String"/>
+        <attribute name="objectType" optional="YES" attributeType="String"/>
+        <attribute name="parentID" optional="YES" attributeType="String"/>
+        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="shortDesc" optional="YES" attributeType="String"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="PromotionAss" representedClassName=".PromotionAss" syncable="YES">
+        <attribute name="assignNo" optional="YES" attributeType="String"/>
+        <attribute name="promoAppMethod" optional="YES" attributeType="String"/>
+        <attribute name="promoMethod" optional="YES" attributeType="String"/>
+        <attribute name="promoType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PromotionHeader" representedClassName=".PromotionHeader" syncable="YES">
+        <attribute name="assignNo" optional="YES" attributeType="String"/>
+        <attribute name="availableVal" optional="YES" attributeType="String"/>
+        <attribute name="dateEnd" optional="YES" attributeType="String"/>
+        <attribute name="dateStart" optional="YES" attributeType="String"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="overflowCtl" optional="YES" attributeType="String"/>
+        <attribute name="planNo" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PromotionNoVo" representedClassName=".PromotionNoVo" syncable="YES">
+        <attribute name="assignNo" optional="YES" attributeType="String"/>
+        <attribute name="freeItemNo" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="promoDiscount" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PromotionOption" representedClassName=".PromotionOption" syncable="YES">
+        <attribute name="antLift" optional="YES" attributeType="String"/>
+        <attribute name="assignDesc" optional="YES" attributeType="String"/>
+        <attribute name="assignNo" optional="YES" attributeType="String"/>
+        <attribute name="featurePrice" optional="YES" attributeType="String"/>
+        <attribute name="hostRefNo" optional="YES" attributeType="String"/>
+        <attribute name="igrDesc" optional="YES" attributeType="String"/>
+        <attribute name="inStoreFromDate" optional="YES" attributeType="String"/>
+        <attribute name="inStoreToDate" optional="YES" attributeType="String"/>
+        <attribute name="mandatory" optional="YES" attributeType="String"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="optionalDesc" optional="YES" attributeType="String"/>
+        <attribute name="planDesc" optional="YES" attributeType="String"/>
+        <attribute name="planNo" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProMulti" representedClassName=".ProMulti" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="dateEnd" optional="YES" attributeType="String"/>
+        <attribute name="dateStart" optional="YES" attributeType="String"/>
+        <attribute name="planNo" optional="YES" attributeType="String"/>
+        <attribute name="seqNo" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="RouteControl" representedClassName=".RouteControl" syncable="YES">
+        <attribute name="adjustAllow" optional="YES" attributeType="String"/>
+        <attribute name="cardProc" optional="YES" attributeType="String"/>
+        <attribute name="centsRound" optional="YES" attributeType="String"/>
+        <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="currencySymbol" optional="YES" attributeType="String"/>
+        <attribute name="defLocNo" optional="YES" attributeType="String"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="equipCheck" optional="YES" attributeType="String"/>
+        <attribute name="ewayAPI" optional="YES" attributeType="String"/>
+        <attribute name="ewaySystem" optional="YES" attributeType="String"/>
+        <attribute name="gpsPoll" optional="YES" attributeType="String"/>
+        <attribute name="inventoryUOM" optional="YES" attributeType="String"/>
+        <attribute name="invoiceNum" optional="YES" attributeType="String"/>
+        <attribute name="invoiceNumFormat" optional="YES" attributeType="String"/>
+        <attribute name="loconNoGPSLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="loconNoGPSLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="orderDayWindow" optional="YES" attributeType="String"/>
+        <attribute name="orderFulfil" optional="YES" attributeType="String"/>
+        <attribute name="paymentAdjust" optional="YES" attributeType="String"/>
+        <attribute name="primeContact" optional="YES" attributeType="String"/>
+        <attribute name="printType" optional="YES" attributeType="String"/>
+        <attribute name="profile" optional="YES" attributeType="String"/>
+        <attribute name="rapidAPIKey" optional="YES" attributeType="String"/>
+        <attribute name="rapidAPIPwd" optional="YES" attributeType="String"/>
+        <attribute name="routeNumber" optional="YES" attributeType="String"/>
+        <attribute name="routificAPI" optional="YES" attributeType="String"/>
+        <attribute name="security1" optional="YES" attributeType="String"/>
+        <attribute name="security2" optional="YES" attributeType="String"/>
+        <attribute name="security3" optional="YES" attributeType="String"/>
+        <attribute name="security4" optional="YES" attributeType="String"/>
+        <attribute name="security5" optional="YES" attributeType="String"/>
+        <attribute name="tempCustChain" optional="YES" attributeType="String"/>
+        <attribute name="tempCustPrefix" optional="YES" attributeType="String"/>
+        <attribute name="templateChain" optional="YES" attributeType="String"/>
+        <attribute name="templateCustomer" optional="YES" attributeType="String"/>
+        <attribute name="treeDesc" optional="YES" attributeType="String"/>
+        <attribute name="trip" optional="YES" attributeType="String"/>
+        <attribute name="tripUser" optional="YES" attributeType="String"/>
+        <attribute name="uploadInvFmt" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <attribute name="vehicleInventory" optional="YES" attributeType="String"/>
+        <attribute name="vehicleNumber" optional="YES" attributeType="String"/>
+        <attribute name="visitDuration" optional="YES" attributeType="String"/>
+        <attribute name="visitNotes" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ShelfStatus" representedClassName=".ShelfStatus" syncable="YES">
+        <attribute name="aisle" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="delisted" optional="YES" attributeType="String"/>
+        <attribute name="expiry" optional="YES" attributeType="String"/>
+        <attribute name="facings" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="marketingNotes" optional="YES" attributeType="String"/>
+        <attribute name="oos" optional="YES" attributeType="String"/>
+        <attribute name="otherNotes" optional="YES" attributeType="String"/>
+        <attribute name="promo" optional="YES" attributeType="String"/>
+        <attribute name="promoPrice" optional="YES" attributeType="String"/>
+        <attribute name="promoType" optional="YES" attributeType="String"/>
+        <attribute name="shelfPrice" optional="YES" attributeType="String"/>
+        <attribute name="stockCount" optional="YES" attributeType="String"/>
+        <attribute name="trxnType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Survey" representedClassName=".Survey" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="completionDate" optional="YES" attributeType="String"/>
+        <attribute name="createDate" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="mandatory" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="surveyID" optional="YES" attributeType="String"/>
+        <attribute name="surveyTitle" optional="YES" attributeType="String"/>
+        <attribute name="surveyType" optional="YES" attributeType="String"/>
+        <relationship name="customerDetail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CustomerDetail" inverseName="surveys" inverseEntity="CustomerDetail"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SurveyQuestion" inverseName="survey" inverseEntity="SurveyQuestion"/>
+    </entity>
+    <entity name="SurveyAnswerOption" representedClassName=".SurveyAnswerOption" syncable="YES">
+        <attribute name="lookupNo" optional="YES" attributeType="String"/>
+        <attribute name="optionValue" optional="YES" attributeType="String"/>
+        <relationship name="question" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SurveyQuestion" inverseName="answerOptions" inverseEntity="SurveyQuestion"/>
+    </entity>
+    <entity name="SurveyQuestion" representedClassName=".SurveyQuestion" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="String"/>
+        <attribute name="isAnswered" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lookupNo" optional="YES" attributeType="String"/>
+        <attribute name="multiResp" optional="YES" attributeType="String"/>
+        <attribute name="questionID" optional="YES" attributeType="String"/>
+        <attribute name="questionText" optional="YES" attributeType="String"/>
+        <attribute name="questionType" optional="YES" attributeType="String"/>
+        <attribute name="selectedOptionIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="surveyID" optional="YES" attributeType="String"/>
+        <relationship name="answerOptions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SurveyAnswerOption" inverseName="question" inverseEntity="SurveyAnswerOption"/>
+        <relationship name="survey" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Survey" inverseName="questions" inverseEntity="Survey"/>
+    </entity>
+    <entity name="Target" representedClassName=".Target" syncable="YES">
+        <attribute name="monthTarget" optional="YES" attributeType="String"/>
+        <attribute name="salesLWTD" optional="YES" attributeType="String"/>
+        <attribute name="salesMTD" optional="YES" attributeType="String"/>
+        <attribute name="salesWTD" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TaxCodes" representedClassName=".TaxCodes" syncable="YES">
+        <attribute name="cumulativeFlag" optional="YES" attributeType="String"/>
+        <attribute name="custTaxCode" optional="YES" attributeType="String"/>
+        <attribute name="itemTaxCode" optional="YES" attributeType="String"/>
+        <attribute name="taxRateCode" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TaxRates" representedClassName=".TaxRates" syncable="YES">
+        <attribute name="cumulativeFlag" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="String"/>
+        <attribute name="rateDesc" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="String"/>
+        <attribute name="taxRate" optional="YES" attributeType="String"/>
+        <attribute name="taxRateCode" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TripUser" representedClassName=".TripUser" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="routeNumber" optional="YES" attributeType="String"/>
+        <attribute name="security1" optional="YES" attributeType="String"/>
+        <attribute name="trip" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UAR" representedClassName=".UAR" syncable="YES">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="deliveryTrxnNo" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="docNo" optional="YES" attributeType="String"/>
+        <attribute name="docType" optional="YES" attributeType="String"/>
+        <attribute name="invAmt" optional="YES" attributeType="String"/>
+        <attribute name="invTrxnNo" optional="YES" attributeType="String"/>
+        <attribute name="isVisitedDelivery" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isVisitedPickup" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="pickupTrxnNo" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="printedFlag" optional="YES" attributeType="String"/>
+        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="saleDate" optional="YES" attributeType="String"/>
+        <attribute name="tComStatus" optional="YES" attributeType="String"/>
+        <attribute name="totalChq" optional="YES" attributeType="String"/>
+        <attribute name="totalCsh" optional="YES" attributeType="String"/>
+        <attribute name="totalDue" optional="YES" attributeType="String"/>
+        <attribute name="totalUnalloc" optional="YES" attributeType="String"/>
+        <attribute name="trip" optional="YES" attributeType="String"/>
+        <attribute name="trxnDate" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnTime" optional="YES" attributeType="String"/>
+        <attribute name="voidFlag" optional="YES" attributeType="String"/>
+        <relationship name="uarPayments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="UARPayment"/>
+    </entity>
+    <entity name="UARPayment" representedClassName=".UARPayment" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String"/>
+        <attribute name="arNotes" optional="YES" attributeType="String"/>
+        <attribute name="bankNo" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="checkDate" optional="YES" attributeType="String"/>
+        <attribute name="checkNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="invNo" optional="YES" attributeType="String"/>
+        <attribute name="origTrxnNo" optional="YES" attributeType="String"/>
+        <attribute name="paymentType" optional="YES" attributeType="String"/>
+        <attribute name="reconTrxnNo" optional="YES" attributeType="String"/>
+        <attribute name="seqNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnAmount" optional="YES" attributeType="String"/>
+        <attribute name="trxnDate" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnType" optional="YES" attributeType="String"/>
+        <relationship name="arHeader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ARHeader"/>
+    </entity>
+    <entity name="UploadItem" representedClassName=".UploadItem" syncable="YES">
+        <attribute name="companyName" optional="YES" attributeType="String"/>
+        <attribute name="ftpHostname" optional="YES" attributeType="String"/>
+        <attribute name="ftpPassword" optional="YES" attributeType="String"/>
+        <attribute name="ftpPath" optional="YES" attributeType="String"/>
+        <attribute name="ftpUsername" optional="YES" attributeType="String"/>
+        <attribute name="localName" optional="YES" attributeType="String"/>
+        <attribute name="queuedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="shouldPostpone" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="shouldRemoved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="UploadService" representedClassName=".UploadService" syncable="YES">
+        <attribute name="aDocNo" optional="YES" attributeType="String"/>
+        <attribute name="aTrxnDate" optional="YES" attributeType="String"/>
+        <attribute name="aTrxnNo" optional="YES" attributeType="String"/>
+        <attribute name="aTrxnTime" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="docType" optional="YES" attributeType="String"/>
+        <attribute name="done" optional="YES" attributeType="String"/>
+        <attribute name="period" optional="YES" attributeType="String"/>
+        <attribute name="printedFlag" optional="YES" attributeType="String"/>
+        <attribute name="reason" optional="YES" attributeType="String"/>
+        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="saleDate" optional="YES" attributeType="String"/>
+        <attribute name="seq" optional="YES" attributeType="String"/>
+        <attribute name="tCOMStatus" optional="YES" attributeType="String"/>
+        <attribute name="trxnDate" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnTime" optional="YES" attributeType="String"/>
+        <attribute name="voidFlag" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UPromotion" representedClassName=".UPromotion" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="String"/>
+        <attribute name="assignNo" optional="YES" attributeType="String"/>
+        <attribute name="dateStart" optional="YES" attributeType="String"/>
+        <attribute name="discAmt" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="planNo" optional="YES" attributeType="String"/>
+        <attribute name="priceDiscFlag" optional="YES" attributeType="String"/>
+        <attribute name="promoAppMethod" optional="YES" attributeType="String"/>
+        <attribute name="promoMethod" optional="YES" attributeType="String"/>
+        <attribute name="promoType" optional="YES" attributeType="String"/>
+        <attribute name="reasonCode" optional="YES" attributeType="String"/>
+        <attribute name="seqNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnAmt" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UTax" representedClassName=".UTax" syncable="YES">
+        <attribute name="cumulativeFlag" optional="YES" attributeType="String"/>
+        <attribute name="itemNo" optional="YES" attributeType="String"/>
+        <attribute name="locnNo" optional="YES" attributeType="String"/>
+        <attribute name="reasonCode" optional="YES" attributeType="String"/>
+        <attribute name="taxAmount" optional="YES" attributeType="String"/>
+        <attribute name="taxRate" optional="YES" attributeType="String"/>
+        <attribute name="taxRateCode" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Visit" representedClassName=".Visit" syncable="YES">
+        <attribute name="assetChecked" optional="YES" attributeType="String"/>
+        <attribute name="assetRequested" optional="YES" attributeType="String"/>
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="customerUpdated" optional="YES" attributeType="String"/>
+        <attribute name="docType" optional="YES" attributeType="String"/>
+        <attribute name="nextVisit" optional="YES" attributeType="String"/>
+        <attribute name="orderCreated" optional="YES" attributeType="String"/>
+        <attribute name="printedFlag" optional="YES" attributeType="String"/>
+        <attribute name="rangeChecked" optional="YES" attributeType="String"/>
+        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="saleDate" optional="YES" attributeType="String"/>
+        <attribute name="surveyCompleted" optional="YES" attributeType="String"/>
+        <attribute name="tCOMStatus" optional="YES" attributeType="String"/>
+        <attribute name="trxnDate" optional="YES" attributeType="String"/>
+        <attribute name="trxnNo" optional="YES" attributeType="String"/>
+        <attribute name="trxnTime" optional="YES" attributeType="String"/>
+        <attribute name="visitEnd" optional="YES" attributeType="String"/>
+        <attribute name="visitMessage" optional="YES" attributeType="String"/>
+        <attribute name="visitReason" optional="YES" attributeType="String"/>
+        <attribute name="visitStart" optional="YES" attributeType="String"/>
+        <attribute name="voidFlag" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="ARHeader" positionX="-18" positionY="135" width="128" height="150"/>
+        <element name="AuthDetail" positionX="-9" positionY="144" width="128" height="105"/>
+        <element name="AuthHeader" positionX="-18" positionY="135" width="128" height="75"/>
+        <element name="CompanyContact" positionX="-18" positionY="135" width="128" height="150"/>
+        <element name="CustInfo" positionX="-18" positionY="135" width="128" height="105"/>
+        <element name="CustNote" positionX="-18" positionY="135" width="128" height="210"/>
+        <element name="CustomerContact" positionX="18" positionY="180" width="128" height="165"/>
+        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1050"/>
+        <element name="DescType" positionX="-54" positionY="144" width="128" height="225"/>
+        <element name="DocText" positionX="-9" positionY="144" width="128" height="135"/>
+        <element name="EquipAss" positionX="-18" positionY="135" width="128" height="330"/>
+        <element name="EquipCompleteStatus" positionX="-9" positionY="144" width="128" height="90"/>
+        <element name="Equipment" positionX="0" positionY="153" width="128" height="270"/>
+        <element name="KPI" positionX="0" positionY="171" width="128" height="90"/>
+        <element name="OrderDetail" positionX="-9" positionY="144" width="128" height="360"/>
+        <element name="OrderHeader" positionX="-18" positionY="135" width="128" height="883"/>
+        <element name="OrderHistory" positionX="0" positionY="144" width="128" height="360"/>
+        <element name="PresoldOrDetail" positionX="-18" positionY="135" width="128" height="225"/>
+        <element name="PresoldOrHeader" positionX="0" positionY="153" width="128" height="375"/>
+        <element name="PriceGroup" positionX="18" positionY="171" width="128" height="150"/>
+        <element name="Pricing" positionX="0" positionY="144" width="128" height="165"/>
+        <element name="ProductDetail" positionX="9" positionY="153" width="128" height="570"/>
+        <element name="ProductLevl" positionX="-18" positionY="135" width="128" height="90"/>
+        <element name="ProductLocn" positionX="-9" positionY="144" width="128" height="358"/>
+        <element name="ProductStruct" positionX="0" positionY="153" width="128" height="180"/>
+        <element name="PromotionAss" positionX="0" positionY="153" width="128" height="105"/>
+        <element name="PromotionHeader" positionX="0" positionY="153" width="128" height="150"/>
+        <element name="PromotionNoVo" positionX="9" positionY="162" width="128" height="105"/>
+        <element name="PromotionOption" positionX="27" positionY="180" width="128" height="240"/>
+        <element name="ProMulti" positionX="18" positionY="171" width="128" height="135"/>
+        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="705"/>
+        <element name="ShelfStatus" positionX="-18" positionY="135" width="128" height="285"/>
+        <element name="Survey" positionX="-18" positionY="135" width="128" height="195"/>
+        <element name="SurveyAnswerOption" positionX="0" positionY="153" width="128" height="90"/>
+        <element name="SurveyQuestion" positionX="-9" positionY="144" width="128" height="210"/>
+        <element name="Target" positionX="-36" positionY="153" width="128" height="105"/>
+        <element name="TaxCodes" positionX="27" positionY="180" width="128" height="105"/>
+        <element name="TaxRates" positionX="18" positionY="171" width="128" height="135"/>
+        <element name="TripUser" positionX="-9" positionY="144" width="128" height="120"/>
+        <element name="UAR" positionX="-9" positionY="144" width="128" height="405"/>
+        <element name="UARPayment" positionX="-18" positionY="135" width="128" height="300"/>
+        <element name="UploadItem" positionX="-9" positionY="135" width="128" height="178"/>
+        <element name="UploadService" positionX="0" positionY="144" width="128" height="330"/>
+        <element name="UPromotion" positionX="-18" positionY="135" width="128" height="270"/>
+        <element name="UTax" positionX="0" positionY="153" width="128" height="180"/>
+        <element name="Visit" positionX="-18" positionY="135" width="128" height="375"/>
+    </elements>
+</model>

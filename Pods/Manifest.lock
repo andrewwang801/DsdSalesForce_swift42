@@ -1,0 +1,125 @@
+PODS:
+  - Alamofire (4.6.0)
+  - BNHtmlPdfKit (0.5.0)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - CCBottomRefreshControl (0.5.2)
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
+  - eWAYPaymentsSDK (1.1.0)
+  - Fabric (1.7.11)
+  - FFCircularProgressView (0.5)
+  - GoogleMaps (2.6.0):
+    - GoogleMaps/Maps (= 2.6.0)
+  - GoogleMaps/Base (2.6.0)
+  - GoogleMaps/Maps (2.6.0):
+    - GoogleMaps/Base
+  - GooglePlacePicker (2.6.0):
+    - GoogleMaps (= 2.6.0)
+    - GooglePlaces (= 2.6.0)
+  - GooglePlaces (2.6.0):
+    - GoogleMaps/Base (= 2.6.0)
+  - IBAnimatable (5.2.1)
+  - MBCircularProgressBar (0.3.5)
+  - QBImagePickerController (3.4.0)
+  - ReachabilitySwift (4.1.0)
+  - RSBarcodes_Swift (4.2.1)
+  - SDWebImage (4.3.0):
+    - SDWebImage/Core (= 4.3.0)
+  - SDWebImage/Core (4.3.0)
+  - SSZipArchive (2.1.1)
+  - TTTAttributedLabel (2.0.0)
+  - TYAttributedLabel (2.6.6)
+  - XLPagerTabStrip (8.1.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - BNHtmlPdfKit (from `https://github.com/brentnycum/BNHtmlPdfKit`)
+  - Bolts
+  - CCBottomRefreshControl
+  - Charts
+  - Crashlytics
+  - eWAYPaymentsSDK
+  - Fabric
+  - FFCircularProgressView
+  - GoogleMaps
+  - GooglePlacePicker
+  - GooglePlaces
+  - IBAnimatable
+  - MBCircularProgressBar
+  - QBImagePickerController
+  - ReachabilitySwift
+  - RSBarcodes_Swift (~> 4.2.1)
+  - SDWebImage
+  - SSZipArchive
+  - TTTAttributedLabel
+  - TYAttributedLabel (~> 2.6.2)
+  - XLPagerTabStrip (~> 8.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Bolts
+    - CCBottomRefreshControl
+    - Charts
+    - Crashlytics
+    - eWAYPaymentsSDK
+    - Fabric
+    - FFCircularProgressView
+    - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
+    - IBAnimatable
+    - MBCircularProgressBar
+    - QBImagePickerController
+    - ReachabilitySwift
+    - RSBarcodes_Swift
+    - SDWebImage
+    - SSZipArchive
+    - TTTAttributedLabel
+    - TYAttributedLabel
+    - XLPagerTabStrip
+
+EXTERNAL SOURCES:
+  BNHtmlPdfKit:
+    :git: https://github.com/brentnycum/BNHtmlPdfKit
+
+CHECKOUT OPTIONS:
+  BNHtmlPdfKit:
+    :commit: f68e54bb0bed047306a7c25ff42ed95c689ea921
+    :git: https://github.com/brentnycum/BNHtmlPdfKit
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  BNHtmlPdfKit: 566b27d1c802ade48ed042abafdc16aeb5ddc4e1
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  CCBottomRefreshControl: 389780b4488321c91d18f66a6da5ef9606df6de5
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  eWAYPaymentsSDK: d0cb78895acae95abd274ebafff9658c7e70cde0
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  FFCircularProgressView: 683a4ab1e1bd613246a3dffa61503ffdebcde8d8
+  GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
+  GooglePlacePicker: e4488625effb006f59de49e14b7a603e463e4261
+  GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
+  IBAnimatable: a46b835ec6875178516cf7e014a40194d6bfa3fc
+  MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  RSBarcodes_Swift: c58d107e6d2149cc34a23f02828d400dbb708101
+  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
+  SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  TYAttributedLabel: cb8fc910d97eb5224936d4f692a78e042af691b2
+  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+
+PODFILE CHECKSUM: 0c1949b8a91070a6207e20d34e11e50df1e2942b
+
+COCOAPODS: 1.8.3

@@ -1,0 +1,6 @@
+framework module eWAYPaymentsSDK {
+  umbrella header "eWAYPaymentsSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

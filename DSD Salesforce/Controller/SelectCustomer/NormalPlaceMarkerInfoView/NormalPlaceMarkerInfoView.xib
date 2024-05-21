@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NormalPlaceMarkerInfoView" customModule="DSD_Salesforce" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="zCk-2Y-ioE"/>
+                <outlet property="mainView" destination="mlv-xh-5kg" id="Ejg-HY-UO4"/>
+                <outlet property="titleLabel" destination="3Hd-G0-Tt6" id="EFS-Lb-MCI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlv-xh-5kg" userLabel="Main View" customClass="AnimatableView" customModule="IBAnimatable">
+                    <rect key="frame" x="5" y="5" width="270" height="40"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uq7-SU-3yj" userLabel="Header View">
+                            <rect key="frame" x="0.0" y="0.0" width="270" height="40"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ULTRA CAFE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hd-G0-Tt6">
+                                    <rect key="frame" x="15" y="11" width="240" height="18.5"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                                    <color key="textColor" red="0.18431372549019609" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="3Hd-G0-Tt6" firstAttribute="centerY" secondItem="uq7-SU-3yj" secondAttribute="centerY" id="5wZ-Eu-iwW"/>
+                                <constraint firstAttribute="trailing" secondItem="3Hd-G0-Tt6" secondAttribute="trailing" constant="15" id="HRF-xw-Y0t"/>
+                                <constraint firstItem="3Hd-G0-Tt6" firstAttribute="leading" secondItem="uq7-SU-3yj" secondAttribute="leading" constant="15" id="ISq-CE-Rfp"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="uq7-SU-3yj" firstAttribute="top" secondItem="mlv-xh-5kg" secondAttribute="top" id="28b-Qg-oTE"/>
+                        <constraint firstAttribute="bottom" secondItem="uq7-SU-3yj" secondAttribute="bottom" id="BTJ-lC-7Tj"/>
+                        <constraint firstItem="uq7-SU-3yj" firstAttribute="leading" secondItem="mlv-xh-5kg" secondAttribute="leading" id="ZLn-4O-oMB"/>
+                        <constraint firstAttribute="trailing" secondItem="uq7-SU-3yj" secondAttribute="trailing" id="c2i-3S-OeT"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="deviceRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                            <point key="value" x="2" y="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mlv-xh-5kg" secondAttribute="bottom" constant="5" id="2MW-Gz-zd6"/>
+                <constraint firstItem="mlv-xh-5kg" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="rtB-Vr-KyQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mlv-xh-5kg" secondAttribute="trailing" constant="5" id="xhs-l6-6oY"/>
+                <constraint firstItem="mlv-xh-5kg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="zr2-AQ-bK7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="43" y="-158.5"/>
+        </view>
+    </objects>
+</document>
