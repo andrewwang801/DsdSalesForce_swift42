@@ -21,6 +21,11 @@ extension String {
         return self.count
     }
     
+    var intValue:Int {
+        let intValue = Int(self) ?? 0
+        return intValue
+    }
+    
     var localized:String {
         return NSLocalizedString(self, tableName:"Localizable", comment:"")
     }

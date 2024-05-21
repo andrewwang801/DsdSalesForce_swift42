@@ -11,7 +11,7 @@ import UIKit
 class ShelfAuditDetail: NSObject {
 
     var trxnNo = ""
-    var trxnType = ""
+    var trxnType = "P"
     var itemNo = ""
     var facings = ""
     var shelfPrice = ""
@@ -23,10 +23,10 @@ class ShelfAuditDetail: NSObject {
     var delisted = ""
     var marketing = ""
     var other = ""
-    var aisle = ""
-    var expiry = ""
+//    var aisle = ""
+//    var expiry = ""
 
-    static var keyArray = ["TrxnNo", "TrxnType", "ItemNo", "Facings", "ShelfPrice", "Promo", "PromoPrice", "PromoType", "StockCount", "OOS", "Delisted", "Marketing", "Other", "Aisle", "Expiry"]
+    static var keyArray = ["TrxnNo", "TrxnType", "ItemNo", "Facings", "ShelfPrice", "Promo", "PromoPrice", "PromoType", "StockCount", "OOS", "Delisted", "Marketing", "Other"/*, "Aisle", "Expiry"*/]
 
     func getDictionary() -> [String: String] {
         var dic = [String: String]()
@@ -43,8 +43,8 @@ class ShelfAuditDetail: NSObject {
         dic["Delisted"] = delisted
         dic["Marketing"] = marketing
         dic["Other"] = other
-        dic["Aisle"] = aisle
-        dic["Expiry"] = expiry
+//        dic["Aisle"] = aisle
+//        dic["Expiry"] = expiry
         return dic
     }
 }
@@ -93,7 +93,7 @@ class ShelfAudit: NSObject {
         for shelfStatus in shelfStatusArray {
             let auditDetail = ShelfAuditDetail()
             auditDetail.trxnNo = trxnNo
-            auditDetail.trxnType = shelfStatus.trxnType ?? ""
+            auditDetail.trxnType = shelfStatus.trxnType ?? "P"
             auditDetail.itemNo = shelfStatus.itemNo ?? ""
             auditDetail.facings = shelfStatus.facings ?? ""
             auditDetail.shelfPrice = shelfStatus.shelfPrice ?? ""
@@ -103,10 +103,12 @@ class ShelfAudit: NSObject {
             auditDetail.stockCount = shelfStatus.stockCount ?? ""
             auditDetail.oos = shelfStatus.oos ?? ""
             auditDetail.delisted = shelfStatus.delisted ?? ""
-            auditDetail.marketing = shelfStatus.marketingNotes ?? ""
-            auditDetail.other = shelfStatus.otherNotes ?? ""
-            auditDetail.aisle = shelfStatus.aisle ?? ""
-            auditDetail.expiry = shelfStatus.expiry ?? ""
+            auditDetail.marketing = shelfStatus.aisle ?? ""
+            auditDetail.other = shelfStatus.expiry ?? ""
+//            auditDetail.marketing = shelfStatus.marketingNotes ?? ""
+//            auditDetail.other = shelfStatus.otherNotes ?? ""
+//            auditDetail.aisle = shelfStatus.aisle ?? ""
+//            auditDetail.expiry = shelfStatus.expiry ?? ""
             shelfAudit.auditDetailArray.append(auditDetail)
         }
 

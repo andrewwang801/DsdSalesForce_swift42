@@ -377,6 +377,15 @@ class OrderSummaryVC: UIViewController {
         }
     }
 
+    @IBAction func onSaveOrder(_ sender: Any) {
+        orderVC.orderHeader.isSavedOrder = true
+        GlobalInfo.saveCache()
+        
+        mainVC.popChild(containerView: mainVC.containerView) { (finished) in
+            self.dismissHandler?(self, .confirmed)
+        }
+    }
+    
     @IBAction func onPrint(_ sender: Any) {
 
         if doValidate() == false {

@@ -133,11 +133,11 @@ class SelectCustomerOpportunitiesVC: UIViewController {
         globalInfo.opportunityPostCode = postCode
         globalInfo.selectedCustomerTypeDescType = self.selectedCustomerDescType
 
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
+        //let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
         DispatchQueue.global().async {
             self.globalInfo.loadOpportunities(selectedCustomer: selectedCustomer)
             DispatchQueue.main.async {
-                hud?.hide(true)
+                //hud?.hide(true)
                 self.customerOpportunityArray = self.globalInfo.customerOpportunityArray
                 self.refreshProducts()
             }

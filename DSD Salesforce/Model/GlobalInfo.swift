@@ -14,6 +14,11 @@ import ExternalAccessory
 
 class GlobalInfo: NSObject {
 
+    /// 2020-3-10 RSB
+    var isFromInProgressExistingOrder = false
+    var isFromMarginCalculator = 0
+    var isFromProductCatalog = 0
+    
     enum Lang: String {
         case en_gb = "EUK"
         case gn_us = "EUS"
@@ -63,7 +68,7 @@ class GlobalInfo: NSObject {
     var dCurrentTotalValue: Double = 0
     var pageHeightWhenZero: Double = 0
 
-    var orderDetailSetArray: [NSMutableOrderedSet]?
+    var orderDetailSetArray = [NSMutableOrderedSet](repeating: NSMutableOrderedSet(), count: 3)
     var orderHeader: OrderHeader!
     // Zebra printer
     var selectedPrinter: EAAccessory?
@@ -102,6 +107,8 @@ class GlobalInfo: NSObject {
         return UIApplication.shared.delegate as! AppDelegate
     }
 
+    //unsaved order flag
+    var confirmFromOrderSales = 1
 }
 
 var gbInstance:GlobalInfo?
@@ -143,7 +150,7 @@ extension GlobalInfo {
         productImageDownloadManager = ProductImageDownloadManager()
     }
 
-    func loadCoreDataFromXML() {
+    func loadCoreDataFromXML(isReLogin: Bool) {
         let _ = RouteControl.loadFromXML(context: managedObjectContext, forSave: true).first
         let _ = Target.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = DescType.loadFromXML(context: managedObjectContext, forSave: true)
@@ -241,14 +248,16 @@ extension GlobalInfo {
         let _ = TaxRates.loadFromXML(context: managedObjectContext, forSave: true)
         let _ = ARHeader.loadFromXML(context: managedObjectContext, forSave: true)
         
-        OrderHeader.deleteAll(context: managedObjectContext)
-        OrderDetail.deleteAll(context: managedObjectContext)
-        UTax.deleteAll(context: managedObjectContext)
-        UPromotion.deleteAll(context: managedObjectContext)
-        UAR.deleteAll(context: managedObjectContext)
-        UARPayment.deleteAll(context: managedObjectContext)
+        if isReLogin == false {
+            OrderHeader.deleteAll(context: managedObjectContext)
+            OrderDetail.deleteAll(context: managedObjectContext)
+            UTax.deleteAll(context: managedObjectContext)
+            UPromotion.deleteAll(context: managedObjectContext)
+            UAR.deleteAll(context: managedObjectContext)
+            UARPayment.deleteAll(context: managedObjectContext)
 
-        removeUARPaymentPDF()
+            removeUARPaymentPDF()
+        }
         
         initSetting()
 
@@ -273,20 +282,16 @@ extension GlobalInfo {
 
     func adjustCoreData() {
 
-        // need to remove order headers with isSaved = false
-        removeUnsavedOrderHeaders()
+//        if isFromInProgressExistingOrder {
+//            setInProgressFlag()
+//        }
+        
+        setInProgressFlag()
+        removeUnsavedOrderDetailsFromInProgressOrderHeader()
+        GlobalInfo.saveCache()
     }
 
-    func removeUnsavedOrderHeaders() {
-
-        let allOrderHeaders = OrderHeader.getAll(context: managedObjectContext)
-        let unsavedOrderHeaders = allOrderHeaders.filter { (orderHeader) -> Bool in
-            return orderHeader.isSaved == false
-        }
-
-        for orderHeader in unsavedOrderHeaders {
-            OrderHeader.delete(context: managedObjectContext, orderHeader: orderHeader)
-        }
+    func removeUnsavedOrderDetailsFromCompletedOrderHeader() {
 
         let allOrderDetails = OrderDetail.getAll(context: managedObjectContext)
         let unsavedOrderDetails = allOrderDetails.filter { (orderDetail) -> Bool in
@@ -296,8 +301,34 @@ extension GlobalInfo {
         for orderDetail in unsavedOrderDetails {
             OrderDetail.delete(context: managedObjectContext, orderDetail: orderDetail)
         }
+        
     }
+    
+    func removeUnsavedOrderDetailsFromInProgressOrderHeader() {
 
+        let allOrderDetails = OrderDetail.getAll(context: managedObjectContext)
+        let unsavedOrderDetails = allOrderDetails.filter { (orderDetail) -> Bool in
+            return (orderDetail).isInProgress == true && (orderDetail).isSaved == false
+        }
+
+        for orderDetail in unsavedOrderDetails {
+            OrderDetail.delete(context: managedObjectContext, orderDetail: orderDetail)
+        }
+        
+    }
+    
+    func setInProgressFlag() {
+        
+        let allOrderDetails = OrderDetail.getAll(context: managedObjectContext)
+        let unsavedOrderDetails = allOrderDetails.filter { (orderDetail) -> Bool in
+            return (orderDetail).isInProgress == true
+        }
+
+        for orderDetail in unsavedOrderDetails {
+            orderDetail.isInProgress = false
+        }
+    }
+    
     func initSetting() {
         Utils.setIntSetting(key: kPrefUInvenTrxnNo, value: 0)
     }

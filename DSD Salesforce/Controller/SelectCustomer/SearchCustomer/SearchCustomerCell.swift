@@ -57,7 +57,8 @@ class SearchCustomerCell: UITableViewCell {
     }
 
     @IBAction func onAddCustomer(_ sender: Any) {
-        parentVC!.addCustomer(index: indexPath!.row)
+        parentVC!.addCustomer(row: indexPath!.row)
+
     }
 
 }

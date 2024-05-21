@@ -38,7 +38,7 @@ class OrderSalesVC: UIViewController {
     var sortTypeButtonArray = [AnimatableButton]()
 
     var bShouldConfirmInventoryAmount = false
-
+    
     enum SortType: Int {
         case code = 0
         case desc = 1
@@ -92,7 +92,7 @@ class OrderSalesVC: UIViewController {
     var selectedIndex = -1
     var selectedProductDetail: ProductDetail?
     var selectedQty = 0
-
+    
     enum OrderType: Int {
         case sales = 0
         case returns = 1
@@ -107,23 +107,45 @@ class OrderSalesVC: UIViewController {
 
         // Do any additional setup after loading the view.
         sortTypeButtonArray = [codeSortButton, descSortButton, lastOrderSortButton, priceSortButton, qtySortButton]
-
         initUI()
+        
+        if globalInfo.isFromMarginCalculator == 0 {
+             
+             NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductSelected(notification:)), name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil)
+
+             NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductAdd(notification:)), name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil)
+
+             NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductUpdate(notification:)), name: Notification.Name(rawValue: kOrderProductUpdateNotificationName), object: nil)
+             
+             NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onUnsavedOrderDetailsLoaded(notification:)), name: Notification.Name(rawValue: kUnsavedOrderDetailsLoaded), object: nil)
+         }
+        
+    }
+
+    ///RSB 2020-3-9
+    func initData() {
+        if orderVC.orderHeader != nil && globalInfo.isFromMarginCalculator == 0 {
+            orderVC.orderDetailSetArray = [orderVC.orderHeader.deliverySet, orderVC.orderHeader.pickupSet, orderVC.orderHeader.sampleSet]
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //initData()
+
         sortAndFilterOrders()
         refreshOrders()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        setOrderDetailSetArrayForMargin()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
+        ///2020-3-18
+//        NotificationCenter.default.removeObserver(self)
         if isBeingDismissed == true || isMovingFromParent == true {
             NotificationCenter.default.removeObserver(self)
         }
@@ -145,13 +167,7 @@ class OrderSalesVC: UIViewController {
 
         orderTableView.dataSource = self
         orderTableView.delegate = self
-
-        NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductSelected(notification:)), name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductAdd(notification:)), name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductUpdate(notification:)), name: Notification.Name(rawValue: kOrderProductUpdateNotificationName), object: nil)
-
+        
         for (index, sortButton) in sortTypeButtonArray.enumerated() {
             sortButton.tag = index+500
             sortButton.addTarget(self, action: #selector(OrderSalesVC.onSortTypeButton(_:)), for: .touchUpInside)
@@ -201,7 +217,6 @@ class OrderSalesVC: UIViewController {
                 }
             }
         }
-        //orderVC.orderHeader
         orderVC.orderHeader.saleAmount = subTotal
         orderVC.orderHeader.taxAmount = taxTotal
 
@@ -210,16 +225,55 @@ class OrderSalesVC: UIViewController {
         subTotalLabel.text = Utils.getMoneyString(moneyValue: subTotal)
         taxLabel.text = Utils.getMoneyString(moneyValue: taxTotal)
         totalLabel.text = Utils.getMoneyString(moneyValue: (subTotal+taxTotal))
+        
+        setOrderDetailSetArrayForMargin()
+
     }
+    
+    func setOrderDetailSetArrayForMargin() {
+    
+        ///RSB 2020-3-9
+        if globalInfo.isFromMarginCalculator == 0 {
+            globalInfo.orderDetailSetArray[0].removeAllObjects()
+            for _orderDetail in orderVC.orderDetailSetArray[selectedOrderType.rawValue] {
 
+                let orderDetailOri = _orderDetail as! OrderDetail
+                var isContain = false
+                for (index, item) in globalInfo.orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
+                    let _item = item as! OrderDetail
+
+                    if _item.itemNo == "" {
+                        globalInfo.orderDetailSetArray[selectedOrderType.rawValue].removeObject(at: index)
+                    }
+                    else if _item.itemNo == orderDetailOri.itemNo {
+                        isContain = true
+                        break
+                    }
+                }
+
+                if !isContain && orderDetailOri.itemNo != "" {
+                    let orderDetail = OrderDetail(context: globalInfo.managedObjectContext)
+                    orderDetail.updateBy(context: globalInfo.managedObjectContext, theSource: orderDetailOri)
+                    globalInfo.orderDetailSetArray[selectedOrderType.rawValue].insert(orderDetail, at: 0)
+                }
+            }
+        }
+    }
+    
+    @objc func onUnsavedOrderDetailsLoaded(notification: NSNotification) {
+        DispatchQueue.main.async {
+            self.sortAndFilterOrders()
+            self.refreshOrders()
+        }
+    }
     @objc func onProductSelected(notification: NSNotification) {
-
+        
         let userInfo = notification.userInfo
         var itemNo = userInfo!["itemNo"] as? String ?? ""
         let type = userInfo!["type"] as? Int ?? 0
         let itemUPC = userInfo!["itemUPC"] as? String ?? ""
         let showDetail = userInfo!["showDetail"] as? Bool ?? false
-
+        
         var qty = 0
         //var isUnit = false
         if type == kSelectProductItemNo {
@@ -269,12 +323,26 @@ class OrderSalesVC: UIViewController {
 
         let salesAllowed = selectedProductDetail?.salesAllowed ?? ""
         if salesAllowed.uppercased() == "Y" {
-            if showDetail == true {
-                self.doOpenProductDetail()
+            
+            DispatchQueue.main.async {
+                Utils.showAddOrderVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, dismissHandler: { addOrderVC, dismissOption in
+                    // we should replace the qty by the input
+                    if dismissOption == AddOrderVC.DismissOption.done {
+                        let inputedQty = addOrderVC.orderQty
+                        self.selectedQty = inputedQty
+
+                        // we should do Add
+                        self.addProduct(shouldRemoveZeroAmount: false)
+                    }
+                })
             }
-            else {
-                self.addProduct(shouldRemoveZeroAmount: true)
-            }
+            
+//            if showDetail == true {
+//                self.doOpenProductDetail()
+//            }
+//            else {
+//                self.addProduct(shouldRemoveZeroAmount: true)
+//            }
         }
         else {
             if selectedOrderType == .sales {
@@ -285,8 +353,6 @@ class OrderSalesVC: UIViewController {
             }
             return
         }
-        
-        globalInfo.orderDetailSetArray = orderVC.orderDetailSetArray
     }
 
     @objc func onProductAdd(notification: NSNotification) {
@@ -321,7 +387,7 @@ class OrderSalesVC: UIViewController {
                 let orderDetail = _orderDetail as! OrderDetail
                 let _itemNo = orderDetail.itemNo ?? ""
                 if _itemNo == itemNo {
-                    //qty = orderDetail.enterQty.int
+                    qty = orderDetail.enterQty.int
                     selectedIndex = index
                     break
                 }
@@ -375,8 +441,8 @@ class OrderSalesVC: UIViewController {
             if enterQty > inventoryQty && bShouldConfirmInventoryAmount == true {
                 let alert = UIAlertController(title: itemNo, message: L10n.thereMayNotBeInventoryOfTheseItemsInTheWarehouse(), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: L10n.continue(), style: .default, handler: { _ in
-                    self.doAddSelectedProduct()
 
+                    self.doAddSelectedProduct()
                     GlobalInfo.saveCache()
                     self.sortAndFilterOrders()
                     self.refreshOrders()
@@ -387,8 +453,8 @@ class OrderSalesVC: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else {
+                
                 doAddSelectedProduct()
-
                 GlobalInfo.saveCache()
                 sortAndFilterOrders()
                 refreshOrders()
@@ -440,12 +506,14 @@ class OrderSalesVC: UIViewController {
     }
 
     func doAddSelectedProduct() {
-
+            
         let chainNo = orderVC.customerDetail.chainNo ?? ""
         let custNo = orderVC.customerDetail.custNo ?? ""
         let managedObjectContext = globalInfo.managedObjectContext!
         // not found a sales order
         let orderDetail = OrderDetail(context: managedObjectContext, forSave: true)
+
+        orderDetail.isInProgress = true
         orderDetail.isFromPresoldOrDetail = false
         orderDetail.isFromOrderHistoryItem = false
         orderDetail.isFromAuthDetail = false
@@ -479,7 +547,10 @@ class OrderSalesVC: UIViewController {
         orderDetail.lastOrder = dateValue?.toDateString(format: "dd/MM/yyyy") ?? ""
 
         self.selectedSortType = .input
+        orderDetail.orderType = Int32(selectedOrderType.rawValue)
+
         orderVC.orderDetailSetArray[selectedOrderType.rawValue].insert(orderDetail, at: 0)
+    
     }
 
     func doOpenProductDetail() {

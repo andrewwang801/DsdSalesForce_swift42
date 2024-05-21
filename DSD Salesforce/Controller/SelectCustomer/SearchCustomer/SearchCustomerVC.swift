@@ -125,7 +125,7 @@ class SearchCustomerVC: UIViewController {
         customerTableView.delegate = self
     }
 
-    func reloadCustomers() {
+    func  reloadCustomers() {
 
         // reload customers
         customerDetailArray = []
@@ -198,9 +198,75 @@ class SearchCustomerVC: UIViewController {
             self.noDataLabel.isHidden = true
         }
     }
+    
+    ///SF71, 2020-3-13
+    var visitTimeDic: [String: String] = [:]
+    var visitTimeArray: [String] = []
+    
+    func initVisitTimeData(startHour: Int, endHour: Int, interval: Int) {
+        
+        ///set mandatory or not
+        if globalInfo.routeControl?.visitTime == 1 {
+            visitTimeArray.append("Any Time")
+            visitTimeDic["Any Time"] = "0000"
+        }
+        
+        var dateComponent = DateComponents()
+        dateComponent.year = 2020
+        dateComponent.month = 3
+        dateComponent.day = 13
+        dateComponent.hour = startHour
+        let startDate = Calendar.current.date(from: dateComponent)
+        
+        dateComponent.hour = endHour
+        dateComponent.minute = 15
+        let endDate = Calendar.current.date(from: dateComponent)
+        
+        var date = startDate
+        
+        while date != endDate {
+            let key = date!.toDateString(format: "h:mm a") ?? ""
+            let value = date!.toDateString(format: "Hmm") ?? ""
+            visitTimeDic[key] = value
+            visitTimeArray.append(key)
+            date = Calendar.current.date(byAdding: .minute, value: interval, to: date!)
+        }
+    }
+    
+    var visitTime = ""
 
+    ///SF71, 2020-3-13
+    func showVisitTimeDialog(index: Int) {
+        
+        initVisitTimeData(startHour: 7, endHour: 17, interval: 15)
+        let visitTimeDialog = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "DropDownDialogVC") as! DropDownDialogVC
+        visitTimeDialog.dropDownArray = visitTimeArray
+        visitTimeDialog.dropDownDic = visitTimeDic
+        visitTimeDialog.strTitle = "What time do you wish to visit the customer"
+        visitTimeDialog.strMiddle = "Add"
+        visitTimeDialog.dismissHandler = { returnCode, selectedItem in
+            if returnCode == DropDownDialogVC.ReturnCode.middle {
+                self.visitTime = selectedItem
+                self.addCustomer(index: index)
+            }
+        }
+        visitTimeDialog.setDefaultModalPresentationStyle()
+        self.present(visitTimeDialog, animated: true, completion: nil)
+    }
+    
+    func addCustomer(row: Int) {
+        
+        if globalInfo.routeControl?.visitTime != 0 && isFromVisitPlanner {
+            showVisitTimeDialog(index: row)
+        }
+        else {
+            addCustomer(index: row)
+        }
+    }
+    ///SF71 END
+    
     func addCustomer(index: Int) {
-
+        
         // resort previous customers
         let dayNo = "\(Utils.getWeekday(date: addingDate))"
         let routeScheduleCustomers = CustomerDetail.getScheduled(context: globalInfo.managedObjectContext, dayNo: dayNo)
@@ -217,10 +283,15 @@ class SearchCustomerVC: UIViewController {
         let newCustomerDetail = CustomerDetail(context: globalInfo.managedObjectContext, forSave: true)
         newCustomerDetail.updateBy(theSource: customerDetail)
 
+        //SF71, 2020-3-13
+        newCustomerDetail.plannedVisitTime = visitTime
+        
         newCustomerDetail.seqNo = "0"
         newCustomerDetail.isRouteScheduled = true
         newCustomerDetail.dayNo = dayNo
         newCustomerDetail.deliveryDate = addingDate.toDateString(format: kTightJustDateFormat)
+        newCustomerDetail.nextVisitDate = addingDate.toDateString(format: kTightJustDateFormat)
+        newCustomerDetail.vpNextVisitDate = addingDate.toDateString(format: kTightJustDateFormat) ?? ""
 
         newCustomerDetail.isVisitPlanned = true
 

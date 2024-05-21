@@ -1,5 +1,5 @@
 //
-//  MessageDialogVC.swift
+//  InputDialogVC.swift
 //  DSDConnect
 //
 //  Created by iOS Developer on 3/17/18.
@@ -7,21 +7,17 @@
 //
 
 import UIKit
+import IBAnimatable
 
-class MessageDialogVC: UIViewController {
+class DropDownDialogVC: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var failedLabel: UILabel!
-    @IBOutlet weak var customerNameLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var middleButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var dropDownButton: AnimatableButton!
 
     @IBOutlet weak var titleTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var failedTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var customerNameTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messageTopConstraint: NSLayoutConstraint!
 
     enum ReturnCode {
         case middle
@@ -29,16 +25,15 @@ class MessageDialogVC: UIViewController {
         case right
     }
 
-    var dismissHandler: ((ReturnCode) -> ())?
+    var dismissHandler: ((ReturnCode, String) -> ())?
 
-    var strMessage: String = ""
-    var strAttributedMessage: NSMutableAttributedString = NSMutableAttributedString(string: "")
     var strTitle = ""
+    var strEnteredString = ""
+    var strPlaceholder = ""
     var strLeft = ""
     var strMiddle = ""
     var strRight = ""
-    var isFailed = false
-    var strCustomerName = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,30 +51,6 @@ class MessageDialogVC: UIViewController {
             titleTopConstraint.constant = 20
         }
         titleLabel.text = strTitle
-
-        if isFailed == false {
-            failedLabel.text = ""
-            failedTopConstraint.constant = 0
-        }
-        else {
-            failedLabel.text = L10n.failed()
-            failedTopConstraint.constant = 10
-        }
-
-        if strCustomerName.isEmpty == true {
-            customerNameTopConstraint.constant = 0
-        }
-        else {
-            customerNameTopConstraint.constant = 10
-        }
-        if strMessage != "" {
-            messageLabel.text = strMessage
-        }
-        else if strAttributedMessage.length != 0 {
-            messageLabel.attributedText = strAttributedMessage
-        }
-        customerNameLabel.text = strCustomerName
-
         if strMiddle.isEmpty == true {
             middleButton.isHidden = true
         }
@@ -103,23 +74,53 @@ class MessageDialogVC: UIViewController {
             rightButton.isHidden = false
             rightButton.setTitleForAllState(title: strRight)
         }
+        initDropDownData()
     }
 
+    var dropDown = DropDown()
+    var selectedItem: String = ""
+    var dropDownArray: [String] = []
+    var dropDownDic: [String: String] = [:]
+    
+    func initDropDownData() {
+        dropDown.cellHeight = dropDownButton.bounds.height
+        dropDown.anchorView = dropDownButton
+        dropDown.bottomOffset = CGPoint(x: 0, y: dropDownButton.bounds.height)
+        dropDown.backgroundColor = .white
+        dropDown.textFont = dropDownButton.titleLabel!.font
+        dropDown.dataSource = dropDownArray
+        dropDown.selectRow(0)
+        dropDownButton.setTitleForAllState(title: dropDownArray[0])
+        self.selectedItem = self.dropDownDic[self.dropDownArray[0]] ?? ""
+        dropDown.cellNib = UINib(nibName: "GeneralDropDownCell", bundle: nil)
+        dropDown.customCellConfiguration = {_index, item, cell in
+        }
+        dropDown.selectionAction = { index, item in
+            self.selectedItem = self.dropDownDic[self.dropDownArray[index]] ?? ""
+            self.dropDownButton.setTitleForAllState(title: self.dropDownArray[index])
+        }
+    }
+    
+    @IBAction func onVisitTime(_ sender: Any) {
+        dropDown.show()
+    }
+    
     @IBAction func onTapLeft(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.dismissHandler?(.left)
+            self.dismissHandler?(.left, self.selectedItem)
         }
     }
 
     @IBAction func onTapMiddle(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.dismissHandler?(.middle)
+            self.dismissHandler?(.middle, self.selectedItem)
         }
     }
 
     @IBAction func onTapRight(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.dismissHandler?(.right)
+            self.dismissHandler?(.right, self.selectedItem)
         }
     }
+
 }

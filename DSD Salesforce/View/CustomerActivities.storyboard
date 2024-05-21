@@ -2661,9 +2661,15 @@ MESSAGE</string>
                                                             <rect key="frame" x="0.0" y="0.0" width="520" height="69"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order 123456" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ8-Ir-ABd">
-                                                                    <rect key="frame" x="10" y="7.5" width="400" height="24"/>
+                                                                    <rect key="frame" x="10" y="7.5" width="208" height="24"/>
                                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                                                     <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(In Progress)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFN-3e-GSJ">
+                                                                    <rect key="frame" x="228" y="7.5" width="105" height="24"/>
+                                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                                                    <color key="textColor" red="0.67280918359999997" green="0.32271742819999999" blue="0.34358793500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11-9-2018 at 10:14am" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljz-OX-NWJ">
@@ -2707,11 +2713,13 @@ MESSAGE</string>
                                                                 <constraint firstItem="Ljz-OX-NWJ" firstAttribute="leading" secondItem="QJ8-Ir-ABd" secondAttribute="leading" constant="15" id="1W7-Sf-ZZE"/>
                                                                 <constraint firstItem="EYA-35-eB7" firstAttribute="centerY" secondItem="DPy-wa-FFr" secondAttribute="centerY" id="BoE-ce-Vzd"/>
                                                                 <constraint firstItem="QJ8-Ir-ABd" firstAttribute="bottom" secondItem="DPy-wa-FFr" secondAttribute="centerY" constant="-3" id="C37-h0-Hou"/>
+                                                                <constraint firstItem="bFN-3e-GSJ" firstAttribute="top" secondItem="QJ8-Ir-ABd" secondAttribute="top" id="F2v-qB-Fkj"/>
                                                                 <constraint firstItem="QJ8-Ir-ABd" firstAttribute="leading" secondItem="DPy-wa-FFr" secondAttribute="leading" constant="10" id="HUC-u4-PYv"/>
                                                                 <constraint firstItem="Ljz-OX-NWJ" firstAttribute="top" secondItem="QJ8-Ir-ABd" secondAttribute="bottom" constant="4" id="Hvp-fq-t04"/>
+                                                                <constraint firstItem="QJ8-Ir-ABd" firstAttribute="width" secondItem="DPy-wa-FFr" secondAttribute="width" multiplier="0.4" id="LRL-Pr-N3u"/>
                                                                 <constraint firstAttribute="bottom" secondItem="yV5-3k-FWZ" secondAttribute="bottom" id="MSB-S1-iqQ"/>
-                                                                <constraint firstItem="EYA-35-eB7" firstAttribute="leading" secondItem="QJ8-Ir-ABd" secondAttribute="trailing" constant="10" id="a94-q6-4B5"/>
                                                                 <constraint firstItem="yV5-3k-FWZ" firstAttribute="leading" secondItem="DPy-wa-FFr" secondAttribute="leading" id="adG-cb-YRl"/>
+                                                                <constraint firstItem="bFN-3e-GSJ" firstAttribute="leading" secondItem="QJ8-Ir-ABd" secondAttribute="trailing" constant="10" id="cku-0V-czR"/>
                                                                 <constraint firstItem="EYA-35-eB7" firstAttribute="leading" secondItem="Ljz-OX-NWJ" secondAttribute="trailing" constant="10" id="coG-TX-eCn"/>
                                                                 <constraint firstAttribute="trailing" secondItem="yV5-3k-FWZ" secondAttribute="trailing" id="gQK-SM-e6j"/>
                                                                 <constraint firstAttribute="trailing" secondItem="EYA-35-eB7" secondAttribute="trailing" constant="10" id="ow7-9g-Xrs"/>
@@ -2732,6 +2740,7 @@ MESSAGE</string>
                                                     <outlet property="bottomSeparatorLabel" destination="yV5-3k-FWZ" id="6Ev-JR-0sc"/>
                                                     <outlet property="dateLabel" destination="Ljz-OX-NWJ" id="wTR-ar-WdR"/>
                                                     <outlet property="editButton" destination="EYA-35-eB7" id="sYg-pW-9YC"/>
+                                                    <outlet property="inProgressLabel" destination="bFN-3e-GSJ" id="KLg-E7-0Ok"/>
                                                     <outlet property="mainView" destination="DPy-wa-FFr" id="xIY-9X-sNI"/>
                                                     <outlet property="orderNoLabel" destination="QJ8-Ir-ABd" id="Mf6-uz-jfP"/>
                                                 </connections>
@@ -3286,7 +3295,7 @@ MESSAGE</string>
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFg-cM-dFY">
-                                        <rect key="frame" x="254.5" y="154" width="515" height="460"/>
+                                        <rect key="frame" x="254.5" y="107.5" width="515" height="553"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23a-Nm-YQx" userLabel="Header View">
                                                 <rect key="frame" x="0.0" y="0.0" width="515" height="53"/>
@@ -3320,10 +3329,10 @@ MESSAGE</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUs-bK-7El" userLabel="Body View">
-                                                <rect key="frame" x="0.0" y="53" width="515" height="420"/>
+                                                <rect key="frame" x="0.0" y="53" width="515" height="500"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrk-kn-5b6" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                        <rect key="frame" x="153.5" y="365" width="208" height="45"/>
+                                                        <rect key="frame" x="153.5" y="445" width="208" height="45"/>
                                                         <color key="backgroundColor" red="0.59607843140000005" green="0.58039215690000001" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="208" id="41i-CA-CfR"/>
@@ -3460,10 +3469,16 @@ MESSAGE</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HY0-wI-Dpu" userLabel="Cheque Date">
-                                                        <rect key="frame" x="20" y="169" width="475" height="181"/>
+                                                        <rect key="frame" x="20" y="169" width="475" height="261"/>
                                                         <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Planned Visit Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="5Xd-kL-PFc">
+                                                                <rect key="frame" x="0.0" y="15" width="152" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                <color key="textColor" red="0.18428918720000001" green="0.1843278706" blue="0.18428674340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV8-YT-Nrs" userLabel="Last Orders Label">
-                                                                <rect key="frame" x="0.0" y="0.0" width="158.5" height="36"/>
+                                                                <rect key="frame" x="0.0" y="56" width="158.5" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="36" id="5rK-3f-ygQ"/>
                                                                 </constraints>
@@ -3472,10 +3487,10 @@ MESSAGE</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rga-pP-IpT" customClass="AnimatableView" customModule="IBAnimatable">
-                                                                <rect key="frame" x="158.5" y="0.0" width="316.5" height="181"/>
+                                                                <rect key="frame" x="158.5" y="56" width="316.5" height="189"/>
                                                                 <subviews>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j11-aY-e4H">
-                                                                        <rect key="frame" x="5" y="0.0" width="306.5" height="191"/>
+                                                                        <rect key="frame" x="5" y="0.0" width="306.5" height="189"/>
                                                                         <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3483,10 +3498,10 @@ MESSAGE</string>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="j11-aY-e4H" secondAttribute="bottom" constant="-10" id="IP7-iK-WlF"/>
+                                                                    <constraint firstItem="j11-aY-e4H" firstAttribute="top" secondItem="rga-pP-IpT" secondAttribute="top" id="0X1-iM-lDN"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="j11-aY-e4H" secondAttribute="bottom" id="Fey-LN-8PN"/>
                                                                     <constraint firstItem="j11-aY-e4H" firstAttribute="leading" secondItem="rga-pP-IpT" secondAttribute="leading" constant="5" id="eD2-vD-jFF"/>
                                                                     <constraint firstAttribute="trailing" secondItem="j11-aY-e4H" secondAttribute="trailing" constant="5" id="ojE-zy-x24"/>
-                                                                    <constraint firstItem="j11-aY-e4H" firstAttribute="top" secondItem="rga-pP-IpT" secondAttribute="top" id="qYO-V9-Hcz"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3500,14 +3515,51 @@ MESSAGE</string>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bF-eI-Syc" customClass="AnimatableButton" customModule="IBAnimatable">
+                                                                <rect key="frame" x="157" y="7" width="318" height="40"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIp-P0-m37">
+                                                                <rect key="frame" x="430" y="7" width="40" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="40" id="VZG-J5-aAh"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="cTw-1k-qNX"/>
+                                                                </constraints>
+                                                                <state key="normal" image="Down_Arrow"/>
+                                                                <connections>
+                                                                    <action selector="onVisitTimeDropDown:" destination="DR1-Fn-kTN" eventType="touchUpInside" id="urv-gk-eFg"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="jV8-YT-Nrs" firstAttribute="leading" secondItem="HY0-wI-Dpu" secondAttribute="leading" id="CBZ-J2-LKf"/>
-                                                            <constraint firstAttribute="bottom" secondItem="rga-pP-IpT" secondAttribute="bottom" id="YBw-GS-hno"/>
+                                                            <constraint firstItem="DIp-P0-m37" firstAttribute="top" secondItem="1bF-eI-Syc" secondAttribute="top" id="Lxl-Qk-uhL"/>
                                                             <constraint firstItem="rga-pP-IpT" firstAttribute="leading" secondItem="jV8-YT-Nrs" secondAttribute="trailing" id="ZP8-5z-OXg"/>
-                                                            <constraint firstItem="jV8-YT-Nrs" firstAttribute="top" secondItem="HY0-wI-Dpu" secondAttribute="top" id="Zsd-Ie-tMS"/>
-                                                            <constraint firstItem="rga-pP-IpT" firstAttribute="top" secondItem="HY0-wI-Dpu" secondAttribute="top" id="bY5-Jw-uEf"/>
+                                                            <constraint firstItem="5Xd-kL-PFc" firstAttribute="leading" secondItem="jV8-YT-Nrs" secondAttribute="leading" id="cm5-cs-55D"/>
+                                                            <constraint firstAttribute="bottom" secondItem="rga-pP-IpT" secondAttribute="bottom" constant="16" id="f75-Zo-s3Y"/>
                                                             <constraint firstAttribute="trailing" secondItem="rga-pP-IpT" secondAttribute="trailing" id="gST-38-rZn"/>
+                                                            <constraint firstAttribute="trailing" secondItem="DIp-P0-m37" secondAttribute="trailing" constant="5" id="m0Q-j3-gBd"/>
+                                                            <constraint firstItem="jV8-YT-Nrs" firstAttribute="top" secondItem="rga-pP-IpT" secondAttribute="top" id="mLb-Pi-kuI"/>
+                                                            <constraint firstItem="rga-pP-IpT" firstAttribute="top" secondItem="DIp-P0-m37" secondAttribute="bottom" constant="9" id="nuQ-Yr-ENj"/>
+                                                            <constraint firstItem="5Xd-kL-PFc" firstAttribute="centerY" secondItem="1bF-eI-Syc" secondAttribute="centerY" id="xUV-sY-FTp"/>
                                                             <constraint firstItem="jV8-YT-Nrs" firstAttribute="width" secondItem="HY0-wI-Dpu" secondAttribute="width" multiplier="1/3" id="z3E-Nk-Ldk"/>
                                                         </constraints>
                                                     </view>
@@ -3516,6 +3568,7 @@ MESSAGE</string>
                                                 <constraints>
                                                     <constraint firstItem="Zrk-kn-5b6" firstAttribute="top" secondItem="HY0-wI-Dpu" secondAttribute="bottom" constant="15" id="4Ud-mS-CRO"/>
                                                     <constraint firstAttribute="trailing" secondItem="Dgk-Yt-dyC" secondAttribute="trailing" constant="20" id="5U9-SM-AX4"/>
+                                                    <constraint firstItem="1bF-eI-Syc" firstAttribute="top" secondItem="mHa-7l-YhA" secondAttribute="bottom" constant="15" id="8cI-jB-yCO"/>
                                                     <constraint firstItem="HbL-83-cWQ" firstAttribute="top" secondItem="aUs-bK-7El" secondAttribute="top" constant="25" id="9ZD-rd-dVS"/>
                                                     <constraint firstItem="Zrk-kn-5b6" firstAttribute="centerX" secondItem="aUs-bK-7El" secondAttribute="centerX" id="Ad9-2U-dex"/>
                                                     <constraint firstAttribute="trailing" secondItem="1R2-Cp-TKy" secondAttribute="trailing" constant="20" id="GQc-FU-Km3"/>
@@ -3525,10 +3578,13 @@ MESSAGE</string>
                                                     <constraint firstItem="Dgk-Yt-dyC" firstAttribute="top" secondItem="1R2-Cp-TKy" secondAttribute="bottom" constant="8" id="Xqa-OM-VOp"/>
                                                     <constraint firstAttribute="bottom" secondItem="Zrk-kn-5b6" secondAttribute="bottom" constant="10" id="ahL-gP-Q3t"/>
                                                     <constraint firstItem="1R2-Cp-TKy" firstAttribute="leading" secondItem="aUs-bK-7El" secondAttribute="leading" constant="20" id="g4l-jT-9eM"/>
+                                                    <constraint firstItem="1bF-eI-Syc" firstAttribute="width" secondItem="mHa-7l-YhA" secondAttribute="width" id="jKa-tU-QsO"/>
+                                                    <constraint firstItem="1bF-eI-Syc" firstAttribute="height" secondItem="mHa-7l-YhA" secondAttribute="height" id="jb4-lG-Bwh"/>
                                                     <constraint firstAttribute="trailing" secondItem="HbL-83-cWQ" secondAttribute="trailing" constant="20" id="pEa-jz-wkR"/>
                                                     <constraint firstItem="1R2-Cp-TKy" firstAttribute="top" secondItem="HbL-83-cWQ" secondAttribute="bottom" constant="8" id="rBj-j6-m7c"/>
-                                                    <constraint firstAttribute="height" constant="420" id="sBW-Zm-x7F"/>
+                                                    <constraint firstAttribute="height" constant="500" id="sBW-Zm-x7F"/>
                                                     <constraint firstItem="HY0-wI-Dpu" firstAttribute="top" secondItem="Dgk-Yt-dyC" secondAttribute="bottom" constant="8" id="viG-rg-DWN"/>
+                                                    <constraint firstItem="1bF-eI-Syc" firstAttribute="leading" secondItem="mHa-7l-YhA" secondAttribute="leading" id="w8X-4f-R9y"/>
                                                     <constraint firstItem="KgP-AN-H9d" firstAttribute="leading" secondItem="BMV-vP-fdc" secondAttribute="leading" id="xs8-ux-61b"/>
                                                     <constraint firstItem="HY0-wI-Dpu" firstAttribute="trailing" secondItem="HbL-83-cWQ" secondAttribute="trailing" id="zls-aZ-0J9"/>
                                                 </constraints>
@@ -3540,7 +3596,7 @@ MESSAGE</string>
                                             <constraint firstItem="aUs-bK-7El" firstAttribute="leading" secondItem="gFg-cM-dFY" secondAttribute="leading" id="9v9-zw-k71"/>
                                             <constraint firstItem="aUs-bK-7El" firstAttribute="top" secondItem="23a-Nm-YQx" secondAttribute="bottom" id="Dex-7W-s05"/>
                                             <constraint firstItem="23a-Nm-YQx" firstAttribute="top" secondItem="gFg-cM-dFY" secondAttribute="top" id="R0N-qH-soZ"/>
-                                            <constraint firstAttribute="height" constant="460" id="Vf0-sO-N0i"/>
+                                            <constraint firstAttribute="height" constant="553" id="Vf0-sO-N0i"/>
                                             <constraint firstAttribute="width" constant="515" id="Wnq-n2-zxG"/>
                                             <constraint firstAttribute="trailing" secondItem="23a-Nm-YQx" secondAttribute="trailing" id="hwN-mO-gv2"/>
                                             <constraint firstAttribute="trailing" secondItem="aUs-bK-7El" secondAttribute="trailing" id="xHr-Mw-LCc"/>
@@ -3569,9 +3625,11 @@ MESSAGE</string>
                         <viewLayoutGuide key="safeArea" id="u2k-xY-RIS"/>
                     </view>
                     <connections>
+                        <outlet property="dropDownButton" destination="1bF-eI-Syc" id="GJ6-u3-va1"/>
                         <outlet property="nextVisitDateButton" destination="BMV-vP-fdc" id="EES-yX-NOW"/>
                         <outlet property="nextVisitDateLabel" destination="V5Z-J6-xjb" id="jXD-R2-Za5"/>
                         <outlet property="okButton" destination="Zrk-kn-5b6" id="IU7-9G-ked"/>
+                        <outlet property="plannedVisitTimeLabel" destination="5Xd-kL-PFc" id="hL8-ul-3rS"/>
                         <outlet property="titleLabel" destination="c8t-oE-OBC" id="FUp-vm-t9z"/>
                         <outlet property="visitDayButton" destination="KgP-AN-H9d" id="ou8-R2-QIU"/>
                         <outlet property="visitFreq" destination="mHa-7l-YhA" id="R72-x4-qTZ"/>

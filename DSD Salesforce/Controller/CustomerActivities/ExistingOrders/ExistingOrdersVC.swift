@@ -64,6 +64,9 @@ class ExistingOrdersVC: UIViewController {
     }
 
     func initData() {
+        
+        globalInfo.isFromInProgressExistingOrder = false
+        
         let chainNo = customerDetail.chainNo ?? ""
         let custNo = customerDetail.custNo ?? ""
 
@@ -101,6 +104,20 @@ class ExistingOrdersVC: UIViewController {
                 }
             }
         }
+        
+        if orderHeaderArray.count == 0 {
+            orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, isSavedOrder: true)
+        }
+        
+//        let firstOrderHeader = orderHeaderArray.first
+//        if orderHeaderArray.count > 1 {
+//            for index in 1..<orderHeaderArray.count {
+//                if firstOrderHeader?.orderNo == orderHeaderArray[index].orderNo {
+//                    OrderHeader.delete(context: managedObjectContext, orderHeader: orderHeaderArray[index])
+//                }
+//            }
+//        }
+        
     }
 
     func initUI() {

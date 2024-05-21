@@ -113,6 +113,9 @@ extension UIViewController {
     func changeChild(oldVC: UIViewController, newVC: UIViewController, containerView: UIView, isRemovePrevious: Bool) {
 
         // Prepare the two view controllers for the change.
+        var hud: MBProgressHUD
+        hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
+        
         oldVC.willMove(toParent: nil)
         self.addChild(newVC)
 
@@ -133,6 +136,10 @@ extension UIViewController {
                         childVC.removeFromParent()
                     }
                 }
+            }
+            
+            DispatchQueue.main.async {
+                hud.hide(true)
             }
         }
     }
@@ -179,6 +186,37 @@ extension UIViewController {
         }
 
         let newVC = self.children[childCount-2]
+
+        oldVC.willMove(toParent: nil)
+
+        let currentFrame = containerView.bounds
+        let offsetWidth = currentFrame.width
+
+        // Get the stat frame of the new controller and the end frame
+        // for the old view controller. Both rectangles are offscreen
+        newVC.view.frame = currentFrame.offsetBy(dx: -offsetWidth, dy: 0)
+        let endFrame = currentFrame.offsetBy(dx: offsetWidth, dy: 0)
+
+        // Queue up the transition animation
+        self.transition(from: oldVC, to: newVC, duration: 0.25, options: UIView.AnimationOptions(rawValue: 0), animations: {
+            // Animate the views to their final positions
+            newVC.view.frame = oldVC.view.frame
+            oldVC.view.frame = endFrame
+        }) { (finished) in
+            oldVC.removeFromParent()
+            newVC.didMove(toParent: self)
+            completionHandler?(finished)
+        }
+    }
+    
+    func popChildToMargin(containerView: UIView, completionHandler:((Bool)->())?) {
+        guard let oldVC = self.children.last else {return}
+        let childCount = self.children.count
+        if childCount < 2 {
+            return
+        }
+
+        let newVC = self.children[childCount-1]
 
         oldVC.willMove(toParent: nil)
 

@@ -75,6 +75,7 @@
         <attribute name="delivFreq" optional="YES" attributeType="String"/>
         <attribute name="driverLatitude" optional="YES" attributeType="String"/>
         <attribute name="driverLongitude" optional="YES" attributeType="String"/>
+        <attribute name="endTime" optional="YES" attributeType="String"/>
         <attribute name="endTime1" optional="YES" attributeType="String"/>
         <attribute name="endTime2" optional="YES" attributeType="String"/>
         <attribute name="featGrp" optional="YES" attributeType="String"/>
@@ -92,6 +93,7 @@
         <attribute name="latitude" optional="YES" attributeType="String"/>
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="longitude" optional="YES" attributeType="String"/>
+        <attribute name="minimumPayment" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="nextVisitDate" optional="YES" attributeType="String"/>
         <attribute name="orderNo" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -100,18 +102,21 @@
         <attribute name="payType" optional="YES" attributeType="String"/>
         <attribute name="periodNo" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="plannedVisitTime" optional="YES" attributeType="String"/>
         <attribute name="preferredVisitDay" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="priceGrp" optional="YES" attributeType="String"/>
         <attribute name="printType" optional="YES" attributeType="String"/>
         <attribute name="promoPlan" optional="YES" attributeType="String"/>
         <attribute name="routeNo" optional="YES" attributeType="String"/>
         <attribute name="routeNumber" optional="YES" attributeType="String"/>
+        <attribute name="rtnEntryMode" optional="YES" attributeType="String"/>
         <attribute name="salEntryMode" optional="YES" attributeType="String"/>
         <attribute name="salesDistrict" optional="YES" attributeType="String"/>
         <attribute name="seqNo" optional="YES" attributeType="String"/>
         <attribute name="shipToState" optional="YES" attributeType="String"/>
         <attribute name="shipToZip" optional="YES" attributeType="String"/>
         <attribute name="showPrice" optional="YES" attributeType="String"/>
+        <attribute name="startTime" optional="YES" attributeType="String"/>
         <attribute name="startTime1" optional="YES" attributeType="String"/>
         <attribute name="startTime2" optional="YES" attributeType="String"/>
         <attribute name="storeNo" optional="YES" attributeType="String"/>
@@ -125,6 +130,8 @@
         <attribute name="visitNote" optional="YES" attributeType="String"/>
         <attribute name="visitReason" optional="YES" attributeType="String"/>
         <attribute name="visitStartDate" optional="YES" attributeType="String"/>
+        <attribute name="vpNextVisitDate" optional="YES" attributeType="String"/>
+        <attribute name="vpSeqNo" optional="YES" attributeType="String"/>
         <attribute name="zip" optional="YES" attributeType="String"/>
         <relationship name="surveys" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Survey" inverseName="customerDetail" inverseEntity="Survey"/>
     </entity>
@@ -208,10 +215,12 @@
         <attribute name="isFromAuthDetail" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFromOrderHistoryItem" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFromPresoldOrDetail" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isInProgress" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isSaved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="itemNo" optional="YES" attributeType="String"/>
         <attribute name="lastOrder" optional="YES" attributeType="String"/>
         <attribute name="locnNo" optional="YES" attributeType="String"/>
+        <attribute name="orderType" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="planQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="reasonCode" optional="YES" attributeType="String"/>
@@ -240,9 +249,11 @@
         <attribute name="fulfilby" optional="YES" attributeType="String"/>
         <attribute name="invoiceUpload" optional="YES" attributeType="String"/>
         <attribute name="isCentsRound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isInProgress" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPostponed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPrinted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isSaved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSavedOrder" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isUploaded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="orderName" optional="YES" attributeType="String"/>
         <attribute name="orderNo" optional="YES" attributeType="String"/>
@@ -534,6 +545,7 @@
         <attribute name="vehicleNumber" optional="YES" attributeType="String"/>
         <attribute name="visitDuration" optional="YES" attributeType="String"/>
         <attribute name="visitNotes" optional="YES" attributeType="String"/>
+        <attribute name="visitTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="ShelfStatus" representedClassName=".ShelfStatus" syncable="YES">
         <attribute name="aisle" optional="YES" attributeType="String"/>
@@ -724,6 +736,7 @@
         <attribute name="docType" optional="YES" attributeType="String"/>
         <attribute name="nextVisit" optional="YES" attributeType="String"/>
         <attribute name="orderCreated" optional="YES" attributeType="String"/>
+        <attribute name="plannedVisitTime" optional="YES" attributeType="String"/>
         <attribute name="preferredVisitDay" optional="YES" attributeType="String"/>
         <attribute name="printedFlag" optional="YES" attributeType="String"/>
         <attribute name="rangeChecked" optional="YES" attributeType="String"/>
@@ -741,6 +754,16 @@
         <attribute name="visitStart" optional="YES" attributeType="String"/>
         <attribute name="voidFlag" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="VisitPlan" representedClassName=".VisitPlan" syncable="YES" codeGenerationType="class">
+        <attribute name="chainNo" optional="YES" attributeType="String"/>
+        <attribute name="custNo" optional="YES" attributeType="String"/>
+        <attribute name="endTime" optional="YES" attributeType="String"/>
+        <attribute name="nextVisitDate" optional="YES" attributeType="String"/>
+        <attribute name="routeNumber" optional="YES" attributeType="String"/>
+        <attribute name="seqNo" optional="YES" attributeType="String"/>
+        <attribute name="startTime" optional="YES" attributeType="String"/>
+        <attribute name="tripNumber" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="ARHeader" positionX="-18" positionY="135" width="128" height="150"/>
         <element name="AuthDetail" positionX="-9" positionY="144" width="128" height="105"/>
@@ -749,15 +772,15 @@
         <element name="CustInfo" positionX="-18" positionY="135" width="128" height="105"/>
         <element name="CustNote" positionX="-18" positionY="135" width="128" height="210"/>
         <element name="CustomerContact" positionX="18" positionY="180" width="128" height="165"/>
-        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1078"/>
+        <element name="CustomerDetail" positionX="-63" positionY="-18" width="128" height="1183"/>
         <element name="DescType" positionX="-54" positionY="144" width="128" height="225"/>
         <element name="DocText" positionX="-9" positionY="144" width="128" height="135"/>
         <element name="EquipAss" positionX="-18" positionY="135" width="128" height="330"/>
         <element name="EquipCompleteStatus" positionX="-9" positionY="144" width="128" height="90"/>
         <element name="Equipment" positionX="0" positionY="153" width="128" height="270"/>
         <element name="KPI" positionX="0" positionY="171" width="128" height="90"/>
-        <element name="OrderDetail" positionX="-9" positionY="144" width="128" height="360"/>
-        <element name="OrderHeader" positionX="-18" positionY="135" width="128" height="883"/>
+        <element name="OrderDetail" positionX="-9" positionY="144" width="128" height="388"/>
+        <element name="OrderHeader" positionX="-18" positionY="135" width="128" height="913"/>
         <element name="OrderHistory" positionX="0" positionY="144" width="128" height="360"/>
         <element name="PresoldOrDetail" positionX="-18" positionY="135" width="128" height="225"/>
         <element name="PresoldOrHeader" positionX="0" positionY="153" width="128" height="375"/>
@@ -772,7 +795,7 @@
         <element name="PromotionNoVo" positionX="9" positionY="162" width="128" height="105"/>
         <element name="PromotionOption" positionX="27" positionY="180" width="128" height="240"/>
         <element name="ProMulti" positionX="18" positionY="171" width="128" height="135"/>
-        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="853"/>
+        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="868"/>
         <element name="ShelfStatus" positionX="-18" positionY="135" width="128" height="285"/>
         <element name="Survey" positionX="-18" positionY="135" width="128" height="195"/>
         <element name="SurveyAnswerOption" positionX="0" positionY="153" width="128" height="90"/>
@@ -787,6 +810,7 @@
         <element name="UploadService" positionX="0" positionY="144" width="128" height="330"/>
         <element name="UPromotion" positionX="-18" positionY="135" width="128" height="270"/>
         <element name="UTax" positionX="0" positionY="153" width="128" height="180"/>
-        <element name="Visit" positionX="-18" positionY="135" width="128" height="403"/>
+        <element name="Visit" positionX="-18" positionY="135" width="128" height="418"/>
+        <element name="VisitPlan" positionX="-18" positionY="135" width="128" height="163"/>
     </elements>
 </model>

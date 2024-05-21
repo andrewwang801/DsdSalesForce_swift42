@@ -45,7 +45,6 @@ class OrderVC: UIViewController {
     @IBOutlet var topTabView: UIView!
     
     var hud: MBProgressHUD?
-    var isFromMarginCalculator = 0
     
     enum TopOption: Int {
         case sales = 0
@@ -100,7 +99,8 @@ class OrderVC: UIViewController {
     var orderHeader: OrderHeader!
     var orderDetailSetArray = [NSMutableOrderedSet]()
     var isEdit = false
-
+    var isNew = true
+    
     var stockMapD = [String: Double]()
 
     var reasonCodeDescTypeArray = [[DescType]]()
@@ -113,9 +113,11 @@ class OrderVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         initData()
         initUI()
-        if isFromMarginCalculator == 1 {
+        
+        if globalInfo.isFromMarginCalculator == 1 {
             let marginCalculatorVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "MarginCalculatorVC") as! MarginCalculatorVC
             marginCalculatorVC.orderVC = self
             self.changeChild(newVC: marginCalculatorVC, containerView: containerView, isRemovePrevious: true)
@@ -124,8 +126,9 @@ class OrderVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         
-        if isFromMarginCalculator == 1 {
+        if globalInfo.isFromMarginCalculator == 1 {
             mainVC.setTitleBarText(title: "MARGIN CALCULATOR")
             topTabView.isHidden = true
             marginCalculatorTab.isHidden = false
@@ -142,10 +145,14 @@ class OrderVC: UIViewController {
         super.viewWillDisappear(animated)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         if let orderSalesVC = segue.destination as? OrderSalesVC {
             orderSalesVC.orderVC = self
         }
+        
+        if let marginCalcVC = segue.destination as? MarginCalculatorVC {
+             marginCalcVC.orderVC = self
+         }
     }
     
     @IBAction func onCalc(_ sender: Any) {
@@ -184,6 +191,41 @@ class OrderVC: UIViewController {
     }
 
     @IBAction func onReturn(_ sender: Any) {
+
+        if globalInfo.isFromMarginCalculator == 0 {
+            if isNew {
+                OrderHeader.delete(context: globalInfo.managedObjectContext, orderHeader: orderHeader)
+            }
+            globalInfo.removeUnsavedOrderDetailsFromInProgressOrderHeader()
+            
+            var removeArray = [OrderDetail]()
+            for item in orderHeader.pickupSet {
+                let _item = item as! OrderDetail
+                if _item.isInProgress == true && _item.isSaved == false {
+                    removeArray.append(_item)
+                }
+            }
+            orderHeader.pickupSet.removeObjects(in: removeArray)
+            
+            removeArray.removeAll()
+            for item in orderHeader.deliverySet {
+                let _item = item as! OrderDetail
+                if _item.isInProgress == true && _item.isSaved == false {
+                    removeArray.append(_item)
+                }
+            }
+            orderHeader.deliverySet.removeObjects(in: removeArray)
+            
+            removeArray.removeAll()
+            for item in orderHeader.sampleSet {
+                let _item = item as! OrderDetail
+                if _item.isInProgress == true && _item.isSaved == false {
+                    removeArray.append(_item)
+                }
+            }
+            orderHeader.sampleSet.removeObjects(in: removeArray)
+        }
+        
         mainVC.popChild(containerView: mainVC.containerView)
     }
 
@@ -238,6 +280,9 @@ class OrderVC: UIViewController {
     }
 
     @IBAction func onProductCatalog(_ sender: Any) {
+        ///2020-3-18
+        globalInfo.isFromProductCatalog = 1
+        
         let productCatalogVC = UIViewController.getViewController(storyboardName: "ProductCatalog", storyboardID: "ProductCatalogVC") as! ProductCatalogVC
         productCatalogVC.mainVC = self.mainVC
         productCatalogVC.orderVC = self
@@ -245,14 +290,20 @@ class OrderVC: UIViewController {
         productCatalogVC.onAddToOrderHandler = { itemNo, amount in
             // add item with the amount
             let info: [String: Any] = ["itemNo": itemNo, "amount": amount]
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil, userInfo: info)
+            
+            if self.globalInfo.isFromMarginCalculator == 0 {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil, userInfo: info)
+            }
+            else {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: kOrderProductAddNotificationNameMargin), object: nil, userInfo: info)
+            }
         }
         mainVC.pushChild(newVC: productCatalogVC, containerView: mainVC.containerView)
     }
 }
 
 extension OrderVC: RATreeViewDataSource {
-
+ 
     func treeView(_ treeView: RATreeView, numberOfChildrenOfItem item: Any?) -> Int {
 
         if let item = item as? TreeItem {

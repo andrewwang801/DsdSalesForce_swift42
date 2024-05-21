@@ -161,8 +161,8 @@ class CustomerActivitiesVC: UIViewController {
 
         mainVC.setTitleBarText(title: "CUSTOMER ACTIVITIES")
 
-        globalInfo.removeUnsavedOrderHeaders()
-
+        /// uncomment when continue work in order screen
+        globalInfo.adjustCoreData()
         updateUI()
     }
 
@@ -216,17 +216,20 @@ class CustomerActivitiesVC: UIViewController {
             let chainNo = customerDetail.chainNo ?? ""
             let custNo = customerDetail.custNo ?? ""
             let orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo)
+            
             let savedUploadedHeaderArray = orderHeaderArray.filter { (orderHeader) -> Bool in
-                return orderHeader.isSaved == true
+                return orderHeader.isSaved == true || orderHeader.isInProgress == true
             }
             let managedObjectContext = globalInfo.managedObjectContext!
             let presoldOrder = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
             let presoldOrderType = presoldOrder?.type ?? ""
-
-            if savedUploadedHeaderArray.count == 0 && presoldOrderType.uppercased() != "P" {
+            
+            let result = OrderHeader.getBy(context: globalInfo.managedObjectContext, isSavedOrder: true)
+            if result.count == 0 && savedUploadedHeaderArray.count == 0 && presoldOrderType.uppercased() != "P" {
                 self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: false, isEdit: true)
             }
             else {
+                GlobalInfo.saveCache()
                 let existingOrdersVC = UIViewController.getViewController(storyboardName: "CustomerActivities", storyboardID: "ExistingOrdersVC") as! ExistingOrdersVC
                 existingOrdersVC.setDefaultModalPresentationStyle()
                 existingOrdersVC.customerDetail = customerDetail
@@ -238,7 +241,15 @@ class CustomerActivitiesVC: UIViewController {
                         self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: true, isEdit: true)
                     }
                     else if dismissOption == .selectEdition {
-                        self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: true)
+                        if (vc.selectedOrderHeader?.custNo != self.customerDetail.custNo) && vc.selectedOrderHeader?.isSavedOrder == true {
+                            let orderHeader = OrderHeader(context: managedObjectContext, forSave: false)
+                            orderHeader.updateBy(context: managedObjectContext, theSource: vc.selectedOrderHeader!)
+                            orderHeader.isSavedOrder = false
+                            self.openSalesOrder(selectedOrderHeader: orderHeader, isByPresoldHeader: false, isEdit: true)
+                        }
+                        else {
+                            self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: true)
+                        }
                     }
                     else if dismissOption == .select {
                         self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: false)
@@ -274,7 +285,7 @@ class CustomerActivitiesVC: UIViewController {
         let custNo = customerDetail.custNo ?? ""
         let orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo)
         let notUploadedHeaderArray = orderHeaderArray.filter { (orderHeader) -> Bool in
-            return orderHeader.isSaved == true && orderHeader.isUploaded == false
+            return orderHeader.isSaved == true && orderHeader.isUploaded == false && orderHeader.isInProgress == false
         }
 
         for orderHeader in notUploadedHeaderArray {
@@ -400,6 +411,10 @@ class CustomerActivitiesVC: UIViewController {
                 let preferredVisitDay = vc.preferredVisitDay
                 self.customerDetail.visitFrequency = Int32(visitFrequency)
                 self.customerDetail.preferredVisitDay = Int32(preferredVisitDay)
+                
+                ///SF71
+                self.customerDetail.plannedVisitTime = vc.plannedVisitTimeStr
+                ///SF71 END
 
                 // save visit end
                 let visitEndString = Date().toDateString(format: kTightFullDateFormat)
@@ -418,7 +433,7 @@ class CustomerActivitiesVC: UIViewController {
         let managedObjectContext = self.globalInfo.managedObjectContext!
         let orderHeaderArray = OrderHeader.getBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
         let savedNotUploadedHeaderArray = orderHeaderArray.filter { (orderHeader) -> Bool in
-            return orderHeader.isSaved == true && orderHeader.isUploaded == false
+            return (orderHeader.isSaved == true && orderHeader.isUploaded == false) || (orderHeader.isInProgress == true && orderHeader.isSavedOrder == false)
         }
 
         if savedNotUploadedHeaderArray.count > 0 {

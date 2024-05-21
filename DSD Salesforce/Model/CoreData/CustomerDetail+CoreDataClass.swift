@@ -74,8 +74,24 @@ public class CustomerDetail: NSManagedObject {
         preferredVisitDay = 0
         
         arrivalTime = ""
+        
+        ///2020-3-20, SF70, VisitPlan
+        startTime = ""
+        endTime = ""
+        vpNextVisitDate = ""
+        vpSeqNo = ""
+        
+        ///SF71, 2020-3-13
+        minimumPayment = "0.0"
     }
 
+    func getAddress() -> String? {
+        if let addr = self.address1, let city = self.city, let state = self.shipToState {
+            return addr + ", " + city + ", " + state
+        }
+        return nil
+    }
+    
     static func getBy(context: NSManagedObjectContext, chainNo: String, custNo: String) -> CustomerDetail? {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
@@ -292,6 +308,21 @@ public class CustomerDetail: NSManagedObject {
         }
         return []
     }
+    
+    static func getScheduledByNextVisitDate(context: NSManagedObjectContext, nextVisitDate: String) -> [CustomerDetail]{
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
+        request.returnsObjectsAsFaults = false
+        let predict = NSPredicate(format: "vpNextVisitDate=%@", nextVisitDate)
+        request.predicate = predict
+        
+        let result = try? context.fetch(request) as? [CustomerDetail]
+        
+        if let result = result, let customerDetails = result {
+            return customerDetails
+        }
+        return []
+    }
 
     static func getBy(context: NSManagedObjectContext, nextVisit: String) -> [CustomerDetail] {
 
@@ -356,6 +387,7 @@ public class CustomerDetail: NSManagedObject {
         self.promoPlan = xmlDictionary["PromoPlan"] ?? "99999"
         self.authGrp = xmlDictionary["AuthGrp"] ?? "0"
         self.salEntryMode = xmlDictionary["SalEntryMode"] ?? "0"
+        self.rtnEntryMode = xmlDictionary["RtnEntryMode"] ?? "0"
         self.taxCode = xmlDictionary["TaxCode"] ?? ""
         self.showPrice = xmlDictionary["ShowPrice"] ?? "0"
         self.altCustNo = xmlDictionary["AltCustNo"] ?? ""
@@ -364,6 +396,7 @@ public class CustomerDetail: NSManagedObject {
         self.featGrp = xmlDictionary["FeatGrp"] ?? "0"
         self.tempGrp = xmlDictionary["TempGrp"] ?? "0"
         self.salesDistrict = xmlDictionary["SalesDistrict"] ?? ""
+        
         self.nextVisitDate = xmlDictionary["NextVisit"] ?? ""
 
         self.googlePlaceID = xmlDictionary["GooglePlaceID"] ?? ""
@@ -371,6 +404,9 @@ public class CustomerDetail: NSManagedObject {
 
         //self.startTime1 = xmlDictionary["StartTime1"] ?? ""
         //self.endTime1 = xmlDictionary["EndTime1"] ?? ""
+        
+        ///SF71 2020-3-27
+        self.minimumPayment = xmlDictionary["MinimumPayment"] ?? "0.0"
     }
 
     func updateByRouteSchedule(xmlDictionary: [String: String]) {
@@ -387,6 +423,15 @@ public class CustomerDetail: NSManagedObject {
         self.endTime2 = Utils.getFormattedTime(original: xmlDictionary["EndTime2"] ?? "")
         self.tripNumber = xmlDictionary["TripNumber"] ?? ""
         self.isRouteScheduled = true
+    }
+    
+    //2020-3-12, SF70, update by VisitPlan
+    func updateByVisitPlan(xmlDictionary: [String: String]) {
+        
+        self.vpNextVisitDate = xmlDictionary["NextVisitDate"] ?? ""
+        self.vpSeqNo = xmlDictionary["SeqNo"] ?? ""
+        self.startTime = xmlDictionary["StartTime"] ?? ""
+        self.endTime = xmlDictionary["EndTime"] ?? ""
     }
 
     func updateByGPS(xmlDictionary: [String: String]) {
@@ -424,6 +469,7 @@ public class CustomerDetail: NSManagedObject {
         self.promoPlan = theSource.promoPlan
         self.authGrp = theSource.authGrp
         self.salEntryMode = theSource.salEntryMode
+        self.rtnEntryMode = theSource.rtnEntryMode
         self.taxCode = theSource.taxCode
         self.showPrice = theSource.showPrice
         self.altCustNo = theSource.altCustNo
@@ -460,6 +506,9 @@ public class CustomerDetail: NSManagedObject {
         
         self.visitFrequency = theSource.visitFrequency
         self.preferredVisitDay = theSource.preferredVisitDay
+        
+        ///SF71 2020-3-27
+        self.minimumPayment = theSource.minimumPayment
     }
     
     func updateByAfter(theSource: CustomerDetail) {
@@ -491,6 +540,7 @@ public class CustomerDetail: NSManagedObject {
         self.promoPlan = theSource.promoPlan
         self.authGrp = theSource.authGrp
         self.salEntryMode = theSource.salEntryMode
+        self.rtnEntryMode = theSource.rtnEntryMode
         self.taxCode = theSource.taxCode
         self.showPrice = theSource.showPrice
         self.altCustNo = theSource.altCustNo
@@ -526,6 +576,10 @@ public class CustomerDetail: NSManagedObject {
         self.visitFrequency = theSource.visitFrequency
         self.preferredVisitDay = theSource.preferredVisitDay
         
+        ///SF71, 2020-3-13
+        self.plannedVisitTime = theSource.plannedVisitTime
+        ///SF71 2020-3-27
+        self.minimumPayment = theSource.minimumPayment
     }
 
     func fillSurveys(context: NSManagedObjectContext, surveyArray: [Survey]) {
@@ -603,6 +657,18 @@ public class CustomerDetail: NSManagedObject {
             customerDetailArray.append(newCustomerDetail)
         }
 
+        //2020-3-12, SF70, update by VisitPlan
+        let visitPlanDicArray = Utils.loadFromXML(xmlName: "VISITPLAN", xPath: "//VisitPlan/Records/VisitPlan")
+        for visitPlanDic in visitPlanDicArray {
+            let chainNo = visitPlanDic["ChainNo"] ?? "0"
+            let custNo = visitPlanDic["CustNo"] ?? "0"
+            guard let customerDetail = getBy(context: context, chainNo: chainNo, custNo: custNo) else {continue}
+            
+            let newCustomerDetail = CustomerDetail(managedObjectContext: context)
+            newCustomerDetail.updateBy(theSource: customerDetail)
+            newCustomerDetail.updateByVisitPlan(xmlDictionary: visitPlanDic)
+        }
+        
         GlobalInfo.saveCache()
 
         // add customers by same next visit
@@ -773,6 +839,7 @@ extension CustomerDetail {
     @NSManaged public var promoPlan: String?
     @NSManaged public var authGrp: String?
     @NSManaged public var salEntryMode: String?
+    @NSManaged public var rtnEntryMode: String?
     @NSManaged public var taxCode: String?
     @NSManaged public var showPrice: String?
     @NSManaged public var altCustNo: String?
@@ -828,6 +895,17 @@ extension CustomerDetail {
     @NSManaged public var visitFrequency: Int32
     @NSManaged public var preferredVisitDay: Int32
     @NSManaged public var surveys: NSOrderedSet?
+    
+    // SF70, VisitPlan
+    @NSManaged public var vpNextVisitDate: String
+    @NSManaged public var vpSeqNo: String
+    @NSManaged public var startTime: String
+    @NSManaged public var endTime: String
+    
+    ///SF71, 2020-3-13
+    @NSManaged public var plannedVisitTime: String
+    ///SF71, 2020-3-27
+    @NSManaged public var minimumPayment: String
 }
 
 extension CustomerDetail {

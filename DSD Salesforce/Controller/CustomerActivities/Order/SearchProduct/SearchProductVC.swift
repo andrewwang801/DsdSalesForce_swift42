@@ -36,6 +36,7 @@ class SearchProductVC: UIViewController {
         case added
     }
 
+    var isFromCatalog = false
     var customerDetail: CustomerDetail!
     var productDetailArray = [ProductDetail]()
     var searchedArray = [ProductDetail]()
@@ -126,9 +127,14 @@ class SearchProductVC: UIViewController {
         
         titleLabel.text = L10n.searchProduct()
         searchByLabel.text = L10n.searchBy()
-        backButton.setTitleForAllState(title: L10n.Back())
         searchField.placeholder = L10n.pleaseEnterSearchKey()
 
+        if isFromCatalog {
+            backButton.setTitleForAllState(title: "Search")
+        }
+        else {
+            backButton.setTitleForAllState(title: L10n.Back())
+        }
         //set SearchByKey
         if let _selectedSearchByType = self.globalInfo.routeControl?.prodSearchDef, _selectedSearchByType != "" {
             

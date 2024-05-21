@@ -556,6 +556,15 @@ class Utils {
         productDetailVC.setDefaultModalPresentationStyle()
         vc.present(productDetailVC, animated: true, completion: nil)
     }
+    
+    static func showAddOrderVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
+        let addOrderVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "AddOrderVC") as! AddOrderVC
+        addOrderVC.productDetail = productDetail
+        addOrderVC.customerDetail = customerDetail
+        addOrderVC.dismissHandler = dismissHandler
+        addOrderVC.setDefaultModalPresentationStyle()
+        vc.present(addOrderVC, animated: true, completion: nil)
+    }
 
     static func getCardLength(cardNo1: String) -> Int {
         if hasAnyPrefix(number: cardNo1, prefixes: kAmericanExpressPrefixes) {

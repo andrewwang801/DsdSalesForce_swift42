@@ -23,6 +23,9 @@ public class RouteControl: NSManagedObject {
         visitDuration = "0"
         loconNoGPSLatitude = 0
         loconNoGPSLongitude = 0
+        
+        ///SF71, 2020-3-13
+        visitTime = 0
     }
 
     /*
@@ -133,6 +136,9 @@ public class RouteControl: NSManagedObject {
                 self.invoiceNumFormat = invoiceNum
             }
         }
+        
+        ///SF71, 2020-3-13
+        self.visitTime = Int32(xmlDictionary["VisitTime"] ?? "0") ?? 0
 
     }
 
@@ -227,4 +233,7 @@ extension RouteControl {
     @NSManaged public var treeOrder: String?
     @NSManaged public var catalogView: String?
     @NSManaged public var topProducts: String?
+    
+    ///SF71, 2020-3-13
+    @NSManaged public var visitTime: Int32
 }

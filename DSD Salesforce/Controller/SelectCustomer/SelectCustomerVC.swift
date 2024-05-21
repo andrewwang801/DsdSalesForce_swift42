@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import GoogleMaps
 import IBAnimatable
 
@@ -132,6 +133,7 @@ class SelectCustomerVC: UIViewController {
     func reloadMap() {
         customerMapView.clear()
         var markers = [GMSMarker]()
+        let path = GMSMutablePath()
         //for customer in customer
 
         /*
@@ -150,15 +152,10 @@ class SelectCustomerVC: UIViewController {
         for (index, customer) in mapCustomerArray.enumerated() {
             let presoldOrHeader = mapPresoldOrHeaderArray[index]
 
-            let latitude = Double(customer.latitude ?? "") ?? 0
-            let longitude = Double(customer.longitude ?? "") ?? 0
+            var latitude = Double(customer.latitude ?? "") ?? 0
+            var longitude = Double(customer.longitude ?? "") ?? 0
 
-            if latitude == 0 && longitude == 0 {
-                continue
-            }
-
-            let newMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
-
+            // Marker Image
             var markerImageName = ""
             // should set colors of markers
             let creditHold = Double(customer.creditHold ?? "") ?? 0
@@ -187,9 +184,45 @@ class SelectCustomerVC: UIViewController {
                     markerImageName = "Customer_Marker_Orange"
                 }
             }
+            
+            if latitude == 0 && longitude == 0 {
+                
+                guard let address = customer.getAddress() else { return }
+                let geoCoder = CLGeocoder()
+                geoCoder.geocodeAddressString(address) { (placemarks, error) in
+                    guard
+                        let placemarks = placemarks,
+                        let location = placemarks.first?.location
+                    else {
+                        // handle no location found
+                        return
+                    }
 
+                    // Use your location
+                    latitude = location.coordinate.latitude
+                    longitude = location.coordinate.longitude
+                    let newMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                    newMarker.icon = UIImage(named: markerImageName)
+                    newMarker.groundAnchor = CGPoint(x: 0.5, y: 1)
+                    newMarker.snippet = customer.name ?? ""
+                    newMarker.userData = customer
+                    newMarker.map = self.customerMapView
+                    markers.append(newMarker)
+                    
+                    for marker in markers {
+                        path.add(marker.position)
+                    }
+                    let bounds = GMSCoordinateBounds(path: path)
+
+                    let cameraUpdate = GMSCameraUpdate.fit(bounds, withPadding: 64)
+                    self.customerMapView.animate(with: cameraUpdate)
+                }
+                continue;
+            }
+
+            
+            let newMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
             newMarker.icon = UIImage(named: markerImageName)
-
             newMarker.groundAnchor = CGPoint(x: 0.5, y: 1)
             newMarker.snippet = customer.name ?? ""
             newMarker.userData = customer
@@ -207,7 +240,6 @@ class SelectCustomerVC: UIViewController {
             markers.append(myMarker)
         }
 
-        let path = GMSMutablePath()
         for marker in markers {
             path.add(marker.position)
         }

@@ -66,7 +66,7 @@ class ProductCatalogVC: UIViewController {
     var customerDetail: CustomerDetail?
 
     var productDetailArray = [ProductDetail]()
-
+    var isSearched = false
 //    let kBrandTitle = "BRAND"
 //    let kSubBrandTitle = "SUB BRAND"
 //    let kTypeTitle = "TYPE"
@@ -142,6 +142,9 @@ class ProductCatalogVC: UIViewController {
         mainVC.setTitleBarText(title: L10n.productCatalog())
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        globalInfo.isFromProductCatalog = 0
+    }
     
     func getCatalogTypes() {
         if let catalogString:String = globalInfo.routeControl?.catalog {
@@ -651,6 +654,40 @@ class ProductCatalogVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.updateProduct()
         }
+    }
+    
+    @IBAction func onSearch(_ sender: Any) {
+        let searchProductVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "SearchProductVC") as! SearchProductVC
+        searchProductVC.setDefaultModalPresentationStyle()
+        searchProductVC.isEnableFilterAuthorizedItem = true
+        searchProductVC.isFromCatalog = true
+        searchProductVC.customerDetail = customerDetail
+        searchProductVC.dismissHandler = { vc, dismissOption in
+            if dismissOption == .cancelled {
+                self.isSearched = true
+                self.filterCV.reloadData()
+                
+                for (index, _) in self.kFilterTitleArray.enumerated()
+                {
+                    self.onFilterSelected(index: index, selectedIndexArray: [])
+                }
+                
+                self.productDetailArray = vc.searchedArray
+                self.productDetailArray = self.productDetailArray.sorted(by: { (productDetail1, productDetail2) -> Bool in
+                    let itemNo1 = productDetail1.itemNo ?? ""
+                    let itemNo2 = productDetail2.itemNo ?? ""
+                    return itemNo1 < itemNo2
+                })
+
+                if self.productDetailArray.count > 0 {
+                    self.onProductTapped(index: -1)
+                }
+                else {
+                    self.onProductTapped(index: -1)
+                }
+            }
+        }
+        self.present(searchProductVC, animated: true, completion: nil)
     }
     
     @IBAction func onSwitch(_ sender: Any) {

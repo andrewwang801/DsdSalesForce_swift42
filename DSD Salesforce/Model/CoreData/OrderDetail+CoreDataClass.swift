@@ -30,14 +30,32 @@ class OrderDetail: NSManagedObject {
         isFromPresoldOrDetail = false
         isFromAuthDetail = false
         isFromOrderHistoryItem = false
+        isInProgress = false
 
         isSaved = false
+        orderType = 0
     }
 
     func isFromOriginal() -> Bool {
         return isFromPresoldOrDetail || isFromAuthDetail || isFromOrderHistoryItem
     }
+    
+    static func getUnsaved(context: NSManagedObjectContext, isSaved: Bool, custNo: String, isFromPresoldOrDetail: Bool, isFromOrderHistoryItem: Bool) -> [OrderDetail] {
 
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderDetail")
+        let predicate1 = NSPredicate(format: "isSaved == %@", NSNumber(value: isSaved))
+        let predicate2 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate3 = NSPredicate(format: "isFromPresoldOrDetail == %@", NSNumber(value: isFromPresoldOrDetail))
+        let predicate4 = NSPredicate(format: "isFromOrderHistoryItem == %@", NSNumber(value: isFromOrderHistoryItem))
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3, predicate4])
+        let result = try? context.fetch(request) as? [OrderDetail]
+        
+        if let result = result, let orderDetailArray = result {
+            return orderDetailArray
+        }
+        return []
+    }
+    
     func updateBy(context: NSManagedObjectContext, theSource: OrderDetail) {
         self.trxnNo = theSource.trxnNo
         self.trxnType = theSource.trxnType
@@ -58,7 +76,11 @@ class OrderDetail: NSManagedObject {
         self.isFromPresoldOrDetail = theSource.isFromPresoldOrDetail
         self.isFromAuthDetail = theSource.isFromAuthDetail
         self.isFromOrderHistoryItem = theSource.isFromOrderHistoryItem
+        self.orderType = theSource.orderType
 
+        self.isSaved = theSource.isSaved
+        self.isInProgress = theSource.isInProgress
+        
         // promotions
         self.deletePromotions(context: context)
         for _promotion in theSource.promotionSet {
@@ -139,7 +161,9 @@ extension OrderDetail {
     @NSManaged public var isFromOrderHistoryItem: Bool
 
     @NSManaged public var isSaved: Bool
-
+    @NSManaged public var isInProgress: Bool
+    
+    @NSManaged public var orderType: Int32
     @NSManaged public var tax: UTax?
     @NSManaged public var promotions: NSOrderedSet?
 

@@ -78,11 +78,11 @@ class SelectCustomerDetailsVC: UIViewController {
 
     @objc func updateUIProgress () {
         
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
+        //let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
             
         DispatchQueue.main.async {
             self.updateUI()
-            hud?.hide(true)
+            //hud?.hide(true)
         }
         
     }
