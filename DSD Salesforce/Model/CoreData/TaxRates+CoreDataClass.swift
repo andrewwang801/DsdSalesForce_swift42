@@ -11,11 +11,42 @@ import CoreData
 
 public class TaxRates: NSManagedObject {
     
+    static var taxRatesDicForToday = [String: [TaxRates]]()
+        
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
         cumulativeFlag = ""
     }
 
+    static func getByForTodayFromDic (context: NSManagedObjectContext, custTaxCode: String, itemNo: String) -> TaxRates? {
+        let prodLocn = ProductLocn.getByFromDic(itemNo: itemNo)?.first
+        if prodLocn == nil {
+            return TaxRates(context: context, forSave: false)
+        }
+        let itemTaxCode = prodLocn!.itemTaxCode ?? ""
+        if itemTaxCode.isEmpty == true {
+            return TaxRates(context: context, forSave: false)
+        }
+        let taxCodes = TaxCodes.getByFromDic(custTaxCode: custTaxCode, itemTaxCode: itemTaxCode)
+        let taxRateCode = taxCodes?.taxRateCode ?? ""
+
+        let now = Date()
+        let nowString = now.toDateString(format: kTightJustDateFormat) ?? ""
+        var taxRatesArray: [TaxRates] = []
+        guard let taxRatesArrayByTaxRatesCode = taxRatesDicForToday[taxRateCode] else { return nil }
+        for item in taxRatesArrayByTaxRatesCode {
+            if item.startDate! <= nowString && item.endDate! >= nowString {
+                taxRatesArray.append(item)
+            }
+        }
+         
+        if taxRatesArray.isEmpty {
+            return nil
+        }
+        return taxRatesArray.first
+
+    }
+    
     static func getByForToday(context: NSManagedObjectContext, custTaxCode: String, itemNo: String) -> TaxRates? {
 
         let prodLocn = ProductLocn.getBy(context: context, itemNo: itemNo).first
@@ -44,7 +75,52 @@ public class TaxRates: NSManagedObject {
         }
         return nil
     }
+    
+        
+    static func getUTaxByForTodayFromDic(context: NSManagedObjectContext, custTaxCode: String, itemNo: String) -> UTax? {
 
+        let prodLocn = ProductLocn.getByFromDic(itemNo: itemNo)?.first
+        if prodLocn == nil {
+            return nil
+        }
+        let itemTaxCode = prodLocn!.itemTaxCode ?? ""
+        if itemTaxCode.isEmpty == true {
+            return nil
+        }
+
+        let taxCodes = TaxCodes.getByFromDic(custTaxCode: custTaxCode, itemTaxCode: itemTaxCode)
+        let taxRateCode = taxCodes?.taxRateCode ?? ""
+
+        let now = Date()
+        let nowString = now.toDateString(format: kTightJustDateFormat) ?? ""
+        var taxRatesArray: [TaxRates] = []
+        guard let taxRatesArrayByTaxRatesCode = taxRatesDicForToday[taxRateCode] else { return nil }
+        for item in taxRatesArrayByTaxRatesCode {
+            if item.startDate! <= nowString && item.endDate! >= nowString {
+                taxRatesArray.append(item)
+            }
+        }
+         
+        if taxRatesArray.isEmpty {
+            return nil
+        }
+        let firstTaxRates = taxRatesArray.first
+        if firstTaxRates == nil {
+            return nil
+        }
+        let tax = UTax(context: context, forSave: true)
+        tax.trxnNo = ""
+        tax.trxnType = ""
+        tax.locnNo = prodLocn!.locnNo ?? ""
+        tax.itemNo = itemNo
+        tax.taxRateCode = taxRateCode
+        tax.taxAmount = ""
+        tax.cumulativeFlag = taxCodes?.cumulativeFlag ?? ""
+        tax.taxRate = firstTaxRates!.taxRate ?? ""
+        tax.reasonCode = ""
+        return tax
+    }
+    
     static func getUTaxByForToday(context: NSManagedObjectContext, custTaxCode: String, itemNo: String) -> UTax? {
 
         let prodLocn = ProductLocn.getBy(context: context, itemNo: itemNo).first
@@ -61,6 +137,7 @@ public class TaxRates: NSManagedObject {
 
         let now = Date()
         let nowString = now.toDateString(format: kTightJustDateFormat) ?? ""
+        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TaxRates")
         let predicate1 = NSPredicate(format: "taxRateCode=%@", taxRateCode)
         let predicate2 = NSPredicate(format: "startDate<=%@", nowString)
@@ -68,7 +145,6 @@ public class TaxRates: NSManagedObject {
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3])
 
         let result = try? context.fetch(request) as? [TaxRates]
-
         if let result = result, let taxRatesArray = result {
             let firstTaxRates = taxRatesArray.first
             if firstTaxRates == nil {
@@ -115,10 +191,21 @@ public class TaxRates: NSManagedObject {
 
         let dicArray = Utils.loadFromXML(xmlName: "TAXRATES", xPath: "//TaxRates/Records/TaxRates")
         var taxRatesArray = [TaxRates]()
+        
+        var existingArray: [TaxRates]
         for dic in dicArray {
             let taxRates = TaxRates(context: context, forSave: forSave)
             taxRates.updateBy(xmlDictionary: dic)
             taxRatesArray.append(taxRates)
+            
+            if let _existingArray = taxRatesDicForToday[dic["TaxRateCode"]!] {
+                existingArray = _existingArray
+            }
+            else {
+                existingArray = []
+            }
+            existingArray.append(taxRates)
+            taxRatesDicForToday[dic["TaxRateCode"]!] = existingArray
         }
         return taxRatesArray
     }

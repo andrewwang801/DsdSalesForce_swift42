@@ -751,7 +751,7 @@
         <element name="PresoldOrHeader" positionX="0" positionY="153" width="128" height="375"/>
         <element name="PriceGroup" positionX="18" positionY="171" width="128" height="150"/>
         <element name="Pricing" positionX="0" positionY="144" width="128" height="165"/>
-        <element name="ProductDetail" positionX="9" positionY="153" width="128" height="570"/>
+        <element name="ProductDetail" positionX="9" positionY="153" width="128" height="568"/>
         <element name="ProductLevl" positionX="-18" positionY="135" width="128" height="90"/>
         <element name="ProductLocn" positionX="-9" positionY="144" width="128" height="358"/>
         <element name="ProductStruct" positionX="0" positionY="153" width="128" height="180"/>

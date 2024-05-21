@@ -25,6 +25,8 @@ class SelectCustomerPricingVC: PromotionBaseVC {
     @IBOutlet weak var filterButton: AnimatableButton!
     @IBOutlet weak var pricingTitleLabel: UILabel!
 
+    var hud: MBProgressHUD?
+    
     enum ViewType {
         case pricing
         case promotions
@@ -85,6 +87,8 @@ class SelectCustomerPricingVC: PromotionBaseVC {
 
         productSeqDictionary = ProductStruct.getProductStructObjectEntryIDDictionary(context: globalInfo.managedObjectContext)
 
+        hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
+        
         initUI()
         updateUIProgress()
     }
@@ -111,18 +115,16 @@ class SelectCustomerPricingVC: PromotionBaseVC {
     }
     
     @objc func updateUIProgress () {
-        
-        let hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
-        
-            DispatchQueue.main.async {
-                self.updateUI()
-                hud?.hide(true)
-            }
+
+        DispatchQueue.main.async {
+            self.updateUI()
+            self.hud?.hide(true)
+        }
         
     }
     
     @objc func updateUI() {
-
+        
         guard let selectedCustomer = selectCustomerVC.selectedCustomer else {return}
 
         let tagNo = selectedCustomer.getCustomerTag()

@@ -47,7 +47,12 @@ class ProductCatalogProductCell: UICollectionViewCell {
 
         itemNoLabel.text = itemNo
         itemTitleLabel.text = itemTitle
-        itemImageView.image = itemImage
+        if itemImage == nil {
+            itemImageView.image = UIImage(named: "loading")
+        }
+        else {
+            itemImageView.image = itemImage
+        }
         bottomSeparatorLabel.backgroundColor = kOrangeColor
         rightSeparatorLabel.backgroundColor = kCustomerCellHighlightedColor
 

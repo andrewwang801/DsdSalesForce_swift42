@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 
 public class ProductDetail: NSManagedObject {
+
+    static var productDetailDic = [String: ProductDetail]()
     
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
@@ -22,6 +24,12 @@ public class ProductDetail: NSManagedObject {
         self.price = 0
     }
 
+    static func getByFromDic(context: NSManagedObjectContext, itemNo: String) -> ProductDetail? {
+
+        guard let productDetail = productDetailDic[itemNo] else {return nil}
+        return productDetail
+    }
+    
     static func getBy(context: NSManagedObjectContext, itemNo: String) -> ProductDetail? {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ProductDetail")
@@ -35,7 +43,7 @@ public class ProductDetail: NSManagedObject {
         }
         return nil
     }
-
+    
     static func getBy(context: NSManagedObjectContext, itemUPC: String) -> ProductDetail? {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ProductDetail")
@@ -252,8 +260,10 @@ public class ProductDetail: NSManagedObject {
         var priceFillRecord = ""
 
         let itemNo = self.itemNo ?? ""
-        let pricing = Pricing.getByForToday(context: context, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
-        let priceGrp = PriceGroup.getByForToday(context: context, priceGroup: custNo, itemNo: itemNo)
+        //let _pricing = Pricing.getByForToday(context: context, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+        //let _priceGrp = PriceGroup.getByForToday(context: context, priceGroup: custNo, itemNo: itemNo)
+        let pricing = Pricing.getByForTodayFromDic(context: context, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+        let priceGrp = PriceGroup.getByForTodayFromDic(context: context, priceGroup: custNo, itemNo: itemNo)
         if pricing != nil {
             price = (Double(pricing!.price ?? "") ?? 0) / Double(kXMLNumberDivider)
             priceFillRecord = pricing!.prcFilRecord ?? ""
@@ -343,6 +353,7 @@ public class ProductDetail: NSManagedObject {
             let productDetail = ProductDetail(context: context, forSave: forSave)
             productDetail.updateBy(xmlDictionary: dic)
             productDetailArray.append(productDetail)
+            productDetailDic[dic["ItemNo"]!] = productDetail
         }
         return productDetailArray
     }

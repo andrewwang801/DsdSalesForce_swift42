@@ -32,7 +32,9 @@ class OrderVC: UIViewController {
     @IBOutlet weak var completedButton: AnimatableButton!
 
     @IBOutlet weak var containerView: UIView!
-
+    
+    var hud: MBProgressHUD?
+    
     enum TopOption: Int {
         case sales = 0
         case returns = 1
@@ -99,8 +101,10 @@ class OrderVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //hud = MBProgressHUD.showAdded(to: UIApplication.shared.keyWindow, animated: true)
         initData()
         initUI()
+        //hud?.hide(true)
     }
 
     override func viewWillAppear(_ animated: Bool) {

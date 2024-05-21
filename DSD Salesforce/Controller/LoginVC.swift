@@ -379,56 +379,60 @@ class LoginVC: UIViewController {
 
                     //measure time
                     startTime = CFAbsoluteTimeGetCurrent()
-                    
-                    self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: true, completion: { (success, message) in
 
-                        //measure time
-                        timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                        print("Time elapsed for second DownloadDirectory: \(timeElapsed) s.")
+                    DispatchQueue.global(qos: .utility).async {
+                        // Do some time consuming task in this background thread
+                        // Mobile app will remain to be responsive to user actions
                         
-                        //measure time
-                        startTime = CFAbsoluteTimeGetCurrent()
-                        
-                        self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: true, completion: { (success, message) in
+                        self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
 
                             //measure time
                             timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                            print("Time elapsed for Third DownloadDirectory: \(timeElapsed) s.")
-
+                            print("Time elapsed for second DownloadDirectory: \(timeElapsed) s.")
+                            
                             //measure time
                             startTime = CFAbsoluteTimeGetCurrent()
-                            self.globalInfo.loadCoreDataFromXML()
-                            
-                            //measure time
-                            timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                            print("Time elapsed for second LoadCoreXML: \(timeElapsed) s.")
-                            
-                            guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
-                                NSLog("doFirstLogin: Invalid RouteControl")
-                                return
-                            }
+                            self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
 
-                            self.globalInfo.username = routeControl.userName ?? ""
-                            self.globalInfo.password = routeControl.security1 ?? ""
-                            self.globalInfo.territory = routeControl.trip ?? ""
-                            //self.globalInfo.isUpdated = false
-                            self.globalInfo.saveUserSetting()
-
-                            self.usernameText.text = ""
-                            self.passwordText.text = ""
-                            self.territoryText.text = ""
-
-                            self.globalInfo.ftpHostname = self.ftpLoginInfo!.ipAddress
-                            self.globalInfo.ftpUsername = self.ftpLoginInfo!.username
-                            self.globalInfo.ftpPassword = self.ftpLoginInfo!.password
-                            self.globalInfo.ftpPort = self.ftpLoginInfo!.port
-                            self.globalInfo.ftpRoot = self.ftpLoginInfo!.root
-                            self.globalInfo.ftpChatCompanyCode = self.ftpLoginInfo!.chatCompanyCode
-                            self.globalInfo.saveFTPSetting()
-
-                            self.updateRightPanel()
+                                //measure time
+                                timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                                print("Time elapsed for Third DownloadDirectory: \(timeElapsed) s.")
+                            })
                         })
-                    })
+                    }
+
+                    //measure time
+                    startTime = CFAbsoluteTimeGetCurrent()
+                    self.globalInfo.loadCoreDataFromXML()
+                    
+                    //measure time
+                    timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                    print("Time elapsed for second LoadCoreXML: \(timeElapsed) s.")
+                    
+                    guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
+                        NSLog("doFirstLogin: Invalid RouteControl")
+                        return
+                    }
+
+                    self.globalInfo.username = routeControl.userName ?? ""
+                    self.globalInfo.password = routeControl.security1 ?? ""
+                    self.globalInfo.territory = routeControl.trip ?? ""
+                    //self.globalInfo.isUpdated = false
+                    self.globalInfo.saveUserSetting()
+
+                    self.usernameText.text = ""
+                    self.passwordText.text = ""
+                    self.territoryText.text = ""
+
+                    self.globalInfo.ftpHostname = self.ftpLoginInfo!.ipAddress
+                    self.globalInfo.ftpUsername = self.ftpLoginInfo!.username
+                    self.globalInfo.ftpPassword = self.ftpLoginInfo!.password
+                    self.globalInfo.ftpPort = self.ftpLoginInfo!.port
+                    self.globalInfo.ftpRoot = self.ftpLoginInfo!.root
+                    self.globalInfo.ftpChatCompanyCode = self.ftpLoginInfo!.chatCompanyCode
+                    self.globalInfo.saveFTPSetting()
+
+                    self.updateRightPanel()
                 })
             }
             else {
@@ -448,25 +452,37 @@ class LoginVC: UIViewController {
                     if success == true {
                         self.updateLeftPanel()
                     }
+                    
+                    DispatchQueue.global(qos: .utility).async {
+                               // Do some time consuming task in this background thread
+                               // Mobile app will remain to be responsive to user actions
+                               self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
 
-                    self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: true, completion: { (success, message) in
+                                   self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
+                                   })
+                               })
 
-                        self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: true, completion: { (success, message) in
+                            DispatchQueue.main.async {
+                               // Task consuming task has completed
+                               // Update UI from this block of code
+                               print("Time consuming task has completed. From here we are allowed to update user interface.")
+                        }
+                        
+                    }
 
-                            self.globalInfo.loadCoreDataFromXML()
-                            guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
-                                self.showNotFoundMatchedTripData()
-                                return
-                            }
-                            self.globalInfo.username = routeControl.userName ?? ""
-                            self.globalInfo.password = routeControl.security1 ?? ""
-                            self.globalInfo.territory = routeControl.trip ?? ""
-                            //self.globalInfo.isUpdated = false
-                            self.globalInfo.saveUserSetting()
+                    self.globalInfo.loadCoreDataFromXML()
+                    guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
+                        self.showNotFoundMatchedTripData()
+                        return
+                    }
+                    self.globalInfo.username = routeControl.userName ?? ""
+                    self.globalInfo.password = routeControl.security1 ?? ""
+                    self.globalInfo.territory = routeControl.trip ?? ""
+                    //self.globalInfo.isUpdated = false
+                    self.globalInfo.saveUserSetting()
 
-                            self.loginToQBAndOpenMain()
-                        })
-                    })
+                    self.loginToQBAndOpenMain()
+    
                 })
             }
             else {

@@ -158,7 +158,7 @@ extension UIViewController {
         let endFrame = currentFrame.offsetBy(dx: -offsetWidth, dy: 0)
 
         // Queue up the transition animation
-        self.transition(from: oldVC, to: newVC, duration: 0.25, options: UIView.AnimationOptions(rawValue: 0), animations: {
+        self.transition(from: oldVC, to: newVC, duration: 0.5, options: UIView.AnimationOptions(rawValue: 0), animations: {
             // Animate the views to their final positions
             newVC.view.frame = oldVC.view.frame
             oldVC.view.frame = endFrame
