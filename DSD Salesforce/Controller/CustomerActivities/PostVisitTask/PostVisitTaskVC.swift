@@ -17,11 +17,15 @@ class PostVisitTaskVC: UIViewController {
     @IBOutlet weak var nextVisitDateLabel: UILabel!
     @IBOutlet weak var visitNotesLabel: UILabel!
     @IBOutlet weak var okButton: AnimatableButton!
+    @IBOutlet var visitDayButton: AnimatableButton!
+    @IBOutlet var visitFreq: UITextField!
     
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     var nextVisitDate = Date()
+    var now = Date()
     var visitNote = ""
+    var deliveryFreq = 0
     var isNextVisitDateChanged = false
 
     var datePicker = UIDatePicker()
@@ -44,9 +48,21 @@ class PostVisitTaskVC: UIViewController {
 
     func initData() {
         // get the next visit date
-        let now = Date()
+        let custInfoArray = CustInfo.getByArray(context: globalInfo.managedObjectContext, infoType: "16", custNo: customerDetail.custNo!)
+        for custInfo in custInfoArray {
+            visitDayArray.append(custInfo.info!)
+            
+            let date = Date.fromDateString(dateString: custInfo.info!)!
+            formattedVisitDayArray.append(date.toDateString(format: kDateFormat)!)
+        }
+        if visitDayArray.count == 0 {
+            now = Date()
+        }
+        else {
+            now = Date.fromDateString(dateString: visitDayArray.first!)!
+        }
         let deliveryFreqString = customerDetail.delivFreq ?? "0"
-        let deliveryFreq = Int(deliveryFreqString) ?? 0
+        deliveryFreq = Int(deliveryFreqString) ?? 0
         nextVisitDate = now.getDateAddedBy(days: deliveryFreq*7)
     }
 
@@ -59,8 +75,50 @@ class PostVisitTaskVC: UIViewController {
         datePicker.datePickerMode = .date
         nextVisitDateButton.setTitleForAllState(title: nextVisitDate.toDateString(format: kDateFormat) ?? "")
         visitNoteTextView.text = ""
+        visitDayButton.setTitleForAllState(title: now.toDateString(format: kDateFormat) ?? "")
+        visitFreq.text = customerDetail.delivFreq ?? "0"
+        visitFreq.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        setupVisitDayDropDown()
     }
+    
+    func updateUI() {
+        
+        nextVisitDateButton.setTitleForAllState(title: nextVisitDate.toDateString(format: kDateFormat) ?? "")
+    }
+    
+    @objc func textFieldDidChange(textField: UITextField) {
+        // get the next visit date
+        let deliveryFreqString = visitFreq.text ?? "0"
+        deliveryFreq = Int(deliveryFreqString) ?? 0
+        nextVisitDate = now.getDateAddedBy(days: deliveryFreq*7)
+        updateUI()
+    }
+    
+    var visitDayDropDown = DropDown()
+    var selectedVisitDay = ""
+    var visitDayArray: [String] = []
+    var formattedVisitDayArray: [String] = []
+    
+    func setupVisitDayDropDown() {
+        visitDayDropDown.cellHeight = visitDayButton.bounds.height
+        visitDayDropDown.anchorView = visitDayButton
+        visitDayDropDown.bottomOffset = CGPoint(x: 0, y: visitDayButton.bounds.height)
+        visitDayDropDown.backgroundColor = UIColor.white
+        visitDayDropDown.textFont = visitDayButton.titleLabel!.font
 
+        visitDayDropDown.dataSource = formattedVisitDayArray
+        visitDayDropDown.cellNib = UINib(nibName: "GeneralDropDownCell", bundle: nil)
+        visitDayDropDown.customCellConfiguration = {_index, item, cell in
+        }
+        visitDayDropDown.selectionAction = { index, item in
+            self.selectedVisitDay = self.visitDayArray[index]
+            self.now = Date.fromDateString(dateString: self.selectedVisitDay)!
+            self.nextVisitDate = self.now.getDateAddedBy(days: self.deliveryFreq*7)
+            self.visitDayButton.setTitleForAllState(title: self.now.toDateString(format: self.kDateFormat) ?? "")
+            self.updateUI()
+        }
+    }
+    
     @IBAction func onNextVisitDate(_ sender: Any) {
         let selectedDateString = nextVisitDateButton.titleLabel?.text ?? ""
         let selectedDate = Date.fromDateString(dateString: selectedDateString, format: kDateFormat)
@@ -76,6 +134,10 @@ class PostVisitTaskVC: UIViewController {
         self.present(calendarVC, animated: true, completion: nil)
     }
 
+    @IBAction func onVisitDay(_ sender: Any) {
+        visitDayDropDown.show()
+    }
+    
     @IBAction func onOkay(_ sender: Any) {
 
         let visitNotes = globalInfo.routeControl?.visitNotes ?? "0"

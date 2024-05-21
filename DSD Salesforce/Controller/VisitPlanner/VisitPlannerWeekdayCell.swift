@@ -8,12 +8,15 @@
 
 import UIKit
 
-class VisitPlannerWeekdayCell: UICollectionViewCell {
+class VisitPlannerWeekdayCell: UICollectionViewCell, UIDropInteractionDelegate {
     
     @IBOutlet weak var weekdayLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var weekdayButton: UIButton!
-
+    
+    let globalInfo = GlobalInfo.shared
+    var selectedCustomer: CustomerDetail!
+    
     var parentVC: VisitPlannerVC!
     var indexPath: IndexPath!
 
@@ -23,8 +26,43 @@ class VisitPlannerWeekdayCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         weekdayButton.addTarget(self, action: #selector(VisitPlannerWeekdayCell.onWeekdayButtonTapped(_:)), for: .touchUpInside)
+        
+        let dropInteraction = UIDropInteraction(delegate: self)
+        self.addInteraction(dropInteraction)
     }
 
+    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        // Ensure the drop session has an object of the appropriate type
+        return session.canLoadObjects(ofClass: NSString.self)
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+            // Propose to the system to copy the item from the source app
+        return UIDropProposal(operation: .copy)
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        print("dropped")
+        // Consume drag items (in this example, of type UIImage).
+        session.loadObjects(ofClass: NSString.self) { indexItems in
+            let indexes = indexItems as! [String]
+            
+            let selectedDay = self.parentVC.weekdayStart.getDateAddedBy(days: self.indexPath.row)
+            let nowDateString = selectedDay.toDateString(format: kTightJustDateFormat) ?? ""
+            let dayNo = Utils.getWeekday(date: selectedDay)
+            let draggegdIndex = Int(indexes.first!)
+            
+            self.selectedCustomer = self.parentVC.customerDetailArray[draggegdIndex!]
+            self.selectedCustomer.setValue(nowDateString, forKey: "deliveryDate")
+            self.selectedCustomer.setValue(String(dayNo), forKey: "dayNo")
+            GlobalInfo.saveCache()
+            self.parentVC.onWeekdayTapped(index: self.indexPath.row)
+            //self.uploadVisit()
+            self.globalInfo.uploadManager?.uploadVisit(selectedCustomer: self.selectedCustomer)
+        }
+        // Perform additional UI updates as needed.
+    }
+    
     func setupCell(parentVC: VisitPlannerVC, indexPath: IndexPath) {
         self.parentVC = parentVC
         self.indexPath = indexPath

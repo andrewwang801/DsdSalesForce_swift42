@@ -18,7 +18,7 @@ class VisitPlannerVC: UIViewController {
     @IBOutlet weak var addAVisitButton: AnimatableButton!
     @IBOutlet weak var mapDay: AnimatableButton!
     @IBOutlet weak var returnButton: AnimatableButton!
-    
+
     var mainVC: MainVC!
     let globalInfo = GlobalInfo.shared
 
@@ -37,6 +37,9 @@ class VisitPlannerVC: UIViewController {
 
         // Do any additional setup after loading the view.
         initUI()
+        
+        self.customerTableView.dragInteractionEnabled = true
+        self.customerTableView.dragDelegate = self as UITableViewDragDelegate
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -339,4 +342,37 @@ extension VisitPlannerVC: UICollectionViewDelegate, UICollectionViewDelegateFlow
 
 extension VisitPlannerVC: GMSMapViewDelegate {
 
+}
+
+// MARK: - UITableViewDragDropDelegate Methods
+extension VisitPlannerVC : UITableViewDragDelegate
+{
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem]
+    {
+        let item = String(indexPath.row)
+        let itemProvider = NSItemProvider(object: item as NSString)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = item
+        return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem]
+    {
+        let item = String(indexPath.row)
+        let itemProvider = NSItemProvider(object: item as NSString)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = item
+        return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, dragPreviewParametersForRowAt indexPath: IndexPath) -> UIDragPreviewParameters?
+    {
+        if tableView == tableView
+        {
+            let previewParameters = UIDragPreviewParameters()
+            previewParameters.visiblePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 250, height: 61))
+            return previewParameters
+        }
+        return nil
+    }
 }

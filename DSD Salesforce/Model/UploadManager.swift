@@ -356,6 +356,36 @@ class UploadManager: NSObject {
         self.startIfNeeded()
     }
 
+    func uploadVisit(selectedCustomer: CustomerDetail) {
+        
+        let chainNo = selectedCustomer.chainNo ?? ""
+        let custNo = selectedCustomer.custNo ?? ""
+        let orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo)
+        let notUploadedHeaderArray = orderHeaderArray.filter { (orderHeader) -> Bool in
+            return orderHeader.isSaved == true && orderHeader.isUploaded == false
+        }
+
+        for orderHeader in notUploadedHeaderArray {
+            orderHeader.scheduleUpload()
+        }
+        selectedCustomer.isCompleted = true
+
+        let now = Date()
+
+        // upload visit upload
+        var transactionArray = [UTransaction]()
+
+        let visit = Visit.make(chainNo: chainNo, custNo: custNo, docType: "VIS", date: now, customerDetail: selectedCustomer, reference: "")
+        transactionArray.append(visit.makeTransaction())
+
+        var filePathArray = [String]()
+
+        let visitPath = Visit.saveToXML(visitArray: [visit])
+        filePathArray.append(visitPath)
+
+        let uploadManager = globalInfo.uploadManager
+        uploadManager?.zipAndScheduleUpload(filePathArray: filePathArray)
+    }
     /*
     func recoverAllPostpones() {
         UploadItem.resetAllPostpones(context: globalInfo.managedObjectContext)
