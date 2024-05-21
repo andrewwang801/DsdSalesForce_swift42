@@ -738,6 +738,9 @@ class SelectCustomerVC: UIViewController {
     func openCustomerActivities() {
         guard let selectedCustomer = self.selectedCustomer else {return}
 
+        print(selectedCustomer.surveys!)
+        print(selectedCustomer.surveySet)
+        
         // load opportunities
         if globalInfo.customerOpportunityArray.count == 0 {
             globalInfo.loadDefaultOpportunities(selectedCustomer: selectedCustomer)

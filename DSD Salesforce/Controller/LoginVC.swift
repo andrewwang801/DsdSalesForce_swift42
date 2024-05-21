@@ -40,6 +40,9 @@ class LoginVC: UIViewController {
     @IBOutlet weak var territoryTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var loginButton: AnimatableButton!
 
+    var managedObjectContext = GlobalInfo.getManagedObjectContext()
+    var hud: MBProgressHUD?
+    
     let globalInfo = GlobalInfo.shared
     var ftpLoginInfo: FTPLoginInfo?
     var tripUserArray = [TripUser]()
@@ -301,6 +304,9 @@ class LoginVC: UIViewController {
                         else {
                             Utils.showAlert(vc: self, title: "Refresh Data", message: "Refresh the data on your device?\nThis will reset the visit plan and may cause loss of transactions you have completed today!", failed: false, customerName: "", leftString: "No", middleString: "", rightString: "Yes") { returnCode in
                                 if returnCode == MessageDialogVC.ReturnCode.left {
+                                    //self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                                    //let _ = Pricing.loadFromXML(context: self.managedObjectContext, forSave: true)
+                                    //let _ = ProductDetail.loadFromXML(context: self.managedObjectContext, forSave: true)
                                     self.loginToQBAndOpenMain()
                                 }
                                 else {
@@ -367,74 +373,73 @@ class LoginVC: UIViewController {
                 //measure time
                 var startTime = CFAbsoluteTimeGetCurrent()
 
-                DispatchQueue.global(qos: .utility).async {
+                self.globalInfo.ftpManager.downloadDirectoryFiles(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kReportsDirName, remoteFileNames: kReportsFileNameArray, localDirName: kReportsDirName, shouldShowHUD: true, completion: { (success, message) in
                     
-                    self.globalInfo.ftpManager.downloadDirectoryFiles(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kReportsDirName, remoteFileNames: kReportsFileNameArray, localDirName: kReportsDirName, shouldShowHUD: false, completion: { (success, message) in
-                        
-                        //measure time
-                        var timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                        print("Time elapsed for first DownloadDirectoryFiles: \(timeElapsed) s.")
-                        
-                        if success == true {
-                            self.updateLeftPanel()
-                        }
-
-                        //measure time
-                        startTime = CFAbsoluteTimeGetCurrent()
-
-                        // Do some time consuming task in this background thread
-                        // Mobile app will remain to be responsive to user actions
-                        
-                        self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
-
                             //measure time
-                            timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                            print("Time elapsed for second DownloadDirectory: \(timeElapsed) s.")
+                            var timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                            print("Time elapsed for first DownloadDirectoryFiles: \(timeElapsed) s.")
                             
+                            if success == true {
+                                self.updateLeftPanel()
+                            }
+
                             //measure time
                             startTime = CFAbsoluteTimeGetCurrent()
-                            self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
 
-                                //measure time
-                                timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                                print("Time elapsed for Third DownloadDirectory: \(timeElapsed) s.")
-                            })
-                        })
+                            DispatchQueue.global(qos: .utility).async {
+                                // Do some time consuming task in this background thread
+                                // Mobile app will remain to be responsive to user actions
+                                
+                                self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
+
+                                    //measure time
+                                    timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                                    print("Time elapsed for second DownloadDirectory: \(timeElapsed) s.")
+                                    
+                                    //measure time
+                                    startTime = CFAbsoluteTimeGetCurrent()
+                                    self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
+
+                                        //measure time
+                                        timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                                        print("Time elapsed for Third DownloadDirectory: \(timeElapsed) s.")
+                                    })
+                                })
+                            }
+
+                            //measure time
+                            startTime = CFAbsoluteTimeGetCurrent()
+                            self.globalInfo.loadCoreDataFromXML()
+                        
+                            //measure time
+                            timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                            print("Time elapsed for second LoadCoreXML: \(timeElapsed) s.")
+                            
+                            guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
+                                NSLog("doFirstLogin: Invalid RouteControl")
+                                return
+                            }
+
+                            self.globalInfo.username = routeControl.userName ?? ""
+                            self.globalInfo.password = routeControl.security1 ?? ""
+                            self.globalInfo.territory = routeControl.trip ?? ""
+                            //self.globalInfo.isUpdated = false
+                            self.globalInfo.saveUserSetting()
+
+                            self.usernameText.text = ""
+                            self.passwordText.text = ""
+                            self.territoryText.text = ""
+
+                            self.globalInfo.ftpHostname = self.ftpLoginInfo!.ipAddress
+                            self.globalInfo.ftpUsername = self.ftpLoginInfo!.username
+                            self.globalInfo.ftpPassword = self.ftpLoginInfo!.password
+                            self.globalInfo.ftpPort = self.ftpLoginInfo!.port
+                            self.globalInfo.ftpRoot = self.ftpLoginInfo!.root
+                            self.globalInfo.ftpChatCompanyCode = self.ftpLoginInfo!.chatCompanyCode
+                            self.globalInfo.saveFTPSetting()
+
+                            self.updateRightPanel()
                     })
-                }
-
-                    //measure time
-                    startTime = CFAbsoluteTimeGetCurrent()
-                    self.globalInfo.loadCoreDataFromXML()
-                    
-                    //measure time
-                    let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-                    print("Time elapsed for second LoadCoreXML: \(timeElapsed) s.")
-                    
-                    guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
-                        NSLog("doFirstLogin: Invalid RouteControl")
-                        return
-                    }
-
-                    self.globalInfo.username = routeControl.userName ?? ""
-                    self.globalInfo.password = routeControl.security1 ?? ""
-                    self.globalInfo.territory = routeControl.trip ?? ""
-                    //self.globalInfo.isUpdated = false
-                    self.globalInfo.saveUserSetting()
-
-                    self.usernameText.text = ""
-                    self.passwordText.text = ""
-                    self.territoryText.text = ""
-
-                    self.globalInfo.ftpHostname = self.ftpLoginInfo!.ipAddress
-                    self.globalInfo.ftpUsername = self.ftpLoginInfo!.username
-                    self.globalInfo.ftpPassword = self.ftpLoginInfo!.password
-                    self.globalInfo.ftpPort = self.ftpLoginInfo!.port
-                    self.globalInfo.ftpRoot = self.ftpLoginInfo!.root
-                    self.globalInfo.ftpChatCompanyCode = self.ftpLoginInfo!.chatCompanyCode
-                    self.globalInfo.saveFTPSetting()
-
-                    self.updateRightPanel()
             }
             else {
                 self.showNotFoundMatchedTripData()
@@ -445,43 +450,39 @@ class LoginVC: UIViewController {
 
     func doReLogin(ftpInfo: FTPInfo) {
         
-        globalInfo.ftpManager.finishDownload(success: false, message: "finish download for relogin")
-        
         globalInfo.ftpManager.downloadXmls(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, shouldShowHUD: true) { (success, message) in
 
             if success == true {
 
-                DispatchQueue.global(qos: .utility).async {
-                    
-                    self.globalInfo.ftpManager.downloadDirectoryFiles(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kReportsDirName, remoteFileNames: kReportsFileNameArray, localDirName: kReportsDirName, shouldShowHUD: false, completion: { (success, message) in
-                            if success == true {
-                                self.updateLeftPanel()
-                            }
-                            
+                self.globalInfo.ftpManager.downloadDirectoryFiles(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kReportsDirName, remoteFileNames: kReportsFileNameArray, localDirName: kReportsDirName, shouldShowHUD: true, completion: { (success, message) in
+                        if success == true {
+                            self.updateLeftPanel()
+                        }
+
+                        DispatchQueue.global(qos: .utility).async {
                             // Do some time consuming task in this background thread
                             // Mobile app will remain to be responsive to user actions
                             self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
 
-                               self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
-                               })
+                                    self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: false, completion: { (success, message) in
+                                    })
                             })
 
-                        })
-                }
+                        }
 
-                self.globalInfo.loadCoreDataFromXML()
-                guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
-                    self.showNotFoundMatchedTripData()
-                    return
-                }
-                self.globalInfo.username = routeControl.userName ?? ""
-                self.globalInfo.password = routeControl.security1 ?? ""
-                self.globalInfo.territory = routeControl.trip ?? ""
-                //self.globalInfo.isUpdated = false
-                self.globalInfo.saveUserSetting()
+                        self.globalInfo.loadCoreDataFromXML()
+                        guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
+                            self.showNotFoundMatchedTripData()
+                            return
+                        }
+                        self.globalInfo.username = routeControl.userName ?? ""
+                        self.globalInfo.password = routeControl.security1 ?? ""
+                        self.globalInfo.territory = routeControl.trip ?? ""
+                        //self.globalInfo.isUpdated = false
+                        self.globalInfo.saveUserSetting()
 
-                self.loginToQBAndOpenMain()
-    
+                        self.loginToQBAndOpenMain()
+                })
             }
             else {
                 self.showNotFoundMatchedTripData()
@@ -568,7 +569,7 @@ class LoginVC: UIViewController {
     }
 
     func loginToQBAndOpenMain() {
-
+        
         globalInfo.isUpdated = false
         globalInfo.saveUserSetting()
 
@@ -619,6 +620,11 @@ class LoginVC: UIViewController {
 
         let mainVC = UIViewController.getViewController(storyboardName: "Main", storyboardID: "MainVC") as! MainVC
         mainVC.setFullScreenPresentation()
+        
+        /*DispatchQueue.main.async {
+            self.hud?.hide(true)
+        }*/
+        
         self.present(mainVC, animated: true, completion: nil)
     }
 

@@ -254,6 +254,7 @@ public class CustomerDetail: NSManagedObject {
     static func getScheduled(context: NSManagedObjectContext, dayNo: String, shouldExcludeCompleted: Bool = true) -> [CustomerDetail] {
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CustomerDetail")
+        request.returnsObjectsAsFaults = false
         let predicate1 = NSPredicate(format: "isCompleted=false")
         let predicate2 = NSPredicate(format: "isRouteScheduled=true")
         let predicate3 = NSPredicate(format: "dayNo=%@", dayNo)
@@ -263,7 +264,6 @@ public class CustomerDetail: NSManagedObject {
         else {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate2, predicate3])
         }
-
         let result = try? context.fetch(request) as? [CustomerDetail]
 
         if let result = result, let customerDetails = result {
@@ -434,6 +434,8 @@ public class CustomerDetail: NSManagedObject {
         self.orderNo = theSource.orderNo
         self.isFromSameNextVisit = theSource.isFromSameNextVisit
         self.arrivalTime = theSource.arrivalTime
+        
+        self.surveys = theSource.surveys
     }
 
     func fillSurveys(context: NSManagedObjectContext, surveyArray: [Survey]) {

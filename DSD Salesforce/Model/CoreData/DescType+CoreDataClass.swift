@@ -11,6 +11,8 @@ import CoreData
 
 public class DescType: NSManagedObject {
     
+    static var descTypeDic = [String: [DescType]]()
+    
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
     }
@@ -28,6 +30,20 @@ public class DescType: NSManagedObject {
 
         if let result = result, let descTypes = result {
             return descTypes.first
+        }
+        return nil
+    }
+    
+    static func getByFromDic(context: NSManagedObjectContext, descTypeID: String, alphaKey: String) -> DescType? {
+        
+        guard let _descTypeArray = descTypeDic[descTypeID] else {return nil}
+
+        for item in _descTypeArray {
+            if let _alphaKey = item.alphaKey {
+                if _alphaKey == alphaKey {
+                    return item
+                }
+            }
         }
         return nil
     }
@@ -96,10 +112,20 @@ public class DescType: NSManagedObject {
 
         let dicArray = Utils.loadFromXML(xmlName: "DESCTYPE", xPath: "//DescType/Records/DescType")
         var descTypeArray = [DescType]()
+        var existingArray = [DescType]()
         for dic in dicArray {
             let descType = DescType(context: context, forSave: forSave)
             descType.updateBy(xmlDictionary: dic)
             descTypeArray.append(descType)
+            
+            if let _existingArray = descTypeDic[dic["DescriptionTypeID"]!] {
+                existingArray = _existingArray
+            }
+            else {
+                existingArray = []
+            }
+            existingArray.append(descType)
+            descTypeDic[dic["DescriptionTypeID"]!] = existingArray
         }
         return descTypeArray
     }

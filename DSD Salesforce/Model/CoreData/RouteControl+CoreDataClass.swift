@@ -96,6 +96,8 @@ public class RouteControl: NSManagedObject {
         
         self.custaddNew = xmlDictionary["CUSTADDNEW"] ?? "0"
         self.catalog = xmlDictionary["CATALOG"] ?? ""
+        
+        self.prodSearchDef = xmlDictionary["PRODSEARCHDEF"] ?? ""
 
         let locnNoGPS = xmlDictionary["LocnNoGPS"] ?? ""
         let parts = locnNoGPS.components(separatedBy: ",")
@@ -198,4 +200,6 @@ extension RouteControl {
 
     @NSManaged public var invoiceNum: String?
     @NSManaged public var invoiceNumFormat: String?
+    
+    @NSManaged public var prodSearchDef: String?
 }

@@ -118,8 +118,8 @@ class UploadManager: NSObject {
                 else {
                     self.shouldStop = true
                 }
+                self.isBusy = false
             }
-            self.isBusy = false
         }
     }
     
@@ -144,6 +144,7 @@ class UploadManager: NSObject {
         ftpManager.uploadFile(hostname: hostname, user: username, password: password, localPath: localPath, uploadPath: uploadPath, shouldShowHUD: false, completion: { (success, message) in
             uploadResult = success
             hasCallingFinished = true
+            NSLog(uploadPath + "success")
         })
         while hasCallingFinished == false {
             Thread.sleep(forTimeInterval: 0.5)
