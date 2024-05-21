@@ -11,8 +11,7 @@ import GoogleMaps
 import CoreData
 import QuickLook
 import UserNotifications
-import Fabric
-import Crashlytics
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let _ = GlobalInfo.shared
-
-        Fabric.with([Crashlytics.self])
-
+        // Use the Firebase library to configure APIs.
+        FirebaseApp.configure()
+        
         GMSServices.provideAPIKey("AIzaSyDXcFkYnf2e1498ZugjFhd9N-33O57SaHU")
         Utils.buildBaseURLMap()
 

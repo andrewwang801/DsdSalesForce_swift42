@@ -11,6 +11,7 @@ import IBAnimatable
 
 class ProductCatalogVC: UIViewController {
 
+    @IBOutlet var productView: UIView!
     @IBOutlet weak var filterCV: UICollectionView!
     @IBOutlet weak var productCV: UICollectionView!
     @IBOutlet weak var noDataLabel: UILabel!
@@ -41,6 +42,22 @@ class ProductCatalogVC: UIViewController {
     @IBOutlet weak var barcodeTitleLabel: UILabel!
     @IBOutlet weak var unitsPerCaseTitleLabel: UILabel!
     @IBOutlet weak var unitPriceTitleLabel: UILabel!
+    @IBOutlet var retailLabel: UILabel!
+    @IBOutlet var retailStackView: UIStackView!
+    
+    @IBOutlet var viewSwitchButton: AnimatableButton!
+    //titleProductView
+    @IBOutlet var tileView: UIView!
+    @IBOutlet var tileProductCV: UICollectionView!
+    @IBOutlet var tileBaseCasePriceLabel: UILabel!
+    @IBOutlet var tileUnitPerCaseLabel: UILabel!
+    @IBOutlet var tileUnitPriceLabel: UILabel!
+    @IBOutlet var tileQtyTextField: AnimatableTextField!
+    @IBOutlet var tileQtyView: UIView!
+    @IBOutlet var tileAddToOrder: AnimatableButton!
+    @IBOutlet var tileRetailLabel: UILabel!
+    @IBOutlet var tileRetailStackView: UIStackView!
+    
     
     var mainVC: MainVC!
     let globalInfo = GlobalInfo.shared
@@ -100,6 +117,15 @@ class ProductCatalogVC: UIViewController {
     var productImageScrollViewHeight: CGFloat = 0
 
     var onAddToOrderHandler: ((String, Int)->())?
+    
+    private let sectionInsets = UIEdgeInsets(top: 50.0,
+                                             left: 20.0,
+                                             bottom: 50.0,
+                                             right: 20.0)
+    private let itemsPerRow: CGFloat = 4
+    private let itemsPerCol: CGFloat = 3
+    
+    private var viewMode = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,6 +178,10 @@ class ProductCatalogVC: UIViewController {
     }
 
     func initUI() {
+        
+        initViewMode()
+        toggleView()
+        
         barcodeTitleLabel.text = L10n.barcode()
         baseCasePriceTitleLabel.text = L10n.baseCasePrice()
         unitsPerCaseTitleLabel.text = L10n.unitsPerCase()
@@ -175,6 +205,9 @@ class ProductCatalogVC: UIViewController {
         productCV.delegate = self
         productCV.backgroundView?.backgroundColor = .clear
         productCV.backgroundColor = .clear
+        
+        tileProductCV.dataSource = self
+        tileProductCV.delegate = self
 
         filterCV.reloadData()
         reloadProduct()
@@ -184,15 +217,48 @@ class ProductCatalogVC: UIViewController {
             baseCasePriceTitleLabel.text = "Customer Price"
             qtyView.isHidden = false
             addToOrderButton.isHidden = false
+            
+            tileQtyView.isHidden = false
+            tileAddToOrder.isHidden = false
         }
         else {
             baseCasePriceTitleLabel.text = "Base Case Price"
             qtyView.isHidden = true
             addToOrderButton.isHidden = true
+            
+            tileQtyView.isHidden = true
+            tileAddToOrder.isHidden = true
         }
 
-        //qtyTextField.text = "1"
+        qtyTextField.text = "1"
+        tileQtyTextField.text = "1"
         qtyTextField.delegate = self
+        tileQtyTextField.delegate = self
+    }
+    
+    func initViewMode() {
+        if globalInfo.routeControl?.catalogView == "SHOW" || globalInfo.routeControl?.catalogView == "" {
+            self.viewMode = true
+        }
+        else if globalInfo.routeControl?.catalogView == "TILE" {
+            self.viewMode = false
+        }
+    }
+    
+    func toggleView() {
+        
+        if viewMode {
+            tileView.isHidden = true
+            productView.isHidden = false
+            contentView.isHidden = false
+            viewSwitchButton.setImage(UIImage(named: "icon_tile_view"), for: .normal)
+        }
+        else {
+            tileView.isHidden = false
+            productView.isHidden = true
+            contentView.isHidden = true
+            viewSwitchButton.setImage(UIImage(named: "icon_showcase_view"), for: .normal)
+        }
     }
 
     func reloadProduct() {
@@ -273,6 +339,7 @@ class ProductCatalogVC: UIViewController {
 
     func refreshProduct() {
         productCV.reloadData()
+        tileProductCV.reloadData()
 
         if productDetailArray.count == 0 {
             noDataLabel.isHidden = false
@@ -348,6 +415,8 @@ class ProductCatalogVC: UIViewController {
 
         let _ = Utils.getCaseValue(itemNo: itemNo)
         unitsPerCaseLabel.text = "\(Int(consumerUnit))"
+        //tileView
+        tileUnitPerCaseLabel.text = "\(Int(consumerUnit))"
 
         let caseFactorString = productDetail.productLocn?.caseFactor ?? ""
         let caseFactor = Double(caseFactorString) ?? 0
@@ -358,6 +427,8 @@ class ProductCatalogVC: UIViewController {
 
             let casePrice = basePrice*caseFactor
             baseCasePriceLabel.text = Utils.getMoneyString(moneyValue: casePrice)
+            //tileView
+            tileBaseCasePriceLabel.text = Utils.getMoneyString(moneyValue: casePrice)
 
             var unitPrice: Double = 0
             if consumerUnit != 0 {
@@ -367,12 +438,16 @@ class ProductCatalogVC: UIViewController {
                 unitPrice = casePrice
             }
             unitPriceLabel.text = Utils.getMoneyString(moneyValue: unitPrice)
+            //tileView
+            tileUnitPriceLabel.text = Utils.getMoneyString(moneyValue: unitPrice)
         }
         else {
             let _ = productDetail.calculatePrice(context: globalInfo.managedObjectContext, customerDetail: customerDetail!)
             let price = productDetail.price
             let casePrice = price*caseFactor
             baseCasePriceLabel.text = Utils.getMoneyString(moneyValue: casePrice)
+            //tileView
+            tileBaseCasePriceLabel.text = Utils.getMoneyString(moneyValue: casePrice)
 
             var unitPrice: Double = 0
             if consumerUnit != 0 {
@@ -382,6 +457,8 @@ class ProductCatalogVC: UIViewController {
                 unitPrice = casePrice
             }
             unitPriceLabel.text = Utils.getMoneyString(moneyValue: unitPrice)
+            //tileView
+            tileUnitPriceLabel.text = Utils.getMoneyString(moneyValue: unitPrice)
 
             let selectedTabIndex = orderVC!.selectedTopOption.rawValue
             if selectedTabIndex >= 0 && selectedTabIndex <= 2 {
@@ -397,17 +474,33 @@ class ProductCatalogVC: UIViewController {
                 }
                 if orderQty > 0 {
                     addToOrderButton.setTitleForAllState(title: L10n.updateOrder())
+                    tileAddToOrder.setTitleForAllState(title: L10n.updateOrder())
                     qtyTextField.text = "\(orderQty)"
+                    tileQtyTextField.text = "\(orderQty)"
                 }
                 else {
                     addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
+                    tileAddToOrder.setTitleForAllState(title: L10n.addToOrder())
                     qtyTextField.text = "1"
+                    tileQtyTextField.text = "1"
                 }
             }
             else {
                 addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
+                tileAddToOrder.setTitleForAllState(title: L10n.addToOrder())
                 qtyTextField.text = "1"
+                tileQtyTextField.text = "1"
             }
+        }
+        if let _retailPrice = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first?.retailPrice, _retailPrice != "0", let retailPrice = Double(_retailPrice) {
+            tileRetailStackView.isHidden = false
+            retailStackView.isHidden = false
+            tileRetailLabel.text = Utils.getMoneyString(moneyValue: retailPrice / 100000)
+            retailLabel.text = Utils.getMoneyString(moneyValue: retailPrice / 100000)
+        }
+        else {
+            tileRetailStackView.isHidden = true
+            retailStackView.isHidden = true
         }
     }
 
@@ -510,6 +603,9 @@ class ProductCatalogVC: UIViewController {
     @IBAction func onPlusQty(_ sender: Any) {
         let qty = Int(qtyTextField.text ?? "") ?? 0
         qtyTextField.text = "\(qty+1)"
+        
+        let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
+        tileQtyTextField.text = "\(tileQty+1)"
     }
 
     @IBAction func onMinusQty(_ sender: Any) {
@@ -518,6 +614,12 @@ class ProductCatalogVC: UIViewController {
             qty = 0
         }
         qtyTextField.text = "\(qty)"
+        
+        qty = (Int(tileQtyTextField.text ?? "") ?? 0)-1
+        if qty <= 0 {
+            qty = 0
+        }
+        tileQtyTextField.text = "\(qty)"
     }
 
     @IBAction func onAddToOrder(_ sender: Any) {
@@ -528,17 +630,32 @@ class ProductCatalogVC: UIViewController {
         if qty == 0 {
             return
         }
+        
+        let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
+        if tileQty == 0 {
+            return
+        }
 
         let productDetail = productDetailArray[selectedProductIndex]
         let itemNo = productDetail.itemNo ?? ""
 
-        self.onAddToOrderHandler?(itemNo, qty)
+        if viewMode {
+            self.onAddToOrderHandler?(itemNo, qty)
+        }
+        else {
+            self.onAddToOrderHandler?(itemNo, tileQty)
+        }
 
         SVProgressHUD.showSuccess(withStatus: "The product has been added to the Order.")
 
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.updateProduct()
         }
+    }
+    
+    @IBAction func onSwitch(_ sender: Any) {
+        self.viewMode = !viewMode
+        self.toggleView()
     }
     
     @IBAction func onClose(_ sender: Any) {
@@ -548,7 +665,7 @@ class ProductCatalogVC: UIViewController {
 }
 
 extension ProductCatalogVC: UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == filterCV {
             return filterDescTypeArray.count
@@ -565,8 +682,13 @@ extension ProductCatalogVC: UICollectionViewDataSource {
             cell.setupCell(parentVC: self, indexPath: indexPath)
             return cell
         }
-        else {
+        else if collectionView == productCV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCatalogProductCell", for: indexPath) as! ProductCatalogProductCell
+            cell.setupCell(parentVC: self, indexPath: indexPath)
+            return cell
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tileProductCatalogProductCell", for: indexPath) as! tileProductCatalogProductCell
             cell.setupCell(parentVC: self, indexPath: indexPath)
             return cell
         }
@@ -590,14 +712,40 @@ extension ProductCatalogVC: UICollectionViewDelegate, UICollectionViewDelegateFl
                 return CGSize(width: lastWidth, height: totalHeight)
             }
         }
-        else /*if collectionView == productCV*/ {
+        else if collectionView == productCV {
             let totalHeight = collectionView.bounds.height
             return CGSize(width: ProductCatalogProductCell.kProductCellWidth, height: totalHeight)
         }
+        else {
+            let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+            let availableWidth = collectionView.frame.width - paddingSpace
+            let widthPerItem = availableWidth / itemsPerRow
+            return CGSize(width: widthPerItem, height: widthPerItem)
+        }
+    }
+    
+    //3
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == tileProductCV {
+            return sectionInsets
+        }
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    // 4
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == tileProductCV {
+            return sectionInsets.left
+        }
+        return CGFloat(0)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == productCV {
+        if collectionView == productCV || collectionView == tileProductCV{
             collectionView.deselectItem(at: indexPath, animated: false)
             onProductTapped(index: indexPath.row)
         }
@@ -632,7 +780,7 @@ extension ProductCatalogVC: UIScrollViewDelegate {
 extension ProductCatalogVC: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == qtyTextField {
+        if textField == qtyTextField || textField == tileQtyTextField{
             textField.resignFirstResponder()
             return false
         }
@@ -641,7 +789,7 @@ extension ProductCatalogVC: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-        if textField == qtyTextField {
+        if textField == qtyTextField || textField == tileQtyTextField {
             switch string {
             case "0","1","2","3","4","5","6","7","8","9":
                 return true

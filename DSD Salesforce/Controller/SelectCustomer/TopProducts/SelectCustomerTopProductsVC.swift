@@ -87,7 +87,15 @@ class SelectCustomerTopProductsVC: UIViewController {
         })
 
         let totalCount = orderHistoryArray.count
-        let removeCount = max(totalCount-5,0)
+        var topProducts: Int
+        if let _topProductsStr = globalInfo.routeControl?.topProducts, let _topProducts = Int(_topProductsStr) {
+            topProducts = _topProducts
+        }
+        else {
+            topProducts = 5
+        }
+        
+        let removeCount = max(totalCount - topProducts,0)
 
         orderHistoryArray.removeLast(removeCount)
 

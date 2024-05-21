@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F81381123F3151200237D9E /* titleProductCatalogProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */; };
+		0F9A7CB923EC0B280079AF24 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */; };
 		0FAE811123E36B7500AC4842 /* MarginCalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */; };
 		0FAE811323E36CCA00AC4842 /* MarginCalculatorOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */; };
 		0FD8803B23BF84880065A6B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FD8803D23BF84880065A6B2 /* Localizable.strings */; };
@@ -594,6 +596,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleProductCatalogProductCell.swift; sourceTree = "<group>"; };
+		0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0FAE811023E36B7500AC4842 /* MarginCalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginCalculatorVC.swift; sourceTree = "<group>"; };
 		0FAE811223E36CCA00AC4842 /* MarginCalculatorOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginCalculatorOrderCell.swift; sourceTree = "<group>"; };
 		0FD8803C23BF84880065A6B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1563,6 +1567,7 @@
 				6410C63D20EB54C800B52129 /* Model */,
 				6410C64020EB54C800B52129 /* View */,
 				6410C61B20EB4FE800B52129 /* AppDelegate.swift */,
+				0F9A7CB823EC0B270079AF24 /* GoogleService-Info.plist */,
 				6410C62720EB4FEA00B52129 /* Info.plist */,
 			);
 			path = "DSD Salesforce";
@@ -3664,6 +3669,7 @@
 				648787F922AE4DD20028C722 /* ProductCatalogFilterCell.swift */,
 				648787FA22AE4DD20028C722 /* ProductCatalogProductCell.swift */,
 				648787F122AE17F10028C722 /* ProductCatalogVC.swift */,
+				0F81381023F3151200237D9E /* titleProductCatalogProductCell.swift */,
 			);
 			path = ProductCatalog;
 			sourceTree = "<group>";
@@ -4132,6 +4138,7 @@
 				648DEE2120EB660A00686609 /* Roboto-Light.ttf in Resources */,
 				6454576B2101139600368E51 /* QMImageIncomingCell.xib in Resources */,
 				648DEE2D20EB660A00686609 /* RobotoCondensed-Regular.ttf in Resources */,
+				0F9A7CB923EC0B280079AF24 /* GoogleService-Info.plist in Resources */,
 				64A0DBC421CEB5D4008F1766 /* Delivery.storyboard in Resources */,
 				645457462101139500368E51 /* cancel_icon.png in Resources */,
 				6454575F2101139600368E51 /* QMChatIncomingCell.xib in Resources */,
@@ -4226,7 +4233,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" f03f4e4faa7e062640d7018beb6f97091d99af3e 2047a04e8c087d302a468059c852ef638af4c94d3672e4f1d2200b4fca1aaa5a\n";
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		9CE1E9881127C326D8EE5677 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4648,6 +4655,7 @@
 				645457182101139500368E51 /* NSManagedObjectModel+QMCDRecord.m in Sources */,
 				648787EF22AE0C6B0028C722 /* HamburgerProductCatalogCell.swift in Sources */,
 				6453DC1A22082B3200A5CF0E /* NewAssetPlacementVC.swift in Sources */,
+				0F81381123F3151200237D9E /* titleProductCatalogProductCell.swift in Sources */,
 				645456F92101139500368E51 /* QMChatService+Bolts.m in Sources */,
 				64DDB7FD212CFFBE00499E97 /* UInvenD.swift in Sources */,
 				6454575C2101139600368E51 /* QMChatContactRequestCell.m in Sources */,
@@ -4975,13 +4983,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 115;
+				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_TEAM = UVTRFS9YVZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Framework",
 				);
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DSD Salesforce-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5002,7 +5011,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 3.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5068,13 +5077,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 115;
+				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_TEAM = UVTRFS9YVZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Framework",
 				);
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DSD Salesforce-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5095,7 +5105,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 3.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

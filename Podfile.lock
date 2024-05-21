@@ -11,11 +11,44 @@ PODS:
   - Charts (3.2.2):
     - Charts/Core (= 3.2.2)
   - Charts/Core (3.2.2)
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
   - eWAYPaymentsSDK (1.1.0)
-  - Fabric (1.7.11)
   - FFCircularProgressView (0.5)
+  - Firebase/CoreOnly (6.16.0):
+    - FirebaseCore (= 6.6.1)
+  - Firebase/Crashlytics (6.16.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.0.0-beta.2)
+  - FirebaseAnalyticsInterop (1.5.0)
+  - FirebaseCore (6.6.1):
+    - FirebaseCoreDiagnostics (~> 1.2)
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.2.0):
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleDataTransportCCTSupport (~> 1.3)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseCrashlytics (4.0.0-beta.3):
+    - FirebaseAnalyticsInterop (~> 1.2)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstallations (1.1.0):
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.3.0):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+  - GoogleDataTransport (3.3.1)
+  - GoogleDataTransportCCTSupport (1.3.1):
+    - GoogleDataTransport (~> 3.3)
+    - nanopb (~> 0.3.901)
   - GoogleMaps (2.6.0):
     - GoogleMaps/Maps (= 2.6.0)
   - GoogleMaps/Base (2.6.0)
@@ -26,8 +59,19 @@ PODS:
     - GooglePlaces (= 2.6.0)
   - GooglePlaces (2.6.0):
     - GoogleMaps/Base (= 2.6.0)
+  - GoogleUtilities/Environment (6.5.1)
+  - GoogleUtilities/Logger (6.5.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/UserDefaults (6.5.1):
+    - GoogleUtilities/Logger
   - IBAnimatable (5.2.1)
   - MBCircularProgressBar (0.3.5)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - PromisesObjC (1.2.8)
   - QBImagePickerController (3.4.0)
   - ReachabilitySwift (4.1.0)
   - RSBarcodes_Swift (4.2.1)
@@ -45,10 +89,9 @@ DEPENDENCIES:
   - Bolts
   - CCBottomRefreshControl
   - Charts
-  - Crashlytics
   - eWAYPaymentsSDK
-  - Fabric
   - FFCircularProgressView
+  - Firebase/Crashlytics
   - GoogleMaps
   - GooglePlacePicker
   - GooglePlaces
@@ -69,15 +112,26 @@ SPEC REPOS:
     - Bolts
     - CCBottomRefreshControl
     - Charts
-    - Crashlytics
     - eWAYPaymentsSDK
-    - Fabric
     - FFCircularProgressView
+    - Firebase
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseCrashlytics
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
+    - GoogleUtilities
     - IBAnimatable
     - MBCircularProgressBar
+    - nanopb
+    - PromisesObjC
     - QBImagePickerController
     - ReachabilitySwift
     - RSBarcodes_Swift
@@ -102,15 +156,26 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CCBottomRefreshControl: 389780b4488321c91d18f66a6da5ef9606df6de5
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   eWAYPaymentsSDK: d0cb78895acae95abd274ebafff9658c7e70cde0
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   FFCircularProgressView: 683a4ab1e1bd613246a3dffa61503ffdebcde8d8
+  Firebase: 497158b816d0a86fc31babbd05546fcd7e6083ff
+  FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
+  FirebaseCore: 85064903ed6c28e47fec9c7bd149d94ba1b6b6e7
+  FirebaseCoreDiagnostics: 5e78803ab276bc5b50340e3c539c06c3de35c649
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseCrashlytics: 81ac4950302353dc6b5f8d5cc287397725b54c97
+  FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
+  FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
+  GoogleDataTransport: 0048df6388dab1c254799f2a30365b1dffe20422
+  GoogleDataTransportCCTSupport: f880d70972efa2ed1be4e9173a0f4c5f3dc2d176
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
-  GooglePlacePicker: e4488625effb006f59de49e14b7a603e463e4261
+  GooglePlacePicker: 8867e52efa9714795be547d4d5947f9fe02c4c5e
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
+  GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   IBAnimatable: a46b835ec6875178516cf7e014a40194d6bfa3fc
   MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   RSBarcodes_Swift: c58d107e6d2149cc34a23f02828d400dbb708101
@@ -120,6 +185,6 @@ SPEC CHECKSUMS:
   TYAttributedLabel: cb8fc910d97eb5224936d4f692a78e042af691b2
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
 
-PODFILE CHECKSUM: 0c1949b8a91070a6207e20d34e11e50df1e2942b
+PODFILE CHECKSUM: 1de819c35158b065c805d139d6604f5a5cffa2e4
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
