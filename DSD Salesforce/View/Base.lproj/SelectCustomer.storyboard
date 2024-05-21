@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -440,7 +440,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Stop" translatesAutoresizingMaskIntoConstraints="NO" id="BNb-vU-xAI">
-                                                                            <rect key="frame" x="258" y="26" width="22" height="22"/>
+                                                                            <rect key="frame" x="258" y="25.5" width="22" height="23"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="696-Il-sTT" userLabel="Bottom Separator">
                                                                             <rect key="frame" x="0.0" y="73" width="320" height="1"/>
@@ -906,14 +906,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDJ-1X-5Do" userLabel="Last Order On View">
                                         <rect key="frame" x="322" y="410" width="151" height="80"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Credit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phv-jZ-UrM">
-                                                <rect key="frame" x="30" y="14.5" width="91" height="15.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phv-jZ-UrM">
+                                                <rect key="frame" x="75.5" y="30" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45537.54" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vu-3E-HqH">
-                                                <rect key="frame" x="0.0" y="37" width="151" height="22.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vu-3E-HqH">
+                                                <rect key="frame" x="0.0" y="37" width="151" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
                                                 <color key="textColor" red="0.30588235294117649" green="0.69411764705882351" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -932,14 +932,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ig-v5-UQm" userLabel="Last Order On View">
                                         <rect key="frame" x="483" y="410" width="161" height="80"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Month Sales" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AO9-1L-5IA">
-                                                <rect key="frame" x="20.5" y="14.5" width="120" height="15.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AO9-1L-5IA">
+                                                <rect key="frame" x="80.5" y="30" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$1500.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YI9-bL-zYf">
-                                                <rect key="frame" x="0.0" y="37" width="161" height="22.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YI9-bL-zYf">
+                                                <rect key="frame" x="0.0" y="37" width="161" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
                                                 <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1143,11 +1143,11 @@ Cessnock, NSW 2320</string>
             <objects>
                 <viewController storyboardIdentifier="SelectReasonCodeVC" id="239-QX-3m3" customClass="SelectReasonCodeVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K4l-XW-utD">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qP8-gB-OZ1">
-                                <rect key="frame" x="254.5" y="201.5" width="515" height="365"/>
+                                <rect key="frame" x="254.5" y="500.5" width="515" height="365"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ny7-4B-hNR" userLabel="Header View">
                                         <rect key="frame" x="0.0" y="0.0" width="515" height="53"/>
@@ -1394,7 +1394,7 @@ Cessnock, NSW 2320</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A2Z, Supermarket, Deira, Dubai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="2ZU-kf-4YF">
-                                        <rect key="frame" x="100" y="1.5" width="534" height="29.5"/>
+                                        <rect key="frame" x="100" y="1.5" width="534" height="29"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="0.90196078430000004" green="0.47843137250000001" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1632,16 +1632,16 @@ Cessnock, NSW 2320</string>
                                 <rect key="frame" x="30" y="25" width="644" height="460"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgR-6X-SmG" userLabel="Option View">
-                                        <rect key="frame" x="54" y="0.0" width="536.5" height="27"/>
+                                        <rect key="frame" x="53.5" y="0.0" width="537" height="27"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top products from other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eiw-Zv-vVr">
-                                                <rect key="frame" x="0.0" y="-0.5" width="196.5" height="24"/>
+                                                <rect key="frame" x="0.0" y="-0.5" width="197" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" red="0.54509803921568623" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHu-84-NDn" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                <rect key="frame" x="203.5" y="0.0" width="148" height="27"/>
+                                                <rect key="frame" x="204" y="0.0" width="148" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="148" id="27W-lg-NXZ"/>
                                                     <constraint firstAttribute="height" constant="27" id="4U3-Rz-ScU"/>
@@ -1667,13 +1667,13 @@ Cessnock, NSW 2320</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in postcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOZ-bs-mPE">
-                                                <rect key="frame" x="356.5" y="-0.5" width="95" height="24"/>
+                                                <rect key="frame" x="357" y="-0.5" width="95" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" red="0.5450980392" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ce-R4-rTI" customClass="AnimatableTextField" customModule="IBAnimatable">
-                                                <rect key="frame" x="456.5" y="0.0" width="80" height="27"/>
+                                                <rect key="frame" x="457" y="0.0" width="80" height="27"/>
                                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="2lE-d1-rtV"/>
@@ -1911,7 +1911,7 @@ Cessnock, NSW 2320</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A2Z, Supermarket, Deira, Dubai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="8dp-rk-Z1R">
-                                        <rect key="frame" x="100" y="1.5" width="397" height="29.5"/>
+                                        <rect key="frame" x="100" y="1.5" width="397" height="29"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
                                         <color key="textColor" red="0.90196078430000004" green="0.47843137250000001" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2370,11 +2370,11 @@ get 1 free
             <objects>
                 <viewController storyboardIdentifier="TripSettlementVC" id="5zA-QA-ek8" customClass="TripSettlementVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Cw-R4-8S4">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hnp-v6-9eb" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="287" y="84" width="450" height="600"/>
+                                <rect key="frame" x="287" y="383" width="450" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRIP SETTLEMENT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUF-nr-ibl">
                                         <rect key="frame" x="25" y="20" width="400" height="33"/>
@@ -2598,11 +2598,11 @@ get 1 free
             <objects>
                 <viewController storyboardIdentifier="IncompleteDeliveriesVC" id="kCk-2V-j5f" customClass="IncompleteDeliveriesVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dwy-3P-qKV">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-54-WK7" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="262" y="59" width="500" height="650"/>
+                                <rect key="frame" x="262" y="358" width="500" height="650"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCOMPLETE VISITS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3A-Vq-f7Y">
                                         <rect key="frame" x="25" y="20" width="450" height="33"/>
@@ -2925,11 +2925,11 @@ get 1 free
             <objects>
                 <viewController storyboardIdentifier="CollectionsBalancingVC" id="bGA-tK-zX4" customClass="CollectionsBalancingVC" customModule="DSD_Salesforce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Xl-7t-OSo">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPf-ob-8Oo" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="312" y="207" width="400" height="354"/>
+                                <rect key="frame" x="312" y="506" width="400" height="354"/>
                                 <subviews>
                                     <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzH-Wg-Fia">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="354"/>

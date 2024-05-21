@@ -83,6 +83,7 @@ class VisitPlannerVC: UIViewController {
         let dayNo = Utils.getWeekday(date: selectedDay)
 
         // all customers in the routesch
+        
         // all customers manually added by the user during the day on Monday 15 July(if any)
         var scheduledCustomerArray = CustomerDetail.getScheduled(context: globalInfo.managedObjectContext, dayNo: "\(dayNo)", shouldExcludeCompleted: false)
         scheduledCustomerArray = scheduledCustomerArray.filter({ (customerDetail) -> Bool in
@@ -98,14 +99,16 @@ class VisitPlannerVC: UIViewController {
             return true
         })
         customerDetailArray.append(contentsOf: scheduledCustomerArray)
-
+        
         // all customers with a presold header record
         let allPresoldorHeaders = PresoldOrHeader.getAll(context: globalInfo.managedObjectContext)
         for presoldorHeader in allPresoldorHeaders {
             let custNo = presoldorHeader.custNo ?? ""
             let chainNo = presoldorHeader.chainNo ?? ""
-            if let customerDetail = CustomerDetail.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo) {
-                customerDetailArray.append(customerDetail)
+            if let customerDetail = CustomerDetail.getBy(context: globalInfo.managedObjectContext, dayNo: "\(dayNo)", chainNo: chainNo, custNo: custNo) {
+                if !customerDetailArray.contains(customerDetail) {
+                    customerDetailArray.append(customerDetail)
+                }
             }
         }
 
@@ -252,10 +255,10 @@ class VisitPlannerVC: UIViewController {
     }
 
     func onWeekdayTapped(index: Int) {
-        selectedWeekdayIndex = index
-        refreshWeekdays()
-        reloadCustomers()
-        refreshCustomers()
+        self.selectedWeekdayIndex = index
+        self.refreshWeekdays()
+        self.reloadCustomers()
+        self.refreshCustomers()
     }
 
     @IBAction func onAddVisit(_ sender: Any) {

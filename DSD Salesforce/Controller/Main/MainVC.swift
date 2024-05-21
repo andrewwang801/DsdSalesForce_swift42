@@ -28,7 +28,7 @@ class MainVC: UIViewController {
         // upload postponed objects
         scheduleUploadPostponed()
         
-        globalInfo.uploadManager.startIfNeeded()
+        globalInfo.uploadManager.startIfNeeded(completionHandler: nil)
         
         let gpsLoggerInterval = (Double(globalInfo.routeControl?.gpsPoll ?? "0") ?? 0) * 60
         globalInfo.gpsLogger.startLogger(interval: gpsLoggerInterval)

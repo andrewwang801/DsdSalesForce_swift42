@@ -190,12 +190,12 @@ class SearchCustomerVC: UIViewController {
     }
 
     func refreshCustomers() {
-        customerTableView.reloadData()
-        if customerDetailArray.count == 0 {
-            noDataLabel.isHidden = false
+        self.customerTableView.reloadData()
+        if self.customerDetailArray.count == 0 {
+            self.noDataLabel.isHidden = false
         }
         else {
-            noDataLabel.isHidden = true
+            self.noDataLabel.isHidden = true
         }
     }
 
@@ -225,9 +225,8 @@ class SearchCustomerVC: UIViewController {
         newCustomerDetail.isVisitPlanned = true
 
         GlobalInfo.saveCache()
-        reloadCustomers()
-        //uploadVisit(selectedCustomer: newCustomerDetail)
-        globalInfo.uploadManager?.uploadVisit(selectedCustomer: newCustomerDetail)
+        self.reloadCustomers()
+        self.globalInfo.uploadManager?.uploadVisit(selectedCustomer: newCustomerDetail, completionHandler: nil)
     }
     
     func addAllCustomers() {
@@ -326,7 +325,9 @@ class SearchCustomerVC: UIViewController {
 
     @IBAction func onBack(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.dismissHandler?()
+            DispatchQueue.main.async {
+                self.dismissHandler?()
+            }
         }
     }
 

@@ -697,7 +697,7 @@ class SelectCustomerVC: UIViewController {
         let gpsLogPath = GPSLog.saveToXML(gpsLogArray: [gpsLog])
         filePathArray.append(gpsLogPath)
 
-        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: filePathArray)
+        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: filePathArray, completionHandler: nil)
 
         customerDetails.isCompleted = true
         self.selectedCustomer = nil

@@ -200,8 +200,25 @@ class SelectCustomerDetailsVC: UIViewController {
                 let infoTypeTitle = infoTypeTitleDescType?.desc ?? ""
                 let custInfo = CustInfo.getBy(context: globalInfo.managedObjectContext, infoType: infoType, custNo: custNo)
                 let infoTypeValue = custInfo?.info ?? ""
+                
+                var textColor = UIColor.black
+                switch infoTypeTitleDescType?.value1 {
+                case "Red":
+                    textColor = UIColor.red
+                    break
+                case "Black":
+                    textColor = UIColor.black
+                    break
+                case "Green":
+                    textColor = UIColor.green
+                    break
+                default:
+                    textColor = UIColor.black
+                    break
+                }
                 infoTypeTitleLabelArray[i].text = infoTypeTitle
                 infoTypeLabelArray[i].text = infoTypeValue
+                infoTypeLabelArray[i].textColor = textColor
             }
         }
 
@@ -393,11 +410,11 @@ extension SelectCustomerDetailsVC: UIImagePickerControllerDelegate, UINavigation
         let transactionPath = UTransaction.saveToXML(transactionArray: [camera_transaction, gpsLogTransaction], shouldIncludeLog: true)
 
         let uploadManager = self.globalInfo.uploadManager
-        uploadManager?.zipAndScheduleUpload(filePathArray: [cameraTransactionPath, gpsLogPath, transactionPath])
+        uploadManager?.zipAndScheduleUpload(filePathArray: [cameraTransactionPath, gpsLogPath, transactionPath], completionHandler: nil)
 
         uploadManager?.scheduleUpload(localFileName: localImageName, remoteFileName: reference, uploadItemType: .customerCatalog)
 
-        uploadManager?.startIfNeeded()
+        uploadManager?.startIfNeeded(completionHandler: nil)
     }
 
 }

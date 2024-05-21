@@ -56,11 +56,10 @@ class VisitPlannerWeekdayCell: UICollectionViewCell, UIDropInteractionDelegate {
             self.selectedCustomer.setValue(nowDateString, forKey: "deliveryDate")
             self.selectedCustomer.setValue(String(dayNo), forKey: "dayNo")
             GlobalInfo.saveCache()
+            
             self.parentVC.onWeekdayTapped(index: self.indexPath.row)
-            //self.uploadVisit()
-            self.globalInfo.uploadManager?.uploadVisit(selectedCustomer: self.selectedCustomer)
+            self.globalInfo.uploadManager?.uploadVisit(selectedCustomer: self.selectedCustomer, completionHandler: nil)            
         }
-        // Perform additional UI updates as needed.
     }
     
     func setupCell(parentVC: VisitPlannerVC, indexPath: IndexPath) {

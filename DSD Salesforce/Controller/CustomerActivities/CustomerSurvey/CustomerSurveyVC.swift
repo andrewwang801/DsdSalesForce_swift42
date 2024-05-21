@@ -142,7 +142,7 @@ class CustomerSurveyVC: UIViewController {
         // transaction file
         let transactionPath = UTransaction.saveToXML(transactionArray: [suveryTransaction, gpsLogTransaction], shouldIncludeLog: true)
 
-        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [surveySPath, gpsLogPath, transactionPath])
+        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [surveySPath, gpsLogPath, transactionPath], completionHandler: nil)
 
         goBackToCustomerActivity()
     }

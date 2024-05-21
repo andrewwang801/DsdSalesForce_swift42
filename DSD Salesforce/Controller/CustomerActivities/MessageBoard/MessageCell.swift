@@ -108,7 +108,7 @@ class MessageCell: UITableViewCell {
 
         let globalInfo = GlobalInfo.shared
         let noteType = custNote.noteType ?? ""
-        let descType = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "NOTETYPE", numericKey: noteType)
+        let descType = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "NOTETYPE".lowercased(), numericKey: noteType)
         messageTypeLabel.text = descType?.desc ?? ""
 
         if index == parentVC!.custNoteArray.count-1 {

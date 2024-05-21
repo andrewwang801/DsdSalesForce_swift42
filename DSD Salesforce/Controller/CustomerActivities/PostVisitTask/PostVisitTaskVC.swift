@@ -26,6 +26,7 @@ class PostVisitTaskVC: UIViewController {
     var now = Date()
     var visitNote = ""
     var deliveryFreq = 0
+    var weekDayStart = Date()
     var isNextVisitDateChanged = false
 
     var datePicker = UIDatePicker()
@@ -48,22 +49,21 @@ class PostVisitTaskVC: UIViewController {
 
     func initData() {
         // get the next visit date
-        let custInfoArray = CustInfo.getByArray(context: globalInfo.managedObjectContext, infoType: "16", custNo: customerDetail.custNo!)
-        for custInfo in custInfoArray {
-            visitDayArray.append(custInfo.info!)
-            
-            let date = Date.fromDateString(dateString: custInfo.info!)!
-            formattedVisitDayArray.append(date.toDateString(format: kDateFormat)!)
-        }
-        if visitDayArray.count == 0 {
-            now = Date()
+        if let custInfo = CustInfo.getBy(context: globalInfo.managedObjectContext, infoType: "16", custNo: customerDetail.custNo!) {
+            now = Date.fromDateString(dateString: custInfo.info!) ?? Date()
         }
         else {
-            now = Date.fromDateString(dateString: visitDayArray.first!)!
+            now = Date()
         }
         let deliveryFreqString = customerDetail.delivFreq ?? "0"
         deliveryFreq = Int(deliveryFreqString) ?? 0
         nextVisitDate = now.getDateAddedBy(days: deliveryFreq*7)
+        
+        for index in 0...6 {
+            let date = weekDayStart.getDateAddedBy(days: index)
+            formattedVisitDayArray.append(date.toDateString(format: "EEEE") ?? "")
+            visitDayArray.append(date)
+        }
     }
 
     func initUI() {
@@ -75,7 +75,7 @@ class PostVisitTaskVC: UIViewController {
         datePicker.datePickerMode = .date
         nextVisitDateButton.setTitleForAllState(title: nextVisitDate.toDateString(format: kDateFormat) ?? "")
         visitNoteTextView.text = ""
-        visitDayButton.setTitleForAllState(title: now.toDateString(format: kDateFormat) ?? "")
+        visitDayButton.setTitleForAllState(title: now.toDateString(format: "EEEE") ?? "")
         visitFreq.text = customerDetail.delivFreq ?? "0"
         visitFreq.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         setupVisitDayDropDown()
@@ -96,7 +96,7 @@ class PostVisitTaskVC: UIViewController {
     
     var visitDayDropDown = DropDown()
     var selectedVisitDay = ""
-    var visitDayArray: [String] = []
+    var visitDayArray: [Date] = []
     var formattedVisitDayArray: [String] = []
     
     func setupVisitDayDropDown() {
@@ -111,10 +111,9 @@ class PostVisitTaskVC: UIViewController {
         visitDayDropDown.customCellConfiguration = {_index, item, cell in
         }
         visitDayDropDown.selectionAction = { index, item in
-            self.selectedVisitDay = self.visitDayArray[index]
-            self.now = Date.fromDateString(dateString: self.selectedVisitDay)!
+            self.now = self.visitDayArray[index]
             self.nextVisitDate = self.now.getDateAddedBy(days: self.deliveryFreq*7)
-            self.visitDayButton.setTitleForAllState(title: self.now.toDateString(format: self.kDateFormat) ?? "")
+            self.visitDayButton.setTitleForAllState(title: self.now.toDateString(format: "EEEE") ?? "")
             self.updateUI()
         }
     }

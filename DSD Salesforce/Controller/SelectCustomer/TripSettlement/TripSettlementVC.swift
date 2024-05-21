@@ -292,7 +292,7 @@ class TripSettlementVC: UIViewController {
             zipFileArray.append(transactionPath)
         }
         if zipFileArray.count > 0 {
-            uploadManager?.zipAndScheduleUpload(filePathArray: zipFileArray)
+            uploadManager?.zipAndScheduleUpload(filePathArray: zipFileArray, completionHandler: nil)
         }
 
         self.dismiss(animated: true) {

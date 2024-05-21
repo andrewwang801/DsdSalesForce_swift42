@@ -335,7 +335,7 @@ class DistributionCheckVC: UIViewController {
 
         let transactionPath = UTransaction.saveToXML(transactionArray: [shelfStatusTransaction, gpsLogTransaction], shouldIncludeLog: true)
 
-        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [shelfAuditPath, gpsLogPath, transactionPath])
+        globalInfo.uploadManager.zipAndScheduleUpload(filePathArray: [shelfAuditPath, gpsLogPath, transactionPath], completionHandler: nil)
 
         mainVC.popChild(containerView: mainVC.containerView)
     }

@@ -338,7 +338,7 @@ class CustomerActivitiesVC: UIViewController {
         filePathArray.append(gpsLogPath)
 
         let uploadManager = globalInfo.uploadManager
-        uploadManager?.zipAndScheduleUpload(filePathArray: filePathArray)
+        uploadManager?.zipAndScheduleUpload(filePathArray: filePathArray, completionHandler: nil)
 
         mainVC.popChild(containerView: mainVC.containerView) { (completed) in
             self.dismissHandler?(self)
