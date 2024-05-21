@@ -1,0 +1,562 @@
+/*
+ Localizable.strings
+ sample-chat-swift
+ 
+ Created by Anton Sokolchenko on 4/24/15.
+ Copyright (c) 2015 quickblox. All rights reserved.
+ */
+
+
+"SA_STR_OK" = "Ok";
+"SA_STR_CANCEL" = "Cancel";
+"SA_STR_LOADING" = "Loading";
+"SA_STR_LOGGED_IN" = "Logged in";
+"SA_STR_SENDING" = "Sending";
+"SA_STR_COMPLETED" = "Completed";
+"SA_STR_DELETE" = "Leave";
+"SA_STR_DELETED" = "Left";
+"SA_STR_DELETING" = "Leaving...";
+"SA_STR_WARNING" = "Warning";
+"SA_STR_BLOCK" = "Block";
+"SA_STR_UNBLOCK" = "Unblock";
+"SA_STR_LOGIN_AS" = "Login as";
+"SA_STR_LOGOUT" = "Logout";
+"SA_STR_LOGOUTING" = "Logout...";
+"SA_STR_TYPING" = "Typing...";
+"SA_STR_CONNECTING_TO_CHAT" = "Connecting to chat...";
+"SA_STR_CONNECTED" = "Connected";
+"SA_STR_DISCONNECTED" = "Disconnected";
+"SA_STR_RECONNECTED" = "Reconnected";
+"SA_STR_LOGGING_IN_AS" = "Logging in REST as ";
+"SA_STR_LOADING_DIALOG" = "Loading dialog";
+"SA_STR_LOADING_DIALOGS" = "Loading dialogs";
+"SA_STR_DONE" = "Done";
+"SA_STR_ADDED" = "added";
+"SA_STR_CREATE_NEW" = "created new dialog with: ";
+"SA_STR_CALL" = "Call";
+
+// chat dialog
+"SA_STR_MESSAGE_PLACEHOLDER" = "Message";
+"SA_STR_CANT_SEND_A_MESSAGE" = "Can't send a message";
+"SA_STR_LOADING_USERS" = "Loading users";
+"SA_STR_CANT_DOWNLOAD_USERS" = "Can't download users";
+"SA_STR_CANT_DOWNLOAD_DIALOGS" = "Can't download dialogs";
+"SA_STR_FAILED_LOAD_DIALOGS" = "Failed to load dialogs";
+"SA_STR_YOU_ARE_IN_THE_BLACKLIST" = "You are in the blacklist";
+"SA_STR_FORBIDDEN" = "forbidden";
+"SA_STR_LOADING_MESSAGES" = "Loading messages";
+"SA_STR_UPLOADING_ATTACHMENT" = "Uploading attachment";
+"SA_STR_ENTER_CHAT_NAME" = "Enter chat name";
+"STR_DIALOG_CREATED" = "Dialog created";
+"SA_STR_CHAT_SEND" = "Send";
+"SA_STR_LAST_ACTIVITY_DATE" = "last_activity_date";
+"SA_STR_ADD_OCCUPANTS" = "Add occupants";
+"SA_STR_CREATE" = "Create";
+"SA_STR_NEW_CHAT" = "New chat";
+"SA_STR_NEW_MESSAGE" = "New message";
+"SA_STR_USER_HAS_LEFT" = "has left dialog.";
+"SA_STR_CHAT_INFO" = "Chat info";
+
+// message text statuses
+"SA_STR_READ_STATUS" = "Read";
+"SA_STR_DELIVERED_STATUS" = "Delivered";
+"SA_STR_SEEN_STATUS" = "Seen";
+
+"SA_STR_SENT_STATUS" = "Sent";
+"SA_STR_NOT_SENT_STATUS" = "Didn't send";
+"SA_STR_SENDING_STATUS" = "Sending";
+
+"SA_STR_UNKNOWN_USER" = "Unknown";
+
+// TableViewCell identifiers
+"SA_STR_CELL_USER" = "UserTableViewCellIdentifier";
+"SA_STR_CELL_DIALOG" = "dialogcell";
+
+// Segues
+"SA_STR_SEGUE_GO_TO_DIALOGS" = "goToDialogs";
+"SA_STR_SEGUE_GO_TO_CHAT" = "goToChat";
+"SA_STR_SEGUE_GO_TO_SELECT_OPPONENTS" = "goToSelectOpponents";
+
+// User table view cell model
+"SA_STR_PRIVATE" = "private";
+"SA_STR_GROUP" = "group";
+"SA_STR_PUBLIC_GROUP" = "public group";
+
+// Action sheet
+"SA_STR_ADDITIONAL_ACTIONS" = "Additional actions";
+"SA_STR_NOTE_YOU_WILL_NOT_RECEIVE_AMY_P2P_MESSAGES" = "Note that you will not receive any private message from this user";
+"SA_STR_NOTE_YOU_WILL_NOT_RECEIVE_AMY_GROUP_MESSAGES" = "Note that you will not receive any group chat message from this user";
+"SA_STR_DO_YOU_REALLY_WANT_TO_DELETE_SELECTED_DIALOG" = "Do you really want to leave selected dialog?";
+"SA_STR_UNBLOCK_USER_P2P_CHAT" = "Unblock user in 1-1 chat";
+"SA_STR_BLOCK_USER_P2P_CHAT" = "Block user in 1-1 chat";
+"SA_STR_UNBLOCK_USER_GROUP_CHATS" = "Unblock user in all group chats";
+"SA_STR_BLOCK_USER_GROUP_CHATS" = "Block user in all group chats";
+"SA_STR_TRY_AGAIN_MESSAGE" = "Try again";
+"SA_STR_DELETE_MESSAGE" = "Delete";
+
+// Errors
+"SA_STR_ERROR" = "Error";
+"SA_STR_ERROR_DELETING" = "Error leaving";
+"SA_STR_BAD_GATEWAY" = "Bad Gateway, please try again";
+"SA_STR_NETWORK_ERROR" = "Connection network error, please try again";
+"SA_STR_DID_NOT_CONNECT_ERROR" = "Did not connect with error:";
+"SA_STR_FAILED_TO_CONNECT_WITH_ERROR" = "Chat failed with error:";
+"SA_STR_CANNOT_CREATE_DIALOG" = "Can not create dialog";
+"SA_STR_MESSAGE_FAILED_TO_SEND" = "Message failed to send";
+
+// Push notifications
+"SA_STR_PUSH_NOTIFICATION_DIALOG_ID" = "dialog_id";
+"SA_STR_PUSH_NOTIFICATION_MESSAGE" = "message";
+
+"SA_STR_Send" = "Send";
+
+"SA_STR_ChatTitle" = "CHATTER";
+"SA_STR_MPGNotificationTitle" = "Grettings!";
+"SA_STR_MPGNotificationSubtitle" = "Did you know we have Notifications now?";
+
+//chat
+"SA_STR_ProgressInfo" = "DSD Chatter not connected";
+
+//CharactersNumberError
+"SA_STR_CNE_SUBTITLE" = "The character limit is";
+
+//attachment
+"SA_STR_ATTACH_DOWN_ERROR" = "Failed to download the attachment";
+"SA_STR_ATTACH_OPEN_ERROR" = "We can't open the file. Please use android app to open it.";
+"SA_STR_DEVICE_CONNECT_ERROR" = "Your Device can't make a phone call";
+
+//AssetAddVC
+"SA_STR_ADD_ASSET"= "ADD ASSET";
+
+//Asset Management
+"SA_STR_ASSET_MANAGEMENT_TITLE" = "ASSET MANAGEMENT";
+"SA_STR_ASSET_MANAGEMENT_INPUT_TITLE" = "Update Fridge Serial No";
+"SA_STR_ASSET_MANAGEMENT_PLACEHOLDER" = "Unique Asset ID";
+"SA_STR_RETURN" = "Returun";
+"SA_STR_UPDATE" = "Update";
+
+//Terms of placement Alert
+"SA_STR_ASSET_TERMS_AGGREE_MESSAGE" = "Please read our terms and conditions and input name and sign";
+"SA_STR_ASSET_AGGREE_NAME" = "Please Input Agreed to Name";
+"SA_STR_ASSET_TERMS_SIGNATURE_MESSAGE" = "Please Sign your signature";
+
+//CustomerActivity Alert
+"SA_STR_EXIT_CONFIRM" = "Are your sure you wish to exit? Any data you have entered for this customer will be lost";
+"SA_STR_CANCEL" = "Cancel";
+"SA_STR_CONFIRM" = "Confirm";
+
+//CustomerSurvey QuestionYesNoAnserCell
+"SA_STR_YES" = "Yes";
+"SA_STR_NO" = "No";
+
+//OrderSales OrderSalesVC
+"SA_STR_ITEM_NOT_AVAIABLE_SOLD" = "This item is not avaiable to be sold";
+"SA_STR_ITEM_NOT_AVAIABLE_RETURN" = "This item is not avaiable to be returned";
+"SA_STR_CONTINUE" = "CONTINUE";
+"SA_STR_REMOVE" = "REMOVE";
+
+//OrderSummary OrderSummaryVC
+"SA_STR_ORDERSUMMARY_DISTRIBUTOR_TITLE" = "Select Distributor";
+"SA_STR_ORDERSUMMARY_TITLE" = "ORDER SUMMARY";
+"SA_STR_CAMERA_ALERT" = "You don't have camera";
+
+
+//Order OrderVC
+"SA_STR_ORDERVC_TITLE" = "ORDER";
+"SA_STR_ORDERVC_ALERT_TITLE" = "Inventory Amount Issue";
+"SA_STR_ORDERVC_ALERT_MESSAGE" = "There may not be inventory of these items in the warehouse";
+
+//SearchProduct
+"SA_STR_PRODUCT_NAME" = "Product Name";
+"SA_STR_ITEM_TYPE" = "Itm Type";
+"SA_STR_BRAND" = "Brand";
+"SA_STR_SUBBRAND" = "Sub Brand";
+"SA_STR_MARKETGROUP" = "Market Group";
+
+
+//PaymentCollection PaymentCollectionVC
+"SA_STR_PAYMENT_ZERO_ALERT" = "Total Collected amount should not be zero";
+"SA_STR_INVOICE_ZERO_ALERT" = "You shoul select at least one invoice to pay";
+"SA_STR_PAYMENT_REMAINING_ALERT" = "You have not collected the full amount you selected to collect";
+"SA_STR_PROCEED" = "Proceed";
+
+//PostVisitTask PostVisitTaskVC
+"SA_STR_VISITNOTE_ZERO_ALERT" = "You should enter Visit Notes.";
+"SA_STR_VISITNOTE_WARNING" = "ARNING – You have scheduled a non recurring visit more than 7 days in the future.  This is in addition to any scheduled visits that will remain in place.  This visit will not be automatically scheduled for you on the day you have requested";
+
+
+//Promotion
+"SA_STR_PROMOTYPE_1" = "Cents Off";
+"SA_STR_PROMOTYPE_2" = "Percentage Off";
+"SA_STR_PROMOTYPE_3" = "Replace Price";
+"SA_STR_PROMOTYPE_4" = "Buy / Free";
+"SA_STR_PROMOTYPE_5" = "Buy / Free Multi";
+
+//TotoObjectivesVC
+"SA_STR_TODOOBJECTIVES" = "TO DO OBJECTIVES";
+
+//DashboardVC
+"SA_STR_DASHBORD" = "YOUR DASHBOARD";
+
+//TripStatusVC
+"SA_STR_REFRESHTOKEN_FAIL" = "Refresh token is failed";
+"SA_STR_FAILED" = "Api Failed";
+"SA_STR_TRIP_ZERO" = "No Trip Selected";
+"SA_STR_TRIP_PDF_NOT_ABLE" = "Pdf not able to be retrieved";
+"SA_STR_TRIP_TO_DELIVER" = "To Deliver";
+"SA_STR_TRIP_DELIVERED" = "Delivered";
+"SA_STR_TRIP_NOT_LOADED" = "Not Loaded";
+
+//LoginVC
+"SA_STR_LOGIN_USERNAME" = "USER NAME";
+"SA_STR_LOGIN_TERIRORY" = "TERRITORY";
+"SA_STR_LOGIN_ADMIN" = "admin";
+"SA_STR_LOGIN_PASSWORD" = "password";
+"SA_STR_LOGIN_WRONG_MESSAGE" = "You have used wrong information to login";
+"SA_STR_LOGIN_FILL_MESSAGE" = "Please fill in the login information field";
+"SA_STR_LOGIN_REFRESHDATA" = "Refresh Data";
+"SA_STR_LOGIN_REFRESHDATA_MESSAGE" = "Refresh the data on your device?\nThis will reset the visit plan and may cause loss of transcations you have completed today!";
+"SA_STR_LOGIN_PINCODE" = "PIN CODE";
+"SA_STR_LOGIN_PINCODE_PLACEHOLDER" = "PIN code ";
+"SA_STR_ALERT" = "ALERT";
+"SA_STR_LOGIN_INVALIDE_CODE" = "Invalid Code";
+"SA_STR_LOGIN_NODATA" = "NO DATA";
+"SA_STR_LOGIN_NODATA_MESSAGE" = "Trip is not the current loaded trip on your device.\nContinue to load new trip?";
+"SA_STR_LOGIN_NO_MATCHEDTRIP" = "Can't find the matched trip data";
+"SA_STR_LOGIN_INVALIDSIGN" = "Username or Password is invalid";
+
+//ProductCatalogVC
+"SA_STR_PRODUCT_BRAND" = "BRAND";
+"SA_STR_PRODUCT_SUBBRAND" = "SUB BRAND";
+"SA_STR_PRODUCT_GROUP" = "GROUP";
+"SA_STR_PRODUCT_TYPE" = "TYPE";
+"SA_STR_PRODUCT_PRODUCTLINE" = "PRODUCT LINE";
+"SA_STR_PRODUCT_MARKETGROUP" = "MARKET GROUP";
+
+"SA_STR_PRODUCTDESC_BRAND" = "Brand";
+"SA_STR_PRODUCTDESC_SUBBRAND" = "SubBrand";
+"SA_STR_PRODUCTDESC_TYPE" = "ItemType";
+"SA_STR_PRODUCTDESC_GROUP" = "ProductGroup";
+"SA_STR_PRODUCTDESC_PRODUCTLINE" = "ProductLine";
+"SA_STR_PRODUCTDESC_MARKETGROUP" = "MarketGroup";
+"SA_STR_PRODUCTCATALOG" = "PRODUCT CATALOG";
+
+//SelectCustomer NewCustomerVC
+"SA_STR_NEWCUSTOMER_EDIT" = "EDIT CUSTOMER OR PROSPECT";
+"SA_STR_NEWCUSTOMER_CONTACTDETAIL" = "CONTACT DETAILS";
+"SA_STR_NEWCUSTOMER_SALESDETAIL" = "SALES DETAILS";
+"SA_STR_NEWCUSTOMER_NEW" = "NEW CUSTOMER OR PROSPECT";
+"SA_STR_NEWCUSTOMER_PRIMARYCONATCT" = "PRIMARY CONTACT";
+
+"SA_STR_ADD" = "ADD";
+
+
+//Pricing SelectCustomerPricingVC
+"SA_STR_PRICING_ALL" = "PRICING - All Items";
+"SA_STR_PRICING_SPECIAL" = "PRICING - Special Prices Only";
+"SA_STR_PRICING_BASE" = "PRICING - Base Prices Only";
+
+
+//SelectCustomer SelectCustomerVC
+"SA_STR_SELECTCUSTOMER_FAIL_ROUTIIFIC" = "Filed to call Routific api";
+"SA_STR_FINISHED" = "finished";
+"SA_STR_SUCCESS" = "success";
+"SA_STR_ENDTRIP" = "END TRIP";
+"SA_STR_ENDTRIP_MESSAGE" = "You are about to commence the End Trip processing. Once started you will not be able to return to make further sales for this trip";
+
+
+//SelectCustomer TripSettlement/TripSettlementVC
+"SA_STR_NOVISITREASON" = "NO Visit Reasons";
+"SA_STR_ENDING_INVENTORY" = "Ending Inventory";
+"SA_STR_BALANCE_COLLECTION" = "Balance Collections";
+"SA_STR_SALES_PERFORMANCE" = "Sales Perormance";
+"SA_STR_POSTTRIP" = "Post Trip Inspection";
+
+//VisitPlanner VisitPlannerVC
+"SA_STR_VISITPLANNER" = "VISIT PLANNER";
+
+//VisitPlanner VisitPlannerWeekdayCell
+"SA_STR_TODAY" = "Today";
+"SA_STR_TOMORROW" = "TOMORROW";
+
+//Model/BackgroundLocationTracker/LocationTracker/LocationTracker.m
+"SA_STR_LOCATION_DISABLED_ALERT" = "Location Services Disabled";
+"SA_STR_LOCATION_DISABLED_ALERT_MESSAGE" = "You currently have all location services for this device disabled";
+
+/* Misc.storyboard */
+
+//SignatureVC
+"SA_STR_EXIT" = "EXIT";
+"SA_STR_CLEAR" = "CLEAR";
+"SA_STR_SAVE" = "SAVE";
+
+//Search ProductVC
+"SA_STR_SEARCH_PRODUCT_TITLE" = "SEARCH PRODUCT";
+"SA_STR_SEARCHBY" = "Search by";
+"SA_STR_PRODUCTNAME" = "Product Name";
+"SA_STR_ADD" = "ADD";
+"SA_STR_BACK" = "BACK";
+
+//Customer LocaionVC
+"SA_STR_CUSTOMER_LOCATION_TITLE" = "Customer Location";
+
+//Search CustomerVC
+"SA_STR_SEARCH_CUSTOMER_TITLE" = "ADD CUSTOMERS TO TRIP";
+"SA_STR_SEARCH_CUSTOMER_PLACHOLDER" = "Sales District";
+"SA_STR_SEARCH_CUSTOMER_CUSTOMER_NAME" = "Customer Name";
+"SA_STR_SEARCH" = "Search";
+"SA_STR_NO_DATA" = "There is no data.";
+"SA_STR_ADD_ALL" = "Add All";
+
+//Input DialogVC
+"SA_STR_INPUT_DIALOG_PLACEHOLDER" = "PIN code for communication";
+
+
+/* Main Storyboard */
+//DashboardVC
+"SA_STR_CURRENT_MONTH_PERFORMANCE" = "CURRENT_MONTH_PERFORMANCE";
+"SA_STR_DASHBOARD_SALES" = "Sales(MTD)";
+"SA_STR_DASHBOARD_MONTHTARGET" = "Month Target";
+"SA_STR_DASHBOARD_REMAINING" = "Remaining";
+"SA_STR_DASHBOARD_PERCENTAGE" = "Percentage";
+
+"SA_STR_CURRENT_WEEK_PERFORMANCE" = "CURRENT_MONTH_PERFORMANCE";
+"SA_STR_DASHBOARD_SALES_TODAY" = "Sales Today";
+"SA_STR_DASHBOARD_THIS_WEEK" = "Sales this week";
+"SA_STR_DASHBOARD_LAST_WEEK" = "Sales last week";
+"SA_STR_DASHBOARD_WEEK_VS" = "This week vs last week";
+
+"SA_STR_DASHBOARD_METRICS" = "METRICS";
+"SA_STR_DASHBOARD_NEW_CUSTOMER_WEEK" = "New Customer Week";
+
+"SA_STR_DASHBOARD_TODAYS_CALL" = "TODAY'S CALLS";
+"SA_STR_DASHBOARD_PLANNED" = "Planned";
+"SA_STR_DASHBOARD_ROUTE" = "Out of Route";
+"SA_STR_DASHBOARD_COMPLETED" = "Completed";
+"SA_STR_DASHBOARD_PRODUCTIVE" = "Productive";
+"SA_STR_DASHBOARD_CUSTOMER_SELECTION" = "CUSTOMER SELECTION";
+
+//AboutVC
+"SA_STR_ABOUT_DESIGNEDBY" = "DSD Connect is designed by";
+"SA_STR_ABOUT_DETAIL" = "Terms of use and pricacy are governed by the agreement between Numeric Computer Systems and the client and our policies made available to the client, and as may be amended from time to time";
+
+//Hambugar Menu
+"SA_STR_MENU_HELP" = "HELP";
+"SA_STR_MENU_ABOUT" = "ABOUT";
+"SA_STR_SIGNOUT" = "SIGN OUT";
+
+/* SelectCustomer Storyboard */
+//Select CustomerVC
+"SA_STR_SHOWALL" = "Show All";
+"SA_STR_SELECTCUSTOMER_NO_VISIT_REQUIRED" = "NO VISIT REQUIRED";
+"SA_STR_SELECTCUSTOMER_VISIT_CUSTOMER" = "VISIT CUSTOMER";
+"SA_STR_DETAILS" = "DETAILS";
+"SA_STR_PRICING" = "PRICING";
+"SA_STR_TOP_PRODUCTS" = "TOP PRODUCTS";
+"SA_STR_OPPORTUNITIES" = "OPPORTUNITIES";
+"SA_STR_NEARBY" = "NEARBY";
+
+//Select Customer DetailsVC
+"SA_STR_CUSTOMERDETAIL_LAST_VISITED_ON" = "Last Visited On";
+"SA_STR_CUSTOMERDETAIL_LAST_ORDER_ON" = "Last Order On";
+"SA_STR_CUSTOMERDETAIL_AVAILABLE_CREDIT" = "Available Credit";
+"SA_STR_CUSTOMERDETAIL_CURRENT_MONTH_SALE" = "Current Month Sales";
+
+//Select Customer NearByVC
+"SA_STR_CUSTOMERNEARBY_SELECT_STORE_TYPE" = "SELCT STORE TYPE";
+
+//Select Customer PricingVC
+"SA_STR_CHECK_PLANNER" = "CHECK PLANNER";
+"SA_STR_CUSTOMERPRICING_VIEW_PRICING" = "VIEW PRICING";
+"SA_STR_CUSTOMERPRICING_VIEW_PROMITIONS" = "VIEW PROMOTIONS";;
+"SA_STR_CUSTOMERPRICING_PROMOTIONS" = "PROMOTIONS";
+"SA_STR_CUSTOMERPRICING_FROM" = "from";
+"SA_STR_CUSTOMERPRICING_UNTIL" = "until";
+"SA_STR_CUSTOMERPRI_BUY" = "Buy5, get 1 free";
+
+//Select Customer OpportunitiesVC
+"SA_STR_CUSTOMEROPPORTUNITY_DESC1" = "Top products from other";
+"SA_STR_CUSTOMEROPPORTUNITY_DESC2" = "in postcode";
+"SA_STR_ITEM" = "ITEM";
+"SA_STR_RANGING" = "RANGING";
+
+//Select customer select reason code
+"SA_STR_CUSTOMERREASON_TITLE" = "SELECT A REASON CODE?";
+"SA_STR_CUSTOMERREASON_MANAGER_NONE" = "Manager not available";
+
+//Select customer Incomplete Deliveries
+"SA_STR_CUSTOMERINCOMPLETE_TITLE" = "INCOMPLETE VISITS";
+"SA_STR_CUSTOMERINCOMPLETE_DESC" = "The following customer visits are not yet completed. Please select a reason for the incomplete visits";
+"SA_STR_CUSTOMERINCOMPLETE_CUSTNAME" = "Cust Name";
+"SA_STR_CUSTOMERINCOMPLETE_CUSTNO" = "Cust No";
+"SA_STR_CUSTOMERINCOMPLETE_REASON" = "Non Delivery Reason";
+"SA_STR_CUSTOMERINCOMPLETE_CARTONS" = "Cartons";
+"SA_STR_CUSTOMERINCOMPLETE_UNITS" = "Units";
+
+/* Customer Activites Storyboard */
+"SA_STR_ACTIVITY_TO_DO_ACVITIVIES" = "TO DO ACTIVITIES";
+"SA_STR_ACTIVITY_CUSTOMER_NOTES" = "CUSTOMER NOTES";
+"SA_STR_ACTIVITY_UPDATE_DETAILS" = "UPDATE DEATILS";
+"SA_STR_ACTIVITY_PAYMENT_COLLECTION" = "PAYMENT COLLECTION";
+"SA_STR_ACTIVITY_DISTRIBUTION_CHECK" = "DISTRIBUTION CHECK";
+"SA_STR_ACTIVITY_SALES_ORDER" = "SALES ORDER";
+"SA_STR_ACTIVITY_ASSETS" = "ASSETS";
+"SA_STR_ACTIVITY_PROMOTIONS" = "PROMOTIONS";
+"SA_STR_CUSTOMER_SURVEY" = "CUSTOMER SURVEY";
+
+//Todo Objectives VC
+"SA_STR_TODO_OBJECTIVE" = "Objective";
+"SA_STR_TODO_SET_BY" = "Set by";
+"SA_STR_TODO_DUE_BY" = "Due by";
+"SA_STR_TODO_DETAILS" = "Details";
+"SA_STR_TODO_STATUS" = "STATUS";
+"SA_STR_TODO_CREATE" = "CREATE NEW OBJECTIVE FOR NEXT VISIT";
+
+//Existing Orders
+"SA_STR_EXISTINGORDERS_TITLE" = "EXISTING ORDERS";
+"SA_STR_EXISTINGORDERS_SALES" = "SALES DETAIL";
+"SA_STR_EXISTINGORDERS_NEW_ORDER" = "New Order";
+"SA_STR_EDIT" = "Edit";
+
+//Message Board
+"SA_STR_MESSAGE_ADD_NEW_MESSAGE" = "ADD NEW MESSAGE";
+"SA_STR_DONE" = "DONE";
+
+//Distribution Check
+"SA_STR_CATEGORY" = "CATEGORY";
+"SA_STR_ITEM" = "ITEM";
+"SA_STR_DIST_AISLE" = "AISLE";
+"SA_STR_DIST_ON_SHELF" = "ON SHELF";
+"SA_STR_DIST_SHELF" = "SHELF";
+"SA_STR_DIST_EXPIRY" = "EXPRIRY";
+"SA_STR_DIST_STORE_RATING" = "PERFECT STORE RATINGS";
+"SA_STR_DIST_TOTAL_ITEMS_LIST" = "TOTAL ITEMS IN LIST";
+"SA_STR_DIST_TOTAL_TIELS_AVAIL" = "TOTAL ITEMS AVAILABLE";
+
+//Customer Survey
+"SA_STR_CUSTOMERSURVEY_Q" = "HOW GOOD IS YOUR CONNECTIVITY?";
+
+//Post Visit Task
+"SA_STR_POSTVISIT_TITLE" = "POST VISIT TASK";
+"SA_STR_POSTVISIT_NEXT_VISIT" = "Next Visit Date";
+"SA_STR_POSTVISIT_NOTES" = "Visit Notes";
+
+//Add Message
+"SA_STR_ADDMESSAGE_TITLE" = "Title";
+"SA_STR_ADDMESSAGE_TYPE" = "Message Type";
+"SA_STR_ADDMESSAGE_ATTACH" = "Attachment";
+
+//Payment Collection
+"SA_STR_PAYMENTCOLLECTION_BALANCE" = "Total customer balance";
+"SA_STR_PAYMENTCOLLECTION_INVOICE" = "Select Invoices to Pay";
+"SA_STR_PAYMENTCOLLECTION_PAYMNET" = "Payment Method";
+"SA_STR_CASH" = "Cash";
+"SA_STR_Cheque" = "Cheque";
+"SA_STR_Card" = "Card";
+"SA_STR_PAYMENTCOLLECTION_TOTAL" = "Total Collected";
+"SA_STR_PAYMENTCOLLECTION_TOTAL_REMAIN" = "Total Remaining to Collect";
+"SA_STR_CONFIRM" = "CONFIRM";
+"SA_STR_PRINT" = "PRINT";
+
+/* OrderStoryboard */
+//OrderVC
+"SA_STR_ORDER_PROUDCT_CATALOG" = "PRODUCT CATALOG";
+"SA_STR_ORDER_CODE" = "CODE";
+"SA_STR_ORDER_DESCRIPTION" = "DESCRIPTION";
+"SA_STR_ORDER_LAST_ORDER" = "LAST ORDER";
+"SA_STR_ORDER_PRICE" = "PRICE";
+"SA_STR_ORDER_QTY" = "QTY";
+"SA_STR_SUB_TOTAL" = "Subtotal";
+"SA_STR_TOTAL" = "Total";
+
+//Order Reason Code
+"SA_STR_NO_REASON_CODE"= "No Reason Code";
+"SA_STR_QUANTITY" = "Quantity";
+"SA_STR_COMPLETE_REASON_CODE" = "COMPLETE REASON CODE";
+"SA_STR_SHORT_DESC" = "Short Desc";
+"SA_STR_ITEM_NO" = "ITEM NO";
+
+//Order Detail Collection
+"SA_STR_DETAIL_COLLECTION" = "DETAIL COLLECTION";
+"SA_STR_COLECTION_REQUIRED" = "Collection required";
+
+//Order Cheque Details
+"SA_STR_CHEQUE_DETAILS" = "CHEQUE DETAILS";
+"SA_STR_TOTAL_REMAINING" = "Total remaining";
+"SA_STR_BANK" = "Bank/Bank BSB";
+"SA_STR_ACCOUNT" = "Account";
+"SA_STR_CHEQUE_NUMBER" = "Cheque Number";
+"SA_STR_CHEQUE_DATE" = "Cheque Date";
+"SA_STR_CHEQUE_AMOUNT" = "Cheque Amount";
+"SA_STR_AR_NOTES" = "AR Notes";
+
+//Order Way Details
+"SA_STR_NAME_ON_CARD" = "Name on Card";
+"SA_STR_CARD_NUMBER" = "Card Number";
+"SA_STR_CVV" = "CVV";
+"SA_STR_EXPIRY_DATE" = "Expiry Date";
+"SA_STR_PAY" = "Pay";
+
+
+//Promotion Planner
+"SA_STR_PROMOTION_PLANNER" = "PROMOTIONS PLANNER";
+"SA_STR_COOL_DRINKS" = "Cool Drinks";
+"SA_STR_TYPE" = "Type";
+"SA_STR_VALID" = "VALID";
+"SA_STR_IN_STORE" = "IN STORE";
+"SA_STR_DISCOUNT" = "DISCOUNT";
+"SA_STR_FEATURE_PRICE" = "FEATURE_PRICE";
+
+/* Chat Storyboard */
+"SA_STR_CHAT_WITH" = "Chat with dsddeliver";
+
+/* New Customer Or Prospect */
+"SA_STR_NEW_CUSTOMER" = "NEW CUSTOMER OR PROSPECT";
+"SA_STR_PROSPECT" = "PROSPECT";
+"SA_STR_CUSTOMER" = "CUSTOMER";
+"SA_STR_TRIP" = "Trip";
+"SA_STR_COMPANY_NAME" = "Company Name";
+"SA_STR_COMPANY_TAX_ID" = "Company Tax ID";
+"SA_STR_ADDRESS_LINE1" = "Address Line1";
+"SA_STR_ADDRESS_LINE2" = "Address Line2";
+"SA_STR_CITY" = "City";
+"SA_STR_PHONE" = "Phone";
+"SA_STR_STATE" = "State";
+"SA_STR_POSTCODE" = "Postcode";
+
+/* Asset Management */
+"SA_STR_VERIFIED" = "Verifieed";
+"SA_STR_FOUND_DETAILS_UPDATED" = "Found and Details Updated";
+"SA_STR_NOT_FOUND" = "Not Found";
+"SA_STR_REPAIRE_REQUIRED" = "REPAIR REQUIRED";
+"SA_STR_SERIAL_NUMBER" = "Serial Number";
+"SA_STR_ALTERNATIVE_ASSET_NUMBER" = "Alternative Asset Number";
+"SA_STR_MAKE" = "Make";
+"SA_STR_MODEL" = "MODEL";
+"SA_STR_LOCATION_IN_STORE" = "Location In Store";
+"SA_STR_ASSET_STATUS" = "Status";
+
+/* Terms of placement */
+"SA_STR_TERMS_OF_PLACEMENT" = "TERMS OF PLACEMENT";
+"SA_STR_CUSTOMER_NAME" = "Customer Name";
+"SA_STR_AGREED_BY" = "Agreed by";
+"SA_STR_CONFIRM_REQUEST" = "Confirm Request";
+
+/* Delivery Storyboard */
+"SA_STR_TO_DELIVER" = "To Deliver";
+"SA_STR_DELIVERY_REFUSED" = "Delivery Refused";
+"SA_STR_DELIVERED" = "Delivered";
+"SA_STR_NO_TRIP_SELECTED" = "No Trip Selected";
+"SA_STR_BUSINESS_OR_EMPLOYED" = "Business or Employed";
+
+/* Visit Planner Storyboard */
+"SA_STR_ADD_VISIT" = "ADD A VISIT";
+"SA_STR_MAP_DAY" = "MAP DAY";
+
+/* Product catalog Storyboard */
+"SA_STR_BARCODE" = "Barcode";
+"SA_STR_BASE_CASE_PRICE" = "Base Case Price";
+"SA_STR_UNITS_PER_CASE" = "Units per case";
+"SA_STR_UINT_PRICE" = "Unit Price";
+"SA_STR_ADD_TO_ORDER" = "Add to Order";
+

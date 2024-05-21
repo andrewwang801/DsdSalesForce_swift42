@@ -1,0 +1,234 @@
+
+/* Class = "UILabel"; text = "Search by :"; ObjectID = "06W-o7-8AX"; */
+"06W-o7-8AX.text" = "Search by :";
+
+/* Class = "UILabel"; text = "Barcode"; ObjectID = "0dk-Zy-6B1"; */
+"0dk-Zy-6B1.text" = "Barcode";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "0nf-Mc-y31"; */
+"0nf-Mc-y31.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Title\nTitle"; ObjectID = "1MJ-b0-Vqj"; */
+"1MJ-b0-Vqj.text" = "Title\nTitle";
+
+/* Class = "UIButton"; normalTitle = "Sales District"; ObjectID = "1YZ-JT-KwZ"; */
+"1YZ-JT-KwZ.normalTitle" = "Sales District";
+
+/* Class = "UIButton"; normalTitle = "Customer Name"; ObjectID = "24b-Ud-wbC"; */
+"24b-Ud-wbC.normalTitle" = "Customer Name";
+
+/* Class = "UILabel"; text = "Units per case"; ObjectID = "2iZ-7x-dAh"; */
+"2iZ-7x-dAh.text" = "Units per case";
+
+/* Class = "UILabel"; text = "ADD CUSTOMERS TO TRIP"; ObjectID = "3my-US-ARN"; */
+"3my-US-ARN.text" = "ADD CUSTOMERS TO TRIP";
+
+/* Class = "UILabel"; text = "SI06"; ObjectID = "3th-Vi-EQr"; */
+"3th-Vi-EQr.text" = "SI06";
+
+/* Class = "UILabel"; text = "PRODUCT DETAILS"; ObjectID = "4PT-1z-5Hj"; */
+"4PT-1z-5Hj.text" = "PRODUCT DETAILS";
+
+/* Class = "UILabel"; text = "Scan Area"; ObjectID = "6KJ-w8-Qmv"; */
+"6KJ-w8-Qmv.text" = "Scan Area";
+
+/* Class = "UILabel"; text = "Brand"; ObjectID = "729-DC-WRB"; */
+"729-DC-WRB.text" = "Brand";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "9jM-hQ-zK4"; */
+"9jM-hQ-zK4.text" = "There is no data.";
+
+/* Class = "UITextField"; placeholder = "Please enter search key"; ObjectID = "9u5-6d-o0b"; */
+"9u5-6d-o0b.placeholder" = "Please enter search key";
+
+/* Class = "UILabel"; text = "Case Price"; ObjectID = "9zQ-qG-hpc"; */
+"9zQ-qG-hpc.text" = "Case Price";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "BPB-X4-PGq"; */
+"BPB-X4-PGq.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "Message"; ObjectID = "C8i-Pu-yKf"; */
+"C8i-Pu-yKf.text" = "Message";
+
+/* Class = "UILabel"; text = "Inventory"; ObjectID = "CIu-1M-eBz"; */
+"CIu-1M-eBz.text" = "Inventory";
+
+/* Class = "UILabel"; text = "Item Type - Item Type 1"; ObjectID = "CNC-YM-UIF"; */
+"CNC-YM-UIF.text" = "Item Type - Item Type 1";
+
+/* Class = "UILabel"; text = "Line"; ObjectID = "EW2-aD-dRH"; */
+"EW2-aD-dRH.text" = "Line";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "EXl-Nv-9DZ"; */
+"EXl-Nv-9DZ.normalTitle" = "OK";
+
+/* Class = "UITextField"; text = "777"; ObjectID = "EwU-bW-JHK"; */
+"EwU-bW-JHK.text" = "777";
+
+/* Class = "UILabel"; text = "Group"; ObjectID = "FS3-qf-3Mu"; */
+"FS3-qf-3Mu.text" = "Group";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "FVq-3r-2Sy"; */
+"FVq-3r-2Sy.normalTitle" = "Done";
+
+/* Class = "UIButton"; normalTitle = "Yes"; ObjectID = "Fg9-uT-sOo"; */
+"Fg9-uT-sOo.normalTitle" = "Yes";
+
+/* Class = "UILabel"; text = "Customer Location"; ObjectID = "IHO-Tl-tZH"; */
+"IHO-Tl-tZH.text" = "Customer Location";
+
+/* Class = "UILabel"; text = "SELECT PRINTER"; ObjectID = "J6z-oF-9Sv"; */
+"J6z-oF-9Sv.text" = "SELECT PRINTER";
+
+/* Class = "UILabel"; text = "If you do not see your printer here, you need to make sure it is configured in your iOS settings.   Go to Settings > Bluetooth and pair with your printer."; ObjectID = "JLf-4Q-Mpq"; */
+"JLf-4Q-Mpq.text" = "If you do not see your printer here, you need to make sure it is configured in your iOS settings.   Go to Settings > Bluetooth and pair with your printer.";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "KSz-Gf-nqQ"; */
+"KSz-Gf-nqQ.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "LM8-iv-SEW"; */
+"LM8-iv-SEW.normalTitle" = "CANCEL";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "ONp-FQ-Xnp"; */
+"ONp-FQ-Xnp.normalTitle" = "Back";
+
+/* Class = "UILabel"; text = "$2.50"; ObjectID = "Obu-xK-BpI"; */
+"Obu-xK-BpI.text" = "$2.50";
+
+/* Class = "UILabel"; text = "customer name"; ObjectID = "P9a-4m-AZY"; */
+"P9a-4m-AZY.text" = "customer name";
+
+/* Class = "UILabel"; text = "September 2017"; ObjectID = "Pky-cu-scc"; */
+"Pky-cu-scc.text" = "September 2017";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Pmm-jk-l6l"; */
+"Pmm-jk-l6l.text" = "Label";
+
+/* Class = "UILabel"; text = "FAILED"; ObjectID = "ReR-Us-8gy"; */
+"ReR-Us-8gy.text" = "FAILED";
+
+/* Class = "UILabel"; text = "Search"; ObjectID = "SlH-xX-JTZ"; */
+"SlH-xX-JTZ.text" = "Search";
+
+/* Class = "UILabel"; text = "24"; ObjectID = "VVR-mN-LMQ"; */
+"VVR-mN-LMQ.text" = "24";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "Wpf-YO-iTr"; */
+"Wpf-YO-iTr.text" = "There is no data.";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "Y3D-tC-czg"; */
+"Y3D-tC-czg.normalTitle" = "Add";
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "Y9Q-uz-DXn"; */
+"Y9Q-uz-DXn.title" = "Close";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "YAs-qW-I1e"; */
+"YAs-qW-I1e.normalTitle" = "Back";
+
+/* Class = "UILabel"; text = "30%"; ObjectID = "YDg-qh-hL5"; */
+"YDg-qh-hL5.text" = "30%";
+
+/* Class = "UILabel"; text = "Item Type - Item Type 1"; ObjectID = "aIm-vr-eH2"; */
+"aIm-vr-eH2.text" = "Item Type - Item Type 1";
+
+/* Class = "UILabel"; text = "Line"; ObjectID = "anR-2B-Ofm"; */
+"anR-2B-Ofm.text" = "Line";
+
+/* Class = "UILabel"; text = ".* TORQUAY"; ObjectID = "bUv-6w-A5M"; */
+"bUv-6w-A5M.text" = ".* TORQUAY";
+
+/* Class = "UILabel"; text = "Store Type 1"; ObjectID = "dH9-z4-Ojr"; */
+"dH9-z4-Ojr.text" = "Store Type 1";
+
+/* Class = "UILabel"; text = "Simple"; ObjectID = "dxZ-dw-onM"; */
+"dxZ-dw-onM.text" = "Simple";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "eFc-ZG-T4U"; */
+"eFc-ZG-T4U.normalTitle" = "Done";
+
+/* Class = "UITextField"; placeholder = "PIN code for communication"; ObjectID = "f86-Xz-9VT"; */
+"f86-Xz-9VT.placeholder" = "PIN code for communication";
+
+/* Class = "UILabel"; text = "SEARCH PRODUCT"; ObjectID = "g7Q-qK-3ew"; */
+"g7Q-qK-3ew.text" = "SEARCH PRODUCT";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gbt-IG-rxs"; */
+"gbt-IG-rxs.text" = "Label";
+
+/* Class = "UILabel"; text = "Unit Price"; ObjectID = "hD5-hp-u9y"; */
+"hD5-hp-u9y.text" = "Unit Price";
+
+/* Class = "UILabel"; text = "Vehicle Make:"; ObjectID = "iei-h3-8Rr"; */
+"iei-h3-8Rr.text" = "Vehicle Make:";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "j8k-ew-Y8H"; */
+"j8k-ew-Y8H.text" = "Title";
+
+/* Class = "UITextField"; placeholder = "Please enter search key"; ObjectID = "jNr-0V-shn"; */
+"jNr-0V-shn.placeholder" = "Please enter search key";
+
+/* Class = "UILabel"; text = "Group"; ObjectID = "jZZ-a9-N4P"; */
+"jZZ-a9-N4P.text" = "Group";
+
+/* Class = "UILabel"; text = "Item Type - Item Type 1"; ObjectID = "jad-lM-yDx"; */
+"jad-lM-yDx.text" = "Item Type - Item Type 1";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "kGu-Zz-blt"; */
+"kGu-Zz-blt.normalTitle" = "Save";
+
+/* Class = "UIButton"; normalTitle = "No"; ObjectID = "kTh-sy-6Si"; */
+"kTh-sy-6Si.normalTitle" = "No";
+
+/* Class = "UILabel"; text = "Sub Brand"; ObjectID = "kW1-RK-b95"; */
+"kW1-RK-b95.text" = "Sub Brand";
+
+/* Class = "UIButton"; normalTitle = "Return"; ObjectID = "m59-9E-Yf0"; */
+"m59-9E-Yf0.normalTitle" = "Return";
+
+/* Class = "UILabel"; text = "$33.39"; ObjectID = "mBe-SQ-nHp"; */
+"mBe-SQ-nHp.text" = "$33.39";
+
+/* Class = "UILabel"; text = "Item Type - Item Type 1"; ObjectID = "mFm-pj-sla"; */
+"mFm-pj-sla.text" = "Item Type - Item Type 1";
+
+/* Class = "UILabel"; text = "Gross Margin"; ObjectID = "mTb-Iv-29k"; */
+"mTb-Iv-29k.text" = "Gross Margin";
+
+/* Class = "UIButton"; normalTitle = "Clear"; ObjectID = "mgA-5h-0DV"; */
+"mgA-5h-0DV.normalTitle" = "Clear";
+
+/* Class = "UILabel"; text = "Sub Brand"; ObjectID = "mjV-Ap-jq3"; */
+"mjV-Ap-jq3.text" = "Sub Brand";
+
+/* Class = "UIButton"; normalTitle = "Product Name"; ObjectID = "nWf-dU-Xl9"; */
+"nWf-dU-Xl9.normalTitle" = "Product Name";
+
+/* Class = "UIButton"; normalTitle = "No"; ObjectID = "ntI-d1-B04"; */
+"ntI-d1-B04.normalTitle" = "No";
+
+/* Class = "UIButton"; normalTitle = "Yes"; ObjectID = "oSv-Xo-vx5"; */
+"oSv-Xo-vx5.normalTitle" = "Yes";
+
+/* Class = "UILabel"; text = "1234567890123"; ObjectID = "pZj-pa-lgl"; */
+"pZj-pa-lgl.text" = "1234567890123";
+
+/* Class = "UIButton"; normalTitle = "Exit"; ObjectID = "qCE-gP-kdq"; */
+"qCE-gP-kdq.normalTitle" = "Exit";
+
+/* Class = "UIButton"; normalTitle = "Add All"; ObjectID = "qfC-VR-7iM"; */
+"qfC-VR-7iM.normalTitle" = "Add All";
+
+/* Class = "UILabel"; text = "Simple Juice Apple Carrot Ginger"; ObjectID = "sUl-sU-oMJ"; */
+"sUl-sU-oMJ.text" = "Simple Juice Apple Carrot Ginger";
+
+/* Class = "UILabel"; text = "201"; ObjectID = "uwh-2y-3Oj"; */
+"uwh-2y-3Oj.text" = "201";
+
+/* Class = "UILabel"; text = "MarketGroup"; ObjectID = "wVa-ZB-pWg"; */
+"wVa-ZB-pWg.text" = "MarketGroup";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "xP2-Dn-1Ua"; */
+"xP2-Dn-1Ua.normalTitle" = "Back";
+
+/* Class = "UILabel"; text = "Item Type - Item Type 1"; ObjectID = "ynE-vj-LFG"; */
+"ynE-vj-LFG.text" = "Item Type - Item Type 1";

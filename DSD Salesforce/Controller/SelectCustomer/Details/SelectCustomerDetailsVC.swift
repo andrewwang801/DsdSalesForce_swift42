@@ -142,14 +142,21 @@ class SelectCustomerDetailsVC: UIViewController {
         }
 
         // Price Group
-        let priceGroup = selectedCustomerDetails.priceGrp ?? ""
-        if priceGroup.trimed() != "" && priceGroup != "0" {
-            descType = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "PriceGroup", numericKey: priceGroup)
-            if descType != nil {
-                otherInfoTitleArray.append("Price Group")
-                otherInfoValueArray.append(descType!.desc ?? "")
-            }
+        let priceGroup = CustInfo.getBy(context: globalInfo.managedObjectContext, infoType: "15", custNo: custNo)?.info ?? ""
+        if priceGroup.trimed() != "" {
+            otherInfoTitleArray.append("Price Group")
+            otherInfoValueArray.append(priceGroup)
         }
+        
+        // Price Group
+//        let priceGroup = selectedCustomerDetails.priceGrp ?? ""
+//        if priceGroup.trimed() != "" && priceGroup != "0" {
+//            descType = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "PriceGroup", numericKey: priceGroup)
+//            if descType != nil {
+//                otherInfoTitleArray.append("Price Group")
+//                otherInfoValueArray.append(descType!.desc ?? "")
+//            }
+//        }
 
         // Visit
         let deliveryFrequency = selectedCustomerDetails.delivFreq ?? ""

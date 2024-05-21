@@ -1,0 +1,162 @@
+
+/* Class = "UILabel"; text = "80%"; ObjectID = "1na-Zi-iap"; */
+"1na-Zi-iap.text" = "80%";
+
+/* Class = "UILabel"; text = "Sales this week"; ObjectID = "2Sp-rt-r3J"; */
+"2Sp-rt-r3J.text" = "Sales this week";
+
+/* Class = "UILabel"; text = "CURRENT WEEK PERFORMANCE"; ObjectID = "7Zo-em-4nj"; */
+"7Zo-em-4nj.text" = "CURRENT WEEK PERFORMANCE";
+
+/* Class = "UITextField"; placeholder = "PASSWORD"; ObjectID = "7bq-1h-C2t"; */
+"7bq-1h-C2t.placeholder" = "PASSWORD";
+
+/* Class = "UIButton"; normalTitle = "DASHBOARD"; ObjectID = "8Qu-j4-IpH"; */
+"8Qu-j4-IpH.normalTitle" = "DASHBOARD";
+
+/* Class = "UILabel"; text = "CURRENT MONTH PERFORMANCE"; ObjectID = "8em-Sl-Tdu"; */
+"8em-Sl-Tdu.text" = "CURRENT MONTH PERFORMANCE";
+
+/* Class = "UILabel"; text = "Sales last week"; ObjectID = "8n3-Gw-S7R"; */
+"8n3-Gw-S7R.text" = "Sales last week";
+
+/* Class = "UIButton"; normalTitle = "+61 3496 5969"; ObjectID = "9AQ-9E-GWh"; */
+"9AQ-9E-GWh.normalTitle" = "+61 3496 5969";
+
+/* Class = "UIButton"; normalTitle = "www.dsdassist.com.au"; ObjectID = "9KW-FR-MLa"; */
+"9KW-FR-MLa.normalTitle" = "www.dsdassist.com.au";
+
+/* Class = "UILabel"; text = "Terms of use and pricacy are governed by the agreement between Numeric Computer Systems and the client and our policies made available to the client, and as may be amended from time to time"; ObjectID = "Ay4-Lh-ZvU"; */
+"Ay4-Lh-ZvU.text" = "Terms of use and pricacy are governed by the agreement between Numeric Computer Systems and the client and our policies made available to the client, and as may be amended from time to time";
+
+/* Class = "UILabel"; text = "DSD Connect is designed by:"; ObjectID = "BWi-ko-AzJ"; */
+"BWi-ko-AzJ.text" = "DSD Connect is designed by:";
+
+/* Class = "UILabel"; text = "Out of Route"; ObjectID = "EOr-XK-kSr"; */
+"EOr-XK-kSr.text" = "Out of Route";
+
+/* Class = "UIButton"; normalTitle = "+61 3496 5969"; ObjectID = "EPV-no-jD1"; */
+"EPV-no-jD1.normalTitle" = "+61 3496 5969";
+
+/* Class = "UILabel"; text = "TERRITORY"; ObjectID = "Ear-ct-V27"; */
+"Ear-ct-V27.text" = "TERRITORY";
+
+/* Class = "UIButton"; normalTitle = "Exit"; ObjectID = "GTx-2w-4Rk"; */
+"GTx-2w-4Rk.normalTitle" = "Exit";
+
+/* Class = "UILabel"; text = "METRICS"; ObjectID = "HMp-nZ-TIG"; */
+"HMp-nZ-TIG.text" = "METRICS";
+
+/* Class = "UILabel"; text = "3,547.00"; ObjectID = "I9B-MD-bgT"; */
+"I9B-MD-bgT.text" = "3,547.00";
+
+/* Class = "UIButton"; normalTitle = "SIGN OUT"; ObjectID = "IZr-ST-3Mg"; */
+"IZr-ST-3Mg.normalTitle" = "SIGN OUT";
+
+/* Class = "UILabel"; text = "Remaining"; ObjectID = "KwL-Ui-NQc"; */
+"KwL-Ui-NQc.text" = "Remaining";
+
+/* Class = "UILabel"; text = "LOG IN"; ObjectID = "Mga-yG-U6p"; */
+"Mga-yG-U6p.text" = "LOG IN";
+
+/* Class = "UILabel"; text = "Planned"; ObjectID = "Mpn-Wu-ndw"; */
+"Mpn-Wu-ndw.text" = "Planned";
+
+/* Class = "UILabel"; text = "500,000.00"; ObjectID = "Ojh-LG-PiA"; */
+"Ojh-LG-PiA.text" = "500,000.00";
+
+/* Class = "UIButton"; normalTitle = "support@dsdassist.com"; ObjectID = "Qwb-m9-pu7"; */
+"Qwb-m9-pu7.normalTitle" = "support@dsdassist.com";
+
+/* Class = "UILabel"; text = "60%"; ObjectID = "RrS-VM-u7i"; */
+"RrS-VM-u7i.text" = "60%";
+
+/* Class = "UILabel"; text = "TODAY'S CALLS"; ObjectID = "RtR-Ix-Lf6"; */
+"RtR-Ix-Lf6.text" = "TODAY'S CALLS";
+
+/* Class = "UILabel"; text = "Completed"; ObjectID = "TfM-CB-2X1"; */
+"TfM-CB-2X1.text" = "Completed";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "UXV-09-Xk7"; */
+"UXV-09-Xk7.text" = "0";
+
+/* Class = "UILabel"; text = "659.299.00"; ObjectID = "Uv9-Fm-CeO"; */
+"Uv9-Fm-CeO.text" = "659.299.00";
+
+/* Class = "UIButton"; normalTitle = "CUSTOMER SELECTION"; ObjectID = "Uzh-Vf-uLJ"; */
+"Uzh-Vf-uLJ.normalTitle" = "CUSTOMER SELECTION";
+
+/* Class = "UILabel"; text = "1,147,969.05"; ObjectID = "Vcz-Xg-hV2"; */
+"Vcz-Xg-hV2.text" = "1,147,969.05";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "Weu-LJ-X9W"; */
+"Weu-LJ-X9W.text" = "3";
+
+/* Class = "UILabel"; text = "18"; ObjectID = "YXQ-78-EDY"; */
+"YXQ-78-EDY.text" = "18";
+
+/* Class = "UITextField"; placeholder = "USER NAME"; ObjectID = "aCg-71-jET"; */
+"aCg-71-jET.placeholder" = "USER NAME";
+
+/* Class = "UILabel"; text = "Sales Today"; ObjectID = "aln-FI-He8"; */
+"aln-FI-He8.text" = "Sales Today";
+
+/* Class = "UILabel"; text = "235,000.15"; ObjectID = "axe-Y7-uGY"; */
+"axe-Y7-uGY.text" = "235,000.15";
+
+/* Class = "UIButton"; normalTitle = "ABOUT"; ObjectID = "bJn-xT-eSa"; */
+"bJn-xT-eSa.normalTitle" = "ABOUT";
+
+/* Class = "UILabel"; text = "400,000.00"; ObjectID = "by8-4z-B7y"; */
+"by8-4z-B7y.text" = "400,000.00";
+
+/* Class = "UILabel"; text = "Productive"; ObjectID = "c8g-xV-CB3"; */
+"c8g-xV-CB3.text" = "Productive";
+
+/* Class = "UILabel"; text = "New Customer Week"; ObjectID = "cum-Cg-JTc"; */
+"cum-Cg-JTc.text" = "New Customer Week";
+
+/* Class = "UIButton"; normalTitle = "HELP"; ObjectID = "fq1-Wf-w2N"; */
+"fq1-Wf-w2N.normalTitle" = "HELP";
+
+/* Class = "UILabel"; text = "Sales (MTD)"; ObjectID = "gGw-1e-RGN"; */
+"gGw-1e-RGN.text" = "Sales (MTD)";
+
+/* Class = "UIButton"; normalTitle = "DASHBOARD"; ObjectID = "i5u-Ae-TxT"; */
+"i5u-Ae-TxT.normalTitle" = "DASHBOARD";
+
+/* Class = "UIButton"; normalTitle = "USER NAME"; ObjectID = "j2K-F2-CLs"; */
+"j2K-F2-CLs.normalTitle" = "USER NAME";
+
+/* Class = "UILabel"; text = "v3.0.4"; ObjectID = "kaY-oG-gbg"; */
+"kaY-oG-gbg.text" = "v3.0.4";
+
+/* Class = "UITextField"; placeholder = "TERRITORY"; ObjectID = "ksA-j3-75e"; */
+"ksA-j3-75e.placeholder" = "TERRITORY";
+
+/* Class = "UITextField"; placeholder = "COMPANY PIN"; ObjectID = "lRr-Yi-Ugs"; */
+"lRr-Yi-Ugs.placeholder" = "COMPANY PIN";
+
+/* Class = "UILabel"; text = "SUB TITLE"; ObjectID = "lSa-wc-qXs"; */
+"lSa-wc-qXs.text" = "SUB TITLE";
+
+/* Class = "UILabel"; text = " "; ObjectID = "m5L-BX-EAB"; */
+"m5L-BX-EAB.text" = " ";
+
+/* Class = "UILabel"; text = "Month Target"; ObjectID = "n90-TQ-cWB"; */
+"n90-TQ-cWB.text" = "Month Target";
+
+/* Class = "UILabel"; text = "Sales"; ObjectID = "p4i-31-0Oo"; */
+"p4i-31-0Oo.text" = "Sales";
+
+/* Class = "UILabel"; text = "This week vs last week"; ObjectID = "sLf-av-7CQ"; */
+"sLf-av-7CQ.text" = "This week vs last week";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "tB8-Xg-p9U"; */
+"tB8-Xg-p9U.text" = "2";
+
+/* Class = "UILabel"; text = "Percentage"; ObjectID = "tWC-mG-UDG"; */
+"tWC-mG-UDG.text" = "Percentage";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "w1U-o1-cD1"; */
+"w1U-o1-cD1.normalTitle" = "LOG IN";

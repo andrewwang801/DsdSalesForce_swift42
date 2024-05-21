@@ -1,0 +1,291 @@
+
+/* Class = "UIButton"; normalTitle = "SELECT STORE TYPE"; ObjectID = "1ba-78-WXT"; */
+"1ba-78-WXT.normalTitle" = "SELECT STORE TYPE";
+
+/* Class = "UILabel"; text = "DW002"; ObjectID = "2Dd-m4-sL0"; */
+"2Dd-m4-sL0.text" = "DW002";
+
+/* Class = "UILabel"; text = "A2Z, Supermarket, Deira, Dubai"; ObjectID = "2ZU-kf-4YF"; */
+"2ZU-kf-4YF.text" = "A2Z, Supermarket, Deira, Dubai";
+
+/* Class = "UILabel"; text = "$45537.54"; ObjectID = "2vu-3E-HqH"; */
+"2vu-3E-HqH.text" = "$45537.54";
+
+/* Class = "UILabel"; text = "10.57"; ObjectID = "3Qi-CJ-y7u"; */
+"3Qi-CJ-y7u.text" = "10.57";
+
+/* Class = "UILabel"; text = "DW002"; ObjectID = "3Ro-hb-n8p"; */
+"3Ro-hb-n8p.text" = "DW002";
+
+/* Class = "UILabel"; text = "mytest@test.com"; ObjectID = "4Rk-cT-A1h"; */
+"4Rk-cT-A1h.text" = "mytest@test.com";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "4iV-CJ-nb6"; */
+"4iV-CJ-nb6.text" = "There is no data.";
+
+/* Class = "UILabel"; text = "COLLECTIONS BALANCING"; ObjectID = "4mJ-8g-lCH"; */
+"4mJ-8g-lCH.text" = "COLLECTIONS BALANCING";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "52f-mA-5YP"; */
+"52f-mA-5YP.text" = "0";
+
+/* Class = "UILabel"; text = "ITEM"; ObjectID = "61r-Qv-nXf"; */
+"61r-Qv-nXf.text" = "ITEM";
+
+/* Class = "UILabel"; text = "Cash"; ObjectID = "6Y1-UE-4dK"; */
+"6Y1-UE-4dK.text" = "Cash";
+
+/* Class = "UILabel"; text = "30 days"; ObjectID = "76B-mN-2vE"; */
+"76B-mN-2vE.text" = "30 days";
+
+/* Class = "UIButton"; normalTitle = "PRICING"; ObjectID = "7MZ-Ph-dqn"; */
+"7MZ-Ph-dqn.normalTitle" = "PRICING";
+
+/* Class = "UILabel"; text = "Last Order On"; ObjectID = "8Rk-JY-Hu7"; */
+"8Rk-JY-Hu7.text" = "Last Order On";
+
+/* Class = "UILabel"; text = "Last Visited On"; ObjectID = "8Y8-ZU-mJE"; */
+"8Y8-ZU-mJE.text" = "Last Visited On";
+
+/* Class = "UILabel"; text = "A2Z, Supermarket, Deira, Dubai"; ObjectID = "8dp-rk-Z1R"; */
+"8dp-rk-Z1R.text" = "A2Z, Supermarket, Deira, Dubai";
+
+/* Class = "UILabel"; text = "Current Month Sales"; ObjectID = "AO9-1L-5IA"; */
+"AO9-1L-5IA.text" = "Current Month Sales";
+
+/* Class = "UILabel"; text = "Cust No"; ObjectID = "AXk-6y-uco"; */
+"AXk-6y-uco.text" = "Cust No";
+
+/* Class = "UIButton"; normalTitle = "VISIT CUSTOMER"; ObjectID = "BAz-tS-Z5a"; */
+"BAz-tS-Z5a.normalTitle" = "VISIT CUSTOMER";
+
+/* Class = "UILabel"; text = "Fred Jones"; ObjectID = "Bbt-ZI-ewa"; */
+"Bbt-ZI-ewa.text" = "Fred Jones";
+
+/* Class = "UILabel"; text = "PROMOTIONS"; ObjectID = "BpR-IN-Sfj"; */
+"BpR-IN-Sfj.text" = "PROMOTIONS";
+
+/* Class = "UILabel"; text = "0 Cartons"; ObjectID = "CIP-jt-npd"; */
+"CIP-jt-npd.text" = "0 Cartons";
+
+/* Class = "UILabel"; text = "05-06-2018"; ObjectID = "CnF-Cz-Rh8"; */
+"CnF-Cz-Rh8.text" = "05-06-2018";
+
+/* Class = "UIButton"; normalTitle = "Non delivery reason"; ObjectID = "Cvf-eH-u6b"; */
+"Cvf-eH-u6b.normalTitle" = "Non delivery reason";
+
+/* Class = "UILabel"; text = "Top products from other"; ObjectID = "Eiw-Zv-vVr"; */
+"Eiw-Zv-vVr.text" = "Top products from other";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "EyE-oH-HqB"; */
+"EyE-oH-HqB.normalTitle" = "Back";
+
+/* Class = "UILabel"; text = "24150"; ObjectID = "GVG-bB-PXx"; */
+"GVG-bB-PXx.text" = "24150";
+
+/* Class = "UIButton"; normalTitle = "NEARBY"; ObjectID = "H6r-1d-dK4"; */
+"H6r-1d-dK4.normalTitle" = "NEARBY";
+
+/* Class = "UILabel"; text = "Price Group:"; ObjectID = "HFW-Pd-uxM"; */
+"HFW-Pd-uxM.text" = "Price Group:";
+
+/* Class = "UILabel"; text = "Show All"; ObjectID = "Jks-PO-De8"; */
+"Jks-PO-De8.text" = "Show All";
+
+/* Class = "UILabel"; text = "% RANGING"; ObjectID = "KGY-lf-enG"; */
+"KGY-lf-enG.text" = "% RANGING";
+
+/* Class = "UILabel"; text = "TRIP SETTLEMENT"; ObjectID = "KUF-nr-ibl"; */
+"KUF-nr-ibl.text" = "TRIP SETTLEMENT";
+
+/* Class = "UILabel"; text = "LAST ORDERS"; ObjectID = "L5R-mh-cBx"; */
+"L5R-mh-cBx.text" = "LAST ORDERS";
+
+/* Class = "UILabel"; text = "ITEM"; ObjectID = "LVp-xZ-Qrh"; */
+"LVp-xZ-Qrh.text" = "ITEM";
+
+/* Class = "UILabel"; text = "$"; ObjectID = "OZE-Hz-HSc"; */
+"OZE-Hz-HSc.text" = "$";
+
+/* Class = "UILabel"; text = "No customer selected"; ObjectID = "OdG-kb-LWy"; */
+"OdG-kb-LWy.text" = "No customer selected";
+
+/* Class = "UILabel"; text = "Available Credit"; ObjectID = "Phv-jZ-UrM"; */
+"Phv-jZ-UrM.text" = "Available Credit";
+
+/* Class = "UILabel"; text = "Manager not available"; ObjectID = "QJS-xs-onx"; */
+"QJS-xs-onx.text" = "Manager not available";
+
+/* Class = "UILabel"; text = "DW002"; ObjectID = "R6i-6i-Pri"; */
+"R6i-6i-Pri.text" = "DW002";
+
+/* Class = "UILabel"; text = "Dream Whip Topping Mix 12*144g"; ObjectID = "R8R-b2-Cyp"; */
+"R8R-b2-Cyp.text" = "Dream Whip Topping Mix 12*144g";
+
+/* Class = "UILabel"; text = "mymail@test.com"; ObjectID = "SzO-Rf-ybM"; */
+"SzO-Rf-ybM.text" = "mymail@test.com";
+
+/* Class = "UILabel"; text = "1237672434"; ObjectID = "T9e-bA-Xyh"; */
+"T9e-bA-Xyh.text" = "1237672434";
+
+/* Class = "UIButton"; normalTitle = "TOP PRODUCTS"; ObjectID = "UbF-so-E2m"; */
+"UbF-so-E2m.normalTitle" = "TOP PRODUCTS";
+
+/* Class = "UILabel"; text = "235"; ObjectID = "WbL-bP-nsa"; */
+"WbL-bP-nsa.text" = "235";
+
+/* Class = "UIButton"; normalTitle = "OPPORTUNITIES"; ObjectID = "WdX-9b-wWF"; */
+"WdX-9b-wWF.normalTitle" = "OPPORTUNITIES";
+
+/* Class = "UILabel"; text = "A2Z, Supermarket, Deira, Dubai"; ObjectID = "Xe9-6c-NJa"; */
+"Xe9-6c-NJa.text" = "A2Z, Supermarket, Deira, Dubai";
+
+/* Class = "UIButton"; normalTitle = "Completed"; ObjectID = "Y8W-h7-Q6X"; */
+"Y8W-h7-Q6X.normalTitle" = "Completed";
+
+/* Class = "UILabel"; text = "$1500.00"; ObjectID = "YI9-bL-zYf"; */
+"YI9-bL-zYf.text" = "$1500.00";
+
+/* Class = "UILabel"; text = "DW002"; ObjectID = "YZy-KF-bcp"; */
+"YZy-KF-bcp.text" = "DW002";
+
+/* Class = "UILabel"; text = "24150"; ObjectID = "ZBG-3z-rKZ"; */
+"ZBG-3z-rKZ.text" = "24150";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "ZSL-ed-DIa"; */
+"ZSL-ed-DIa.text" = "There is no data.";
+
+/* Class = "UILabel"; text = "MTD"; ObjectID = "ZyS-Rl-vUC"; */
+"ZyS-Rl-vUC.text" = "MTD";
+
+/* Class = "UILabel"; text = "3 - 4 - 0 - 12"; ObjectID = "aQL-JB-dbQ"; */
+"aQL-JB-dbQ.text" = "3 - 4 - 0 - 12";
+
+/* Class = "UILabel"; text = "1237672434"; ObjectID = "bcE-Rb-YSb"; */
+"bcE-Rb-YSb.text" = "1237672434";
+
+/* Class = "UILabel"; text = "INCOMPLETE VISITS"; ObjectID = "c3A-Vq-f7Y"; */
+"c3A-Vq-f7Y.text" = "INCOMPLETE VISITS";
+
+/* Class = "UILabel"; text = "in postcode"; ObjectID = "cOZ-bs-mPE"; */
+"cOZ-bs-mPE.text" = "in postcode";
+
+/* Class = "UIButton"; normalTitle = "VIEW PROMOTIONS"; ObjectID = "cZ9-4s-m8s"; */
+"cZ9-4s-m8s.normalTitle" = "VIEW PROMOTIONS";
+
+/* Class = "UILabel"; text = "until"; ObjectID = "cmw-2z-Tqy"; */
+"cmw-2z-Tqy.text" = "until";
+
+/* Class = "UILabel"; text = "DATE"; ObjectID = "eqe-5v-ar9"; */
+"eqe-5v-ar9.text" = "DATE";
+
+/* Class = "UILabel"; text = "Trip # 100020"; ObjectID = "gGs-Ma-PQG"; */
+"gGs-Ma-PQG.text" = "Trip # 100020";
+
+/* Class = "UILabel"; text = "Dream Whip Topping Mix 12*144g"; ObjectID = "gJv-fX-m3K"; */
+"gJv-fX-m3K.text" = "Dream Whip Topping Mix 12*144g";
+
+/* Class = "UILabel"; text = "10% off"; ObjectID = "gXa-MT-8Ou"; */
+"gXa-MT-8Ou.text" = "10% off";
+
+/* Class = "UIButton"; normalTitle = "Return"; ObjectID = "h2k-bp-e5x"; */
+"h2k-bp-e5x.normalTitle" = "Return";
+
+/* Class = "UILabel"; text = "2018-04-28"; ObjectID = "hEo-L0-02E"; */
+"hEo-L0-02E.text" = "2018-04-28";
+
+/* Class = "UILabel"; text = "24150"; ObjectID = "hU5-nN-T4t"; */
+"hU5-nN-T4t.text" = "24150";
+
+/* Class = "UILabel"; text = "from"; ObjectID = "htK-iN-cyN"; */
+"htK-iN-cyN.text" = "from";
+
+/* Class = "UILabel"; text = "Primary Contact:"; ObjectID = "hyW-sA-yTy"; */
+"hyW-sA-yTy.text" = "Primary Contact:";
+
+/* Class = "UILabel"; text = "78"; ObjectID = "i2s-2c-hUy"; */
+"i2s-2c-hUy.text" = "78";
+
+/* Class = "UIButton"; normalTitle = "CHECK PLANNER"; ObjectID = "jSS-34-UyH"; */
+"jSS-34-UyH.normalTitle" = "CHECK PLANNER";
+
+/* Class = "UILabel"; text = "Dream Whip Topping Mix 12*144g"; ObjectID = "jqM-N9-8cs"; */
+"jqM-N9-8cs.text" = "Dream Whip Topping Mix 12*144g";
+
+/* Class = "UILabel"; text = "PRICING"; ObjectID = "jub-L7-gdt"; */
+"jub-L7-gdt.text" = "PRICING";
+
+/* Class = "UILabel"; text = "0 Units"; ObjectID = "k8R-wP-3fR"; */
+"k8R-wP-3fR.text" = "0 Units";
+
+/* Class = "UILabel"; text = "Dream Whip Topping Mix 12*144g"; ObjectID = "kzM-6t-l9C"; */
+"kzM-6t-l9C.text" = "Dream Whip Topping Mix 12*144g";
+
+/* Class = "UILabel"; text = "The following customer visits are not yet completed. Please select a reason for the incomplete visits."; ObjectID = "lGB-dX-hNC"; */
+"lGB-dX-hNC.text" = "The following customer visits are not yet completed. Please select a reason for the incomplete visits.";
+
+/* Class = "UILabel"; text = "1 Main Street, \nCessnock, NSW 2320"; ObjectID = "lrq-WH-nOc"; */
+"lrq-WH-nOc.text" = "1 Main Street, \nCessnock, NSW 2320";
+
+/* Class = "UIButton"; normalTitle = "SUPERMARKETS"; ObjectID = "mHu-84-NDn"; */
+"mHu-84-NDn.normalTitle" = "SUPERMARKETS";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "mc0-7b-WKn"; */
+"mc0-7b-WKn.text" = "There is no data.";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "msC-7D-3t1"; */
+"msC-7D-3t1.text" = "There is no data.";
+
+/* Class = "UIButton"; normalTitle = "Return"; ObjectID = "n7H-zJ-ap3"; */
+"n7H-zJ-ap3.normalTitle" = "Return";
+
+/* Class = "UILabel"; text = "12.08.18"; ObjectID = "np4-bu-EBl"; */
+"np4-bu-EBl.text" = "12.08.18";
+
+/* Class = "UIButton"; normalTitle = "DETAILS"; ObjectID = "qCo-qT-Q0Z"; */
+"qCo-qT-Q0Z.normalTitle" = "DETAILS";
+
+/* Class = "UILabel"; text = "No Visit Reasons"; ObjectID = "qRi-g5-aNC"; */
+"qRi-g5-aNC.text" = "No Visit Reasons";
+
+/* Class = "UIButton"; normalTitle = "VIEW PRICING"; ObjectID = "qgR-5k-w3c"; */
+"qgR-5k-w3c.normalTitle" = "VIEW PRICING";
+
+/* Class = "UILabel"; text = "09-07-2018"; ObjectID = "r35-yV-6Mp"; */
+"r35-yV-6Mp.text" = "09-07-2018";
+
+/* Class = "UILabel"; text = "A2Z, Supermarket, Deira, Dubai"; ObjectID = "r37-Sm-Xi4"; */
+"r37-Sm-Xi4.text" = "A2Z, Supermarket, Deira, Dubai";
+
+/* Class = "UIButton"; normalTitle = "NO VISIT REQUIRED"; ObjectID = "s6H-Ka-V9v"; */
+"s6H-Ka-V9v.normalTitle" = "NO VISIT REQUIRED";
+
+/* Class = "UILabel"; text = "SELECT A REASON CODE?"; ObjectID = "t6V-5X-2jm"; */
+"t6V-5X-2jm.text" = "SELECT A REASON CODE?";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "uE3-rS-GkC"; */
+"uE3-rS-GkC.text" = "There is no data.";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "ubt-RD-Ouz"; */
+"ubt-RD-Ouz.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "There is no data."; ObjectID = "v0W-kg-6PQ"; */
+"v0W-kg-6PQ.text" = "There is no data.";
+
+/* Class = "UILabel"; text = "2018-04-28"; ObjectID = "w1J-qZ-IpO"; */
+"w1J-qZ-IpO.text" = "2018-04-28";
+
+/* Class = "UILabel"; text = "Buy 5,\nget 1 free\n"; ObjectID = "wVq-2k-7AV"; */
+"wVq-2k-7AV.text" = "Buy 5,\nget 1 free\n";
+
+/* Class = "UILabel"; text = "Hi John"; ObjectID = "xXF-RZ-spL"; */
+"xXF-RZ-spL.text" = "Hi John";
+
+/* Class = "UIButton"; normalTitle = "END TRIP"; ObjectID = "xta-nx-iih"; */
+"xta-nx-iih.normalTitle" = "END TRIP";
+
+/* Class = "UILabel"; text = "Cust Name"; ObjectID = "yIq-5V-QgT"; */
+"yIq-5V-QgT.text" = "Cust Name";
+
+/* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "yMc-Kl-HcZ"; */
+"yMc-Kl-HcZ.normalTitle" = "Proceed";

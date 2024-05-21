@@ -90,6 +90,7 @@ class SelectCustomerVC: UIViewController {
     func initUI() {
 
         // top option buttons
+        detailsButton.setTitleForAllState(title: "SA_STR_DETAILS".localized)
         topOptionButtonArray = [detailsButton, pricingButton, topProductsButton, opportunitiesButton, nearbyButton]
         for (index, button) in topOptionButtonArray.enumerated() {
             button.tag = 300+index

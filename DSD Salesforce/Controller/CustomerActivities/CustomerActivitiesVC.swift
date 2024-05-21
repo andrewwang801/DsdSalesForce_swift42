@@ -177,38 +177,53 @@ class CustomerActivitiesVC: UIViewController {
 
     @IBAction func onSalesOrder(_ sender: Any) {
 
-        let chainNo = customerDetail.chainNo ?? ""
-        let custNo = customerDetail.custNo ?? ""
-        let orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo)
-        let savedUploadedHeaderArray = orderHeaderArray.filter { (orderHeader) -> Bool in
-            return orderHeader.isSaved == true
-        }
-        let managedObjectContext = globalInfo.managedObjectContext!
-        let presoldOrder = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
-        let presoldOrderType = presoldOrder?.type ?? ""
+        if globalInfo.routeControl?.orderFunction == "OM" {
+            
+            let custInfo = CustInfo.getBy(context: globalInfo.managedObjectContext, infoType: "50", custNo: customerDetail.custNo ?? "")?.info ?? ""
+            guard let url = URL(string: "https://app.ordermentum.com/retailer/\(custInfo)/supplier/\(globalInfo.routeControl?.omSupplierId ?? "")/marketplace/categories") else {
+              return //be safe
+            }
 
-        if savedUploadedHeaderArray.count == 0 && presoldOrderType.uppercased() != "P" {
-            self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: false, isEdit: true)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
         else {
-            let existingOrdersVC = UIViewController.getViewController(storyboardName: "CustomerActivities", storyboardID: "ExistingOrdersVC") as! ExistingOrdersVC
-            existingOrdersVC.setDefaultModalPresentationStyle()
-            existingOrdersVC.customerDetail = customerDetail
-            existingOrdersVC.dismissHandler = { vc, dismissOption in
-                if dismissOption == .newOrder {
-                    self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: false, isEdit: true)
-                }
-                else if dismissOption == .newOrderByPresold {
-                    self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: true, isEdit: true)
-                }
-                else if dismissOption == .selectEdition {
-                    self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: true)
-                }
-                else if dismissOption == .select {
-                    self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: false)
-                }
+            let chainNo = customerDetail.chainNo ?? ""
+            let custNo = customerDetail.custNo ?? ""
+            let orderHeaderArray = OrderHeader.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo)
+            let savedUploadedHeaderArray = orderHeaderArray.filter { (orderHeader) -> Bool in
+                return orderHeader.isSaved == true
             }
-            self.present(existingOrdersVC, animated: true, completion: nil)
+            let managedObjectContext = globalInfo.managedObjectContext!
+            let presoldOrder = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
+            let presoldOrderType = presoldOrder?.type ?? ""
+
+            if savedUploadedHeaderArray.count == 0 && presoldOrderType.uppercased() != "P" {
+                self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: false, isEdit: true)
+            }
+            else {
+                let existingOrdersVC = UIViewController.getViewController(storyboardName: "CustomerActivities", storyboardID: "ExistingOrdersVC") as! ExistingOrdersVC
+                existingOrdersVC.setDefaultModalPresentationStyle()
+                existingOrdersVC.customerDetail = customerDetail
+                existingOrdersVC.dismissHandler = { vc, dismissOption in
+                    if dismissOption == .newOrder {
+                        self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: false, isEdit: true)
+                    }
+                    else if dismissOption == .newOrderByPresold {
+                        self.openSalesOrder(selectedOrderHeader: nil, isByPresoldHeader: true, isEdit: true)
+                    }
+                    else if dismissOption == .selectEdition {
+                        self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: true)
+                    }
+                    else if dismissOption == .select {
+                        self.openSalesOrder(selectedOrderHeader: vc.selectedOrderHeader, isByPresoldHeader: false, isEdit: false)
+                    }
+                }
+                self.present(existingOrdersVC, animated: true, completion: nil)
+            }
         }
     }
 
