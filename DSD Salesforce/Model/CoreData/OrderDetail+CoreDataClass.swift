@@ -34,6 +34,10 @@ class OrderDetail: NSManagedObject {
 
         isSaved = false
         orderType = 0
+        ///SF79
+        aisle = ""
+        stockCount = "0"
+        orderHistory = ""
     }
 
     func isFromOriginal() -> Bool {
@@ -48,6 +52,20 @@ class OrderDetail: NSManagedObject {
         let predicate3 = NSPredicate(format: "isFromPresoldOrDetail == %@", NSNumber(value: isFromPresoldOrDetail))
         let predicate4 = NSPredicate(format: "isFromOrderHistoryItem == %@", NSNumber(value: isFromOrderHistoryItem))
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2, predicate3, predicate4])
+        let result = try? context.fetch(request) as? [OrderDetail]
+        
+        if let result = result, let orderDetailArray = result {
+            return orderDetailArray
+        }
+        return []
+    }
+    
+    static func getBy(context: NSManagedObjectContext, custNo: String, itemNo: String) -> [OrderDetail] {
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderDetail")
+        let predicate1 = NSPredicate(format: "custNo=%@", custNo)
+        let predicate2 = NSPredicate(format: "itemNo=%@", itemNo)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1, predicate2])
         let result = try? context.fetch(request) as? [OrderDetail]
         
         if let result = result, let orderDetailArray = result {
@@ -166,7 +184,11 @@ extension OrderDetail {
     @NSManaged public var orderType: Int32
     @NSManaged public var tax: UTax?
     @NSManaged public var promotions: NSOrderedSet?
-
+    ///SF79
+    @NSManaged public var aisle: String
+    @NSManaged public var stockCount: String
+    @NSManaged public var orderHistory: String
+    
     var promotionSet: NSMutableOrderedSet {
         return self.mutableOrderedSetValue(forKey: "promotions")
     }

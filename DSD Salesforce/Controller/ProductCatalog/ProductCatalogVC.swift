@@ -64,15 +64,10 @@ class ProductCatalogVC: UIViewController {
 
     var orderVC: OrderVC?
     var customerDetail: CustomerDetail?
+    var caseFactor: Int32 = 1
 
     var productDetailArray = [ProductDetail]()
     var isSearched = false
-//    let kBrandTitle = "BRAND"
-//    let kSubBrandTitle = "SUB BRAND"
-//    let kTypeTitle = "TYPE"
-//    let kGroupTitle = "GROUP"
-//    let kProductLineTitle = "PRODUCT LINE"
-//    let kMarketGroupTitle = "MARKET GROUP"
     
     let kBrandTitle = L10n.BRAND()
     let kSubBrandTitle = L10n.SUBBRAND()
@@ -87,14 +82,6 @@ class ProductCatalogVC: UIViewController {
     let kProductGroupDescTypeID = "ProductGroup"
     let kProductLineDescTypeID = "ProductLine"
     let kMarketGroupDescTypeID = "MarketGroup"
-    
-    //type dictionary
-//    var kCatalogDic = ["Brand":"BRAND",
-//                       "SubBrand":"SUB BRAND",
-//                       "ItemType":"TYPE",
-//                       "ProductGroup":"GROUP",
-//                       "ProductLine":"PRODUCT LINE",
-//                       "MarketGroup":"MARKET GROUP"]
     
     var kCatalogDic = ["Brand":L10n.BRAND(),
                        "SubBrand":L10n.SUBBRAND(),
@@ -178,6 +165,7 @@ class ProductCatalogVC: UIViewController {
             filterDescTypeArray.append(descTypeArray)
             selectedFilterIndexArray.append([])
         }
+        
     }
 
     func initUI() {
@@ -233,10 +221,69 @@ class ProductCatalogVC: UIViewController {
             tileAddToOrder.isHidden = true
         }
 
-        qtyTextField.text = "1"
-        tileQtyTextField.text = "1"
+        qtyTextField.text = String(caseFactor)
+        tileQtyTextField.text = String(caseFactor)
         qtyTextField.delegate = self
         tileQtyTextField.delegate = self
+        qtyTextField.addTarget(self, action: #selector(onQtyEditingChanged(_:)), for: .editingDidEnd)
+        tileQtyTextField.addTarget(self, action: #selector(onTileQtyEditingChanged(_:)), for: .editingDidEnd)
+    }
+    
+    @objc func onQtyEditingChanged(_ sender: Any) {
+        
+        let newQty = Int(qtyTextField.text ?? "") ?? 0
+
+        if newQty.int32 % caseFactor == 0 {
+            qtyTextField.text = String(newQty)
+            self.qty = newQty
+        }
+        else {
+            qtyTextField.text = String(self.qty)
+            Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+        }
+    }
+    
+    @objc func onTileQtyEditingChanged(_ sender: Any) {
+        
+        let newQty = Int(tileQtyTextField.text ?? "") ?? 0
+        
+        switch orderVC!.selectedTopOption {
+        case .returns:
+            switch customerDetail!.rtnEntryMode {
+            case "C":
+                if newQty.int32 % caseFactor == 0 {
+                    tileQtyTextField.text = String(newQty)
+                    self.tileQty = newQty
+                }
+                else {
+                    tileQtyTextField.text = String(self.tileQty)
+                    Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                }
+                break
+            default:
+                tileQtyTextField.text = String(newQty)
+                break
+            }
+            break
+            
+        default:
+            switch customerDetail!.salEntryMode {
+                case "C":
+                if newQty.int32 % caseFactor == 0 {
+                    tileQtyTextField.text = String(newQty)
+                    self.tileQty = newQty
+                }
+                else {
+                    tileQtyTextField.text = String(self.tileQty)
+                    Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be sold in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+                }
+                break
+            default:
+                tileQtyTextField.text = String(newQty)
+                break
+            }
+            break
+        }
     }
     
     func initViewMode() {
@@ -484,15 +531,15 @@ class ProductCatalogVC: UIViewController {
                 else {
                     addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
                     tileAddToOrder.setTitleForAllState(title: L10n.addToOrder())
-                    qtyTextField.text = "1"
-                    tileQtyTextField.text = "1"
+                    qtyTextField.text = String(self.caseFactor)
+                    tileQtyTextField.text = String(self.caseFactor)
                 }
             }
             else {
                 addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
                 tileAddToOrder.setTitleForAllState(title: L10n.addToOrder())
-                qtyTextField.text = "1"
-                tileQtyTextField.text = "1"
+                qtyTextField.text = String(self.caseFactor)
+                tileQtyTextField.text = String(self.caseFactor)
             }
         }
         if let _retailPrice = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first?.retailPrice, _retailPrice != "0", let retailPrice = Double(_retailPrice) {
@@ -569,6 +616,30 @@ class ProductCatalogVC: UIViewController {
 
     func onProductTapped(index: Int) {
         selectedProductIndex = index
+        
+        if selectedProductIndex == -1 {
+            return
+        }
+        let productDetail = productDetailArray[selectedProductIndex]
+        let itemNo = productDetail.itemNo ?? ""
+        
+        if orderVC!.selectedTopOption == .returns {
+            if customerDetail!.rtnEntryMode == "C" {
+                if let prodLocn = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first {
+                    caseFactor = Int32(prodLocn.caseFactor ?? "1") ?? 1
+                }
+            }
+        }
+        else {
+            if customerDetail!.salEntryMode == "C" {
+                if let prodLocn = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first {
+                    caseFactor = Int32(prodLocn.caseFactor ?? "1") ?? 1
+                }
+            }
+        }
+        qty = caseFactor.int
+        tileQty = caseFactor.int
+        
         refreshProduct()
         updateProduct()
     }
@@ -604,44 +675,68 @@ class ProductCatalogVC: UIViewController {
     }
 
     @IBAction func onPlusQty(_ sender: Any) {
-        let qty = Int(qtyTextField.text ?? "") ?? 0
-        qtyTextField.text = "\(qty+1)"
-        
-        let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
-        tileQtyTextField.text = "\(tileQty+1)"
+
+//        var qty = Int(qtyTextField.text ?? "") ?? 0
+//        var tileQty = Int(tileQtyTextField.text ?? "") ?? 0
+
+        qty += caseFactor.int
+        tileQty += caseFactor.int
+        qtyTextField.text = "\(qty)"
+        tileQtyTextField.text = "\(tileQty)"
     }
 
     @IBAction func onMinusQty(_ sender: Any) {
-        var qty = (Int(qtyTextField.text ?? "") ?? 0)-1
-        if qty <= 0 {
-            qty = 0
-        }
+
+//        var qty = Int(qtyTextField.text ?? "") ?? 0
+//        var tileQty = Int(tileQtyTextField.text ?? "") ?? 0
+ 
+        qty = max(qty-caseFactor.int, 0)
+        tileQty = max(tileQty-caseFactor.int, 0)
         qtyTextField.text = "\(qty)"
-        
-        qty = (Int(tileQtyTextField.text ?? "") ?? 0)-1
-        if qty <= 0 {
-            qty = 0
-        }
-        tileQtyTextField.text = "\(qty)"
+        tileQtyTextField.text = "\(tileQty)"
     }
 
+    var qty = 0
+    var tileQty = 0
     @IBAction func onAddToOrder(_ sender: Any) {
+    
         if selectedProductIndex == -1 {
             return
         }
-        let qty = Int(qtyTextField.text ?? "") ?? 0
+        
+        let newQty = Int(qtyTextField.text ?? "") ?? 0
+        if newQty % caseFactor.int == 0 {
+            qty = newQty
+        }
+        if newQty % caseFactor.int != 0 {
+            qtyTextField.text = String(qty)
+            Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+            return
+        }
+        
+        let tileNewQty = Int(tileQtyTextField.text ?? "") ?? 0
+        if tileNewQty % caseFactor.int == 0 {
+            tileQty = tileNewQty
+        }
+        if tileNewQty % caseFactor.int != 0 {
+            tileQtyTextField.text = String(tileQty)
+            Utils.showAlert(vc: self, title: "", message: "This item must be ordered in multiples of \(caseFactor) as it can only be returned in full cases", failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.return(), dismissHandler: nil)
+            return
+        }
+        
+        //let qty = Int(qtyTextField.text ?? "") ?? 0
         if qty == 0 {
             return
         }
         
-        let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
+//        let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
         if tileQty == 0 {
             return
         }
 
         let productDetail = productDetailArray[selectedProductIndex]
         let itemNo = productDetail.itemNo ?? ""
-
+        
         if viewMode {
             self.onAddToOrderHandler?(itemNo, qty)
         }

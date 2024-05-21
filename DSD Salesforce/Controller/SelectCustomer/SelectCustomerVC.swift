@@ -823,6 +823,7 @@ class SelectCustomerVC: UIViewController {
     }
 
     @IBAction func onEndTrip(_ sender: Any) {
+        
         Utils.showAlert(vc: self, title: L10n.endTrip(), message: L10n.YouAreAboutToCommenceTheEndTripProcessing(), failed: false, customerName: "", leftString: L10n.return(), middleString: "", rightString: L10n.endTrip()) { (returnCode) in
             if returnCode == MessageDialogVC.ReturnCode.right {
                 self.doEndTripProcess()

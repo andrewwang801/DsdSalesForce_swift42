@@ -130,6 +130,7 @@ class DistributionCheckVC: UIViewController {
             shelfStatus.oos = ""
             shelfStatus.stockCount = "0"
             shelfStatus.expiry = ""
+            shelfStatus.itemNo = itemNo
 
             guard let productDetail = ProductDetail.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo) else {return}
 

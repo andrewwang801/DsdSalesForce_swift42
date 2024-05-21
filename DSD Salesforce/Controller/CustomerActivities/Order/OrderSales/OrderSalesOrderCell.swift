@@ -17,7 +17,13 @@ class OrderSalesOrderCell: UITableViewCell {
     @IBOutlet weak var lastOrderLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var qtyText: AnimatableTextField!
-
+    ///SF79
+    @IBOutlet weak var aisleLabel: UILabel!
+    @IBOutlet weak var shelfLabel: UILabel!
+    @IBOutlet weak var orderHistoryLabel: UILabel!
+    @IBOutlet weak var aisleStackView: UIStackView!
+    @IBOutlet weak var descStackView: UIStackView!
+    
     @IBOutlet weak var plusQtyButton: UIButton!
     @IBOutlet weak var minusQtyButton: UIButton!
 
@@ -36,6 +42,10 @@ class OrderSalesOrderCell: UITableViewCell {
 
         qtyText.delegate = self
         qtyText.addTarget(self, action: #selector(OrderSalesOrderCell.onQtyEditingChanged(_:)), for: .editingDidEnd)
+        
+        let descTapGesture = UITapGestureRecognizer(target: self, action: #selector(onDesc))
+        descStackView.isUserInteractionEnabled = true
+        descStackView.addGestureRecognizer(descTapGesture)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -82,9 +92,6 @@ class OrderSalesOrderCell: UITableViewCell {
     func configCell() {
         selectionStyle = .none
         let index = indexPath.row
-        //let selectedOrderIndex = parentVC.selectedOrderType.rawValue
-        //let _orderDetail = parentVC.orderVC.orderDetailSetArray[selectedOrderIndex][index]
-        //let orderDetail = _orderDetail as! OrderDetail
         let orderDetail = parentVC.orderDetailArray[index]
         let itemNo = orderDetail.itemNo ?? ""
         codeLabel.text = itemNo
@@ -103,20 +110,6 @@ class OrderSalesOrderCell: UITableViewCell {
 
         let qty = orderDetail.enterQty.int
         qtyText.text = "\(qty)"
-        /*
-        if parentVC.isShowCase == true {
-            let salEntryMode = parentVC.orderVC.customerDetail.salEntryMode ?? ""
-            if salEntryMode == "B" {
-                let nCase = Utils.getCaseValue(itemNo: itemNo)
-                qtyLabel.text = "\(qty / nCase)/\(qty % nCase)"
-            }
-            else if salEntryMode == "" || salEntryMode == "U" {
-                qtyLabel.text = "\(qty)"
-            }
-        }
-        else {
-            qtyLabel.text = "\(qty)"
-        }*/
 
         if parentVC.orderVC.isEdit == false {
             plusQtyButton.isHidden = true
@@ -133,8 +126,38 @@ class OrderSalesOrderCell: UITableViewCell {
             qtyText.isUserInteractionEnabled = true
         }
         productImageVIew.image = Utils.getProductImage(itemNo: itemNo)
+        
+        ///SF79
+        if parentVC.globalInfo.routeControl?.detailEntry == "1" && parentVC.selectedOrderType == .sales {
+            aisleStackView.isHidden = false
+            orderHistoryLabel.isHidden = false
+            aisleLabel.text = "Aisle:  " + orderDetail.aisle
+            shelfLabel.text = "On Shelf:  " + orderDetail.stockCount
+            orderHistoryLabel.text = orderDetail.orderHistory
+        }
+        else {
+            aisleStackView.isHidden = true
+            orderHistoryLabel.isHidden = true
+        }
     }
 
+    @objc func onDesc() {
+        if self.parentVC.orderVC.isEdit {
+            DispatchQueue.main.async {
+                Utils.showAddOrderVC(vc: self.parentVC, orderDetail: self.orderDetail, customerDetail: self.customerDetail, isAdd: false, dismissHandler: { addOrderVC, dismissOption in
+                    // we should replace the qty by the input
+                    if dismissOption == AddOrderVC.DismissOption.done {
+                        let inputedQty = addOrderVC.orderQty
+                        self.parentVC.selectedQty = inputedQty
+                        self.parentVC.refreshOrders()
+                        // we should do Add
+                        //self.addProduct(shouldRemoveZeroAmount: false)
+                    }
+                })
+            }
+        }
+    }
+    
     @objc func onQtyEditingChanged(_ sender: Any) {
         let newQty = Int(qtyText.text ?? "") ?? 0
         let index = indexPath.row

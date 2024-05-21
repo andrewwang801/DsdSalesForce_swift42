@@ -5019,7 +5019,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 4.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5113,7 +5113,7 @@
 					"$(inherited)",
 					"\"$(PROJECT_DIR)/DSD Salesforce/Common/ZSDK\"",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 4.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

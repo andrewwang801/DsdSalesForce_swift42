@@ -26,6 +26,7 @@ public class RouteControl: NSManagedObject {
         
         ///SF71, 2020-3-13
         visitTime = 0
+        detailEntry = "0"
     }
 
     /*
@@ -139,6 +140,8 @@ public class RouteControl: NSManagedObject {
         
         ///SF71, 2020-3-13
         self.visitTime = Int32(xmlDictionary["VisitTime"] ?? "0") ?? 0
+        ///SF79
+        self.detailEntry = xmlDictionary["DetailEntry"] ?? "0"
 
     }
 
@@ -236,4 +239,6 @@ extension RouteControl {
     
     ///SF71, 2020-3-13
     @NSManaged public var visitTime: Int32
+    ///SF79
+    @NSManaged public var detailEntry: String?
 }
