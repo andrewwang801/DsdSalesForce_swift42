@@ -14,8 +14,8 @@
             filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "583"
-            endingLineNumber = "583"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
             landmarkName = "onSelectedTopOption(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "588"
-            endingLineNumber = "588"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
             landmarkName = "onSelectedTopOption(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "602"
+            endingLineNumber = "602"
             landmarkName = "onSelectedTopOption(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "598"
-            endingLineNumber = "598"
+            startingLineNumber = "607"
+            endingLineNumber = "607"
             landmarkName = "onSelectedTopOption(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "603"
-            endingLineNumber = "603"
+            startingLineNumber = "612"
+            endingLineNumber = "612"
             landmarkName = "onSelectedTopOption(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -193,6 +193,822 @@
             startingLineNumber = "125"
             endingLineNumber = "125"
             landmarkName = "changeChild(oldVC:newVC:containerView:isRemovePrevious:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11E5B53F-6935-469A-9FEC-4A7FF551B8E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/CoreData/RouteControl+CoreDataClass.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "updateBy(xmlDictionary:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "815FDF94-BC7F-49B5-AFCC-EA4056EE33DD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/CoreData/RouteControl+CoreDataClass.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "getAll(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D288DBC5-1314-4126-B706-F1EBAFD0E35F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/CoreData/Target+CoreDataClass.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "getAll(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "320F117F-843A-4985-8CD8-D88FB4F41056"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "refreshCustomerTable()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "486CAAB3-A5B5-4FEF-9F96-F15A09EB20BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "getCatalogTypes()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4893DFDE-CCF7-42B1-993F-46FF5824F87E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/CoreData/RouteControl+CoreDataClass.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "loadFromXML(context:forSave:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "966F5B77-A557-4A85-9511-812ABE66D196"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "doFirstLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "966F5B77-A557-4A85-9511-812ABE66D196 - ee4bdf82433413c"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "364"
+                  endingLineNumber = "364"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "966F5B77-A557-4A85-9511-812ABE66D196 - 7d688e228ef1c934"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "366"
+                  endingLineNumber = "366"
+                  offsetFromSymbolStart = "71">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F185A06-EFD9-49AB-B3D8-790438CDBBEE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Network/FTPManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "extractZipFile()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF12745F-C6D4-4F95-AA67-F49B8882EA7A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "getCatalogTypes()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "400FD2D5-355A-4570-BD55-912B4F3D281C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "initData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F60015B-DF7A-4B72-A339-4D512C0B838B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "reloadProduct()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19ADD14E-2B86-4193-8CD5-C03B7BFD8A44"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
+            landmarkName = "onFilterSelected(index:selectedIndexArray:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A812A410-96B5-4CDB-9237-B8C2747B889A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/Misc/ProductDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "initUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "404225B1-8C46-4A85-85BD-0245903944AC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "updateProduct()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE69BF90-5333-4CC6-AC07-1EC0BB4AA7A2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/SelectCustomer/SelectCustomerVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "initUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "404FA1C5-B8F6-4BDF-A69C-6D6062359E4B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/Misc/ProductDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "setDesctypeUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B077043-47FC-47A6-9D4C-B36A7966CC9B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/ProductCatalog/ProductCatalogVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "getCatalogTypes()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "575A62E5-8209-4F84-91A9-7E4E8EFB4B13"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/Misc/ProductDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "setDesctypeUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70D0DEAE-3E0E-4F25-97C0-89B183B2945F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/CustomerActivities/Order/OrderSales/OrderSalesOrderCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "onQtyEditingChanged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6FCC2FD2-1A4D-41FB-A8E9-21BA143AD235"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Common/SwiftReorder/ReorderController+AutoScroll.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "413DC798-FC0E-4988-AF01-4E064D33DDD4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "doFirstLogin(ftpInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A10A9CF4-072A-4E8E-A8B4-CE887EECD94B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
+            landmarkName = "doReLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A10A9CF4-072A-4E8E-A8B4-CE887EECD94B - 112d9ae2c4b3ce48"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "443"
+                  endingLineNumber = "443"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "A10A9CF4-072A-4E8E-A8B4-CE887EECD94B - 2297aeeee1b56fa0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "445"
+                  endingLineNumber = "445"
+                  offsetFromSymbolStart = "71">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BA863F3-38D0-4334-A2C7-CE149692B84F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
+            landmarkName = "doReLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6BA863F3-38D0-4334-A2C7-CE149692B84F - 2297aeeee1b56fa0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "447"
+                  endingLineNumber = "447"
+                  offsetFromSymbolStart = "89">
+               </Location>
+               <Location
+                  uuid = "6BA863F3-38D0-4334-A2C7-CE149692B84F - 6c3c49d1dc1f6617"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "448"
+                  endingLineNumber = "448"
+                  offsetFromSymbolStart = "71">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "722E6232-2331-4E73-9F9C-1A149AE8E013"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "doFirstLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "722E6232-2331-4E73-9F9C-1A149AE8E013 - 1fbb8ac8b5cd9fdb"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "392"
+                  endingLineNumber = "392"
+                  offsetFromSymbolStart = "1136">
+               </Location>
+               <Location
+                  uuid = "722E6232-2331-4E73-9F9C-1A149AE8E013 - 1571adfb954f82b6"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "373"
+                  endingLineNumber = "373"
+                  offsetFromSymbolStart = "333">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "951D1803-9CE7-4EC0-B131-CB035F06E8C7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
+            landmarkName = "doReLogin(ftpInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6377EB7-806D-432F-8AF0-F341EB13DFFF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
+            landmarkName = "doReLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C6377EB7-806D-432F-8AF0-F341EB13DFFF - 91e12b575521fc62"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "454"
+                  endingLineNumber = "454"
+                  offsetFromSymbolStart = "187">
+               </Location>
+               <Location
+                  uuid = "C6377EB7-806D-432F-8AF0-F341EB13DFFF - aefe0970732e4d32"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "456"
+                  endingLineNumber = "456"
+                  offsetFromSymbolStart = "207">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "799B89C6-3A08-4B60-A914-1757D9867B19"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
+            landmarkName = "doReLogin(ftpInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7BAB931-4A3E-4C53-8525-5D7733EB454E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "doFirstLogin(ftpInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "587EE44A-C0B3-4914-BFB5-EEB2426F6C54"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "doFirstLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "587EE44A-C0B3-4914-BFB5-EEB2426F6C54 - 7d688e228ef1c934"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "367"
+                  endingLineNumber = "367"
+                  offsetFromSymbolStart = "89">
+               </Location>
+               <Location
+                  uuid = "587EE44A-C0B3-4914-BFB5-EEB2426F6C54 - ab1362c1b9882a4e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "368"
+                  endingLineNumber = "368"
+                  offsetFromSymbolStart = "71">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AFF5F692-59DA-45E7-8620-0AEF7C28CB70"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
+            landmarkName = "doFirstLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AFF5F692-59DA-45E7-8620-0AEF7C28CB70 - ab1362c1b9882a4e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "115">
+               </Location>
+               <Location
+                  uuid = "AFF5F692-59DA-45E7-8620-0AEF7C28CB70 - 1fbb8ac8b5cd9fdb"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doFirstLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "374"
+                  endingLineNumber = "374"
+                  offsetFromSymbolStart = "187">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89CF83FC-A815-473E-9753-9B0D6693FB0E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Controller/LoginVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
+            landmarkName = "doReLogin(ftpInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89CF83FC-A815-473E-9753-9B0D6693FB0E - 6c3c49d1dc1f6617"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "452"
+                  endingLineNumber = "452"
+                  offsetFromSymbolStart = "115">
+               </Location>
+               <Location
+                  uuid = "89CF83FC-A815-473E-9753-9B0D6693FB0E - 91e12b575521fc62"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in closure #1 (Swift.Bool, Swift.String) -&gt; () in DSD_Salesforce.LoginVC.doReLogin(ftpInfo: DSD_Salesforce.FTPInfo) -&gt; ()"
+                  moduleName = "DSD Salesforce"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Data/rsb/Work/2019/other/DSD%20salesforce/project/DSD%20Salesforce_swift42/DSD%20Salesforce/Controller/LoginVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "454"
+                  endingLineNumber = "454"
+                  offsetFromSymbolStart = "187">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "439A3D1E-A139-462C-92F2-4780DA5F79C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Network/FTPManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "downloadDirectory(hostname:user:password:root:territory:remoteDirName:localDirName:shouldShowHUD:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58D33496-0FD7-4A9D-9DFA-E6C520353778"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/GlobalInfo.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "loadCoreDataFromXML()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B286AF6A-EC57-44C5-AB8B-664A91A0E674"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/GlobalInfo.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "loadCoreDataFromXML()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "074EAB2E-71E6-4CB3-9CFA-9496EBD332FB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DSD Salesforce/Model/CoreData/ProductDetail+CoreDataClass.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getBy(context:itemNo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

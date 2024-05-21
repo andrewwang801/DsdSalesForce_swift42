@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A583" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ARHeader" representedClassName=".ARHeader" syncable="YES">
         <attribute name="arTrxnType" optional="YES" attributeType="String"/>
         <attribute name="chainNo" optional="YES" attributeType="String"/>
@@ -480,9 +480,11 @@
     <entity name="RouteControl" representedClassName=".RouteControl" syncable="YES">
         <attribute name="adjustAllow" optional="YES" attributeType="String"/>
         <attribute name="cardProc" optional="YES" attributeType="String"/>
+        <attribute name="catalog" optional="YES" attributeType="String"/>
         <attribute name="centsRound" optional="YES" attributeType="String"/>
         <attribute name="company" optional="YES" attributeType="String"/>
         <attribute name="currencySymbol" optional="YES" attributeType="String"/>
+        <attribute name="custaddNew" optional="YES" attributeType="String"/>
         <attribute name="defLocNo" optional="YES" attributeType="String"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="equipCheck" optional="YES" attributeType="String"/>
@@ -758,7 +760,7 @@
         <element name="PromotionNoVo" positionX="9" positionY="162" width="128" height="105"/>
         <element name="PromotionOption" positionX="27" positionY="180" width="128" height="240"/>
         <element name="ProMulti" positionX="18" positionY="171" width="128" height="135"/>
-        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="705"/>
+        <element name="RouteControl" positionX="-18" positionY="162" width="128" height="733"/>
         <element name="ShelfStatus" positionX="-18" positionY="135" width="128" height="285"/>
         <element name="Survey" positionX="-18" positionY="135" width="128" height="195"/>
         <element name="SurveyAnswerOption" positionX="0" positionY="153" width="128" height="90"/>

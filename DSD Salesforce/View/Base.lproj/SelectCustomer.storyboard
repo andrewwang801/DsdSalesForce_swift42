@@ -496,8 +496,8 @@
                                                 <color key="textColor" red="0.18431372549019609" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mf9-qt-xV2" userLabel="Customer Map" customClass="GMSMapView">
-                                                <rect key="frame" x="415" y="180" width="609" height="520"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mf9-qt-xV2" userLabel="Customer Map" customClass="GMSMapView">
+                                                <rect key="frame" x="320" y="0.0" width="704" height="700"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -560,6 +560,7 @@
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
+                        <outlet property="addCustomerButton" destination="unW-bU-PdS" id="pP7-S3-Cgu"/>
                         <outlet property="containerView" destination="GB8-Mw-0By" id="HGd-c1-794"/>
                         <outlet property="customerMapView" destination="Mf9-qt-xV2" id="AgY-Gb-rJC"/>
                         <outlet property="customerTableView" destination="ibp-rg-gKQ" id="vdr-v1-yk7"/>

@@ -364,16 +364,45 @@ class LoginVC: UIViewController {
         globalInfo.ftpManager.downloadXmls(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, shouldShowHUD: true) { (success, message) in
 
             if success == true {
+                //measure time
+                var startTime = CFAbsoluteTimeGetCurrent()
+                
                 self.globalInfo.ftpManager.downloadDirectoryFiles(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kReportsDirName, remoteFileNames: kReportsFileNameArray, localDirName: kReportsDirName, shouldShowHUD: true, completion: { (success, message) in
+                    
+                    //measure time
+                    var timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                    print("Time elapsed for first DownloadDirectoryFiles: \(timeElapsed) s.")
+                    
                     if success == true {
                         self.updateLeftPanel()
                     }
 
+                    //measure time
+                    startTime = CFAbsoluteTimeGetCurrent()
+                    
                     self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kProductCatalogDirName, localDirName: kProductCatalogDirName, shouldShowHUD: true, completion: { (success, message) in
 
+                        //measure time
+                        timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                        print("Time elapsed for second DownloadDirectory: \(timeElapsed) s.")
+                        
+                        //measure time
+                        startTime = CFAbsoluteTimeGetCurrent()
+                        
                         self.globalInfo.ftpManager.downloadDirectory(hostname: ftpInfo.hostname, user: ftpInfo.user, password: ftpInfo.password, root: ftpInfo.root, territory: ftpInfo.territory, remoteDirName: kEquipmentCatalogDirName, localDirName: kEquipmentCatalogDirName, shouldShowHUD: true, completion: { (success, message) in
 
+                            //measure time
+                            timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                            print("Time elapsed for Third DownloadDirectory: \(timeElapsed) s.")
+
+                            //measure time
+                            startTime = CFAbsoluteTimeGetCurrent()
                             self.globalInfo.loadCoreDataFromXML()
+                            
+                            //measure time
+                            timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+                            print("Time elapsed for second LoadCoreXML: \(timeElapsed) s.")
+                            
                             guard let routeControl = RouteControl.getAll(context: self.globalInfo.managedObjectContext).first else {
                                 NSLog("doFirstLogin: Invalid RouteControl")
                                 return

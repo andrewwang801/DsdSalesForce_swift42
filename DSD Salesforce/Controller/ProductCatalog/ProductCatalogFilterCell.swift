@@ -32,7 +32,7 @@ class ProductCatalogFilterCell: UICollectionViewCell {
     func configCell() {
         let index = indexPath.row
         let selectedIndexArray = parentVC.selectedFilterIndexArray[index]
-        if selectedIndexArray.count == 0 {
+        if selectedIndexArray.count == 0 && index < parentVC.kFilterTitleArray.count{
             filterButton.setTitle(parentVC.kFilterTitleArray[index], for: .normal)
             filterButton.setTitleColor(kProductCatalogFilterNormalTextColor, for: .normal)
             bottomSeparator.isHidden = true

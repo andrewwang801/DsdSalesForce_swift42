@@ -12,14 +12,18 @@ import IBAnimatable
 class ProductDetailVC: UIViewController {
 
     @IBOutlet weak var itemNoLabel: UILabel!
+    @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var groupValueLabel: UILabel!
     @IBOutlet weak var brandValueLabel: UILabel!
     @IBOutlet weak var barcodeValueLabel: UILabel!
     @IBOutlet weak var unitsPerCaseValueLabel: UILabel!
     @IBOutlet weak var casePriceValueLabel: UILabel!
+    @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var lineLabel: UILabel!
     @IBOutlet weak var lineValueLabel: UILabel!
     @IBOutlet weak var subBrandValueLabel: UILabel!
+    @IBOutlet weak var subBrandLabel: UILabel!
     @IBOutlet weak var unitRRPValueLabel: UILabel!
     @IBOutlet weak var inventoryValueLabel: UILabel!
     @IBOutlet weak var grossMarginTitleLabel: UILabel!
@@ -29,11 +33,21 @@ class ProductDetailVC: UIViewController {
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var qtyView: UIView!
 
+    
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
 
+    
+    @IBOutlet weak var marketGoupDescLabel: UILabel!
+    //heights
+    @IBOutlet weak var lineHeight: NSLayoutConstraint!
+    @IBOutlet weak var subBrandHeight: NSLayoutConstraint!
+    @IBOutlet weak var marketGroupHeight: NSLayoutConstraint!
+    @IBOutlet weak var groupHeight: NSLayoutConstraint!
+    @IBOutlet weak var brandHeight: NSLayoutConstraint!
+    
     let kProductImageSmallWidth: CGFloat = 180.0
     let kProductImageSmallHeight: CGFloat = 180.0
     let kProductImageScrollViewWidth: CGFloat = 500.0
@@ -60,6 +74,68 @@ class ProductDetailVC: UIViewController {
         updateConstraints()
     }
 
+    func hideAllCatalog() {
+        brandValueLabel.isHidden = true
+        brandLabel.isHidden = true
+        brandHeight.constant = 0
+        
+        subBrandValueLabel.isHidden = true
+        subBrandLabel.isHidden = true
+        subBrandHeight.constant = 0
+        
+        groupValueLabel.isHidden = true
+        groupLabel.isHidden = true
+        groupHeight.constant = 0
+        
+        lineValueLabel.isHidden = true
+        lineLabel.isHidden = true
+        lineHeight.constant = 0
+        
+        /*marketGruop.isHidden = true
+        marketGoupDescLabel.isHidden = true
+        marketGroupHeight.constant = 0*/
+    }
+    
+    func setDesctypeUI() {
+        
+        hideAllCatalog()
+        
+        if let catalogString:String = globalInfo.routeControl?.catalog {
+            let trimmed = catalogString.replace(string: " ", replacement: "")
+            let catalogArr = trimmed.components(separatedBy:",")
+            
+            for item in catalogArr {
+                switch item {
+                case "Brand":
+                    brandValueLabel.isHidden = false
+                    brandLabel.isHidden = false;
+                    brandHeight.constant = 35
+                case "SubBrand":
+                    subBrandValueLabel.isHidden = false
+                    subBrandLabel.isHidden = false
+                    subBrandHeight.constant = 35
+                case "ProductGroup":
+                    groupValueLabel.isHidden = false
+                    groupLabel.isHidden = false
+                    groupHeight.constant = 50
+                case "ProductLine":
+                    lineValueLabel.isHidden = false
+                    lineLabel.isHidden = false
+                    lineHeight.constant = 35
+                /*case "MarketGroup":
+                    marketGruop.isHidden = false
+                    marketGoupDescLabel.isHidden = false
+                    marketGroupHeight.constant = 35*/
+                default:
+                    print("default block");
+                }
+            }
+        }
+        else {
+            
+        }
+    }
+    
     func initUI() {
 
         // populate the all components
@@ -67,7 +143,7 @@ class ProductDetailVC: UIViewController {
         itemNoLabel.text = itemNo
         descLabel.text = productDetail.desc ?? ""
         let prodGroup = productDetail.prodGrp ?? ""
-        groupValueLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "ProductGroup", alphaKey: prodGroup)?.desc ?? ""
+        groupLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "ProductGroup", alphaKey: prodGroup)?.desc ?? ""
         let brand = productDetail.brand ?? ""
         brandValueLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "Brand", alphaKey: brand)?.desc ?? ""
         barcodeValueLabel.text = productDetail.itemUPC ?? ""
@@ -75,7 +151,13 @@ class ProductDetailVC: UIViewController {
         lineValueLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "ProductLine", alphaKey: prodLine)?.desc ?? ""
         let subBrand = productDetail.subBrand ?? ""
         subBrandValueLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "SubBrand", alphaKey: subBrand)?.desc ?? ""
-
+        
+        //add by rsb 2019-11-30
+        let marketGroup = productDetail.marketGrp ?? ""
+        marketGoupDescLabel.text = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "MarketGroup", alphaKey: marketGroup)?.desc ?? ""
+        
+        setDesctypeUI()
+        
         let consumerUnitString = productDetail.consumerUnit ?? ""
         let consumerUnit = Double(consumerUnitString) ?? 0
 
@@ -127,6 +209,7 @@ class ProductDetailVC: UIViewController {
             let inventoryAmount = Utils.getXMLDivided(valueString: productLevl?.qty ?? "0")
             inventoryValueLabel.text = inventoryAmount.integerString
         }
+        
         
         // gross margin
         let itemCost = Utils.getXMLDivided(valueString: productDetail?.productLocn?.costPrice ?? "0")

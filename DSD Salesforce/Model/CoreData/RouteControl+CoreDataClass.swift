@@ -93,6 +93,9 @@ public class RouteControl: NSManagedObject {
         self.rapidAPIPwd = xmlDictionary["RAPIDAPIPWD"] ?? ""
         self.paymentAdjust = xmlDictionary["PAYMENTADJUST"] ?? ""
         self.adjustAllow = xmlDictionary["ADJUSTALLOW"] ?? ""
+        
+        self.custaddNew = xmlDictionary["CUSTADDNEW"] ?? "0"
+        self.catalog = xmlDictionary["CATALOG"] ?? ""
 
         let locnNoGPS = xmlDictionary["LocnNoGPS"] ?? ""
         let parts = locnNoGPS.components(separatedBy: ",")
@@ -116,7 +119,7 @@ public class RouteControl: NSManagedObject {
     }
 
     static func loadFromXML(context: NSManagedObjectContext, forSave: Bool) -> [RouteControl] {
-
+        
         deleteAll(context: context)
 
         let dicArray = Utils.loadFromXML(xmlName: "ROUTECTL", xPath: "//RouteCtl/Records/RouteCtl")
@@ -139,7 +142,6 @@ public class RouteControl: NSManagedObject {
             context.delete(object)
         }
     }
-
 }
 
 extension RouteControl {
@@ -190,6 +192,9 @@ extension RouteControl {
     @NSManaged public var rapidAPIPwd: String?
     @NSManaged public var paymentAdjust: String?
     @NSManaged public var adjustAllow: String?
+    
+    @NSManaged public var custaddNew: String?
+    @NSManaged public var catalog: String?
 
     @NSManaged public var invoiceNum: String?
     @NSManaged public var invoiceNumFormat: String?
