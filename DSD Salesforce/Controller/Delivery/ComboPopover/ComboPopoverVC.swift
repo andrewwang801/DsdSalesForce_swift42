@@ -20,6 +20,8 @@ class ComboPopoverVC: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var okButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class ComboPopoverVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        cancelButton.setTitleForAllState(title: L10n.cancel())
+        okButton.setTitleForAllState(title: L10n.ok())
         titleLabel.text = selectedTitle
         
         mainView.setCornerRadius(cornerRadius: 8.0, borderWidth: 0.0, borderColor: UIColor.clear)

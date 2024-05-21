@@ -16,7 +16,9 @@ class SelectCustomerPromotionCell: UITableViewCell {
     @IBOutlet weak var pricingLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var untilLabel: UILabel!
-
+    @IBOutlet weak var fromTitleLabel: UILabel!
+    @IBOutlet weak var untilTitleLabel: UILabel!
+    
     var parentVC: PromotionBaseVC!
     var indexPath: IndexPath!
 
@@ -58,6 +60,9 @@ class SelectCustomerPromotionCell: UITableViewCell {
     }
 
     func configCell() {
+        fromLabel.text = L10n.from()
+        untilLabel.text = L10n.until()
+        
         selectionStyle = .none
         let index = indexPath.row
         let promotionPlan = parentVC.promotionPlanArray[index]
@@ -66,6 +71,9 @@ class SelectCustomerPromotionCell: UITableViewCell {
         nameLabel.text = productDetail?.desc ?? ""
         descLabel.text = productDetail?.itemNo ?? ""
         pricingLabel.text = promotionPlan.promotionOption?.featurePrice ?? ""
+        
+        fromTitleLabel.text = L10n.from()
+        untilTitleLabel.text = L10n.until()
 
         let validStartDate = Date.fromDateString(dateString: promotionPlan.promotionHeader.dateStart ?? "", format: kTightJustDateFormat) ?? Date()
         let validEndDate = Date.fromDateString(dateString: promotionPlan.promotionHeader.dateEnd ?? "", format: kTightJustDateFormat) ?? Date()

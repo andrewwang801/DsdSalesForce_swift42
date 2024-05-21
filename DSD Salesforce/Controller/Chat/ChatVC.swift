@@ -77,7 +77,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
             self.updateTitle()
             
             self.inputToolbar?.contentView?.backgroundColor = UIColor.white
-            self.inputToolbar?.contentView?.textView?.placeHolder = "SA_STR_MESSAGE_PLACEHOLDER".localized
+            self.inputToolbar?.contentView?.textView?.placeHolder = L10n.Message()
             
             self.attachmentCellsMap = NSMapTable(keyOptions: NSPointerFunctions.Options.strongMemory, valueOptions: NSPointerFunctions.Options.weakMemory)
             
@@ -90,7 +90,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
                         return
                     }
                     
-                    self?.title = "SA_STR_TYPING".localized
+                    self?.title = L10n.typing()
                 }
                 
                 self.dialog.onUserStoppedTyping = {
@@ -118,7 +118,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
             self.enableTextCheckingTypes = NSTextCheckingAllTypes
         }
         else {
-            SVProgressHUD.showInfo(withStatus: "DSD Chatter not connected")
+            SVProgressHUD.showInfo(withStatus: L10n.dsdChatterNotConnected())
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -168,7 +168,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
     func reconfigUI() {
         // show send button
         let sendButton = self.inputToolbar.contentView.rightBarButtonItem
-        sendButton?.setTitleForAllState(title: "Send")
+        sendButton?.setTitleForAllState(title: L10n.send())
         sendButton?.tintColor = UIColor.black
         sendButton?.isHidden = false
         sendButton?.isEnabled = true
@@ -475,7 +475,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
             
             if error != nil {
                 
-                QMMessageNotificationManager.showNotification(withTitle: "SA_STR_ERROR".localized, subtitle: error?.localizedDescription, type: QMMessageNotificationType.warning)
+                QMMessageNotificationManager.showNotification(withTitle: L10n.error(), subtitle: error?.localizedDescription, type: QMMessageNotificationType.warning)
             }
         }
 
@@ -553,7 +553,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
     }
     
     func showCharactersNumberError() {
-        let title  = "SA_STR_ERROR".localized;
+        let title  = L10n.error();
         let subtitle = String(format: "The character limit is %lu.", maxCharactersNumber)
         QMMessageNotificationManager.showNotification(withTitle: title, subtitle: subtitle, type: .error)
     }
@@ -598,7 +598,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
                     readLogins.append(unwrappedUser.login!)
                 }
                 
-                statusString += message.isMediaMessage() ? "SA_STR_SEEN_STATUS".localized : "SA_STR_READ_STATUS".localized;
+                statusString += message.isMediaMessage() ? L10n.seen() : L10n.read();
                 statusString += ": " + readLogins.joined(separator: ", ")
             }
         }
@@ -634,7 +634,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
                 }
                 
                 if deliveredLogins.count > 0 {
-                    statusString += "SA_STR_DELIVERED_STATUS".localized + ": " + deliveredLogins.joined(separator: ", ")
+                    statusString += L10n.delivered() + ": " + deliveredLogins.joined(separator: ", ")
                 }
             }
         }
@@ -645,11 +645,11 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
             
             switch messageStatus {
             case .sent:
-                statusString = "SA_STR_SENT_STATUS".localized
+                statusString = L10n.sent()
             case .sending:
-                statusString = "SA_STR_SENDING_STATUS".localized
+                statusString = L10n.sending()
             case .notSent:
-                statusString = "SA_STR_NOT_SENT_STATUS".localized
+                statusString = L10n.didnTSend()
             }
             
         }
@@ -1144,7 +1144,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
 
                         let attachment = operation.attachment
                         guard let localFileURL = attachment.localFileURL else {
-                            SVProgressHUD.showError(withStatus: "Failed to download the attachment")
+                            SVProgressHUD.showError(withStatus: L10n.failedToDownloadTheAttachment())
                             return
                         }
 
@@ -1161,12 +1161,12 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
                                 SVProgressHUD.dismiss()
                             }
                             else {
-                                SVProgressHUD.showError(withStatus: "We can't open the file. Please use android app to open it.")
+                                SVProgressHUD.showError(withStatus: L10n.WeCanTOpenTheFile())
                             }
                             return
                         }
                         else {
-                            SVProgressHUD.showError(withStatus: "We can't open the file. Please use android app to open it.")
+                            SVProgressHUD.showError(withStatus: L10n.WeCanTOpenTheFile())
                             return
                         }
                     }
@@ -1235,7 +1235,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
             
             if !self.canMakeACall() {
                 
-                SVProgressHUD.showInfo(withStatus: "Your Device can't make a phone call".localized, maskType: .none)
+                SVProgressHUD.showInfo(withStatus: L10n.yourDeviceCanTMakeAPhoneCall(), maskType: .none)
                 break
             }
             
@@ -1248,13 +1248,13 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
                                                     message: result.phoneNumber,
                                                     preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "SA_STR_CANCEL".localized, style: .cancel) { (action) in
+            let cancelAction = UIAlertAction(title: L10n.cancel(), style: .cancel) { (action) in
                 
             }
             
             alertController.addAction(cancelAction)
             
-            let openAction = UIAlertAction(title: "SA_STR_CALL".localized, style: .destructive) { (action) in
+            let openAction = UIAlertAction(title: L10n.call(), style: .destructive) { (action) in
                 UIApplication.shared.openURL(url!)
             }
             alertController.addAction(openAction)
@@ -1475,7 +1475,7 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
     
     func refreshAndReadMessages() {
         
-        SVProgressHUD.show(withStatus: "SA_STR_LOADING_MESSAGES".localized, maskType: SVProgressHUDMaskType.clear)
+        SVProgressHUD.show(withStatus: L10n.loadingMessages(), maskType: SVProgressHUDMaskType.clear)
         self.loadMessages()
         
         if let messagesToRead = self.unreadMessages {
@@ -1504,20 +1504,20 @@ class ChatVC: QMChatViewController, QMChatServiceDelegate, UIActionSheetDelegate
     func handleNotSentMessage(_ message: QBChatMessage,
                               forCell cell: QMChatCell!) {
         
-        let alertController = UIAlertController(title: "", message: "SA_STR_MESSAGE_FAILED_TO_SEND".localized, preferredStyle:.actionSheet)
+        let alertController = UIAlertController(title: "", message: L10n.messageFailedToSend(), preferredStyle:.actionSheet)
         
-        let resend = UIAlertAction(title: "SA_STR_TRY_AGAIN_MESSAGE".localized, style: .default) { (action) in
+        let resend = UIAlertAction(title: L10n.tryAgain(), style: .default) { (action) in
             self.queueManager().perfromDefferedAction(for: message, withCompletion: nil)
         }
         alertController.addAction(resend)
         
-        let delete = UIAlertAction(title: "SA_STR_DELETE_MESSAGE".localized, style: .destructive) { (action) in
+        let delete = UIAlertAction(title: L10n.delete(), style: .destructive) { (action) in
             self.queueManager().remove(message)
             self.chatDataSource.delete(message)
         }
         alertController.addAction(delete)
         
-        let cancelAction = UIAlertAction(title: "SA_STR_CANCEL".localized, style: .cancel) { (action) in
+        let cancelAction = UIAlertAction(title: L10n.cancel(), style: .cancel) { (action) in
             
         }
         

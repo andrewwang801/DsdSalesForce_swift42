@@ -439,7 +439,7 @@ class Utils {
             }
             else {
                 NSLog("Media download failed: \(message)")
-                Utils.showAlert(vc: vc, title: "", message: "PDF not able to be retrieved", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: vc, title: "", message: L10n.pdfNotAbleToBeRetrieved(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
                 CommData.deleteFileIfExist(localPath)
             }
         }

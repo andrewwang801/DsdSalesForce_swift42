@@ -12,7 +12,8 @@ import GoogleMaps
 class CustomerLocationVC: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
-
+    @IBOutlet weak var customerLocationLabel: UILabel!
+    
     var latitude: Double = 0
     var longitude: Double = 0
 
@@ -25,10 +26,14 @@ class CustomerLocationVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         reloadMap()
     }
 
+    func initUI() {
+        customerLocationLabel.text = L10n.customerLocation()
+    }
+    
     func initMap() {
         mapView.delegate = self
         mapView.isMyLocationEnabled = true

@@ -21,8 +21,6 @@ class ProductCatalogVC: UIViewController {
     @IBOutlet weak var itemDescLabel: UILabel!
     @IBOutlet weak var barcodeLabel: UILabel!
     @IBOutlet weak var baseCasePriceLabel: UILabel!
-    @IBOutlet weak var unitsPerCaseLabel: UILabel!
-    @IBOutlet weak var unitPriceLabel: UILabel!
     @IBOutlet weak var noProductLabel: UILabel!
 
     @IBOutlet weak var productImageScrollView: UIScrollView!
@@ -38,7 +36,12 @@ class ProductCatalogVC: UIViewController {
     @IBOutlet weak var qtyView: UIView!
     @IBOutlet weak var qtyTextField: AnimatableTextField!
     @IBOutlet weak var addToOrderButton: AnimatableButton!
-
+    @IBOutlet weak var unitsPerCaseLabel: UILabel!
+    @IBOutlet weak var unitPriceLabel: UILabel!
+    @IBOutlet weak var barcodeTitleLabel: UILabel!
+    @IBOutlet weak var unitsPerCaseTitleLabel: UILabel!
+    @IBOutlet weak var unitPriceTitleLabel: UILabel!
+    
     var mainVC: MainVC!
     let globalInfo = GlobalInfo.shared
 
@@ -47,12 +50,19 @@ class ProductCatalogVC: UIViewController {
 
     var productDetailArray = [ProductDetail]()
 
-    let kBrandTitle = "BRAND"
-    let kSubBrandTitle = "SUB BRAND"
-    let kTypeTitle = "TYPE"
-    let kGroupTitle = "GROUP"
-    let kProductLineTitle = "PRODUCT LINE"
-    let kMarketGroupTitle = "MARKET GROUP"
+//    let kBrandTitle = "BRAND"
+//    let kSubBrandTitle = "SUB BRAND"
+//    let kTypeTitle = "TYPE"
+//    let kGroupTitle = "GROUP"
+//    let kProductLineTitle = "PRODUCT LINE"
+//    let kMarketGroupTitle = "MARKET GROUP"
+    
+    let kBrandTitle = L10n.BRAND()
+    let kSubBrandTitle = L10n.SUBBRAND()
+    let kTypeTitle = L10n.type()
+    let kGroupTitle = L10n.GROUP()
+    let kProductLineTitle = L10n.ProductLine()
+    let kMarketGroupTitle = L10n.MARKETGROUP()
 
     let kBrandDescTypeID = "Brand"
     let kSubBrandDescTypeID = "SubBrand"
@@ -62,12 +72,19 @@ class ProductCatalogVC: UIViewController {
     let kMarketGroupDescTypeID = "MarketGroup"
     
     //type dictionary
-    var kCatalogDic = ["Brand":"BRAND",
-                       "SubBrand":"SUB BRAND",
-                       "ItemType":"TYPE",
-                       "ProductGroup":"GROUP",
-                       "ProductLine":"PRODUCT LINE",
-                       "MarketGroup":"MARKET GROUP"]
+//    var kCatalogDic = ["Brand":"BRAND",
+//                       "SubBrand":"SUB BRAND",
+//                       "ItemType":"TYPE",
+//                       "ProductGroup":"GROUP",
+//                       "ProductLine":"PRODUCT LINE",
+//                       "MarketGroup":"MARKET GROUP"]
+    
+    var kCatalogDic = ["Brand":L10n.BRAND(),
+                       "SubBrand":L10n.SUBBRAND(),
+                       "ItemType":L10n.type(),
+                       "ProductGroup":L10n.GROUP(),
+                       "ProductLine":L10n.ProductLine(),
+                       "MarketGroup":L10n.MARKETGROUP()]
     
     var kFilterTitleArray = [String]()
     var kFilterDescTypeIDArray = [String]()
@@ -96,7 +113,7 @@ class ProductCatalogVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        mainVC.setTitleBarText(title: "PRODUCT CATALOG")
+        mainVC.setTitleBarText(title: L10n.productCatalog())
     }
     
     
@@ -135,7 +152,14 @@ class ProductCatalogVC: UIViewController {
     }
 
     func initUI() {
-
+        barcodeTitleLabel.text = L10n.barcode()
+        baseCasePriceTitleLabel.text = L10n.baseCasePrice()
+        unitsPerCaseTitleLabel.text = L10n.unitsPerCase()
+        unitPriceTitleLabel.text = L10n.unitPrice()
+        addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
+        noDataLabel.text = L10n.thereIsNoData()
+        noProductLabel.text = L10n.pleaseSelectAProduct()
+        
         // get UI constants
         let screenBounds = UIScreen.main.bounds
         productImageScrollViewWidth = screenBounds.width/2-20.0
@@ -372,16 +396,16 @@ class ProductCatalogVC: UIViewController {
                     }
                 }
                 if orderQty > 0 {
-                    addToOrderButton.setTitleForAllState(title: "Update Order")
+                    addToOrderButton.setTitleForAllState(title: L10n.updateOrder())
                     qtyTextField.text = "\(orderQty)"
                 }
                 else {
-                    addToOrderButton.setTitleForAllState(title: "Add to Order")
+                    addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
                     qtyTextField.text = "1"
                 }
             }
             else {
-                addToOrderButton.setTitleForAllState(title: "Add to Order")
+                addToOrderButton.setTitleForAllState(title: L10n.addToOrder())
                 qtyTextField.text = "1"
             }
         }

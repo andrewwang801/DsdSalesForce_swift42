@@ -21,14 +21,22 @@ class TripSettlementVC: UIViewController {
     @IBOutlet weak var tripNoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var completeButton: AnimatableButton!
-
+    @IBOutlet weak var backButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
 
-    let kNoVisitReasonsMenu = "No Visit Reasons"
-    let kEndingInventoryMenu = "Ending Inventory"
-    let kBalanceCollectionsMenu = "Balance Collections"
-    let kSalesPerformanceMenu = "Sales Performance"
-    let kPostTripInspectionMenu = "Post Trip Inspection"
+//    let kNoVisitReasonsMenu = "No Visit Reasons"
+//    let kEndingInventoryMenu = "Ending Inventory"
+//    let kBalanceCollectionsMenu = "Balance Collections"
+//    let kSalesPerformanceMenu = "Sales Performance"
+//    let kPostTripInspectionMenu = "Post Trip Inspection"
+    
+    let kNoVisitReasonsMenu = L10n.noVisitReasons()
+    let kEndingInventoryMenu = L10n.endingInventory()
+    let kBalanceCollectionsMenu = L10n.balanceCollections()
+    let kSalesPerformanceMenu = L10n.salesPerormance()
+    let kPostTripInspectionMenu = L10n.postTripInspection()
+    
     var menuArray = [TripSettlementMenu]()
     var incompleteInfoArray = [IncompleteInfo]()
     var pdfTrxnNo: Int64 = 0
@@ -52,12 +60,14 @@ class TripSettlementVC: UIViewController {
     }
 
     func initUI() {
-
+        backButton.setTitleForAllState(title: L10n.back())
+        completeButton.setTitleForAllState(title: L10n.completed())
+        
         let userName = globalInfo.routeControl?.userName ?? ""
-        usernameLabel.text = "Hi \(userName)"
+        usernameLabel.text = "\(L10n.hi()) \(userName)"
 
         let tripNumber = globalInfo.routeControl?.trip ?? ""
-        tripNoLabel.text = "Trip # \(tripNumber)"
+        tripNoLabel.text = "\(L10n.trip()) # \(tripNumber)"
 
         tableView.delegate = self
         tableView.dataSource = self

@@ -22,7 +22,19 @@ class OrderChequeDetailsVC: UIViewController {
     @IBOutlet weak var chequeDateText: AnimatableTextField!
     @IBOutlet weak var chequeAmountText: AnimatableTextField!
     @IBOutlet weak var arNoteText: AnimatableTextField!
-
+    @IBOutlet weak var bankBSBLabel: UILabel!
+    @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var checkNumber: UILabel!
+    @IBOutlet weak var checkDate: UILabel!
+    @IBOutlet weak var checkAmount: UILabel!
+    @IBOutlet weak var arNotesLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var doneButton: AnimatableButton!
+    
+    @IBOutlet weak var collectionRequiredTitleLabel: UILabel!
+    @IBOutlet weak var totalCollectedTitleLabel: UILabel!
+    @IBOutlet weak var totalRemainingTitleLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     // var orderSummaryVC: OrderSummaryVC!
@@ -51,6 +63,20 @@ class OrderChequeDetailsVC: UIViewController {
     }
 
     func initUI() {
+        
+        titleLabel.text = L10n.checkDetails()
+        collectionRequiredTitleLabel.text = L10n.collectionRequired()
+        totalCollectedTitleLabel.text = L10n.collectionRequired()
+        totalRemainingTitleLabel.text = L10n.totalRemaining()
+        bankBSBLabel.text = L10n.totalRemaining()
+        accountLabel.text = L10n.account()
+        checkNumber.text = L10n.checkNumber()
+        checkDate.text = L10n.checkDate()
+        checkAmount.text = L10n.checkAmount()
+        arNotesLabel.text = L10n.arNotes()
+        backButton.setTitleForAllState(title: L10n.back())
+        doneButton.setTitleForAllState(title: L10n.Done())
+        
         customerNameLabel.text = customerDetail.name ?? ""
         collectionRequiredLabel.text = Utils.getMoneyString(moneyValue: self.collectionRequired)
         totalCollectedLabel.text = Utils.getMoneyString(moneyValue: self.totalCollected)

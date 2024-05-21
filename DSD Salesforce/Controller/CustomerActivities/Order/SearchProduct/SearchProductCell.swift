@@ -17,7 +17,8 @@ class SearchProductCell: UITableViewCell {
     @IBOutlet weak var brandLabel: UILabel!
     @IBOutlet weak var subBrandLabel: UILabel!
     @IBOutlet weak var bottomSeparatorLabel: UILabel!
-
+    @IBOutlet weak var addButton: AnimatableButton!
+    
     var parentVC: SearchProductVC?
     var indexPath: IndexPath?
 
@@ -39,7 +40,8 @@ class SearchProductCell: UITableViewCell {
     }
 
     func configCell() {
-
+        addButton.setTitleForAllState(title: L10n.add())
+        
         let index = indexPath!.row
         let productDetail = parentVC!.searchedArray[index]
 
@@ -47,11 +49,11 @@ class SearchProductCell: UITableViewCell {
 
         // customer item
         descLabel.text = productDetail.desc ?? ""
-        itemTypeLabel.text = "Item Type - " + (productDetail.desc1 ?? "")
-        productGroupLabel.text = "Product Group - " + (productDetail.desc2 ?? "")
-        productLineLabel.text = "Product Line - " + (productDetail.desc3 ?? "")
-        brandLabel.text = "Brand - " + (productDetail.desc4 ?? "")
-        subBrandLabel.text = "Sub Brand - " + (productDetail.desc5 ?? "")
+        itemTypeLabel.text = "\(L10n.ItemSType()) - " + (productDetail.desc1 ?? "")
+        productGroupLabel.text = "\(L10n.productGroup()) - " + (productDetail.desc2 ?? "")
+        productLineLabel.text = "\(L10n.ProductLine()) - " + (productDetail.desc3 ?? "")
+        brandLabel.text = "\(L10n.brand()) - " + (productDetail.desc4 ?? "")
+        subBrandLabel.text = "\(L10n.SubSBrand()) - " + (productDetail.desc5 ?? "")
     }
 
     @IBAction func onAddProduct(_ sender: Any) {

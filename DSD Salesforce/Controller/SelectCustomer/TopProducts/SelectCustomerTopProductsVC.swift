@@ -16,6 +16,11 @@ class SelectCustomerTopProductsVC: UIViewController {
     @IBOutlet weak var productTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
 
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var lastOrdersLabel: UILabel!
+    @IBOutlet weak var mtdLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var selectCustomerVC: SelectCustomerVC!
     var topProductArray = [CustomerTopProduct]()
@@ -43,6 +48,12 @@ class SelectCustomerTopProductsVC: UIViewController {
     }
 
     func initUI() {
+        itemLabel.text = L10n.item()
+        lastOrdersLabel.text = L10n.lastOrders()
+        mtdLabel.text = L10n.mtd()
+        dateLabel.text = L10n.date()
+        noDataLabel.text = L10n.thereIsNoData()
+        
         productTableView.dataSource = self
         productTableView.delegate = self
     }

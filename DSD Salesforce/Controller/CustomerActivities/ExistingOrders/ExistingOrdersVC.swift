@@ -14,7 +14,9 @@ class ExistingOrdersVC: UIViewController {
     @IBOutlet weak var customerNameLabel: UILabel!
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var orderTableView: UITableView!
-
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var newOrderButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     var orderHeaderArray = [OrderHeader]()
@@ -102,6 +104,10 @@ class ExistingOrdersVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.existingOrders()
+        backButton.setTitleForAllState(title: L10n.Back())
+        newOrderButton.setTitleForAllState(title: L10n.newOrder())
+        
         customerNameLabel.text = customerDetail.name ?? ""
         orderTableView.dataSource = self
         orderTableView.delegate = self

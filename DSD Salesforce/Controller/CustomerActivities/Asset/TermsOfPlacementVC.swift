@@ -212,16 +212,16 @@ class TermsOfPlacementVC: UIViewController {
 
         // validation
         if agreedNameText.isEnabled == false {
-            Utils.showAlert(vc: self, title: "", message: "Please read our terms and conditions and input name and sign", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pleaseReadOurTermsAndConditionsAndInputNameAndSign(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
             return
         }
         let agreedName = agreedNameText.text ?? ""
         if agreedName.isEmpty == true {
-            Utils.showAlert(vc: self, title: "", message: "Please Input Agreed to Name", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pleaseInputAgreedToName(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
             return
         }
         if signatureImageName.isEmpty == true {
-            Utils.showAlert(vc: self, title: "", message: "Please Sign your signature", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pleaseSignYourSignature(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
             return
         }
         

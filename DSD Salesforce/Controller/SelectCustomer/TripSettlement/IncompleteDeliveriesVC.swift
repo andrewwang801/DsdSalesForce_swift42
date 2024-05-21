@@ -22,7 +22,9 @@ class IncompleteDeliveriesVC: UIViewController {
     @IBOutlet weak var reasonCodeTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
     //@IBOutlet weak var webView: UIWebView!
-
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
 
     enum DismissOption {
@@ -114,7 +116,9 @@ class IncompleteDeliveriesVC: UIViewController {
     }
 
     func initUI() {
-
+        titleLabel.text = L10n.incompleteVisits()
+        descLabel.text = L10n.TheFollowingCustomerVisitsAreNotYetCompleted()
+        
         printWebView = UIWebView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         printWebView.isHidden = true
         view.addSubview(printWebView)

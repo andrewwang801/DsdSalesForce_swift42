@@ -24,7 +24,7 @@ class SelectCustomerNearbyVC: UIViewController {
     var selectedStoreType: String? {
         didSet {
             if selectedStoreType == nil {
-                storeTypeButton.setTitleForAllState(title: "SELECT STORE TYPE")
+                storeTypeButton.setTitleForAllState(title: L10n.selectStoreType())
                 storeTypeButton.setTitleColor(kStoreTypeEmptyTextColor, for: .normal)
             }
             else {

@@ -30,7 +30,19 @@ class PaymentCollectionVC: UIViewController {
     @IBOutlet weak var totalRemainingAmountLabel: UILabel!
     @IBOutlet weak var printButton: AnimatableButton!
     @IBOutlet weak var webView: UIWebView!
-
+    
+    @IBOutlet weak var totalCustomerBalance: UILabel!
+    @IBOutlet weak var selectInvoicesToPayLabel: UILabel!
+    @IBOutlet weak var selectAllLabel: UILabel!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var totalToCollect: UILabel!
+    @IBOutlet weak var cashLabel: UILabel!
+    @IBOutlet weak var checkLabel: UILabel!
+    @IBOutlet weak var cardLabel: UILabel!
+    @IBOutlet weak var totalCollect: UILabel!
+    @IBOutlet weak var totalRemainingToCollectLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
     var customerDetail: CustomerDetail!
@@ -77,6 +89,20 @@ class PaymentCollectionVC: UIViewController {
     }
 
     func initUI() {
+        totalCustomerBalance.text = L10n.totalCustomerBalance()
+        selectInvoicesToPayLabel.text = L10n.selectInvoicesToPay()
+        selectAllLabel.text = L10n.selectAll()
+        paymentMethodLabel.text = L10n.paymentMethod()
+        totalToCollect.text = L10n.totalToCollect()
+        cashLabel.text = L10n.cash()
+        checkLabel.text = L10n.check()
+        cardLabel.text = L10n.card()
+        totalCollect.text = L10n.totalCollected()
+        totalRemainingToCollectLabel.text = L10n.totalRemainingToCollect()
+        returnButton.setTitleForAllState(title: L10n.Return())
+        printButton.setTitleForAllState(title: L10n.print())
+        confirmButton.setTitleForAllState(title: L10n.CONFIRM())
+        
         invoiceTableView.dataSource = self
         invoiceTableView.delegate = self
 
@@ -492,12 +518,12 @@ class PaymentCollectionVC: UIViewController {
 
         let totalCollectedAmount = getTotalCollected()
         if totalCollectedAmount == 0 {
-            SVProgressHUD.showInfo(withStatus: "Total collected amount should not be zero")
+            SVProgressHUD.showInfo(withStatus: L10n.totalCollectedAmountShouldNotBeZero())
             return
         }
 
         if selectedIndexArray.count == 0 {
-            SVProgressHUD.showInfo(withStatus: "You should select at least one invoice to pay")
+            SVProgressHUD.showInfo(withStatus: L10n.youShouldSelectAtLeastOneInvoiceToPay())
             return
         }
 
@@ -511,12 +537,12 @@ class PaymentCollectionVC: UIViewController {
 
         let totalCollectedAmount = getTotalCollected()
         if totalCollectedAmount == 0 {
-            SVProgressHUD.showInfo(withStatus: "Total collected amount should not be zero")
+            SVProgressHUD.showInfo(withStatus: L10n.totalCollectedAmountShouldNotBeZero())
             return
         }
 
         if selectedIndexArray.count == 0 {
-            SVProgressHUD.showInfo(withStatus: "You should select at least one invoice to pay")
+            SVProgressHUD.showInfo(withStatus: L10n.youShouldSelectAtLeastOneInvoiceToPay())
             return
         }
 
@@ -524,7 +550,7 @@ class PaymentCollectionVC: UIViewController {
         let totalCollected = getTotalCollected()
         let totalRemaining = totalSelected-totalCollected
         if totalRemaining != 0 {
-            Utils.showAlert(vc: self, title: "", message: "You have not collected the full amount you selected to collect", failed: false, customerName: "", leftString: "Return", middleString: "", rightString: "Proceed") { (returnCode) in
+            Utils.showAlert(vc: self, title: "", message: L10n.youHaveNotCollectedTheFullAmountYouSelectedToCollect(), failed: false, customerName: "", leftString: L10n.return(), middleString: "", rightString: L10n.proceed()) { (returnCode) in
                 if returnCode == .right {
                     self.handleARHeaders()
                     self.handleUAR()

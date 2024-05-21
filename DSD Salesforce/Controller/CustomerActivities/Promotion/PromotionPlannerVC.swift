@@ -36,6 +36,14 @@ class PromotionPlannerVC: UIViewController {
     @IBOutlet weak var planDiscountLabel: UILabel!
     @IBOutlet weak var planFeatuerPriceLabel: UILabel!
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var validLabel: UILabel!
+    @IBOutlet weak var instoreLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var featurePriceLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
     var customerDetail: CustomerDetail!
@@ -64,6 +72,15 @@ class PromotionPlannerVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.promotionsPlanner()
+        typeLabel.text = L10n.type()
+        validLabel.text = L10n.valid()
+        instoreLabel.text = L10n.inStore()
+        discountLabel.text = L10n.discount()
+        featurePriceLabel.text = L10n.featurePrice()
+        doneButton.setTitleForAllState(title: L10n.Done())
+        noDataLabel.text = L10n.thereIsNoData()
+        
         weekCollectionView.delegate = self
         weekCollectionView.dataSource = self
         productTableView.delegate = self
@@ -154,19 +171,19 @@ class PromotionPlannerVC: UIViewController {
         let promoType = promotionPlan.promotionAss?.promoType ?? "0"
         planTypeLabel.text = ""
         if promoType == "1" {
-            planTypeLabel.text = "Cents Off"
+            planTypeLabel.text = L10n.centsOff()
         }
         else if promoType == "2" {
-            planTypeLabel.text = "Percentage Off"
+            planTypeLabel.text = L10n.percentageOff()
         }
         else if promoType == "3" {
-            planTypeLabel.text = "Replace Price"
+            planTypeLabel.text = L10n.replacePrice()
         }
         else if promoType == "4" {
-            planTypeLabel.text = "Buy / Free"
+            planTypeLabel.text = L10n.buyFree()
         }
         else if promoType == "5" {
-            planTypeLabel.text = "Buy / Free Multi"
+            planTypeLabel.text = L10n.buyFreeMulti()
         }
 
         let validStartDate = Date.fromDateString(dateString: promotionPlan.promotionHeader.dateStart ?? "", format: kTightJustDateFormat) ?? Date()

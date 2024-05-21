@@ -24,7 +24,9 @@ class SelectCustomerPricingVC: PromotionBaseVC {
     @IBOutlet weak var noDataLabel: UILabel!
     @IBOutlet weak var filterButton: AnimatableButton!
     @IBOutlet weak var pricingTitleLabel: UILabel!
-
+    @IBOutlet weak var checkPlannerButton: AnimatableButton!
+    @IBOutlet weak var promotionsLabel: UILabel!
+    
     var hud: MBProgressHUD?
     
     enum ViewType {
@@ -107,6 +109,13 @@ class SelectCustomerPricingVC: PromotionBaseVC {
     }
 
     func initUI() {
+        viewPromotionsButton.setTitleForAllState(title: L10n.viewPromotions())
+        viewPricingButton.setTitleForAllState(title: L10n.viewPricing())
+        checkPlannerButton.setTitleForAllState(title: L10n.checkPlanner())
+        pricingTitleLabel.text = L10n.pricing()
+        promotionsLabel.text = L10n.promotions()
+        noDataLabel.text = L10n.thereIsNoData()
+        
         productTableView.dataSource = self
         productTableView.delegate = self
         promotionTableView.dataSource = self
@@ -230,13 +239,13 @@ class SelectCustomerPricingVC: PromotionBaseVC {
 
     func updatePricingTitle() {
         if selectedFilterOption == .showAll {
-            pricingTitleLabel.text = "PRICING - All Items"
+            pricingTitleLabel.text = L10n.pricingAllItems()
         }
         else if selectedFilterOption == .showSpecialPricesOnly {
-            pricingTitleLabel.text = "PRICING - Special Prices Only"
+            pricingTitleLabel.text = L10n.pricingSpecialPricesOnly()
         }
         else {
-            pricingTitleLabel.text = "PRICING - Base Prices Only"
+            pricingTitleLabel.text = L10n.pricingBasePricesOnly()
         }
     }
 

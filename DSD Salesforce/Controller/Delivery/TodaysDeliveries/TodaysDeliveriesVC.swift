@@ -24,7 +24,7 @@ class TodaysDeliveriesVC: UIViewController {
     var currentTripInfo: TripInfo? {
         didSet {
             if currentTripInfo == nil {
-                tripComboButton.setTitleForAllState(title: "No Trip Selected")
+                tripComboButton.setTitleForAllState(title: L10n.noTripSelected())
             }
             else {
                 let tripTitle = currentTripInfo!.getTripString()
@@ -39,7 +39,12 @@ class TodaysDeliveriesVC: UIViewController {
 
         // Do any additional setup after loading the view.
         initMap()
+        initUI()
         refreshTripList()
+    }
+    
+    func initUI() {
+        tripComboButton.setTitleForAllState(title: L10n.noTripSelected())
     }
 
     func initMap() {
@@ -96,7 +101,7 @@ class TodaysDeliveriesVC: UIViewController {
         let baseURL = Utils.getBaseURL(pinNumber: strPinNumber)
         APIManager.doNormalRequest(baseURL: baseURL, methodName: "api/trip", httpMethod: "GET", headers: headers, params: params, shouldShowHUD: true) { (response, message) in
             if response == nil {
-                Utils.showAlert(vc: self, title: "", message: "Refresh token is failed.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.refreshTokenIsFailed(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
             }
             else {
                 let json = JSON(data: response as! Data)
@@ -158,7 +163,7 @@ class TodaysDeliveriesVC: UIViewController {
 
                 self.isRefreshing = false
 
-                Utils.showAlert(vc: self, title: "", message: "Api Failed.", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.apiFailed(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
             }
             else {
                 self.tripMapInfoList.removeAll()
@@ -510,7 +515,7 @@ class TodaysDeliveriesVC: UIViewController {
     func showTripMapInfo() {
 
         if currentTripMapInfo == nil {
-            Utils.showAlert(vc: self, title: "", message: "PDF not able to be retrieved", failed: false, customerName: "", leftString: "", middleString: "OK", rightString: "", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pdfNotAbleToBeRetrieved(), failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
         }
         else {
             let dateString = Date.convertDateFormat(dateString: currentTripMapInfo!.deliveryDate, fromFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS", toFormat: kTightJustDateFormat)

@@ -31,9 +31,23 @@ class NewCustomerVC: UIViewController {
     @IBOutlet weak var deliveryToText: AnimatableTextField!
     @IBOutlet weak var contactDetailsLabel: UILabel!
     @IBOutlet weak var contactTableView: UITableView!
-    @IBOutlet weak var addButton: AnimatableButton!
     @IBOutlet weak var contactTableHeightConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var prospectLabel: UILabel!
+    @IBOutlet weak var customerLabel: UILabel!
+    @IBOutlet weak var companyNameLabel: UILabel!
+    @IBOutlet weak var companyTaxIdLabel: UILabel!
+    @IBOutlet weak var addressLine1Label: UILabel!
+    @IBOutlet weak var addressLine2Label: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var postcodeLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var addButton: AnimatableButton!
+    @IBOutlet weak var tripLabel: UILabel!
+    @IBOutlet weak var deliveryFromLabel: UILabel!
+    @IBOutlet weak var deliveryToLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
 
     var originalCustomerDetail: CustomerDetail?
@@ -82,7 +96,23 @@ class NewCustomerVC: UIViewController {
     }
 
     func initUI() {
-
+        titleLabel.text = L10n.newCustomerOrProspect()
+        tripLabel.text = L10n.trip()
+        prospectLabel.text = L10n.prospect()
+        customerLabel.text = L10n.customer()
+        companyNameLabel.text = L10n.companyName()
+        companyTaxIdLabel.text = L10n.companyTaxID()
+        addressLine1Label.text = L10n.addressLine1()
+        addressLine2Label.text = L10n.addressLine2()
+        cityLabel.text = L10n.city()
+        stateLabel.text = L10n.state()
+        postcodeLabel.text = L10n.zipCode()
+        phoneLabel.text = L10n.phone()
+        backButton.setTitleForAllState(title: L10n.Back())
+        addButton.setTitleForAllState(title: L10n.add())
+        deliveryFromLabel.text = L10n.deliveryFrom()
+        deliveryToLabel.text = L10n.deliveryTo()
+        
         orderTypeViewArray = [prospectView, customerView]
         orderTypeRadioArray = [prospectRadioLabel, customerRadioLabel]
 
@@ -168,9 +198,9 @@ class NewCustomerVC: UIViewController {
                 customerContactArray.append(newContact)
             }
 
-            titleLabel.text = "EDIT CUSTOMER OR PROSPECT"
-            contactDetailsLabel.text = "CONTACT DETAILS"
-            addButton.setTitleForAllState(title: "Done")
+            titleLabel.text = L10n.editCustomerOrProspect()
+            contactDetailsLabel.text = L10n.contactDetails()
+            addButton.setTitleForAllState(title: L10n.Done())
         }
         else {
             let now = Date()
@@ -246,10 +276,10 @@ class NewCustomerVC: UIViewController {
             }
             deliveryToText.text = endTime
 
-            deliveryDetailsLabel.text = "SALES DETAILS"
-            titleLabel.text = "NEW CUSTOMER OR PROSPECT"
-            contactDetailsLabel.text = "PRIMARY CONTACT"
-            addButton.setTitleForAllState(title: "Add")
+            deliveryDetailsLabel.text = L10n.salesDetails()
+            titleLabel.text = L10n.newCustomerOrProspect()
+            contactDetailsLabel.text = L10n.primaryContact()
+            addButton.setTitleForAllState(title: L10n.add())
         }
 
         if originalCustomerDetail == nil {
@@ -260,7 +290,7 @@ class NewCustomerVC: UIViewController {
         }
 
         let tripNumber = globalInfo.routeControl?.trip ?? ""
-        tripNoLabel.text = "Trip # \(tripNumber)"
+        tripNoLabel.text = "\(L10n.trip()) # \(tripNumber)"
         contactTableView.reloadData()
     }
 

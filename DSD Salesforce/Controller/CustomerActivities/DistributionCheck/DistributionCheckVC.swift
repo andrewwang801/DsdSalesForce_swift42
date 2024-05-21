@@ -19,7 +19,18 @@ class DistributionCheckVC: UIViewController {
     @IBOutlet weak var perfectStoreRatingsLabel: UILabel!
     @IBOutlet weak var totalItemsInListLabel: UILabel!
     @IBOutlet weak var totalItemsAvailableLabel: UILabel!
-
+    
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var aisleLabel: UILabel!
+    @IBOutlet weak var onShelfButton: AnimatableButton!
+    @IBOutlet weak var shelfLabel: UILabel!
+    @IBOutlet weak var expiryLabel: UILabel!
+    @IBOutlet weak var perfectStoreRatingsTitleLabel: UILabel!
+    @IBOutlet weak var totalItemsInListTitleLabel: UILabel!
+    @IBOutlet weak var totalItemsAvailableTitleLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
+    
     enum SortType: Int {
         case category
         case aisle
@@ -140,6 +151,19 @@ class DistributionCheckVC: UIViewController {
     }
 
     func initUI() {
+        //categoryButton.setTitleForAllState(title: L10n.category())
+        itemLabel.text = L10n.item()
+        aisleLabel.text = L10n.aisle()
+        //onShelfButton.setTitleForAllState(title: L10n.onShelf())
+        shelfLabel.text = L10n.shelf()
+        expiryLabel.text = L10n.expriry()
+        perfectStoreRatingsTitleLabel.text = L10n.perfectStoreRatings()
+        totalItemsInListTitleLabel.text = L10n.totalItemsInList()
+        totalItemsAvailableTitleLabel.text = L10n.totalItemsAvailable()
+        backButton.setTitleForAllState(title: L10n.back())
+        doneButton.setTitleForAllState(title: L10n.done())
+        noDataLabel.text = L10n.thereIsNoData()
+        
         checkTableView.dataSource = self
         checkTableView.delegate = self
         updateRightUI()

@@ -60,7 +60,27 @@ class OrderSummaryVC: UIViewController {
     @IBOutlet weak var notesTitleLabel: UILabel!
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var webView: UIWebView!
-
+    
+    @IBOutlet weak var salesLabel: UILabel!
+    @IBOutlet weak var returnsLabel: UILabel!
+    @IBOutlet weak var freeLabel: UILabel!
+    @IBOutlet weak var totalTitleLabel: UILabel!
+    @IBOutlet weak var priorBalance: UILabel!
+    @IBOutlet weak var thisOrder: UILabel!
+    @IBOutlet weak var terms: UILabel!
+    @IBOutlet weak var total: UILabel!
+    @IBOutlet weak var cardLabel: UILabel!
+    @IBOutlet weak var cashLabel: UILabel!
+    @IBOutlet weak var checkLabel: UILabel!
+    @IBOutlet weak var poReferenceNumberLabel: UILabel!
+    @IBOutlet weak var signatureLabel: UILabel!
+    @IBOutlet weak var deliveryDateLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var notesLabel: UILabel!
+    @IBOutlet weak var returnToOrderLabel: AnimatableButton!
+    @IBOutlet weak var printLabel: AnimatableButton!
+    @IBOutlet weak var confirmLabel: AnimatableButton!
+    
     enum PaybyOption: Int {
         case none = -1
         case card = 0
@@ -144,7 +164,7 @@ class OrderSummaryVC: UIViewController {
     var selectedDistributorDescType: DescType? {
         didSet {
             if selectedDistributorDescType == nil {
-                distributorButton.setTitleForAllState(title: "Select Distributor")
+                distributorButton.setTitleForAllState(title: L10n.selectDistributor())
                 distributorButton.setTitleColor(kStoreTypeEmptyTextColor, for: .normal)
             }
             else {
@@ -227,7 +247,7 @@ class OrderSummaryVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        mainVC.setTitleBarText(title: "ORDER SUMMARY")
+        mainVC.setTitleBarText(title: L10n.orderSummary())
     }
 
     @objc func onChangeCollectionText(_ sender: Any) {
@@ -347,7 +367,7 @@ class OrderSummaryVC: UIViewController {
             self.present(imagePicker, animated: true, completion: nil)
         }
         else {
-            SVProgressHUD.showInfo(withStatus: "You don't have camera")
+            SVProgressHUD.showInfo(withStatus: L10n.youDonTHaveCamera())
         }
     }
 

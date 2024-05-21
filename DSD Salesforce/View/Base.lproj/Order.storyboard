@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -365,12 +365,14 @@
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
-                        <outlet property="completedButton" destination="M2k-ic-ogJ" id="nbe-Dl-Umv"/>
+                        <outlet property="completedButton" destination="M2k-ic-ogJ" id="Rrx-CR-XrU"/>
                         <outlet property="containerView" destination="usz-jb-2nJ" id="gqF-I0-M4G"/>
                         <outlet property="historyButton" destination="WDS-aZ-h2F" id="shU-dB-iVE"/>
                         <outlet property="notAvailableLabel" destination="dog-cT-OX7" id="f3N-aM-rwM"/>
+                        <outlet property="productCatalogButton" destination="gvi-Ul-CKf" id="vq5-DW-ylA"/>
                         <outlet property="productTreeView" destination="Uqw-80-zBX" id="jRq-Ie-lSm"/>
                         <outlet property="promotionsButton" destination="Tgr-xm-aiN" id="haB-NH-e7x"/>
+                        <outlet property="returnButton" destination="FqU-Jo-gWH" id="Lgu-pD-Y0s"/>
                         <outlet property="returnsButton" destination="xYP-kM-6jd" id="1sD-7D-nAP"/>
                         <outlet property="salesButton" destination="B43-yY-1h5" id="52i-uK-CIg"/>
                         <outlet property="samplesButton" destination="lDg-Q5-dyB" id="opM-d0-jbn"/>
@@ -1515,11 +1517,14 @@ Balance</string>
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
+                        <outlet property="cardLabel" destination="c27-og-rpv" id="SOq-ad-sO4"/>
                         <outlet property="cardRadioLabel" destination="N43-8y-5S2" id="fhE-Mg-elU"/>
                         <outlet property="cardView" destination="t82-Dh-neP" id="4Dz-Si-tdh"/>
                         <outlet property="cardViewRightConstraint" destination="329-An-MaV" id="1MJ-lf-Upx"/>
+                        <outlet property="cashLabel" destination="sGv-7S-SU4" id="IoG-tJ-1QW"/>
                         <outlet property="cashRadioLabel" destination="NAm-PP-fbj" id="YGZ-Cx-YxH"/>
                         <outlet property="cashView" destination="bQA-UJ-AzQ" id="wti-YN-UXU"/>
+                        <outlet property="checkLabel" destination="tLZ-xq-Oxm" id="kaj-WH-fPq"/>
                         <outlet property="chequeRadioLabel" destination="7f6-qv-O6H" id="Wag-mu-jsA"/>
                         <outlet property="chequeView" destination="7h5-J1-G8X" id="MFh-Ef-Hfg"/>
                         <outlet property="collectionButton" destination="5db-Fq-YeK" id="8bR-zU-17X"/>
@@ -1527,10 +1532,13 @@ Balance</string>
                         <outlet property="collectionText" destination="gep-Lx-Osw" id="IG5-20-7o5"/>
                         <outlet property="collectionTitleLabel" destination="OOA-AN-InJ" id="JFu-mB-3DA"/>
                         <outlet property="confirmButton" destination="YbQ-ae-3mM" id="fvR-OR-95D"/>
+                        <outlet property="confirmLabel" destination="YbQ-ae-3mM" id="LI8-XL-wl7"/>
                         <outlet property="currencyLabel" destination="2Bh-ql-Xr1" id="Pda-3u-Dt8"/>
                         <outlet property="deliveryDateButton" destination="8Zo-pG-DoA" id="0xf-NA-mXI"/>
+                        <outlet property="deliveryDateLabel" destination="lTG-jn-RLu" id="HAH-oY-EKh"/>
                         <outlet property="deliveryDateText" destination="qtF-QI-t2J" id="EkE-ru-zo9"/>
                         <outlet property="distributorButton" destination="xcx-w9-bWQ" id="7BB-E6-hZW"/>
+                        <outlet property="freeLabel" destination="aRP-h0-zrl" id="RpI-AJ-e4c"/>
                         <outlet property="fulfilSubView1" destination="aJ6-b4-Il8" id="5id-GG-2fO"/>
                         <outlet property="fulfilSubView1RadioLabel" destination="z84-h7-NJa" id="rdR-4w-Z6g"/>
                         <outlet property="fulfilSubView1TitleLabel" destination="Y2O-BR-37H" id="r8A-Zn-LAy"/>
@@ -1543,21 +1551,34 @@ Balance</string>
                         <outlet property="fulfilbyStackView" destination="vtw-n5-vOw" id="tR2-Ct-fOO"/>
                         <outlet property="fulfilbyView" destination="fn2-IX-Zs9" id="uAH-TR-yrr"/>
                         <outlet property="headerView" destination="qxn-mT-zha" id="El0-f4-drh"/>
+                        <outlet property="nameLabel" destination="00M-WB-0oc" id="Ujl-aJ-iWb"/>
                         <outlet property="nameText" destination="fVI-FK-BXR" id="hVY-ql-6N1"/>
                         <outlet property="nameTitleLabel" destination="00M-WB-0oc" id="u9B-iQ-9qu"/>
+                        <outlet property="notesLabel" destination="VKQ-rv-Mz0" id="yvg-yV-XR4"/>
                         <outlet property="notesTextView" destination="wr9-MP-CQQ" id="2SN-dM-Of1"/>
                         <outlet property="notesTitleLabel" destination="VKQ-rv-Mz0" id="pCC-tM-LVM"/>
+                        <outlet property="poReferenceNumberLabel" destination="r4G-2u-dEo" id="Sr4-81-dDp"/>
                         <outlet property="previousInvoicesLabel" destination="HBC-CW-YON" id="ki8-ch-Ey9"/>
                         <outlet property="printButton" destination="8eu-Ll-zed" id="36G-et-uqA"/>
+                        <outlet property="printLabel" destination="8eu-Ll-zed" id="oeT-3c-alc"/>
+                        <outlet property="priorBalance" destination="Jjh-iu-UeR" id="dR7-qH-4eU"/>
                         <outlet property="referenceNumberText" destination="dwE-1k-zTs" id="2JT-xQ-EXO"/>
                         <outlet property="referenceNumberTitleLabel" destination="r4G-2u-dEo" id="A6t-5A-82V"/>
+                        <outlet property="returnToOrderLabel" destination="yjX-o5-Ikd" id="oqh-Lz-q1t"/>
                         <outlet property="returnsCountLabel" destination="Lqq-lb-11l" id="QHw-bH-QDa"/>
+                        <outlet property="returnsLabel" destination="LEt-En-pfM" id="Okr-Ol-TF5"/>
                         <outlet property="salesCountLabel" destination="aNa-R0-3c1" id="Rpy-Ri-q3F"/>
+                        <outlet property="salesLabel" destination="KA4-EO-BSm" id="lEA-rc-KOr"/>
                         <outlet property="samplesCountLabel" destination="AWY-Mc-psS" id="ba8-Vg-NFd"/>
+                        <outlet property="signatureLabel" destination="dOx-nY-Xka" id="4Vq-qQ-Jgu"/>
+                        <outlet property="terms" destination="P2a-Az-PBZ" id="xJt-T6-ZdG"/>
                         <outlet property="termsLabel" destination="58D-fy-H8P" id="e9H-2e-4DU"/>
+                        <outlet property="thisOrder" destination="Lh2-Ec-Mht" id="XVw-CO-sat"/>
                         <outlet property="thisOrderLabel" destination="iNS-vW-Mro" id="gtE-bL-Cfo"/>
+                        <outlet property="total" destination="PCV-UA-Tei" id="057-mj-ipd"/>
                         <outlet property="totalCountLabel" destination="Zkg-ve-T4O" id="7VB-bM-Q9K"/>
-                        <outlet property="totalLabel" destination="f9t-X8-Pg4" id="ss8-cD-X6X"/>
+                        <outlet property="totalLabel" destination="f9t-X8-Pg4" id="eWL-bb-t5w"/>
+                        <outlet property="totalTitleLabel" destination="GBw-vm-6Sn" id="zu0-q7-5qG"/>
                         <outlet property="webView" destination="695-YH-M7N" id="gb9-cb-ygL"/>
                     </connections>
                 </viewController>
@@ -2020,16 +2041,24 @@ Balance</string>
                     </view>
                     <connections>
                         <outlet property="codeSortButton" destination="2pf-RO-x1J" id="hwo-us-ANe"/>
+                        <outlet property="codeSortLabel" destination="5hG-3a-Ka1" id="2x4-vk-frr"/>
                         <outlet property="descSortButton" destination="wnK-wa-DhN" id="EGV-ze-w2F"/>
+                        <outlet property="descSortLabel" destination="EcR-6p-mFk" id="eRS-To-MM4"/>
                         <outlet property="filterOptionButton" destination="rIr-ox-JPd" id="DzG-Aa-Zap"/>
+                        <outlet property="lastOrderLabel" destination="IuX-Ct-FYk" id="RX9-5S-eff"/>
                         <outlet property="lastOrderSortButton" destination="yXK-Cc-ow3" id="UeV-3h-UDe"/>
                         <outlet property="noDataLabel" destination="cYX-3n-Ys7" id="l1N-2D-Plc"/>
                         <outlet property="orderTableView" destination="KRk-xk-3Pl" id="mUK-R4-1bR"/>
                         <outlet property="priceSortButton" destination="Qnl-LZ-oUO" id="Sqb-1w-fh5"/>
+                        <outlet property="priceSortLabel" destination="QM4-qK-NuL" id="Ann-vd-cPM"/>
                         <outlet property="qtySortButton" destination="3He-ZJ-Ib2" id="KoL-YP-Ory"/>
+                        <outlet property="qtySortLabel" destination="8SQ-hN-2cE" id="q6z-7V-OeM"/>
                         <outlet property="subTotalLabel" destination="XB2-3B-NrK" id="UCW-mZ-EBX"/>
-                        <outlet property="taxLabel" destination="49A-FO-Hpa" id="SJM-N5-fuV"/>
-                        <outlet property="totalLabel" destination="Jvj-wP-tjk" id="f7k-SM-aL5"/>
+                        <outlet property="subTotalTitleLabel" destination="AUN-t2-mZ8" id="FGm-az-2nR"/>
+                        <outlet property="taxLabel" destination="49A-FO-Hpa" id="s5A-Qu-wtq"/>
+                        <outlet property="taxTitleLabel" destination="ALU-PW-bro" id="Hre-wk-E5Q"/>
+                        <outlet property="totalLabel" destination="Jvj-wP-tjk" id="PfF-iI-KaE"/>
+                        <outlet property="totalTitleLabel" destination="VFJ-am-hnF" id="GpL-W2-hOF"/>
                         <segue destination="8EC-oC-hXw" kind="show" id="L0q-Ro-QtC"/>
                     </connections>
                 </viewController>
@@ -2802,8 +2831,10 @@ Balance</string>
                         <outlet property="allButton" destination="jua-xj-7sD" id="CF8-fe-4Jx"/>
                         <outlet property="allCheckImageView" destination="9gi-4Q-EPA" id="OIU-FX-w54"/>
                         <outlet property="allPriceLabel" destination="abC-N1-qn0" id="QLW-RO-Qev"/>
+                        <outlet property="backButton" destination="PIy-pa-OoA" id="sKQ-CU-zdv"/>
+                        <outlet property="collectionRequiredLabel" destination="P8S-IQ-7aC" id="Arc-HP-V2D"/>
                         <outlet property="customerNameLabel" destination="Ck4-Ya-8ai" id="0oU-vg-11h"/>
-                        <outlet property="doneButton" destination="gMv-Ae-1dK" id="29z-XZ-DC7"/>
+                        <outlet property="doneButton" destination="gMv-Ae-1dK" id="0rS-Ya-9G8"/>
                         <outlet property="invoiceTableView" destination="eU2-zg-AxQ" id="SUo-vg-5lG"/>
                         <outlet property="noDataLabel" destination="fRW-kR-ILK" id="2Bp-wM-a19"/>
                         <outlet property="titleLabel" destination="rhv-vG-es1" id="AWw-iU-5ft"/>
@@ -3112,6 +3143,7 @@ Balance</string>
                         <outlet property="doneButton" destination="s4M-DC-08X" id="2D6-Bq-XcX"/>
                         <outlet property="noDataLabel" destination="P7w-dh-QPA" id="uyZ-df-Pzc"/>
                         <outlet property="reasonCodeTableView" destination="8ZJ-fc-IKc" id="adp-at-7bX"/>
+                        <outlet property="returnButton" destination="YfW-7p-eJs" id="aaa-hT-U63"/>
                         <outlet property="titleLabel" destination="ufI-Cu-ni9" id="RBq-kH-hiI"/>
                     </connections>
                 </viewController>
@@ -3306,10 +3338,12 @@ get 1 free
                                                 <connections>
                                                     <outlet property="descLabel" destination="gmX-6P-Zov" id="pz2-yL-W8P"/>
                                                     <outlet property="fromLabel" destination="MBf-Jc-3ph" id="b2Z-Zx-vCE"/>
+                                                    <outlet property="fromTitleLabel" destination="c19-LP-T15" id="Q8h-w9-acZ"/>
                                                     <outlet property="mainView" destination="DZR-Vl-Olq" id="Gxl-hO-MHX"/>
                                                     <outlet property="nameLabel" destination="3Pb-ft-Ej5" id="RHz-X3-ogI"/>
                                                     <outlet property="pricingLabel" destination="QvK-Rw-C9J" id="fvN-ao-msz"/>
                                                     <outlet property="untilLabel" destination="KTc-lm-I2M" id="tdY-ye-AL1"/>
+                                                    <outlet property="untilTitleLabel" destination="qN8-NU-0Cu" id="B4s-3Y-9vb"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -3344,9 +3378,11 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="NjT-gw-Zn6"/>
                     </view>
                     <connections>
+                        <outlet property="checkPlanner" destination="nQo-r4-qdf" id="QPG-ma-q2T"/>
                         <outlet property="noDataLabel" destination="rs9-pj-vUu" id="fh2-HO-gJX"/>
                         <outlet property="promotionTableView" destination="JFI-1r-xYR" id="ax9-LI-Rtw"/>
                         <outlet property="promotionsHeaderView" destination="znW-Oe-dEk" id="EmL-Pw-EFx"/>
+                        <outlet property="promotionsLabel" destination="oLU-kt-sPw" id="ciU-29-F3a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAD-fz-6op" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3848,16 +3884,22 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="jYq-ZS-kf2"/>
                     </view>
                     <connections>
+                        <outlet property="amountLabel" destination="kY5-55-2dr" id="f4h-Hz-NdS"/>
                         <outlet property="amountText" destination="Xgh-2R-IZI" id="n3V-iP-JPZ"/>
+                        <outlet property="cardNumberLabel" destination="f2e-aV-uXg" id="4pq-ix-GrY"/>
+                        <outlet property="cvvLabel" destination="6RE-NA-gJo" id="Xwf-97-T17"/>
                         <outlet property="cvvText" destination="sKu-of-qTh" id="Lbh-kO-NGA"/>
+                        <outlet property="expiryDateLabel" destination="RKL-SO-diR" id="6Qt-1C-5e3"/>
                         <outlet property="expiryMonthText" destination="RKN-Av-gL6" id="TgG-Of-Mgt"/>
                         <outlet property="expiryYearText" destination="z90-Vu-G05" id="1vi-39-HPR"/>
+                        <outlet property="nameOnCardLabel" destination="0yo-t1-P1r" id="5oS-Bk-fO2"/>
                         <outlet property="nameText" destination="eQa-OU-qWQ" id="SLT-SJ-aYr"/>
                         <outlet property="number0Text" destination="3R6-OM-DGZ" id="xGb-jf-s1n"/>
                         <outlet property="number1Text" destination="TzV-Of-ziU" id="M25-Uc-OQe"/>
                         <outlet property="number2Text" destination="i7V-EN-mSH" id="llw-XV-d97"/>
                         <outlet property="number3Text" destination="7su-4b-lYs" id="Lzw-P4-LdT"/>
-                        <outlet property="payButton" destination="DUy-Pc-rgq" id="TWw-6I-4lk"/>
+                        <outlet property="payButton" destination="DUy-Pc-rgq" id="KlM-PM-uCS"/>
+                        <outlet property="returnButton" destination="sSN-J4-aEi" id="xoe-J3-O91"/>
                         <outlet property="titleLabel" destination="lEp-6v-qg7" id="2Lx-HB-c8P"/>
                     </connections>
                 </viewController>
@@ -4451,17 +4493,27 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="pGK-LV-uz9"/>
                     </view>
                     <connections>
+                        <outlet property="accountLabel" destination="U9X-xU-vXJ" id="eUu-Mw-mxv"/>
                         <outlet property="accountText" destination="NTU-j0-Gz4" id="dDh-nR-dog"/>
                         <outlet property="arNoteText" destination="hoL-PW-Sb1" id="mcH-v2-WDv"/>
+                        <outlet property="arNotesLabel" destination="FBO-fo-ch6" id="tZh-5k-dZs"/>
+                        <outlet property="backButton" destination="zKf-P2-cCL" id="hPl-Hx-peL"/>
+                        <outlet property="bankBSBLabel" destination="Rbn-Tz-RyX" id="t6G-6K-WoT"/>
                         <outlet property="bankBSBText" destination="65h-Qo-iQ1" id="ASF-bm-5ZJ"/>
+                        <outlet property="checkDate" destination="sru-NT-Rir" id="16O-wI-TxO"/>
+                        <outlet property="checkNumber" destination="vN4-39-9w0" id="sTt-Ox-dJj"/>
                         <outlet property="chequeAmountText" destination="5L1-Uw-co7" id="o1k-DZ-4NO"/>
                         <outlet property="chequeDateText" destination="tSG-en-nUn" id="IdV-tt-uAl"/>
                         <outlet property="chequeNumberText" destination="pv0-eD-y8W" id="Zxk-Jq-Kpa"/>
-                        <outlet property="collectionRequiredLabel" destination="dpo-g7-fIu" id="Les-xI-2Qz"/>
+                        <outlet property="collectionRequiredLabel" destination="dpo-g7-fIu" id="bt5-oy-vlC"/>
+                        <outlet property="collectionRequiredTitleLabel" destination="LEn-vy-Ehs" id="4nV-UD-Qqy"/>
                         <outlet property="customerNameLabel" destination="qfW-L9-lMS" id="WLU-QN-omA"/>
+                        <outlet property="doneButton" destination="dqn-Jk-VeT" id="joG-k9-boA"/>
                         <outlet property="titleLabel" destination="Wq5-mt-s6k" id="qLg-VG-zAf"/>
-                        <outlet property="totalCollectedLabel" destination="CzS-e8-dIB" id="cec-0E-hIp"/>
-                        <outlet property="totalRemainingLabel" destination="5Gl-16-GOp" id="QpC-we-RVJ"/>
+                        <outlet property="totalCollectedLabel" destination="CzS-e8-dIB" id="xxi-xB-sph"/>
+                        <outlet property="totalCollectedTitleLabel" destination="ULW-f2-tSc" id="aWP-Ru-InA"/>
+                        <outlet property="totalRemainingLabel" destination="5Gl-16-GOp" id="zqV-3S-2Yn"/>
+                        <outlet property="totalRemainingTitleLabel" destination="thu-vW-sQz" id="11X-Jy-Uqt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nae-hI-0bf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4863,9 +4915,12 @@ get 1 free
                         <viewLayoutGuide key="safeArea" id="BHI-TH-yxf"/>
                     </view>
                     <connections>
-                        <outlet property="adjustButton" destination="9x6-W6-MxJ" id="fEr-AW-r6I"/>
+                        <outlet property="adjustButton" destination="9x6-W6-MxJ" id="dwa-if-H6f"/>
                         <outlet property="noDataLabel" destination="GqV-4P-iKG" id="68J-Wr-nMF"/>
                         <outlet property="orderTableView" destination="yPF-8Y-buD" id="OYz-um-Y2Q"/>
+                        <outlet property="returnButton" destination="YXi-e1-9AY" id="dYm-Pe-i17"/>
+                        <outlet property="showMarginButton" destination="mug-Cf-QAh" id="2IK-zc-4g5"/>
+                        <outlet property="titleLabel" destination="kZ2-1N-byX" id="Nva-Am-MCf"/>
                         <outlet property="toggleMarginButton" destination="mug-Cf-QAh" id="FJg-ZA-AFb"/>
                         <outlet property="typeCV" destination="5fP-UW-Dw6" id="ccL-J3-LIt"/>
                     </connections>

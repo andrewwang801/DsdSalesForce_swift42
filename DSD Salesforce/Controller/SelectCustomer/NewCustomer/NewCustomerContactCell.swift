@@ -15,7 +15,10 @@ class NewCustomerContactCell: UITableViewCell {
     @IBOutlet weak var emailText: AnimatableTextField!
     @IBOutlet weak var phoneText: AnimatableTextField!
     @IBOutlet weak var nameTopConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var contactNameLabel: UILabel!
+    @IBOutlet weak var contactEmailLabel: UILabel!
+    @IBOutlet weak var conatctPhoneLabel: UILabel!
+    
     var parentVC: NewCustomerVC!
     var indexPath: IndexPath!
 
@@ -40,6 +43,10 @@ class NewCustomerContactCell: UITableViewCell {
     }
 
     func configCell() {
+        contactNameLabel.text = L10n.contactName()
+        contactEmailLabel.text = L10n.contactEmail()
+        conatctPhoneLabel.text = L10n.contactPhone()
+        
         let index = indexPath.row
         let contact = parentVC.customerContactArray[index]
         selectionStyle = .none

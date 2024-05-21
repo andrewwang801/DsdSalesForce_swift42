@@ -64,6 +64,11 @@ class SelectCustomerDetailsVC: UIViewController {
     }
 
     func initUI() {
+        lastVisitedTitleLabel.text = L10n.lastVisitedOn()
+        lastOrderTitleLabel.text = L10n.lastOrderOn()
+        availableCreditTitleLabel.text = L10n.availableCredit()
+        currentMonthSalesTitleLabel.text = L10n.currentMonthSales()
+        
         contactTableView.dataSource = self
         contactTableView.delegate = self
 
@@ -244,7 +249,7 @@ class SelectCustomerDetailsVC: UIViewController {
             self.present(imagePicker, animated: true, completion: nil)
         }
         else {
-            SVProgressHUD.showInfo(withStatus: "You don't have camera")
+            SVProgressHUD.showInfo(withStatus: L10n.youDonTHaveCamera())
         }
     }
 

@@ -54,7 +54,7 @@ class ZebraPrintEngine: NSObject {
 
     static func doPrinter(selectedPrinter: EAAccessory) {
         if openPrinter(selectedPrinter: selectedPrinter) == false {
-            Utils.showAlert(vc: self.viewController!, title: "", message: "Connection to printer failed.\nWill you try again?", failed: false, customerName: "", leftString: "Cancel", middleString: "", rightString: "Okay", dismissHandler: { (returnCode) in
+            Utils.showAlert(vc: self.viewController!, title: "", message: "Connection to printer failed.\nWill you try again?", failed: false, customerName: "", leftString: L10n.cancel(), middleString: "", rightString: "Okay", dismissHandler: { (returnCode) in
                 if returnCode == MessageDialogVC.ReturnCode.right {
                     self.selectPrinter()
                     return
@@ -67,7 +67,7 @@ class ZebraPrintEngine: NSObject {
         }
 
         if zebraPrinter == nil {
-            Utils.showAlert(vc: self.viewController!, title: "", message: "Printer is not ready.\nWill you try again?", failed: false, customerName: "", leftString: "Cancel", middleString: "", rightString: "Okay", dismissHandler: { (returnCode) in
+            Utils.showAlert(vc: self.viewController!, title: "", message: "Printer is not ready.\nWill you try again?", failed: false, customerName: "", leftString: L10n.cancel(), middleString: "", rightString: "Okay", dismissHandler: { (returnCode) in
                 if returnCode == MessageDialogVC.ReturnCode.right {
                     self.selectPrinter()
                     return

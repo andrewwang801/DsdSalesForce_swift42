@@ -581,7 +581,8 @@
                     </view>
                     <connections>
                         <outlet property="addToOrderButton" destination="0Qi-LZ-Z35" id="7ku-w9-3BO"/>
-                        <outlet property="barcodeLabel" destination="4T3-IH-eog" id="rkN-2d-fHE"/>
+                        <outlet property="barcodeLabel" destination="4T3-IH-eog" id="uoe-pK-PKg"/>
+                        <outlet property="barcodeTitleLabel" destination="6wA-Uk-tJe" id="HsZ-xa-FnB"/>
                         <outlet property="baseCasePriceLabel" destination="kGs-qa-bSJ" id="pax-jz-eTo"/>
                         <outlet property="baseCasePriceTitleLabel" destination="KDC-fe-JvO" id="zHi-hh-FJo"/>
                         <outlet property="contentView" destination="zXi-zQ-mBj" id="5BT-87-24L"/>
@@ -602,8 +603,10 @@
                         <outlet property="qtyTextField" destination="SUE-rY-Lr4" id="mqp-Q9-nmO"/>
                         <outlet property="qtyView" destination="fPY-7B-vP2" id="GTs-1F-I2G"/>
                         <outlet property="rightScrollButton" destination="YCc-lc-Cmt" id="gKg-vJ-PXx"/>
-                        <outlet property="unitPriceLabel" destination="wgm-yT-FtM" id="6G3-Z8-zNr"/>
-                        <outlet property="unitsPerCaseLabel" destination="1uP-VH-ESr" id="SOK-Af-xbZ"/>
+                        <outlet property="unitPriceLabel" destination="wgm-yT-FtM" id="aqI-QQ-6Qp"/>
+                        <outlet property="unitPriceTitleLabel" destination="lPM-KG-U5e" id="rQH-af-fMf"/>
+                        <outlet property="unitsPerCaseLabel" destination="1uP-VH-ESr" id="Ae8-oz-1Gg"/>
+                        <outlet property="unitsPerCaseTitleLabel" destination="bmw-zp-8qe" id="5Sl-n6-ppD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pi3-AU-LJB" userLabel="First Responder" sceneMemberID="firstResponder"/>

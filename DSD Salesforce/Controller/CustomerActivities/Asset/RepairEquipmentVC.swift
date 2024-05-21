@@ -14,7 +14,11 @@ class RepairEquipmentVC: UIViewController {
     @IBOutlet weak var customerNameLabel: UILabel!
     @IBOutlet weak var faultButton: AnimatableButton!
     @IBOutlet weak var noteTextView: UITextView!
-
+    @IBOutlet weak var faultLabel: UILabel!
+    @IBOutlet weak var notesLabel: UILabel!
+    @IBOutlet weak var backButton: AnimatableButton!
+    @IBOutlet weak var confirmButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var customerDetail: CustomerDetail!
     var equipmentWithAss: EquipmentWithAss!
@@ -44,7 +48,13 @@ class RepairEquipmentVC: UIViewController {
     }
 
     func initUI() {
-
+        titleLabel.text = L10n.repairEquipment()
+        faultLabel.text = L10n.fault()
+        notesLabel.text = L10n.notes()
+        faultButton.setTitleForAllState(title: L10n.fridgeUpright())
+        backButton.setTitleForAllState(title: L10n.back())
+        confirmButton.setTitleForAllState(title: L10n.confirm())
+        
         noteTextView.text = equipmentWithAss.equipAss.repairNotes ?? ""
         customerNameLabel.text = customerDetail.name ?? ""
 
@@ -118,7 +128,7 @@ class RepairEquipmentVC: UIViewController {
         for docText in contactDocTextArray {
             message += (docText.docText ?? "") + "\n"
         }
-        Utils.showAlert(vc: self, title: "REPAIR CONTACT DETAILS", message: message, failed: false, customerName: "", leftString: "Return", middleString: "", rightString: "", dismissHandler: nil)
+        Utils.showAlert(vc: self, title: L10n.repairContactDetails(), message: message, failed: false, customerName: "", leftString: "Return", middleString: "", rightString: "", dismissHandler: nil)
     }
 
     @IBAction func onPhoto(_ sender: Any) {
@@ -132,7 +142,7 @@ class RepairEquipmentVC: UIViewController {
             self.present(imagePicker, animated: true, completion: nil)
         }
         else {
-            SVProgressHUD.showInfo(withStatus: "You don't have camera")
+            SVProgressHUD.showInfo(withStatus: L10n.youDonTHaveCamera())
         }
     }
 

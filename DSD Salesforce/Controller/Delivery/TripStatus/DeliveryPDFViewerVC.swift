@@ -11,14 +11,16 @@ import UIKit
 class DeliveryPDFViewerVC: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
-
+    @IBOutlet weak var closeButton: UIBarButtonItem!
+    
     var hud: MBProgressHUD?
     var pdfURL: URL!
     var data: Data!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        closeButton.title = L10n.close()
         // Do any additional setup after loading the view.
         let urlRequest = URLRequest(url: pdfURL)
         webView.loadRequest(urlRequest)

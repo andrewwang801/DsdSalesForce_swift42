@@ -39,6 +39,8 @@ class SalesReasonCodeCell: UITableViewCell {
     }
 
     func configCell() {
+        reasonCodeButton.setTitleForAllState(title: L10n.saStrNoReasonCode())
+        
         selectionStyle = .none
         let section = indexPath.section
         let row = indexPath.row

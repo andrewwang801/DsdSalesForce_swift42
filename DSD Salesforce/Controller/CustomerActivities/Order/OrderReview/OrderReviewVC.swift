@@ -13,8 +13,11 @@ class OrderReviewVC: UIViewController {
     @IBOutlet weak var typeCV: UICollectionView!
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
-    @IBOutlet weak var adjustButton: AnimatableButton!
     @IBOutlet weak var toggleMarginButton: AnimatableButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var showMarginButton: AnimatableButton!
+    @IBOutlet weak var adjustButton: AnimatableButton!
     
     var orderVC: OrderVC!
     let globalInfo = GlobalInfo.shared
@@ -104,6 +107,11 @@ class OrderReviewVC: UIViewController {
     }
 
     func initUI() {
+        titleLabel.text = L10n.orderReview()
+        returnButton.setTitleForAllState(title: L10n.Return())
+        showMarginButton.setTitleForAllState(title: L10n.showMargin())
+        adjustButton.setTitleForAllState(title: L10n.adjust())
+        
         typeCV.dataSource = self
         typeCV.delegate = self
         typeCV.delaysContentTouches = false

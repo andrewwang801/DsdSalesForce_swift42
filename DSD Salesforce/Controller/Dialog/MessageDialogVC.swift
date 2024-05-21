@@ -61,7 +61,7 @@ class MessageDialogVC: UIViewController {
             failedTopConstraint.constant = 0
         }
         else {
-            failedLabel.text = "FAILED"
+            failedLabel.text = L10n.failed()
             failedTopConstraint.constant = 10
         }
 

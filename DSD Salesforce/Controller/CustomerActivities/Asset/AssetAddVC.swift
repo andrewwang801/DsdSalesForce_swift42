@@ -28,6 +28,16 @@ class AssetAddVC: AssetAddBaseVC {
     @IBOutlet weak var statusButton: AnimatableButton!
     @IBOutlet weak var assetTypeButton: AnimatableButton!
 
+    @IBOutlet weak var serialNumberLabel: UILabel!
+    @IBOutlet weak var alternativeAssetNumber: UILabel!
+    @IBOutlet weak var locationInStoreLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var assetTypeLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var addAssetToStoreButton: AnimatableButton!
+    @IBOutlet weak var makeTitleLabel: UILabel!
+    @IBOutlet weak var modelTitleLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
     var customerDetail: CustomerDetail!
@@ -73,7 +83,7 @@ class AssetAddVC: AssetAddBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        mainVC.setTitleBarText(title: "ADD ASSET")
+        mainVC.setTitleBarText(title: L10n.saStrAddAsset())
         reload()
     }
 
@@ -84,6 +94,18 @@ class AssetAddVC: AssetAddBaseVC {
     }
 
     func initUI() {
+        serialNumberLabel.text = L10n.serialNumber()
+        alternativeAssetNoText.text = L10n.alternativeAssetNumber()
+        makeTitleLabel.text = L10n.make()
+        modelTitleLabel.text = L10n.model()
+        locationInStoreLabel.text = L10n.locationInStore()
+        statusLabel.text = L10n.Status()
+        assetTypeLabel.text = L10n.assetType()
+        returnButton.setTitleForAllState(title: L10n.Return())
+        addAssetToStoreButton.setTitleForAllState(title: L10n.addAssetToStore())
+        noDataLabel.text = L10n.thereIsNoData()
+        noDataRightLabel.text = L10n.thereIsNoData()
+        
         // search view
         searchText.delegate = self
         searchText.addTarget(self, action: #selector(AssetAddVC.onSearchTextDidChanged), for: .editingChanged)
@@ -388,7 +410,7 @@ class AssetAddVC: AssetAddBaseVC {
 
     @IBAction func onDone(_ sender: Any) {
         if selectedEquipment == nil {
-            Utils.showAlert(vc: self, title: "", message: "Please select Equipment Model", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pleaseSelectEquipmentModel(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
         }
         else {
             doConfirm()

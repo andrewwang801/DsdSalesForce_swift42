@@ -13,9 +13,6 @@ class OrderSalesVC: UIViewController {
 
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
-    @IBOutlet weak var subTotalLabel: UILabel!
-    @IBOutlet weak var taxLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
 
     @IBOutlet weak var filterOptionButton: AnimatableButton!
     @IBOutlet weak var codeSortButton: AnimatableButton!
@@ -24,6 +21,18 @@ class OrderSalesVC: UIViewController {
     @IBOutlet weak var priceSortButton: AnimatableButton!
     @IBOutlet weak var qtySortButton: AnimatableButton!
 
+    @IBOutlet weak var codeSortLabel: UILabel!
+    @IBOutlet weak var descSortLabel: UILabel!
+    @IBOutlet weak var lastOrderLabel: UILabel!
+    @IBOutlet weak var priceSortLabel: UILabel!
+    @IBOutlet weak var qtySortLabel: UILabel!
+    @IBOutlet weak var subTotalTitleLabel: UILabel!
+    @IBOutlet weak var subTotalLabel: UILabel!
+    @IBOutlet weak var taxLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var taxTitleLabel: UILabel!
+    @IBOutlet weak var totalTitleLabel: UILabel!
+    
     var orderDetailArray = [OrderDetail]()
 
     var sortTypeButtonArray = [AnimatableButton]()
@@ -117,7 +126,16 @@ class OrderSalesVC: UIViewController {
     }
 
     func initUI() {
-
+        codeSortLabel.text = L10n.code()
+        descSortLabel.text = L10n.description()
+        lastOrderLabel.text = L10n.lastOrder()
+        priceSortLabel.text = L10n.price()
+        qtySortLabel.text = L10n.qty()
+        subTotalTitleLabel.text = L10n.subtotal()
+        taxTitleLabel.text = L10n.tax()
+        totalTitleLabel.text = L10n.total()
+        noDataLabel.text = L10n.thereIsNoData()
+        
         let prefInventoryUOM = globalInfo.routeControl?.inventoryUOM ?? ""
         isShowCase = prefInventoryUOM != "U"
 
@@ -256,10 +274,10 @@ class OrderSalesVC: UIViewController {
         }
         else {
             if selectedOrderType == .sales {
-                Utils.showAlert(vc: self.orderVC, title: "", message: "This item is not available to be sold", failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self.orderVC, title: "", message: L10n.thisItemIsNotAvaiableToBeSold(), failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
             }
             else if selectedOrderType == .returns {
-                Utils.showAlert(vc: self.orderVC, title: "", message: "This item is not available to be returned", failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self.orderVC, title: "", message: L10n.thisItemIsNotAvaiableToBeReturned(), failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
             }
             return
         }
@@ -277,7 +295,7 @@ class OrderSalesVC: UIViewController {
         selectedIndex = -1
 
         if itemNo.length == 0 {
-            Utils.printDebug(message: "Order no product found")
+            Utils.printDebug(message: L10n.orderNoProduct())
             return
         }
         else {
@@ -311,10 +329,10 @@ class OrderSalesVC: UIViewController {
         }
         else {
             if selectedOrderType == .sales {
-                Utils.showAlert(vc: self.orderVC, title: "", message: "This item is not available to be sold", failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self.orderVC, title: "", message: L10n.thisItemIsNotAvaiableToBeSold(), failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
             }
             else if selectedOrderType == .returns {
-                Utils.showAlert(vc: self.orderVC, title: "", message: "This item is not available to be returned", failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
+                Utils.showAlert(vc: self.orderVC, title: "", message: L10n.thisItemIsNotAvaiableToBeReturned(), failed: false, customerName: "", leftString: "", middleString: "Return", rightString: "", dismissHandler: nil)
             }
             return
         }
@@ -330,13 +348,13 @@ class OrderSalesVC: UIViewController {
     func addProduct(shouldRemoveZeroAmount: Bool) {
 
         if selectedProductDetail == nil {
-            Utils.printDebug(message: "Please select valid product")
+            Utils.printDebug(message: L10n.selectValidProduct())
             return
         }
 
         let itemNo = selectedProductDetail?.itemNo ?? ""
         if orderVC.isAuthorizedItem(itemNo: itemNo) == false {
-            Utils.printDebug(message: "Item not authorised for this customer")
+            Utils.printDebug(message: L10n.itemNotAuthorised())
             return
         }
 
@@ -349,15 +367,15 @@ class OrderSalesVC: UIViewController {
                 inventoryQty = Int(Utils.getXMLDivided(valueString: prodLevl!.qty ?? "0"))
             }
             if enterQty > inventoryQty && bShouldConfirmInventoryAmount == true {
-                let alert = UIAlertController(title: itemNo, message: "There may not be inventory of this item in the warehouse", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { _ in
+                let alert = UIAlertController(title: itemNo, message: L10n.thereMayNotBeInventoryOfTheseItemsInTheWarehouse(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: L10n.continue(), style: .default, handler: { _ in
                     self.doAddSelectedProduct()
 
                     GlobalInfo.saveCache()
                     self.sortAndFilterOrders()
                     self.refreshOrders()
                 }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { _ in
+                alert.addAction(UIAlertAction(title: L10n.cancel(), style: .default, handler: { _ in
                     // remove
                 }))
                 self.present(alert, animated: true, completion: nil)
@@ -385,15 +403,15 @@ class OrderSalesVC: UIViewController {
                     inventoryQty = Int(Utils.getXMLDivided(valueString: prodLevl!.qty ?? "0"))
                 }
                 if enterQty > inventoryQty && bShouldConfirmInventoryAmount == true {
-                    let alert = UIAlertController(title: itemNo, message: "There may not be inventory of this item in the warehouse", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { _ in
+                    let alert = UIAlertController(title: itemNo, message: L10n.thereMayNotBeInventoryOfTheseItemsInTheWarehouse(), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: L10n.continue(), style: .default, handler: { _ in
                         selectedOrderDetail.enterQty = enterQty.int32
 
                         GlobalInfo.saveCache()
                         self.sortAndFilterOrders()
                         self.refreshOrders()
                     }))
-                    alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { _ in
+                    alert.addAction(UIAlertAction(title: L10n.remove(), style: .default, handler: { _ in
                         // remove
                         self.orderVC.orderDetailSetArray[self.selectedOrderType.rawValue].removeObject(at: self.selectedIndex)
 

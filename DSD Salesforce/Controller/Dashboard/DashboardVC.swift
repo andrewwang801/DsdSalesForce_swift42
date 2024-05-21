@@ -33,6 +33,28 @@ class DashboardVC: UIViewController {
     @IBOutlet weak var metricCollectionView: UICollectionView!
     @IBOutlet weak var chartView: LineChartView!
 
+    //
+    @IBOutlet weak var currentMonthPerformance: UILabel!
+    @IBOutlet weak var salesMTDLabel: UILabel!
+    @IBOutlet weak var monthTargetlabel: UILabel!
+    @IBOutlet weak var remainingLabel: UILabel!
+    @IBOutlet weak var percentageLabel: UILabel!
+    
+    @IBOutlet weak var currentWeekPerformanceLabel: UILabel!
+    @IBOutlet weak var salesTodayLabel: UILabel!
+    @IBOutlet weak var salesThisWeeklabel: UILabel!
+    @IBOutlet weak var salesLastWeekLabel: UILabel!
+    @IBOutlet weak var thisWeekVsLastWeekLabel: UILabel!
+    
+    @IBOutlet weak var todayCallsLabel: UILabel!
+    @IBOutlet weak var plannedLabel: UILabel!
+    @IBOutlet weak var outOfRouteLabel: UILabel!
+    @IBOutlet weak var completedLabel: UILabel!
+    @IBOutlet weak var productiveLabel: UILabel!
+    
+    @IBOutlet weak var metricsLabel: UILabel!
+    @IBOutlet weak var customerSelectButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
 
@@ -55,7 +77,7 @@ class DashboardVC: UIViewController {
         updateUI()
         updateChartData()
 
-        mainVC.setTitleBarText(title: "YOUR DASHBOARD")
+        mainVC.setTitleBarText(title: L10n.yourDashboard())
     }
 
     func initData() {
@@ -74,7 +96,26 @@ class DashboardVC: UIViewController {
     }
 
     func initUI() {
-
+        currentMonthPerformance.text = L10n.currentMonthPerformance()
+        salesMTDLabel.text = L10n.salesMTD()
+        monthTargetlabel.text = L10n.monthTarget()
+        remainingLabel.text = L10n.remaining()
+        percentageLabel.text = L10n.percentage()
+        
+        currentWeekPerformanceLabel.text = L10n.currentWeekPerformance()
+        salesTodayLabel.text = L10n.salesToday()
+        salesThisWeeklabel.text = L10n.salesThisWeek()
+        salesLastWeekLabel.text = L10n.salesLastWeek()
+        thisWeekVsLastWeekLabel.text = L10n.thisWeekVsLastWeek()
+        
+        todayCallsLabel.text = L10n.todaySCalls()
+        plannedLabel.text = L10n.planned()
+        outOfRouteLabel.text = L10n.outOfRoute()
+        completedLabel.text = L10n.completed()
+        productiveLabel.text = L10n.productive()
+        
+        metricsLabel.text = L10n.metrics()
+        
         initGraph()
 
         // graph option labels

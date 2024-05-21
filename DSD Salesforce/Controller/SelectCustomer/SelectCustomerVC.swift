@@ -89,8 +89,16 @@ class SelectCustomerVC: UIViewController {
 
     func initUI() {
 
+        showAllButton.setTitleForAllState(title: L10n.showAll())
+        noDataLabel.text = L10n.thereIsNoData()
+        detailsButton.setTitleForAllState(title: L10n.DETAILS())
+        pricingButton.setTitleForAllState(title: L10n.pricing())
+        topProductsButton.setTitleForAllState(title: L10n.topProducts())
+        opportunitiesButton.setTitleForAllState(title: L10n.opportunities())
+        nearbyButton.setTitleForAllState(title: L10n.nearby())
+        noCustomerSelectedLabel.text = L10n.noCustomerSelected()
+        
         // top option buttons
-        detailsButton.setTitleForAllState(title: "SA_STR_DETAILS".localized)
         topOptionButtonArray = [detailsButton, pricingButton, topProductsButton, opportunitiesButton, nearbyButton]
         for (index, button) in topOptionButtonArray.enumerated() {
             button.tag = 300+index
@@ -423,7 +431,7 @@ class SelectCustomerVC: UIViewController {
             if self.routificResult == nil {
                 DispatchQueue.main.async {
                     hud?.hide(true)
-                    SVProgressHUD.showInfo(withStatus: "Failed to call Routific api")
+                    SVProgressHUD.showInfo(withStatus: L10n.failedToCallOptimizationApi())
                 }
                 return
             }
@@ -464,7 +472,7 @@ class SelectCustomerVC: UIViewController {
                                 hud?.hide(true)
 
                                 if routificResponse.output == nil {
-                                    SVProgressHUD.showInfo(withStatus: "Failed to call Routific api")
+                                    SVProgressHUD.showInfo(withStatus: L10n.failedToCallOptimizationApi())
                                 }
                                 else {
                                     if routificResponse.output!.status == "success" {
@@ -473,15 +481,15 @@ class SelectCustomerVC: UIViewController {
                                                 self.optimizeSequence(locationList: routificResponse.output!.solution!.vehicle_1)
                                             }
                                             else {
-                                                SVProgressHUD.showInfo(withStatus: "Failed to call Routific api")
+                                                SVProgressHUD.showInfo(withStatus: L10n.failedToCallOptimizationApi())
                                             }
                                         }
                                         else {
-                                            SVProgressHUD.showInfo(withStatus: "Failed to call Routific api")
+                                            SVProgressHUD.showInfo(withStatus: L10n.failedToCallOptimizationApi())
                                         }
                                     }
                                     else {
-                                        SVProgressHUD.showInfo(withStatus: "Failed to call Routific api")
+                                        SVProgressHUD.showInfo(withStatus: L10n.failedToCallOptimizationApi())
                                     }
                                 }
                             }
@@ -491,7 +499,7 @@ class SelectCustomerVC: UIViewController {
                         isResult = true
                         DispatchQueue.main.async {
                             hud?.hide(true)
-                            SVProgressHUD.showInfo(withStatus: "Failed to call Routific api")
+                            SVProgressHUD.showInfo(withStatus: L10n.failedToCallOptimizationApi())
                         }
                     }
                     isAPIFinished = true
@@ -782,7 +790,7 @@ class SelectCustomerVC: UIViewController {
     }
 
     @IBAction func onEndTrip(_ sender: Any) {
-        Utils.showAlert(vc: self, title: "END TRIP", message: "You are about to commence the End Trip processing. Once started you will not be able to return to make further sales for this trip", failed: false, customerName: "", leftString: "Return", middleString: "", rightString: "End Trip") { (returnCode) in
+        Utils.showAlert(vc: self, title: L10n.endTrip(), message: L10n.YouAreAboutToCommenceTheEndTripProcessing(), failed: false, customerName: "", leftString: L10n.return(), middleString: "", rightString: L10n.endTrip()) { (returnCode) in
             if returnCode == MessageDialogVC.ReturnCode.right {
                 self.doEndTripProcess()
             }

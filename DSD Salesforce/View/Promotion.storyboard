@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -259,7 +258,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </view>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="zA1-PA-SUY" userLabel="Footer View">
-                                            <rect key="frame" x="0.0" y="91" width="834" height="13"/>
+                                            <rect key="frame" x="0.0" y="119" width="834" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </view>
                                         <prototypes>
@@ -271,10 +270,10 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3O-YB-A6B" userLabel="Left View">
-                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="49.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="162" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Always Cookies" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="YJ1-gI-7A0">
-                                                                    <rect key="frame" x="10" y="0.0" width="142" height="49.5"/>
+                                                                    <rect key="frame" x="10" y="0.0" width="142" height="50"/>
                                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                                     <color key="textColor" red="0.18431372549019609" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -289,7 +288,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D87-Dc-3pR" userLabel="Main View">
-                                                            <rect key="frame" x="162" y="0.0" width="672" height="49.5"/>
+                                                            <rect key="frame" x="162" y="0.0" width="672" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POi-g5-P11">
                                                                     <rect key="frame" x="0.0" y="12.5" width="450" height="25"/>
@@ -441,7 +440,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/20/2017 - 03/20/2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="g8T-g6-RzI">
-                                                                <rect key="frame" x="15" y="42" width="160" height="18.5"/>
+                                                                <rect key="frame" x="15" y="42.5" width="160" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                                 <color key="textColor" red="0.18039215689999999" green="0.17254901959999999" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -479,7 +478,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/20/2017 - 03/20/2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ug3-bo-bd1">
-                                                                <rect key="frame" x="15" y="42" width="160" height="18.5"/>
+                                                                <rect key="frame" x="15" y="42.5" width="160" height="18.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                                 <color key="textColor" red="0.18039215689999999" green="0.17254901959999999" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -634,8 +633,12 @@
                     </view>
                     <size key="freeformSize" width="1024" height="700"/>
                     <connections>
+                        <outlet property="discountLabel" destination="Yru-bf-w9B" id="aMk-zd-anr"/>
+                        <outlet property="doneButton" destination="JMM-me-ip3" id="Q1O-nP-8FU"/>
+                        <outlet property="featurePriceLabel" destination="5tz-uB-oad" id="EKk-fw-sDQ"/>
                         <outlet property="firstMonthLeftConstraint" destination="eLS-PZ-Xq5" id="RJQ-R3-ral"/>
                         <outlet property="firstMonthWidthConstraint" destination="9z9-oj-5RO" id="3F7-E0-bXf"/>
+                        <outlet property="instoreLabel" destination="V86-7t-77i" id="7nM-AI-Ume"/>
                         <outlet property="month1Label" destination="x3W-Ub-gFP" id="wvF-FZ-YQ3"/>
                         <outlet property="month1View" destination="fcq-HB-1nS" id="Dn5-S2-Yxx"/>
                         <outlet property="month2Label" destination="Jn1-3G-L8z" id="K5s-gw-kSF"/>
@@ -653,6 +656,9 @@
                         <outlet property="rightInfoView" destination="9C0-69-zpE" id="mEo-Vx-l6N"/>
                         <outlet property="secondMonthWidthConstraint" destination="i4J-VT-3Lv" id="2FX-kP-YEA"/>
                         <outlet property="thirdMonthWidthConstraint" destination="rVH-co-mtS" id="vlm-C4-rei"/>
+                        <outlet property="titleLabel" destination="SPA-kP-NVK" id="XmB-9J-gDR"/>
+                        <outlet property="typeLabel" destination="Oh2-32-Kvz" id="Wi4-aO-NqN"/>
+                        <outlet property="validLabel" destination="2Fj-tU-F1S" id="bKu-iB-H52"/>
                         <outlet property="weekCollectionView" destination="E5o-Sy-zWI" id="kXt-Ka-QZQ"/>
                     </connections>
                 </viewController>

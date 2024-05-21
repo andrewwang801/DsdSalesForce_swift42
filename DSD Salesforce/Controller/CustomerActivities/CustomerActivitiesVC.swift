@@ -23,7 +23,18 @@ class CustomerActivitiesVC: UIViewController {
     @IBOutlet weak var paymentCollectionButton: UIButton!
     @IBOutlet weak var paymentCollectionView: UIView!
     @IBOutlet weak var paymentCollectionViewRightConstraint: NSLayoutConstraint!
-
+    
+    @IBOutlet weak var toDoObjectivesLabel: UILabel!
+    @IBOutlet weak var customerNotesLabel: UILabel!
+    @IBOutlet weak var updateDetailsLabel: UILabel!
+    @IBOutlet weak var paymentCollectionLabel: UILabel!
+    @IBOutlet weak var distributionCheckLabel: UILabel!
+    @IBOutlet weak var salesOrderLabel: UILabel!
+    @IBOutlet weak var assetLabel: UILabel!
+    @IBOutlet weak var promotionsLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var completeVisitButton: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
     var customerDetail: CustomerDetail!
@@ -38,6 +49,17 @@ class CustomerActivitiesVC: UIViewController {
     }
 
     func initUI() {
+        toDoObjectivesLabel.text = L10n.toDoObjectives()
+        customerNotesLabel.text = L10n.customerNotes()
+        updateDetailsLabel.text = L10n.updateDeatils()
+        paymentCollectionLabel.text = L10n.paymentCollection()
+        distributionCheckLabel.text = L10n.distributionCheck()
+        salesOrderLabel.text = L10n.salesOrder()
+        assetLabel.text = L10n.assets()
+        promotionsLabel.text = L10n.promotions()
+        returnButton.setTitleForAllState(title: L10n.Return())
+        completeVisitButton.setTitleForAllState(title: L10n.completeVisit())
+        
         surveyCollectionView.delegate = self
         surveyCollectionView.dataSource = self
     }
@@ -396,7 +418,7 @@ class CustomerActivitiesVC: UIViewController {
         }
 
         if savedNotUploadedHeaderArray.count > 0 {
-            Utils.showAlert(vc: self, title: "", message: "Are you sure you wish to exit? Any data you have entered for this customer will be lost", failed: false, customerName: "", leftString: "Cancel", middleString: "", rightString: "Confirm") { (returnCode) in
+            Utils.showAlert(vc: self, title: "", message: L10n.areYourSureYouWishToExitAnyDataYouHaveEnteredForThisCustomerWillBeLost(), failed: false, customerName: "", leftString: L10n.cancel(), middleString: "", rightString: L10n.confirm()) { (returnCode) in
                 if returnCode == MessageDialogVC.ReturnCode.right {
                     // remove orders that was not uploaded
                     for orderHeader in savedNotUploadedHeaderArray {

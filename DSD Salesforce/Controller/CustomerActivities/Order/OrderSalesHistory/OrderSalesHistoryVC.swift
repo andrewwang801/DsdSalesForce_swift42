@@ -241,6 +241,10 @@ class OrderSalesHistoryVC: OrderHistoryBaseVC {
     }
 
     func initUI() {
+        ordersButton.setTitleForAllState(title: L10n.orders())
+        returnsButton.setTitleForAllState(title: L10n.returns())
+        noDataLabel.text = L10n.thereIsNoData()
+        
         historyTableView.dataSource = self
         historyTableView.delegate = self
         titleTableView.dataSource = self

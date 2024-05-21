@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FD8803B23BF84880065A6B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FD8803D23BF84880065A6B2 /* Localizable.strings */; };
+		0FD8804223BFA7830065A6B2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD8804123BFA7820065A6B2 /* Strings.swift */; };
 		4437ABA4235421C200F72A56 /* RABatchChangeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437AB86235421C200F72A56 /* RABatchChangeEntity.m */; };
 		4437ABA5235421C200F72A56 /* RABatchChanges.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437AB88235421C200F72A56 /* RABatchChanges.m */; };
 		4437ABA6235421C200F72A56 /* RATableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437AB8A235421C200F72A56 /* RATableView.m */; };
@@ -346,7 +348,6 @@
 		645457B12101178900368E51 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645457B02101178900368E51 /* Chat.storyboard */; };
 		645457BA2101197100368E51 /* DialogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645457B62101197100368E51 /* DialogsManager.swift */; };
 		645457BC2101197800368E51 /* DialogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645457BB2101197800368E51 /* DialogUtils.swift */; };
-		645457BE21011BB900368E51 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 645457BD21011BB800368E51 /* Localizable.strings */; };
 		645F2C3920FEEF05006E204F /* GRRequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 645F2C1F20FEEF05006E204F /* GRRequestsManager.m */; };
 		645F2C3A20FEEF05006E204F /* GRCreateDirectoryRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 645F2C2320FEEF05006E204F /* GRCreateDirectoryRequest.m */; };
 		645F2C3B20FEEF05006E204F /* GRDeleteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 645F2C2520FEEF05006E204F /* GRDeleteRequest.m */; };
@@ -591,6 +592,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FD8803C23BF84880065A6B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0FD8803E23BF84B90065A6B2 /* en-US */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-US"; path = "en-US.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		0FD8804123BFA7820065A6B2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		36A45750E75EAF6AC973778A /* Pods_DSD_Salesforce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DSD_Salesforce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4437AB85235421C200F72A56 /* RABatchChangeEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RABatchChangeEntity.h; sourceTree = "<group>"; };
 		4437AB86235421C200F72A56 /* RABatchChangeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RABatchChangeEntity.m; sourceTree = "<group>"; };
@@ -1110,7 +1114,6 @@
 		645457B02101178900368E51 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		645457B62101197100368E51 /* DialogsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogsManager.swift; sourceTree = "<group>"; };
 		645457BB2101197800368E51 /* DialogUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogUtils.swift; sourceTree = "<group>"; };
-		645457BD21011BB800368E51 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		645F2C1E20FEEF05006E204F /* GRRequestsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequestsManager.h; sourceTree = "<group>"; };
 		645F2C1F20FEEF05006E204F /* GRRequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRRequestsManager.m; sourceTree = "<group>"; };
 		645F2C2020FEEF05006E204F /* GRRequestsManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRRequestsManagerProtocol.h; sourceTree = "<group>"; };
@@ -1443,6 +1446,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FD8804023BFA6670065A6B2 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				0FD8804123BFA7820065A6B2 /* Strings.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		3BF2A545E4890571C48F18C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1511,7 +1522,7 @@
 			children = (
 				64545799210115C900368E51 /* DSD Salesforce-Prefix.pch */,
 				6410C76720EB57F100B52129 /* DSD Salesforce-Bridged-Header.h */,
-				645457BD21011BB800368E51 /* Localizable.strings */,
+				0FD8803D23BF84880065A6B2 /* Localizable.strings */,
 				6410C61A20EB4FE800B52129 /* DSD Salesforce */,
 				6410C61920EB4FE800B52129 /* Products */,
 				DF80258164A949D7C593DCB6 /* Pods */,
@@ -1530,6 +1541,7 @@
 		6410C61A20EB4FE800B52129 /* DSD Salesforce */ = {
 			isa = PBXGroup;
 			children = (
+				0FD8804023BFA6670065A6B2 /* Global */,
 				64CCB7B221021BC600A19A3D /* DSD Salesforce.entitlements */,
 				6410C63E20EB54C800B52129 /* Resources */,
 				6410C63F20EB54C800B52129 /* Common */,
@@ -4048,6 +4060,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"en-US",
 			);
 			mainGroup = 6410C60F20EB4FE800B52129;
 			productRefGroup = 6410C61920EB4FE800B52129 /* Products */;
@@ -4133,7 +4146,7 @@
 				645457622101139600368E51 /* QMChatLocationIncomingCell.xib in Resources */,
 				645456F82101139500368E51 /* QMChatCacheModel.bundle in Resources */,
 				648DEE2820EB660A00686609 /* RobotoCondensed-Bold.ttf in Resources */,
-				645457BE21011BB900368E51 /* Localizable.strings in Resources */,
+				0FD8803B23BF84880065A6B2 /* Localizable.strings in Resources */,
 				6454574A2101139600368E51 /* ic_retry-grey@3x.png in Resources */,
 				6454577A2101139600368E51 /* QMChatIncomingLinkPreviewCell.xib in Resources */,
 				648DEE2020EB660A00686609 /* Roboto-Italic.ttf in Resources */,
@@ -4354,6 +4367,7 @@
 				645456EE2101139500368E51 /* QMAsynchronousOperation.m in Sources */,
 				645457592101139600368E51 /* QMChatAttachmentOutgoingCell.m in Sources */,
 				64A0DBC021CEB2C2008F1766 /* LoginInfo.swift in Sources */,
+				0FD8804223BFA7830065A6B2 /* Strings.swift in Sources */,
 				4437ABB0235421C200F72A56 /* RATreeView+TableViewDelegate.m in Sources */,
 				644E6F7B20F75BA300ED037B /* OrderVC.swift in Sources */,
 				64CCB7A12101C59F00A19A3D /* GroupsVC.swift in Sources */,
@@ -4729,6 +4743,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0FD8803D23BF84880065A6B2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0FD8803C23BF84880065A6B2 /* en */,
+				0FD8803E23BF84B90065A6B2 /* en-US */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		6410C64220EB54C800B52129 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4816,6 +4839,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -4876,6 +4900,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

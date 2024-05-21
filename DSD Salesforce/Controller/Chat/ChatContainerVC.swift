@@ -19,7 +19,7 @@ class ChatContainerVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setTitleBarText(title: "CHATTER")
+        setTitleBarText(title: L10n.chatter())
 
         NotificationCenter.default.addObserver(self, selector: #selector(MainVC.updateChatBadge), name: NSNotification.Name(rawValue: kUpdateBadgeNotificationName), object: nil)
     }

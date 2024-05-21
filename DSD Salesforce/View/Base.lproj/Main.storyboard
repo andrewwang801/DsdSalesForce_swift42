@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad9_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -215,14 +213,14 @@
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HamburgerMenuCell" id="c2r-gi-Rdl" customClass="HamburgerMenuCell" customModule="DSD_Salesforce" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="234" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="234" height="39"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c2r-gi-Rdl" id="AAS-2j-g7m">
-                                                    <rect key="frame" x="0.0" y="0.0" width="234" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="234" height="39"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5u-Ae-TxT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="234" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="234" height="39"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="DASHBOARD"/>
@@ -240,10 +238,10 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HamburgerProductCatalogCell" id="Nw9-LY-CUi" customClass="HamburgerProductCatalogCell" customModule="DSD_Salesforce" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="72" width="234" height="44"/>
+                                                <rect key="frame" x="0.0" y="67" width="234" height="39"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nw9-LY-CUi" id="WlT-el-Nzq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="234" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="234" height="39"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6q-T4-FDc">
@@ -257,7 +255,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIn-nW-nLW">
-                                                            <rect key="frame" x="0.0" y="38.5" width="234" height="0.5"/>
+                                                            <rect key="frame" x="0.0" y="33.5" width="234" height="0.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="0.5" id="WiC-HC-wVi"/>
@@ -267,7 +265,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qu-j4-IpH">
-                                                            <rect key="frame" x="0.0" y="0.0" width="234" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="234" height="39"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="20"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1285,16 +1283,33 @@
                     </view>
                     <connections>
                         <outlet property="chartView" destination="SMo-sH-b12" id="H2O-ge-PdO"/>
+                        <outlet property="completedLabel" destination="TfM-CB-2X1" id="aPO-mp-ThS"/>
                         <outlet property="currentMonthPercentLabel" destination="RrS-VM-u7i" id="Dqc-xB-yei"/>
+                        <outlet property="currentMonthPerformance" destination="8em-Sl-Tdu" id="lTd-nc-x3u"/>
                         <outlet property="currentMonthRemainingLabel" destination="I9B-MD-bgT" id="HaH-PQ-hg5"/>
                         <outlet property="currentMonthSalesLabel" destination="Vcz-Xg-hV2" id="IF1-ee-eNO"/>
                         <outlet property="currentMonthTargetLabel" destination="Uv9-Fm-CeO" id="9ag-td-UfQ"/>
                         <outlet property="currentWeekLastWeekLabel" destination="Ojh-LG-PiA" id="Bx3-4V-sP0"/>
+                        <outlet property="currentWeekPerformanceLabel" destination="7Zo-em-4nj" id="IpS-2x-hZB"/>
                         <outlet property="currentWeekSalesTodayLabel" destination="axe-Y7-uGY" id="DNc-iR-XqP"/>
                         <outlet property="currentWeekThisWeekLabel" destination="by8-4z-B7y" id="UF7-r6-jl7"/>
                         <outlet property="currentWeekVersusLabel" destination="1na-Zi-iap" id="Ugc-dG-gEb"/>
+                        <outlet property="customerSelectButton" destination="Uzh-Vf-uLJ" id="W68-5Z-o2a"/>
                         <outlet property="metricCollectionView" destination="Odz-es-dqw" id="2kP-HN-3jT"/>
+                        <outlet property="metricsLabel" destination="HMp-nZ-TIG" id="hVC-3D-MmK"/>
+                        <outlet property="monthTargetlabel" destination="n90-TQ-cWB" id="Sja-i0-Cpw"/>
+                        <outlet property="outOfRouteLabel" destination="EOr-XK-kSr" id="JfD-13-zoW"/>
+                        <outlet property="percentageLabel" destination="tWC-mG-UDG" id="rXL-0t-fXC"/>
+                        <outlet property="plannedLabel" destination="Mpn-Wu-ndw" id="WJf-49-ean"/>
+                        <outlet property="productiveLabel" destination="c8g-xV-CB3" id="NBX-in-f7r"/>
+                        <outlet property="remainingLabel" destination="KwL-Ui-NQc" id="eq5-j6-7UH"/>
+                        <outlet property="salesLastWeekLabel" destination="8n3-Gw-S7R" id="cLd-XP-JeO"/>
+                        <outlet property="salesMTDLabel" destination="gGw-1e-RGN" id="gy1-LG-KRo"/>
+                        <outlet property="salesThisWeeklabel" destination="2Sp-rt-r3J" id="Uji-Aa-85z"/>
+                        <outlet property="salesTodayLabel" destination="aln-FI-He8" id="2Cv-Vy-wg3"/>
+                        <outlet property="thisWeekVsLastWeekLabel" destination="sLf-av-7CQ" id="WUX-LM-vxY"/>
                         <outlet property="todayCallsCompletedLabel" destination="Weu-LJ-X9W" id="cZV-NV-SAG"/>
+                        <outlet property="todayCallsLabel" destination="RtR-Ix-Lf6" id="l5T-a4-pNh"/>
                         <outlet property="todayCallsOutofRouteLabel" destination="UXV-09-Xk7" id="hlx-zL-ZH4"/>
                         <outlet property="todayCallsPlannedLabel" destination="YXQ-78-EDY" id="s8f-pf-1Ct"/>
                         <outlet property="todayCallsProductiveLabel" destination="tB8-Xg-p9U" id="ztM-m4-CfC"/>
@@ -1335,7 +1350,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DSD Connect is designed by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWi-ko-AzJ">
-                                                        <rect key="frame" x="20" y="95" width="197.5" height="18"/>
+                                                        <rect key="frame" x="20" y="95" width="197" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1567,8 +1582,11 @@
                         <outlet property="companyPhone1Button" destination="9AQ-9E-GWh" id="XWL-yF-MMs"/>
                         <outlet property="companyPhone2Button" destination="EPV-no-jD1" id="Aln-PV-ZoL"/>
                         <outlet property="companyWebButton" destination="9KW-FR-MLa" id="kZG-TK-Ljp"/>
+                        <outlet property="designedByLabel" destination="BWi-ko-AzJ" id="5Kd-Yr-Dcd"/>
+                        <outlet property="exitButton" destination="GTx-2w-4Rk" id="wTu-0t-aJe"/>
                         <outlet property="phone1HeightConstraint" destination="F1a-ve-BgZ" id="bvQ-NO-wfe"/>
                         <outlet property="phone2HeightConstraint" destination="mz0-oo-T4R" id="bG3-t6-Hh3"/>
+                        <outlet property="termsLabel" destination="Ay4-Lh-ZvU" id="zki-tT-662"/>
                         <outlet property="versionLabel" destination="kaY-oG-gbg" id="tYm-Uo-M4b"/>
                     </connections>
                 </viewController>

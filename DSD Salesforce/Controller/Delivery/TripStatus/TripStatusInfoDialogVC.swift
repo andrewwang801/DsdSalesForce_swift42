@@ -35,6 +35,9 @@ class TripStatusInfoDialogVC: UIViewController {
     }
 
     func initUI() {
+        middleButton.setTitleForAllState(title: L10n.ok())
+        rightButton.setTitleForAllState(title: L10n.return())
+        
         // Do any additional setup after loading the view.
         if tripStatusInfo != nil {
             customerNameLabel.text = tripStatusInfo!.customerName

@@ -36,10 +36,10 @@ class VisitPlannerWeekdayCell: UICollectionViewCell {
         var theDayTitle = ""
         let theDay = parentVC.weekdayStart.getDateAddedBy(days: index)
         if index == 0 {
-            theDayTitle = "Today"
+            theDayTitle = L10n.today()
         }
         else if index == 1 {
-            theDayTitle = "Tomorrow"
+            theDayTitle = L10n.tomorrow()
         }
         else {
             theDayTitle = theDay.toDateString(format: "EEEE") ?? ""

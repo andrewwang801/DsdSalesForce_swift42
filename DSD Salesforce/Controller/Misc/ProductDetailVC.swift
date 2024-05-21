@@ -33,6 +33,13 @@ class ProductDetailVC: UIViewController {
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var qtyView: UIView!
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var unitPriceLabel: UILabel!
+    @IBOutlet weak var unitPercaseLabel: UILabel!
+    @IBOutlet weak var barcodeLabel: UILabel!
+    @IBOutlet weak var inventoryLabel: UILabel!
+    @IBOutlet weak var casePriceLabel: UILabel!
+    @IBOutlet weak var doneButton: AnimatableButton!
     
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
@@ -138,6 +145,19 @@ class ProductDetailVC: UIViewController {
     
     func initUI() {
 
+        titleLabel.text = L10n.productDetails()
+        groupLabel.text = L10n.group()
+        brandLabel.text = L10n.brand()
+        barcodeLabel.text = L10n.barcode()
+        casePriceLabel.text = L10n.casePrice()
+        inventoryLabel.text = L10n.inventory()
+        lineLabel.text = L10n.line()
+        subBrandLabel.text = L10n.SubBrand()
+        unitPercaseLabel.text = L10n.unitsPerCase()
+        unitPriceLabel.text = L10n.unitPrice()
+        grossMarginTitleLabel.text = L10n.grossMargin()
+        doneButton.setTitleForAllState(title: L10n.Done())
+        
         // populate the all components
         let itemNo = productDetail.itemNo ?? ""
         itemNoLabel.text = itemNo

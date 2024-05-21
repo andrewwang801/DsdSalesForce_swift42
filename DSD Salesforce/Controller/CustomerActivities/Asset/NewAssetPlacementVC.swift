@@ -26,6 +26,10 @@ class NewAssetPlacementVC: AssetAddBaseVC {
     @IBOutlet weak var signatureButton: AnimatableButton!
     @IBOutlet weak var webView: UIWebView!
 
+    @IBOutlet weak var agredByLabel: UILabel!
+    @IBOutlet weak var returnButton: AnimatableButton!
+    @IBOutlet weak var requestPlacement: AnimatableButton!
+    
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
     var customerDetail: CustomerDetail!
@@ -51,7 +55,14 @@ class NewAssetPlacementVC: AssetAddBaseVC {
     }
 
     func initUI() {
-
+        agredByLabel.text = L10n.agreedBy()
+        agreedNameText.placeholderText = L10n.name()
+        signatureButton.setTitleForAllState(title: L10n.signature())
+        returnButton.setTitleForAllState(title: L10n.Return())
+        requestPlacement.setTitleForAllState(title: L10n.requestPlacement())
+        noDataLabel.text = L10n.thereIsNoData()
+        noDataRightLabel.text = L10n.thereIsNoData()
+        
         termsTextView.isEditable = false
         customerNameLabel.text = customerDetail.name ?? ""
 
@@ -300,21 +311,21 @@ class NewAssetPlacementVC: AssetAddBaseVC {
 
     @IBAction func onDone(_ sender: Any) {
         if selectedEquipment == nil {
-            Utils.showAlert(vc: self, title: "", message: "Please select Equipment Model", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+            Utils.showAlert(vc: self, title: "", message: L10n.pleaseSelectEquipmentModel(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
         }
         else {
             // validation
             if agreedNameText.isEnabled == false {
-                Utils.showAlert(vc: self, title: "", message: "Please read our terms and conditions and input name and sign", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.pleaseReadOurTermsAndConditionsAndInputNameAndSign(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
                 return
             }
             let agreedName = agreedNameText.text ?? ""
             if agreedName.isEmpty == true {
-                Utils.showAlert(vc: self, title: "", message: "Please Input Agreed to Name", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.pleaseInputAgreedToName(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
                 return
             }
             if signatureImageName.isEmpty == true {
-                Utils.showAlert(vc: self, title: "", message: "Please Sign your signature", failed: false, customerName: "", leftString: "", middleString: "", rightString: "Ok", dismissHandler: nil)
+                Utils.showAlert(vc: self, title: "", message: L10n.pleaseSignYourSignature(), failed: false, customerName: "", leftString: "", middleString: "", rightString: L10n.ok(), dismissHandler: nil)
                 return
             }
 

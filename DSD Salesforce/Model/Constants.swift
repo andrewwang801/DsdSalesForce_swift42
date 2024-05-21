@@ -60,22 +60,22 @@ let kSignatureFileName = "signature.jpg"
 
 let kReportsFileNameArray = [kCompanyLogoFileName, kPrintTemplateInvoiceFmtFileName, kPrintTemplateDeliveryFmtFileName, kPrintLoadSheetTemplateFileName, kPrintTruckInventoryTemplateFileName, kPrintLoadRequestTemplateFileName, kPrintLoadAdjustmentTemplateFileName, kPrintStockTakeCountTemplateFileName, kPrintPickSlipTemplateFileName, kPrintTermsTemplateFileName, kPrintSalesPlanTemplateFileName, kPrintOrderAcknowledgeTemplateFileName, kPrintVehicleTemplateFileName, kPrintCashTemplateFileName, kPrintCollectionConfirmTemplateFileName]
 
-let kHamburgerDashboardName = "DASHBOARD"
-let kHamburgerViewVehicleStockName = "VIEW VEHICLE STOCK"
-let kHamburgerAdjustVehicleStockName = "ADJUST VEHICLE STOCK"
-let kHamburgerCountVehicleStockName = "COUNT VEHICLE STOCK"
-let kHamburgerDeliveriesTodayName = "DELIVERIES TODAY"
-let kHamburgerDeliveryTripStatusName = "DELIVERY TRIP STATUS"
-let kHamburgerVisitPlannerName = "VISIT PLANNER"
-let kHamburgerProductCatalog = "PRODUCT CATALOG"
-let kHamburgerHelpName = "HELP"
-let kHamburgerAboutName = "ABOUT"
+let kHamburgerDashboardName = L10n.dashboard()
+let kHamburgerViewVehicleStockName = L10n.viewVehicleStock()
+let kHamburgerAdjustVehicleStockName = L10n.addjustVehicleStock()
+let kHamburgerCountVehicleStockName = L10n.countVehicleStock()
+let kHamburgerDeliveriesTodayName = L10n.deliveriesToday()
+let kHamburgerDeliveryTripStatusName = L10n.deliveryTripStatus()
+let kHamburgerVisitPlannerName = L10n.visitPlanner()
+let kHamburgerProductCatalog = L10n.productCatalog()
+let kHamburgerHelpName = L10n.help()
+let kHamburgerAboutName = L10n.about()
 
-let kHamburgerSignoutName = "SIGN OUT"
+let kHamburgerSignoutName = L10n.signOut()
 
 let kFulfilbyValueArray = ["W", "V", "D"]
 
-let kDistributorDescTypeID = "DISTRIBUTOR"
+let kDistributorDescTypeID = L10n.distributor()
 
 /// Prefixes
 let kAmericanExpressPrefixes = ["34", "37"]
