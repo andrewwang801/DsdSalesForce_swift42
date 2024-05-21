@@ -77,7 +77,7 @@ class ProductImageDownloadManager: NSObject {
                 }
                 var shouldDownload = false
                 let localImageFileName = self.itemNoImageFileNameDictionary[itemNo] ?? ""
-                let catalogPath = CommData.getFilePathAppended(byCacheDir: kProductCatalogDirName) ?? ""
+                let catalogPath = CommData.getFilePathAppended(byDocumentDir: kProductCatalogDirName) ?? ""
                 let localImageFilePath = catalogPath + "/" + localImageFileName
                 let localFileSize = CommData.getFileSize(localImageFilePath)
                 let remoteImageURLPath = self.itemNoRemoteImageURLDictionary[itemNo] ?? ""

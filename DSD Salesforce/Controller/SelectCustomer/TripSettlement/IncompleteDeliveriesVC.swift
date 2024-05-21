@@ -152,7 +152,7 @@ class IncompleteDeliveriesVC: UIViewController {
     }
 
     func doCreatePDF() {
-        let pdfDirPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName)
+        let pdfDirPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName)
         CommData.createDirectory(pdfDirPath)
         pdfTrxnNo = Date().getTimestamp()
         strPdfFileName = Utils.getPDFFileName()
@@ -164,7 +164,7 @@ class IncompleteDeliveriesVC: UIViewController {
         }
         printEngine = PrintEngine()
         printEngine.isForOnePage = false
-        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+strPdfFileName) ?? ""
+        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+strPdfFileName) ?? ""
         printEngine.createPDF(webView: self.printWebView, isDuplicated: false, path: pdfPath, xmlDocument: document!, shouldShowHUD: true) { (completed) in
             if completed == true {
                 self.dismiss(animated: true) {
@@ -213,7 +213,7 @@ class IncompleteDeliveriesVC: UIViewController {
         // logo cell
         var cellElement = GDataXMLNode.element(withName: "Cell")
         cellElement?.addAttribute(GDataXMLNode.element(withName: "horzAlignment", stringValue: "center"))
-        let companyLogoPath = CommData.getFilePathAppended(byCacheDir: kReportsDirName+"/"+kCompanyLogoFileName) ?? ""
+        let companyLogoPath = CommData.getFilePathAppended(byDocumentDir: kReportsDirName+"/"+kCompanyLogoFileName) ?? ""
         if CommData.isExistingFile(atPath: companyLogoPath) == true {
             if let image = UIImage.loadImageFromLocal(filePath: companyLogoPath) {
                 let imageData = image.jpegData(compressionQuality: 1.0)
@@ -255,8 +255,8 @@ class IncompleteDeliveriesVC: UIViewController {
         infoRowArray.append("User Name: " + userName)
         let route = globalInfo.routeControl?.routeNumber ?? ""
         infoRowArray.append("Route #: " + route)
-        let vehicleNumber = globalInfo.routeControl?.vehicleNumber ?? ""
-        infoRowArray.append("Vehicle #: " + vehicleNumber)
+//        let vehicleNumber = globalInfo.routeControl?.vehicleNumber ?? ""
+//        infoRowArray.append("Vehicle #: " + vehicleNumber)
         let transactionNo = "\(pdfTrxnNo)"
         infoRowArray.append("Transaction #: " + transactionNo)
 
@@ -300,14 +300,14 @@ class IncompleteDeliveriesVC: UIViewController {
         cellElement?.addAttribute(GDataXMLNode.element(withName: "span", stringValue: "4"))
         cellElement?.addAttribute(GDataXMLNode.element(withName: "paddingTop", stringValue: "25"))
         cellElement?.addAttribute(GDataXMLNode.element(withName: "paddingBottom", stringValue: "5"))
-        var phraseElement = GDataXMLNode.element(withName: "Phrase", stringValue: "Undelivered Customers Report")
+        var phraseElement = GDataXMLNode.element(withName: "Phrase", stringValue: "Non Visited Customers Report")
         phraseElement?.addAttribute(GDataXMLNode.element(withName: "size", stringValue: "18"))
         phraseElement?.addAttribute(GDataXMLNode.element(withName: "type", stringValue: "bold"))
         cellElement?.addChild(phraseElement!)
         tableElement?.addChild(cellElement!)
 
         // headers
-        let headerTitleArray = ["Customer Number", "Customer Name", "Ship To Address", "Undelivered Reason"]
+        let headerTitleArray = ["Customer Number", "Customer Name", "Ship To Address", "No Visit Reason"]
         for headerTitle in headerTitleArray {
             cellElement = GDataXMLNode.element(withName: "Cell")
             phraseElement = GDataXMLNode.element(withName: "Phrase", stringValue: headerTitle)

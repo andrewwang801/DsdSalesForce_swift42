@@ -249,7 +249,7 @@ extension AddMessageVC: QBImagePickerControllerDelegate {
             let phAsset = asset as! PHAsset
             guard let convertedImage = UIImage.loadImageFromPHAsset(asset: phAsset) else {continue}
             let fileName = (Date().toDateString(format: "yyyyMMddHHmmssSSS") ?? "") + ".jpg"
-            let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+            let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
             UIImage.saveImageToLocal(image: convertedImage, filePath: filePath)
             attachmentFileNameArray.append(fileName)
         }

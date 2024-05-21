@@ -67,7 +67,7 @@ class MessageBoardVC: UIViewController {
             else {
                 let fileNameArray = fileNames.components(separatedBy: ",")
                 for fileName in fileNameArray {
-                    let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+                    let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
                     if CommData.isExistingFile(atPath: filePath) == false {
                         loadCustNoteArray.append(custNote)
                         break

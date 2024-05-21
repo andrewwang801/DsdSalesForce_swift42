@@ -34,7 +34,7 @@ class MarginCalculatorVC: UIViewController {
     var orderDetailArray = [OrderDetail]()
 
     var sortTypeButtonArray = [AnimatableButton]()
-
+    var orderDetailSetArray = [NSMutableOrderedSet]()
     var bShouldConfirmInventoryAmount = false
 
     enum SortType: Int {
@@ -105,7 +105,7 @@ class MarginCalculatorVC: UIViewController {
 
         // Do any additional setup after loading the view.
         sortTypeButtonArray = [codeSortButton, descSortButton, priceSortButton, qtySortButton]
-
+        initData()
         initUI()
     }
 
@@ -117,7 +117,10 @@ class MarginCalculatorVC: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+        //NotificationCenter.default.removeObserver(self)
+        if isBeingDismissed == true || isMovingFromParent == true {
+            NotificationCenter.default.removeObserver(self)
+        }
         
         ///RSB 2020-3-9
         if globalInfo.isFromProductCatalog == 0 {
@@ -128,6 +131,12 @@ class MarginCalculatorVC: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+    }
+    
+    func initData() {
+        if orderVC != nil {
+            orderDetailSetArray = orderVC.orderDetailSetArray
+        }
     }
 
     func initUI() {
@@ -166,7 +175,8 @@ class MarginCalculatorVC: UIViewController {
     func refreshOrders() {
         
         orderTableView.reloadData()
-        if orderVC.orderDetailSetArray[selectedOrderType.rawValue].count > 0 {
+//        if orderVC.orderDetailSetArray[selectedOrderType.rawValue].count > 0 {
+        if orderDetailSetArray[selectedOrderType.rawValue].count > 0 {
             noDataLabel.isHidden = true
         }
         else {
@@ -179,7 +189,8 @@ class MarginCalculatorVC: UIViewController {
         var costTotal: Double = 0.0
 
         for i in 0...1 {
-            for _orderDetail in orderVC.orderDetailSetArray[i] {
+//            for _orderDetail in orderVC.orderDetailSetArray[i] {
+            for _orderDetail in orderDetailSetArray[i] {
                 let orderDetail = _orderDetail as! OrderDetail
                 let qty = orderDetail.enterQty
                 let price = orderDetail.price
@@ -266,7 +277,8 @@ class MarginCalculatorVC: UIViewController {
                 return
             }
 
-            for (index, _orderDetail) in orderVC.orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
+//            for (index, _orderDetail) in orderVC.orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
+            for (index, _orderDetail) in orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
                 let orderDetail = _orderDetail as! OrderDetail
                 let _itemNo = orderDetail.itemNo ?? ""
                 if _itemNo == itemNo {
@@ -327,7 +339,8 @@ class MarginCalculatorVC: UIViewController {
                 return
             }
 
-            for (index, _orderDetail) in orderVC.orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
+//            for (index, _orderDetail) in orderVC.orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
+            for (index, _orderDetail) in orderDetailSetArray[selectedOrderType.rawValue].enumerated() {
                 let orderDetail = _orderDetail as! OrderDetail
                 let _itemNo = orderDetail.itemNo ?? ""
                 if _itemNo == itemNo {
@@ -405,10 +418,12 @@ class MarginCalculatorVC: UIViewController {
             }
         }
         else {
-            let _selectedOrderDetail = orderVC.orderDetailSetArray[selectedOrderType.rawValue][selectedIndex]
+//            let _selectedOrderDetail = orderVC.orderDetailSetArray[selectedOrderType.rawValue][selectedIndex]
+            let _selectedOrderDetail = orderDetailSetArray[selectedOrderType.rawValue][selectedIndex]
             let selectedOrderDetail = _selectedOrderDetail as! OrderDetail
             if selectedQty == 0 && selectedOrderDetail.isFromOriginal() == false && shouldRemoveZeroAmount == true {
-                orderVC.orderDetailSetArray[selectedOrderType.rawValue].removeObject(at: selectedIndex)
+//                orderVC.orderDetailSetArray[selectedOrderType.rawValue].removeObject(at: selectedIndex)
+                orderDetailSetArray[selectedOrderType.rawValue].removeObject(at: selectedIndex)
             }
             else {
                 let enterQty = selectedQty
@@ -429,7 +444,8 @@ class MarginCalculatorVC: UIViewController {
                     }))
                     alert.addAction(UIAlertAction(title: L10n.remove(), style: .default, handler: { _ in
                         // remove
-                        self.orderVC.orderDetailSetArray[self.selectedOrderType.rawValue].removeObject(at: self.selectedIndex)
+//                        self.orderVC.orderDetailSetArray[self.selectedOrderType.rawValue].removeObject(at: self.selectedIndex)
+                        self.orderDetailSetArray[self.selectedOrderType.rawValue].removeObject(at: self.selectedIndex)
 
                         GlobalInfo.saveCache()
                         self.sortAndFilterOrders()
@@ -490,7 +506,8 @@ class MarginCalculatorVC: UIViewController {
         orderDetail.lastOrder = dateValue?.toDateString(format: "dd/MM/yyyy") ?? ""
 
         self.selectedSortType = .input
-        orderVC.orderDetailSetArray[selectedOrderType.rawValue].insert(orderDetail, at: 0)
+//        orderVC.orderDetailSetArray[selectedOrderType.rawValue].insert(orderDetail, at: 0)
+        orderDetailSetArray[selectedOrderType.rawValue].insert(orderDetail, at: 0)
 
     }
 
@@ -557,11 +574,13 @@ class MarginCalculatorVC: UIViewController {
 
     func sortAndFilterOrders() {
 
-        if orderVC.orderDetailSetArray.count == 0 {
+//        if orderVC.orderDetailSetArray.count == 0 {
+        if orderDetailSetArray.count == 0 {
             return
         }
         let orderTypeIndex = selectedOrderType.rawValue
-        let orderDetailSet = orderVC.orderDetailSetArray[orderTypeIndex]
+//        let orderDetailSet = orderVC.orderDetailSetArray[orderTypeIndex]
+        let orderDetailSet = orderDetailSetArray[orderTypeIndex]
         var orderDetailArray = [OrderDetail]()
 
         for _orderDetail in orderDetailSet {

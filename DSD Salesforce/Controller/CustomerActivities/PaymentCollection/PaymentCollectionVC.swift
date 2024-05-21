@@ -242,7 +242,7 @@ class PaymentCollectionVC: UIViewController {
             newARHeader.custNo = customerDetail.custNo ?? "0"
             newARHeader.invDate = Date().toDateString(format: kTightJustDateFormat) ?? ""
             newARHeader.invNo = "0"
-            newARHeader.arTrxnType = "CRN"
+            newARHeader.arTrxnType = "PAY"
             newARHeader.trxnAmount = Utils.getXMLMultipliedString(value: totalCollected * -1)
             GlobalInfo.saveCache()
         }
@@ -369,7 +369,7 @@ class PaymentCollectionVC: UIViewController {
         printEngine = PrintEngine()
 
         let pdfFileName = Utils.getPDFFileName()
-        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfFileName) ?? ""
+        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfFileName) ?? ""
 
         var docNo = ""
         if pdfFileName.length > 4 {
@@ -484,19 +484,36 @@ class PaymentCollectionVC: UIViewController {
             cardAmount += amount
         }
         let collectedAmount = cashAmount+chequeAmount+cardAmount
-
-        let orderEWayDetailsVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderEWayDetailsVC") as! OrderEWayDetailsVC
-        orderEWayDetailsVC.customerDetail = self.customerDetail
-        orderEWayDetailsVC.amount = totalSelectedAmount-collectedAmount
-        orderEWayDetailsVC.originalUARPayment = prepareTemplatePayment(paymentType: kCollectionCard)
-        orderEWayDetailsVC.setDefaultModalPresentationStyle()
-        orderEWayDetailsVC.dismissHandler = {vc, dismissOption in
-            if dismissOption == .done {
-                self.cardPaymentArray.append(vc.resultUARPayment!)
-                self.updatePaymentView()
+        
+        if globalInfo.routeControl?.cardProc == "8" {
+            let orderStripeDetailsVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderStripeDetailsVC") as! OrderStripeDetailsVC
+            orderStripeDetailsVC.customerDetail = self.customerDetail
+            orderStripeDetailsVC.amount = totalSelectedAmount-collectedAmount
+            orderStripeDetailsVC.originalUARPayment = prepareTemplatePayment(paymentType: kCollectionCard)
+            orderStripeDetailsVC.isPaymentCollection = true
+            orderStripeDetailsVC.setDefaultModalPresentationStyle()
+            orderStripeDetailsVC.dismissHandler = {vc, dismissOption in
+                if dismissOption == .done {
+                    self.cardPaymentArray.append(vc.resultUARPayment!)
+                    self.updatePaymentView()
+                }
             }
+            self.present(orderStripeDetailsVC, animated: true, completion: nil)
         }
-        self.present(orderEWayDetailsVC, animated: true, completion: nil)
+        else {
+            let orderEWayDetailsVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderEWayDetailsVC") as! OrderEWayDetailsVC
+            orderEWayDetailsVC.customerDetail = self.customerDetail
+            orderEWayDetailsVC.amount = totalSelectedAmount-collectedAmount
+            orderEWayDetailsVC.originalUARPayment = prepareTemplatePayment(paymentType: kCollectionCard)
+            orderEWayDetailsVC.setDefaultModalPresentationStyle()
+            orderEWayDetailsVC.dismissHandler = {vc, dismissOption in
+                if dismissOption == .done {
+                    self.cardPaymentArray.append(vc.resultUARPayment!)
+                    self.updatePaymentView()
+                }
+            }
+            self.present(orderEWayDetailsVC, animated: true, completion: nil)
+        }
     }
 
     @IBAction func onTapAllCheck(_ sender: Any) {

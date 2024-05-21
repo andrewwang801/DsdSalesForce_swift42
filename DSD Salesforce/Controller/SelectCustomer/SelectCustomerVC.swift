@@ -114,7 +114,7 @@ class SelectCustomerVC: UIViewController {
         customerTableView.delaysContentTouches = false
 
         //show or hide addCustomerButton
-        if self.globalInfo.routeControl?.custaddNew == nil || self.globalInfo.routeControl?.custaddNew == "0" {
+        if self.globalInfo.routeControl?.custaddNew == nil || self.globalInfo.routeControl?.custaddNew == "0" || self.globalInfo.routeControl?.custaddNew == "2"  {
             addCustomerButton.isHidden = true
         }
         else {

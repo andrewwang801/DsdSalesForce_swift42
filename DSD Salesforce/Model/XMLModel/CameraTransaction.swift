@@ -52,7 +52,7 @@ class CameraTransaction: NSObject {
         var _reference = reference
         if _reference.isEmpty == true {
             _reference = "\(trip)\(dateFullString)\(trxnNo.toLeftPaddedString(digitCount: 12) ?? "")01.\(fileExtension)"
-            let newPath = CommData.getFilePathAppended(byCacheDir: _reference) ?? ""
+            let newPath = CommData.getFilePathAppended(byDocumentDir: _reference) ?? ""
             let fileManager = FileManager.default
             try? fileManager.copyItem(atPath: photoPath, toPath: newPath)
             CommData.deleteFileIfExist(photoPath)
@@ -123,7 +123,7 @@ class CameraTransaction: NSObject {
         }
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "Cameras\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
         saveToXML(cameraArray: cameraArray, filePath: filePath)
         return filePath
     }

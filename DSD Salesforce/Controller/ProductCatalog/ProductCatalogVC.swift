@@ -616,14 +616,13 @@ class ProductCatalogVC: UIViewController {
 
     func onProductTapped(index: Int) {
         selectedProductIndex = index
-        
         if selectedProductIndex == -1 {
             return
         }
         let productDetail = productDetailArray[selectedProductIndex]
         let itemNo = productDetail.itemNo ?? ""
         
-        if orderVC!.selectedTopOption == .returns {
+        if let orderVC = orderVC, orderVC.selectedTopOption == .returns {
             if customerDetail!.rtnEntryMode == "C" {
                 if let prodLocn = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first {
                     caseFactor = Int32(prodLocn.caseFactor ?? "1") ?? 1
@@ -729,7 +728,7 @@ class ProductCatalogVC: UIViewController {
             return
         }
         
-//        let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
+        //let tileQty = Int(tileQtyTextField.text ?? "") ?? 0
         if tileQty == 0 {
             return
         }
@@ -775,11 +774,13 @@ class ProductCatalogVC: UIViewController {
                 })
 
                 if self.productDetailArray.count > 0 {
-                    self.onProductTapped(index: -1)
+                    self.onProductTapped(index: 0)
                 }
                 else {
-                    self.onProductTapped(index: -1)
+                    self.onProductTapped(index: 0)
                 }
+//                self.self.contentView.isHidden = true
+//                self.productCV.reloadData()
             }
         }
         self.present(searchProductVC, animated: true, completion: nil)

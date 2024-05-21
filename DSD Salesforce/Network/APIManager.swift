@@ -15,6 +15,9 @@ class APIManager: NSObject {
 
     static func doNormalRequest(baseURL: String, methodName: String, httpMethod: String, params: [String: Any], shouldShowHUD: Bool, completion: @escaping (Any?, String) -> Void) {
         
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 20
+
         NSLog("methodName: \(methodName), params: \(params)")
         var hud: MBProgressHUD?
         if shouldShowHUD == true {
@@ -31,7 +34,8 @@ class APIManager: NSObject {
         let apiURL = "\(baseURL)\(methodName)"
         let _method: HTTPMethod = httpMethod == "POST" ? HTTPMethod.post : HTTPMethod.get
         
-        Alamofire.request("\(apiURL)", method: _method, parameters: params)
+//        Alamofire.request("\(apiURL)", method: _method, parameters: params)
+        manager.request("\(apiURL)", method: _method, parameters: params)
         .validate()
         .responseJSON { response in
             guard response.result.isSuccess else {
@@ -56,7 +60,10 @@ class APIManager: NSObject {
     }
 
     static func doNormalRequest(baseURL: String, methodName: String, httpMethod: String, headers: [String: String], params: [String: Any], shouldShowHUD: Bool, completion: @escaping (Any?, String) -> Void) {
-
+        
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 20
+        
         NSLog("methodName: \(methodName), param: \(params)")
 
         var hud: MBProgressHUD?
@@ -74,7 +81,8 @@ class APIManager: NSObject {
         let apiURL = "\(baseURL)\(methodName)"
         let _method: HTTPMethod = httpMethod == "POST" ? HTTPMethod.post : HTTPMethod.get
 
-        Alamofire.request(apiURL, method: _method, parameters: params, encoding: URLEncoding.default, headers: headers)
+//        Alamofire.request(apiURL, method: _method, parameters: params, encoding: URLEncoding.default, headers: headers)
+        manager.request(apiURL, method: _method, parameters: params, encoding: URLEncoding.default, headers: headers)
             .responseJSON { (response) in
                 guard response.result.isSuccess else {
                     NSLog("Response error: \(response.result.error!)")
@@ -208,15 +216,15 @@ class APIManager: NSObject {
     }
 
     static func getBasicCredential(userName: String, password: String) -> String {
-        let credentialData = "\(userName):\(password)".data(using: .utf8)
-        let base64Credentials = credentialData!.base64EncodedString()
-        return "Basic \(base64Credentials)"
+        return "Bearer \(userName)"
     }
 
     // MARK: -- background manager --
     static let backgroundManager: Alamofire.SessionManager = {
         let bundleIdentifier = Bundle.main.bundleIdentifier ?? ""
-        return Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: bundleIdentifier + ".background"))
+        let configuration = URLSessionConfiguration.background(withIdentifier: bundleIdentifier + ".background")
+//        return Alamofire.SessionManager(configuration: URLSessionConfiguration.background(withIdentifier: bundleIdentifier + ".background"))
+        return Alamofire.SessionManager(configuration: configuration)
     }()
 
 }

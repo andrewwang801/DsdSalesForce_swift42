@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftGifOrigin
 
 class Utils {
 
@@ -74,7 +75,8 @@ class Utils {
     }
 
     static func loadFromXML(xmlName: String, xPath: String) -> [[String: String]] {
-        let filePath = CommData.getFilePathAppended(byCacheDir: "\(kXMLDirName)/\(xmlName).XML") ?? ""
+        //let filePath = CommData.getFilePathAppended(byCacheDir: "\(kXMLDirName)/\(xmlName).XML") ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: "\(kXMLDirName)/\(xmlName).XML") ?? ""
         let url = URL(fileURLWithPath: filePath)
         guard let xmlData = try? Data(contentsOf: url) else {return []}
         //var xmlString = String(data: xmlData, encoding: .ascii) ?? ""
@@ -175,8 +177,16 @@ class Utils {
         let tripNumber = globalInfo.routeControl?.trip ?? ""
         let pattern = globalInfo.routeControl?.invoiceNumFormat ?? ""
         let pdfSequenceNoKey = kPdfSequenceNoPrefix+tripNumber
-        let pdfSequenceNo = Utils.getIntSetting(key: pdfSequenceNoKey)+2
 
+        var addAmount = 1
+        if globalInfo.preInvoiceFmt == "2" {
+            if globalInfo.orderHeader != nil {
+                if globalInfo.orderHeader.saleQuantity != 0 && globalInfo.orderHeader.totalDump != 0 {
+                    addAmount = 2
+                }
+            }
+        }
+        let pdfSequenceNo = Utils.getIntSetting(key: pdfSequenceNoKey)+addAmount
         // kk value
         let rrr = globalInfo.routeControl?.routeNumber ?? ""
         let kkDescType = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: "ROUTE", numericKey: rrr)
@@ -466,7 +476,7 @@ class Utils {
 
     static func showPDF(vc: UIViewController, strDocNo: String, strDate: String) {
         let localFileName = strDocNo + "_" + strDate + ".pdf"
-        let localPath = CommData.getFilePathAppended(byCacheDir: localFileName) ?? ""
+        let localPath = CommData.getFilePathAppended(byDocumentDir: localFileName) ?? ""
         if CommData.isExistingFile(atPath: localPath) == true {
             launchPDF(vc: vc, strPath: localPath)
             return
@@ -511,7 +521,7 @@ class Utils {
     static func getProductImage(itemNo: String) -> UIImage? {
         var productImage: UIImage?
         // check jpg
-        let catalogPath = CommData.getFilePathAppended(byCacheDir: kProductCatalogDirName) ?? ""
+        let catalogPath = CommData.getFilePathAppended(byDocumentDir: kProductCatalogDirName) ?? ""
         var itemImagePath = catalogPath+"/"+itemNo+".jpg"
         productImage = UIImage.loadImageFromLocal(filePath: itemImagePath)
 
@@ -524,13 +534,19 @@ class Utils {
                 // check bmp
                 itemImagePath = catalogPath+"/"+itemNo+".bmp"
                 productImage = UIImage.loadImageFromLocal(filePath: itemImagePath)
+                
+                if productImage == nil {
+                    // check bmp
+                    itemImagePath = catalogPath+"/"+itemNo+".gif"
+                    productImage = UIImage.loadImageFromLocal(filePath: itemImagePath)
+                }
             }
         }
         return productImage
     }
 
     static func getProductImageFileName(itemNo: String) -> String {
-        let catalogPath = CommData.getFilePathAppended(byCacheDir: kProductCatalogDirName) ?? ""
+        let catalogPath = CommData.getFilePathAppended(byDocumentDir: kProductCatalogDirName) ?? ""
         var itemImagePath = catalogPath+"/"+itemNo+".jpg"
         if CommData.isExistingFile(atPath: itemImagePath) == true {
             return itemNo+".jpg"
@@ -559,7 +575,7 @@ class Utils {
         vc.present(productDetailVC, animated: true, completion: nil)
     }
     
-    static func showAddOrderVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, isAdd: Bool,  dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
+    static func showAddOrderVC(vc: UIViewController, productDetail: ProductDetail, customerDetail: CustomerDetail, isAdd: Bool, orderDetail: OrderDetail?, dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
         let addOrderVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "AddOrderVC") as! AddOrderVC
         addOrderVC.parentVC = vc as! OrderSalesVC
         addOrderVC.productDetail = productDetail
@@ -567,15 +583,17 @@ class Utils {
         addOrderVC.dismissHandler = dismissHandler
         addOrderVC.isAdd = isAdd
         addOrderVC.setDefaultModalPresentationStyle()
+        addOrderVC.orderDetailForAdd = orderDetail
         vc.present(addOrderVC, animated: true, completion: nil)
     }
     
     static func showAddOrderVC(vc: UIViewController, orderDetail: OrderDetail, customerDetail: CustomerDetail, isAdd: Bool, dismissHandler: ((AddOrderVC, AddOrderVC.DismissOption)->())?) {
         let addOrderVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "AddOrderVC") as! AddOrderVC
         addOrderVC.parentVC = vc as! OrderSalesVC
-        addOrderVC.orderDetail = orderDetail
+        addOrderVC.orderDetailForAdd = orderDetail
         addOrderVC.customerDetail = customerDetail
         addOrderVC.dismissHandler = dismissHandler
+        addOrderVC.orderDetail = orderDetail
         addOrderVC.isAdd = isAdd
         addOrderVC.setDefaultModalPresentationStyle()
         vc.present(addOrderVC, animated: true, completion: nil)

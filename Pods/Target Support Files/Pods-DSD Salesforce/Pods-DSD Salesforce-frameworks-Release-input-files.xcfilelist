@@ -14,6 +14,7 @@ ${BUILT_PRODUCTS_DIR}/RSBarcodes_Swift/RSBarcodes_Swift.framework
 ${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
+${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework
 ${BUILT_PRODUCTS_DIR}/TTTAttributedLabel/TTTAttributedLabel.framework
 ${BUILT_PRODUCTS_DIR}/TYAttributedLabel/TYAttributedLabel.framework
 ${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework

@@ -140,7 +140,7 @@ public class UploadService: NSManagedObject {
         }
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "Services\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
         saveToXML(uServiceArray: uServiceArray, filePath: filePath)
         return filePath
     }

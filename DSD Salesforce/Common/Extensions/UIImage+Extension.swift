@@ -69,7 +69,8 @@ extension UIImage {
     }
 
     class func saveImageToCacheDir(image: UIImage, imageName: String) {
-        let imagePath = CommData.getFilePathAppended(byCacheDir: imageName) ?? ""
+//        let imagePath = CommData.getFilePathAppended(byCacheDir: imageName) ?? ""
+        let imagePath = CommData.getFilePathAppended(byDocumentDir: imageName) ?? ""
         saveImageToLocal(image: image, filePath: imagePath)
     }
     
@@ -78,12 +79,13 @@ extension UIImage {
         //let img = UIImage(contentsOfFile: filePath)
         let url = URL(fileURLWithPath: filePath)
         guard let data = try? Data(contentsOf: url) else {return nil}
-        let img = UIImage(data: data)
+        //let img = UIImage(data: data)
+        let img = UIImage.gif(data: data)
         return img
     }
 
     class func loadImageFromCacheDir(imageName: String) -> UIImage? {
-        let imagePath = CommData.getFilePathAppended(byCacheDir: imageName) ?? ""
+        let imagePath = CommData.getFilePathAppended(byDocumentDir: imageName) ?? ""
         return loadImageFromLocal(filePath: imagePath)
     }
     

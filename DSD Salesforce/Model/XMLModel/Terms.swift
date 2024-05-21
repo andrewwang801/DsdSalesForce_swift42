@@ -12,7 +12,7 @@ class Terms: NSObject {
 
     static func loadFromXML() -> String? {
 
-        let filePath = CommData.getFilePathAppended(byCacheDir: "\(kReportsDirName)/\(kPrintTermsTemplateFileName)") ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: "\(kReportsDirName)/\(kPrintTermsTemplateFileName)") ?? ""
         let url = URL(fileURLWithPath: filePath)
         guard let xmlData = try? Data(contentsOf: url) else {return nil}
         var totalTerms = ""

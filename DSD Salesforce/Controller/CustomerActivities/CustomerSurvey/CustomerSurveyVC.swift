@@ -133,7 +133,7 @@ class CustomerSurveyVC: UIViewController {
         let gpsLogTransaction = gpsLog.makeTransaction()
 
         // Survey XML file
-        let surveySPath = CommData.getFilePathAppended(byCacheDir: "Surveys\(nowString).upl") ?? ""
+        let surveySPath = CommData.getFilePathAppended(byDocumentDir: "Surveys\(nowString).upl") ?? ""
         SurveyS.saveToXML(surveyArray: [surveyS], filePath: surveySPath)
 
         // Log

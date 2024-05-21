@@ -146,7 +146,7 @@ class SelectCustomerPricingVC: PromotionBaseVC {
         let estimatedWidth = tagNo.width(withConstraintedHeight: numberLabel.bounds.width, attributes: [NSAttributedString.Key.font: numberLabel.font])
         //numberLabelWidthConstraint.constant = estimatedWidth+20
 
-        let custTitle = selectedCustomer.getCustomerTitle()
+        let custTitle = selectedCustomer.getShortenedCustomerTitle()
         titleLabel.text = custTitle
 
         selectedViewType = .pricing

@@ -30,7 +30,8 @@ class SelectCustomerDetailsVC: UIViewController {
     @IBOutlet weak var lastOrderTitleLabel: UILabel!
     @IBOutlet weak var availableCreditTitleLabel: UILabel!
     @IBOutlet weak var currentMonthSalesTitleLabel: UILabel!
-
+    @IBOutlet weak var creditHoldWarnLabel: UILabel!
+    
     let globalInfo = GlobalInfo.shared
     var selectCustomerVC: SelectCustomerVC!
     var contactArray = [CustomerContact]()
@@ -90,7 +91,12 @@ class SelectCustomerDetailsVC: UIViewController {
     @objc func updateUI() {
 
         guard let selectedCustomerDetails = selectCustomerVC.selectedCustomer else {return}
-
+        if let creditHold = selectedCustomerDetails.creditHold, creditHold == "2" {
+            creditHoldWarnLabel.isHidden = false
+        }
+        else {
+            creditHoldWarnLabel.isHidden = true
+        }
         updateCustomerContact()
 
         let selectedPresoldOrHeader = selectCustomerVC.selectedPresoldOrHeader
@@ -105,7 +111,7 @@ class SelectCustomerDetailsVC: UIViewController {
         let estimatedWidth = tagNo.width(withConstraintedHeight: numberLabel.bounds.width, attributes: [NSAttributedString.Key.font: numberLabel.font])
         //numberLabelWidthConstraint.constant = estimatedWidth+20
 
-        let custTitle = selectedCustomerDetails.getCustomerTitle()
+        let custTitle = selectedCustomerDetails.getShortenedCustomerTitle()
         titleLabel.text = custTitle
 
         // address view
@@ -397,7 +403,7 @@ extension SelectCustomerDetailsVC: UIImagePickerControllerDelegate, UINavigation
         // save a image in the local area
         let reference = selectedCustomer.getImageName()
         let localImageName = "\(nowString).jpg"
-        let imagePath = CommData.getFilePathAppended(byCacheDir: localImageName)
+        let imagePath = CommData.getFilePathAppended(byDocumentDir: localImageName)
         UIImage.saveImageToLocal(image: image, filePath: imagePath!)
 
         // make a camera transaction structure

@@ -81,7 +81,7 @@ class UploadManager: NSObject {
                 let hostname = firstItem.ftpHostname ?? ""
                 let username = firstItem.ftpUsername ?? ""
                 let password = firstItem.ftpPassword ?? ""
-                let localPath = CommData.getFilePathAppended(byCacheDir: firstItem.localName ?? "") ?? ""
+                let localPath = CommData.getFilePathAppended(byDocumentDir: firstItem.localName ?? "") ?? ""
                 let companyName = firstItem.companyName ?? ""
                 let remotePath = firstItem.ftpPath ?? ""
                 
@@ -192,7 +192,7 @@ class UploadManager: NSObject {
             let subData = data.subdata(in: offset..<offset+readSize)
             
             let chunkFileName = UUID().uuidString + ".tmp"
-            let chunkFilePath = CommData.getFilePathAppended(byCacheDir: chunkFileName) ?? ""
+            let chunkFilePath = CommData.getFilePathAppended(byDocumentDir: chunkFileName) ?? ""
             let chunkFileURL = URL(fileURLWithPath: chunkFilePath)
             try? subData.write(to: chunkFileURL, options: .atomic)
             
@@ -280,7 +280,7 @@ class UploadManager: NSObject {
         let date = Date()
         let timeString = date.toDateString(format: kTightFullDateFormat) ?? ""
         let zipFileName = "upload\(timeString).zip"
-        let zipFilePath = CommData.getFilePathAppended(byCacheDir: zipFileName) ?? ""
+        let zipFilePath = CommData.getFilePathAppended(byDocumentDir: zipFileName) ?? ""
         CommData.deleteFileIfExist(zipFilePath)
 
         SSZipArchive.createZipFile(atPath: zipFilePath, withFilesAtPaths: filePathArray)
@@ -298,7 +298,7 @@ class UploadManager: NSObject {
         let date = Date()
         let timeString = date.toDateString(format: kTightFullDateFormat) ?? ""
         let zipFileName = "upload\(timeString).zip"
-        let zipFilePath = CommData.getFilePathAppended(byCacheDir: zipFileName) ?? ""
+        let zipFilePath = CommData.getFilePathAppended(byDocumentDir: zipFileName) ?? ""
         CommData.deleteFileIfExist(zipFilePath)
         SSZipArchive.createZipFile(atPath: zipFilePath, withFilesAtPaths: filePathArray)
 

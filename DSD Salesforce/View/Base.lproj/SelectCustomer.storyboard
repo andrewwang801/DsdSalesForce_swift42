@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +39,7 @@
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No customer selected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdG-kb-LWy">
-                                                <rect key="frame" x="598" y="120" width="148" height="17.5"/>
+                                                <rect key="frame" x="598" y="120" width="148.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -371,7 +371,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show All" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jks-PO-De8">
-                                                        <rect key="frame" x="231" y="11.5" width="59" height="17.5"/>
+                                                        <rect key="frame" x="231" y="10" width="59" height="20"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                         <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -433,13 +433,13 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A2Z, Supermarket, Deira, Dubai" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r37-Sm-Xi4">
-                                                                            <rect key="frame" x="30" y="28.5" width="250" height="17.5"/>
+                                                                            <rect key="frame" x="30" y="27" width="250" height="20"/>
                                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                                             <color key="textColor" red="0.52941176470588236" green="0.52156862745098043" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Stop" translatesAutoresizingMaskIntoConstraints="NO" id="BNb-vU-xAI">
-                                                                            <rect key="frame" x="236" y="14.5" width="44" height="45"/>
+                                                                            <rect key="frame" x="258" y="26" width="22" height="22.5"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="696-Il-sTT" userLabel="Bottom Separator">
                                                                             <rect key="frame" x="0.0" y="73" width="320" height="1"/>
@@ -490,7 +490,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no data." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSL-ed-DIa">
-                                                <rect key="frame" x="0.0" y="150" width="320" height="17.5"/>
+                                                <rect key="frame" x="0.0" y="150" width="320" height="20"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" red="0.18431372549019609" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -642,7 +642,7 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QSK-Qn-bnw">
-                                        <rect key="frame" x="0.0" y="209" width="644" height="181"/>
+                                        <rect key="frame" x="0.0" y="202" width="644" height="178"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EZR-tN-PpP" userLabel="Top Separator">
                                             <rect key="frame" x="0.0" y="0.0" width="644" height="1"/>
@@ -657,14 +657,14 @@
                                         </label>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomerContactCell" id="JYM-bG-TPQ" customClass="CustomerContactCell" customModule="DSD_Salesforce" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="29" width="644" height="41"/>
+                                                <rect key="frame" x="0.0" y="29" width="644" height="21"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JYM-bG-TPQ" id="hFS-dS-uka">
-                                                    <rect key="frame" x="0.0" y="0.0" width="644" height="41"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="644" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-dH-OJz" userLabel="Manager View">
-                                                            <rect key="frame" x="0.0" y="0.0" width="644" height="41"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="644" height="21"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-Pe-pgW" userLabel="Top Separator">
                                                                     <rect key="frame" x="0.0" y="0.0" width="644" height="1"/>
@@ -677,33 +677,33 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primary Contact:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyW-sA-yTy">
-                                                                    <rect key="frame" x="15" y="12" width="114" height="17.5"/>
+                                                                    <rect key="frame" x="15" y="2" width="114" height="17.5"/>
                                                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                                     <color key="textColor" red="0.5450980392" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fred Jones" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbt-ZI-ewa">
-                                                                    <rect key="frame" x="135" y="12" width="109" height="17.5"/>
+                                                                    <rect key="frame" x="135" y="2" width="109" height="17.5"/>
                                                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                                     <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehf-xs-oo1" userLabel="Phone View">
-                                                                    <rect key="frame" x="249" y="1" width="195" height="40"/>
+                                                                    <rect key="frame" x="249" y="1" width="195" height="20"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-kI-ot9">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="195" height="20"/>
                                                                             <state key="normal" backgroundImage="Activity_Item_Normal"/>
                                                                             <state key="highlighted" backgroundImage="Activity_Item_Selected"/>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1237672434" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9e-bA-Xyh">
-                                                                            <rect key="frame" x="45" y="0.0" width="140" height="40"/>
+                                                                            <rect key="frame" x="45" y="0.0" width="140" height="20"/>
                                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                                             <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Call" translatesAutoresizingMaskIntoConstraints="NO" id="j5z-gn-3ke">
-                                                                            <rect key="frame" x="10" y="-4" width="48" height="48"/>
+                                                                            <rect key="frame" x="10" y="-2" width="24" height="24"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <constraints>
@@ -721,21 +721,21 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbK-iB-Cu3" userLabel="Email View">
-                                                                    <rect key="frame" x="449" y="1" width="195" height="40"/>
+                                                                    <rect key="frame" x="449" y="1" width="195" height="20"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irz-nh-dcZ">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="195" height="40"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="195" height="20"/>
                                                                             <state key="normal" backgroundImage="Activity_Item_Normal"/>
                                                                             <state key="highlighted" backgroundImage="Activity_Item_Selected"/>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mytest@test.com" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Rk-cT-A1h">
-                                                                            <rect key="frame" x="45" y="0.0" width="140" height="40"/>
+                                                                            <rect key="frame" x="45" y="0.0" width="140" height="20"/>
                                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                                             <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Email" translatesAutoresizingMaskIntoConstraints="NO" id="Clu-XI-d3J">
-                                                                            <rect key="frame" x="10" y="2" width="49" height="36"/>
+                                                                            <rect key="frame" x="10" y="1" width="24.5" height="18"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                     <constraints>
@@ -791,7 +791,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CustomerOtherInfoCell" id="jNT-jm-M9X" customClass="CustomerOtherInfoCell" customModule="DSD_Salesforce" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="70" width="644" height="44"/>
+                                                <rect key="frame" x="0.0" y="50" width="644" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jNT-jm-M9X" id="Tsd-9G-Tkk">
                                                     <rect key="frame" x="0.0" y="0.0" width="644" height="44"/>
@@ -954,16 +954,16 @@
                                             <constraint firstItem="YI9-bL-zYf" firstAttribute="leading" secondItem="6Ig-v5-UQm" secondAttribute="leading" id="vMA-DK-siu"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoG-2C-3zq" userLabel="Address View">
-                                        <rect key="frame" x="0.0" y="54" width="644" height="40"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UoG-2C-3zq" userLabel="Address View">
+                                        <rect key="frame" x="0.0" y="54" width="644" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrQ-6m-hIU">
-                                                <rect key="frame" x="0.0" y="0.0" width="644" height="40"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrQ-6m-hIU">
+                                                <rect key="frame" x="0.0" y="0.0" width="644" height="45"/>
                                                 <state key="normal" backgroundImage="Activity_Item_Normal"/>
                                                 <state key="highlighted" backgroundImage="Activity_Item_Selected"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrq-WH-nOc">
-                                                <rect key="frame" x="45" y="0.0" width="589" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrq-WH-nOc">
+                                                <rect key="frame" x="45" y="0.0" width="589" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="ILH-j0-dmm"/>
                                                 </constraints>
@@ -973,8 +973,8 @@ Cessnock, NSW 2320</string>
                                                 <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Location_Middle" translatesAutoresizingMaskIntoConstraints="NO" id="cns-yp-NB7">
-                                                <rect key="frame" x="10" y="-4" width="40" height="48"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Select_Customer_Location_Middle" translatesAutoresizingMaskIntoConstraints="NO" id="cns-yp-NB7">
+                                                <rect key="frame" x="10" y="10.5" width="20" height="24"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -990,16 +990,16 @@ Cessnock, NSW 2320</string>
                                             <constraint firstAttribute="bottom" secondItem="lrq-WH-nOc" secondAttribute="bottom" id="fmh-vF-ZL0"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-Vz-FJr" userLabel="Phone View">
-                                        <rect key="frame" x="0.0" y="104" width="644" height="40"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-Vz-FJr" userLabel="Phone View">
+                                        <rect key="frame" x="0.0" y="109" width="644" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efV-uf-qQj">
-                                                <rect key="frame" x="0.0" y="0.0" width="644" height="40"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efV-uf-qQj">
+                                                <rect key="frame" x="0.0" y="0.0" width="644" height="35"/>
                                                 <state key="normal" backgroundImage="Activity_Item_Normal"/>
                                                 <state key="highlighted" backgroundImage="Activity_Item_Selected"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1237672434" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcE-Rb-YSb">
-                                                <rect key="frame" x="45" y="0.0" width="589" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1237672434" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcE-Rb-YSb">
+                                                <rect key="frame" x="45" y="0.0" width="589" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="cXb-I0-d4G"/>
                                                 </constraints>
@@ -1007,8 +1007,8 @@ Cessnock, NSW 2320</string>
                                                 <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Call" translatesAutoresizingMaskIntoConstraints="NO" id="JKr-1U-RyW">
-                                                <rect key="frame" x="10" y="-4" width="48" height="48"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Select_Customer_Call" translatesAutoresizingMaskIntoConstraints="NO" id="JKr-1U-RyW">
+                                                <rect key="frame" x="10" y="5.5" width="24" height="24"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -1024,16 +1024,16 @@ Cessnock, NSW 2320</string>
                                             <constraint firstItem="bcE-Rb-YSb" firstAttribute="top" secondItem="BpR-Vz-FJr" secondAttribute="top" id="oWt-vS-PH6"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LC5-kQ-jjz" userLabel="Email View">
-                                        <rect key="frame" x="0.0" y="154" width="644" height="40"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LC5-kQ-jjz" userLabel="Email View">
+                                        <rect key="frame" x="0.0" y="154" width="644" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JO-Ji-bSd">
-                                                <rect key="frame" x="0.0" y="0.0" width="644" height="40"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JO-Ji-bSd">
+                                                <rect key="frame" x="0.0" y="0.0" width="644" height="35"/>
                                                 <state key="normal" backgroundImage="Activity_Item_Normal"/>
                                                 <state key="highlighted" backgroundImage="Activity_Item_Selected"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mymail@test.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzO-Rf-ybM">
-                                                <rect key="frame" x="45" y="0.0" width="589" height="40"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="mymail@test.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzO-Rf-ybM">
+                                                <rect key="frame" x="45" y="0.0" width="589" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="OHT-uC-NSM"/>
                                                 </constraints>
@@ -1041,8 +1041,8 @@ Cessnock, NSW 2320</string>
                                                 <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Customer_Email" translatesAutoresizingMaskIntoConstraints="NO" id="zgx-1R-5FD">
-                                                <rect key="frame" x="10" y="2" width="49" height="36"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Select_Customer_Email" translatesAutoresizingMaskIntoConstraints="NO" id="zgx-1R-5FD">
+                                                <rect key="frame" x="10" y="8.5" width="24.5" height="18"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -1062,8 +1062,15 @@ Cessnock, NSW 2320</string>
                                         <rect key="frame" x="447" y="50" width="181" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOMER IS ON CREDIT HOLD. NO ORDERS ALLOWED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="bBK-QB-6gN">
+                                        <rect key="frame" x="0.0" y="383" width="644" height="22"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="bBK-QB-6gN" firstAttribute="trailing" secondItem="QSK-Qn-bnw" secondAttribute="trailing" id="2Ek-6K-UeM"/>
                                     <constraint firstItem="LC5-kQ-jjz" firstAttribute="trailing" secondItem="UoG-2C-3zq" secondAttribute="trailing" id="5pc-1U-CAv"/>
                                     <constraint firstItem="4OW-zS-3xf" firstAttribute="leading" secondItem="Tzw-GF-vEi" secondAttribute="trailing" constant="5" id="6In-VX-xMg"/>
                                     <constraint firstAttribute="bottom" secondItem="iSI-3v-1I1" secondAttribute="bottom" id="AP7-Gj-DZM"/>
@@ -1071,21 +1078,24 @@ Cessnock, NSW 2320</string>
                                     <constraint firstItem="Xe9-6c-NJa" firstAttribute="leading" secondItem="ZBG-3z-rKZ" secondAttribute="trailing" constant="20" id="FYg-aY-89J"/>
                                     <constraint firstAttribute="trailing" secondItem="4OW-zS-3xf" secondAttribute="trailing" id="K10-fP-gCO"/>
                                     <constraint firstItem="QSK-Qn-bnw" firstAttribute="top" secondItem="LC5-kQ-jjz" secondAttribute="bottom" constant="15" id="ME4-v6-kfU"/>
-                                    <constraint firstItem="iSI-3v-1I1" firstAttribute="top" secondItem="QSK-Qn-bnw" secondAttribute="bottom" constant="20" id="OTY-Ik-vwi"/>
                                     <constraint firstItem="lDJ-1X-5Do" firstAttribute="leading" secondItem="G3x-fK-V0c" secondAttribute="trailing" constant="10" id="Of2-gU-aK6"/>
                                     <constraint firstItem="Xe9-6c-NJa" firstAttribute="centerY" secondItem="ZBG-3z-rKZ" secondAttribute="centerY" id="PJe-7Q-61v"/>
                                     <constraint firstAttribute="trailing" secondItem="UoG-2C-3zq" secondAttribute="trailing" id="QRy-Oe-t1y"/>
                                     <constraint firstItem="BpR-Vz-FJr" firstAttribute="top" secondItem="UoG-2C-3zq" secondAttribute="bottom" constant="10" id="Vg9-MA-Bvx"/>
                                     <constraint firstItem="4OW-zS-3xf" firstAttribute="top" secondItem="Brm-n0-eSN" secondAttribute="top" id="Wq6-7m-Gbj"/>
+                                    <constraint firstItem="bBK-QB-6gN" firstAttribute="leading" secondItem="QSK-Qn-bnw" secondAttribute="leading" id="XEx-yO-eJQ"/>
                                     <constraint firstItem="xE9-1W-4Y9" firstAttribute="leading" secondItem="Xe9-6c-NJa" secondAttribute="trailing" constant="10" id="amN-ZP-LOi"/>
                                     <constraint firstItem="ZBG-3z-rKZ" firstAttribute="leading" secondItem="Brm-n0-eSN" secondAttribute="leading" id="bDV-wd-aI6"/>
+                                    <constraint firstItem="bBK-QB-6gN" firstAttribute="top" secondItem="QSK-Qn-bnw" secondAttribute="bottom" constant="3" id="bkz-P3-WIc"/>
                                     <constraint firstItem="BpR-Vz-FJr" firstAttribute="trailing" secondItem="UoG-2C-3zq" secondAttribute="trailing" id="cd8-ak-iig"/>
                                     <constraint firstItem="iSI-3v-1I1" firstAttribute="width" secondItem="Brm-n0-eSN" secondAttribute="width" multiplier="1/4" constant="-10" id="d4U-Tk-XXk"/>
+                                    <constraint firstItem="QSK-Qn-bnw" firstAttribute="top" secondItem="Xe9-6c-NJa" secondAttribute="bottom" constant="173" id="flA-dg-WAX"/>
                                     <constraint firstItem="QSK-Qn-bnw" firstAttribute="leading" secondItem="Brm-n0-eSN" secondAttribute="leading" id="fy8-NV-E20"/>
                                     <constraint firstItem="4OW-zS-3xf" firstAttribute="centerY" secondItem="Tzw-GF-vEi" secondAttribute="centerY" id="gaE-dn-2Bs"/>
                                     <constraint firstItem="lDJ-1X-5Do" firstAttribute="width" secondItem="iSI-3v-1I1" secondAttribute="width" id="iiQ-um-Za0"/>
                                     <constraint firstItem="UoG-2C-3zq" firstAttribute="top" secondItem="4OW-zS-3xf" secondAttribute="bottom" constant="10" id="lik-i7-hxp"/>
                                     <constraint firstItem="UoG-2C-3zq" firstAttribute="leading" secondItem="Brm-n0-eSN" secondAttribute="leading" id="m6y-BZ-feN"/>
+                                    <constraint firstItem="iSI-3v-1I1" firstAttribute="top" secondItem="bBK-QB-6gN" secondAttribute="bottom" constant="5" id="mDn-A6-7vm"/>
                                     <constraint firstItem="Tzw-GF-vEi" firstAttribute="leading" secondItem="xE9-1W-4Y9" secondAttribute="trailing" constant="5" id="mmf-En-hcw"/>
                                     <constraint firstItem="ZBG-3z-rKZ" firstAttribute="top" secondItem="Brm-n0-eSN" secondAttribute="top" constant="3" id="mua-5X-6ml"/>
                                     <constraint firstItem="LC5-kQ-jjz" firstAttribute="leading" secondItem="UoG-2C-3zq" secondAttribute="leading" id="neA-vV-ccI"/>
@@ -1117,6 +1127,7 @@ Cessnock, NSW 2320</string>
                         <outlet property="availableCreditLabel" destination="2vu-3E-HqH" id="Vw9-Xb-sno"/>
                         <outlet property="availableCreditTitleLabel" destination="Phv-jZ-UrM" id="zs4-XJ-WzG"/>
                         <outlet property="contactTableView" destination="QSK-Qn-bnw" id="tpt-Ii-0qU"/>
+                        <outlet property="creditHoldWarnLabel" destination="bBK-QB-6gN" id="M3d-mI-TbB"/>
                         <outlet property="currentMonthSalesLabel" destination="YI9-bL-zYf" id="xMC-bb-qMn"/>
                         <outlet property="currentMonthSalesTitleLabel" destination="AO9-1L-5IA" id="eFB-Wf-8Im"/>
                         <outlet property="emailLabel" destination="SzO-Rf-ybM" id="jTu-2G-Iw7"/>
@@ -1164,7 +1175,7 @@ Cessnock, NSW 2320</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT A REASON CODE?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6V-5X-2jm">
-                                                <rect key="frame" x="30" y="16" width="227.5" height="21"/>
+                                                <rect key="frame" x="30" y="14.5" width="214" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1631,16 +1642,16 @@ Cessnock, NSW 2320</string>
                                 <rect key="frame" x="30" y="25" width="644" height="460"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgR-6X-SmG" userLabel="Option View">
-                                        <rect key="frame" x="55" y="0.0" width="534.5" height="27"/>
+                                        <rect key="frame" x="54" y="0.0" width="536.5" height="27"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top products from other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eiw-Zv-vVr">
-                                                <rect key="frame" x="0.0" y="1" width="194.5" height="21"/>
+                                                <rect key="frame" x="0.0" y="-0.5" width="196.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" red="0.54509803921568623" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHu-84-NDn" customClass="AnimatableButton" customModule="IBAnimatable">
-                                                <rect key="frame" x="201.5" y="0.0" width="148" height="27"/>
+                                                <rect key="frame" x="203.5" y="0.0" width="148" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="148" id="27W-lg-NXZ"/>
                                                     <constraint firstAttribute="height" constant="27" id="4U3-Rz-ScU"/>
@@ -1666,13 +1677,13 @@ Cessnock, NSW 2320</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in postcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOZ-bs-mPE">
-                                                <rect key="frame" x="354.5" y="1" width="95" height="21"/>
+                                                <rect key="frame" x="356.5" y="-0.5" width="95" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" red="0.5450980392" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ce-R4-rTI" customClass="AnimatableTextField" customModule="IBAnimatable">
-                                                <rect key="frame" x="454.5" y="0.0" width="80" height="27"/>
+                                                <rect key="frame" x="456.5" y="0.0" width="80" height="27"/>
                                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="2lE-d1-rtV"/>
@@ -1760,13 +1771,13 @@ Cessnock, NSW 2320</string>
                                                                     <rect key="frame" x="0.0" y="0.0" width="419" height="99"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dream Whip Topping Mix 12*144g" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzM-6t-l9C" userLabel="Last Orders Label">
-                                                                            <rect key="frame" x="20" y="27.5" width="309" height="20"/>
+                                                                            <rect key="frame" x="20" y="25" width="309" height="22.5"/>
                                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                                             <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DW002" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ro-hb-n8p" userLabel="Last Orders Label">
-                                                                            <rect key="frame" x="20" y="51.5" width="309" height="17.5"/>
+                                                                            <rect key="frame" x="20" y="51.5" width="309" height="20"/>
                                                                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                                             <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -1841,7 +1852,7 @@ Cessnock, NSW 2320</string>
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no data." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msC-7D-3t1">
-                                        <rect key="frame" x="255" y="136" width="134.5" height="21"/>
+                                        <rect key="frame" x="254.5" y="136" width="135" height="24"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2376,7 +2387,7 @@ get 1 free
                                 <rect key="frame" x="287" y="383" width="450" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRIP SETTLEMENT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUF-nr-ibl">
-                                        <rect key="frame" x="25" y="20" width="400" height="29.5"/>
+                                        <rect key="frame" x="25" y="20" width="400" height="33"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="25"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2440,16 +2451,16 @@ get 1 free
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eq-wO-Iyx" userLabel="Header View">
-                                        <rect key="frame" x="15" y="49.5" width="420" height="45"/>
+                                        <rect key="frame" x="15" y="53" width="420" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi John" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXF-RZ-spL">
-                                                <rect key="frame" x="0.0" y="10" width="280" height="21"/>
+                                                <rect key="frame" x="0.0" y="10" width="280" height="24"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip # 100020" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGs-Ma-PQG">
-                                                <rect key="frame" x="290" y="10" width="130" height="21"/>
+                                                <rect key="frame" x="290" y="10" width="130" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="130" id="E06-Su-pAh"/>
                                                 </constraints>
@@ -2482,7 +2493,7 @@ get 1 free
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GKK-W3-fdl">
-                                        <rect key="frame" x="15" y="104.5" width="420" height="410.5"/>
+                                        <rect key="frame" x="15" y="108" width="420" height="407"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripSettlementCell" rowHeight="57" id="Avr-6X-cjm" customClass="TripSettlementCell" customModule="DSD_Salesforce" customModuleProvider="target">
@@ -2493,13 +2504,13 @@ get 1 free
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Visit Reasons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRi-g5-aNC">
-                                                            <rect key="frame" x="10" y="18" width="360" height="21"/>
+                                                            <rect key="frame" x="10" y="16.5" width="360" height="24"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                             <color key="textColor" red="0.18431372549019609" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Check_Green" translatesAutoresizingMaskIntoConstraints="NO" id="2ek-Wm-eJ5">
-                                                            <rect key="frame" x="361" y="11.5" width="44" height="34"/>
+                                                            <rect key="frame" x="383" y="20" width="22" height="17"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHt-7L-K3X" userLabel="Bottom Separator">
                                                             <rect key="frame" x="0.0" y="56" width="420" height="1"/>
@@ -2604,19 +2615,19 @@ get 1 free
                                 <rect key="frame" x="262" y="358" width="500" height="650"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INCOMPLETE VISITS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3A-Vq-f7Y">
-                                        <rect key="frame" x="25" y="20" width="450" height="29.5"/>
+                                        <rect key="frame" x="25" y="20" width="450" height="33"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="25"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The following customer visits are not yet completed. Please select a reason for the incomplete visits." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGB-dX-hNC" userLabel="Description">
-                                        <rect key="frame" x="15" y="64.5" width="470" height="42"/>
+                                        <rect key="frame" x="15" y="68" width="470" height="47.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5J-yz-3aM" userLabel="Separator">
-                                        <rect key="frame" x="15" y="116.5" width="470" height="1"/>
+                                        <rect key="frame" x="15" y="125.5" width="470" height="1"/>
                                         <color key="backgroundColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="zkA-DJ-tvf"/>
@@ -2626,7 +2637,7 @@ get 1 free
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zrt-Jo-BNR">
-                                        <rect key="frame" x="15" y="127.5" width="470" height="437.5"/>
+                                        <rect key="frame" x="15" y="136.5" width="470" height="428.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IncompleteDeliveryCell" rowHeight="100" id="fJZ-g8-dbb" customClass="IncompleteDeliveryCell" customModule="DSD_Salesforce" customModuleProvider="target">
@@ -2799,7 +2810,7 @@ get 1 free
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no data." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uE3-rS-GkC">
-                                        <rect key="frame" x="183" y="167.5" width="134.5" height="21"/>
+                                        <rect key="frame" x="182.5" y="176.5" width="135" height="24"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2930,20 +2941,20 @@ get 1 free
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPf-ob-8Oo" userLabel="Main" customClass="AnimatableView" customModule="IBAnimatable">
-                                <rect key="frame" x="312" y="508" width="400" height="350.5"/>
+                                <rect key="frame" x="312" y="506" width="400" height="354"/>
                                 <subviews>
                                     <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzH-Wg-Fia">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="350.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="354"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </webView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COLLECTIONS BALANCING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mJ-8g-lCH">
-                                        <rect key="frame" x="25" y="20" width="350" height="29.5"/>
+                                        <rect key="frame" x="25" y="20" width="350" height="33"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="25"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.58039215690000001" blue="0.1137254902" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yv8-Tu-3BP" userLabel="Separator">
-                                        <rect key="frame" x="15" y="64.5" width="370" height="1"/>
+                                        <rect key="frame" x="15" y="68" width="370" height="1"/>
                                         <color key="backgroundColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="L49-mp-OBz"/>
@@ -2953,7 +2964,7 @@ get 1 free
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I9W-ob-HnK">
-                                        <rect key="frame" x="15" y="95.5" width="370" height="150"/>
+                                        <rect key="frame" x="15" y="99" width="370" height="150"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="rgF-mj-FZI"/>
@@ -2973,7 +2984,7 @@ get 1 free
                                                                     <rect key="frame" x="0.0" y="0.0" width="141.5" height="69"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cash" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Y1-UE-4dK" userLabel="Last Orders Label">
-                                                                            <rect key="frame" x="10" y="24" width="121.5" height="21"/>
+                                                                            <rect key="frame" x="10" y="22.5" width="121.5" height="24"/>
                                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                                             <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -3093,7 +3104,7 @@ get 1 free
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjP-xG-WZN" userLabel="Bottom Separator">
-                                        <rect key="frame" x="15" y="275.5" width="370" height="1"/>
+                                        <rect key="frame" x="15" y="279" width="370" height="1"/>
                                         <color key="backgroundColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="d4w-10-1jm"/>
@@ -3103,13 +3114,13 @@ get 1 free
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no data." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-kg-6PQ">
-                                        <rect key="frame" x="133" y="135.5" width="134.5" height="21"/>
+                                        <rect key="frame" x="132.5" y="139" width="135" height="24"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <color key="textColor" red="0.1843137255" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ls-EM-1vd" userLabel="Button View">
-                                        <rect key="frame" x="15" y="291.5" width="370" height="44"/>
+                                        <rect key="frame" x="15" y="295" width="370" height="44"/>
                                         <subviews>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7H-zJ-ap3" customClass="AnimatableButton" customModule="IBAnimatable">
                                                 <rect key="frame" x="130" y="0.0" width="110" height="44"/>

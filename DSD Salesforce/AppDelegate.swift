@@ -159,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            let options = [ NSMigratePersistentStoresAutomaticallyOption : true, NSInferMappingModelAutomaticallyOption : true ]
+            var options = [ NSMigratePersistentStoresAutomaticallyOption : true, NSInferMappingModelAutomaticallyOption : true ] as [String : Any]
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
         } catch {
             // Report any error we got.
@@ -197,19 +197,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func saveContext () {
         if managedObjectContext.hasChanges {
-            do {
-                try managedObjectContext.save()
-                NSLog("OrderDetail is saved")
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-//                abort()
-            }
+                //try managedObjectContext.save()
+            
+                managedObjectContext.automaticallyMergesChangesFromParent = true
+                managedObjectContext.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+                managedObjectContext.performAndWait { () -> Void in
+                    do {
+                        try managedObjectContext.save()
+                    }
+                    catch {
+                        let nserror = error as NSError
+                        NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                    }
+                    NSLog("OrderDetail is saved")
+                }
         }
     }
-
 }
 
 // MARK: -NotificationServiceDelegate

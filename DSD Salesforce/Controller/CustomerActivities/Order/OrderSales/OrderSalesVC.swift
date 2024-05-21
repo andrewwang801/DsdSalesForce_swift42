@@ -290,6 +290,7 @@ class OrderSalesVC: UIViewController {
         let type = userInfo!["type"] as? Int ?? 0
         let itemUPC = userInfo!["itemUPC"] as? String ?? ""
         let showDetail = userInfo!["showDetail"] as? Bool ?? false
+        var orderDetailForAdd: OrderDetail?
         
         var qty = 0
         //var isUnit = false
@@ -329,6 +330,7 @@ class OrderSalesVC: UIViewController {
                 let orderDetail = _orderDetail as! OrderDetail
                 let _itemNo = orderDetail.itemNo ?? ""
                 if _itemNo == itemNo {
+                    orderDetailForAdd = orderDetail
                     qty = orderDetail.enterQty.int
                     selectedIndex = index
                     break
@@ -347,7 +349,7 @@ class OrderSalesVC: UIViewController {
             else {
 //                self.addProduct(shouldRemoveZeroAmount: true)
                 DispatchQueue.main.async {
-                    Utils.showAddOrderVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, isAdd: true, dismissHandler: { addOrderVC, dismissOption in
+                    Utils.showAddOrderVC(vc: self, productDetail: self.selectedProductDetail!, customerDetail: self.orderVC.customerDetail, isAdd: true, orderDetail: orderDetailForAdd, dismissHandler: { addOrderVC, dismissOption in
                         // we should replace the qty by the input
                         if dismissOption == AddOrderVC.DismissOption.done {
                             let inputedQty = addOrderVC.orderQty

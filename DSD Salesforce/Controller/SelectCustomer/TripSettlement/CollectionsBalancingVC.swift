@@ -88,7 +88,7 @@ class CollectionsBalancingVC: UIViewController {
         printEngine = PrintEngine()
 
         let pdfFileName = Utils.getPDFFileName()
-        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfFileName) ?? ""
+        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfFileName) ?? ""
 
         var docNo = ""
         if pdfFileName.length > 4 {

@@ -34,6 +34,14 @@ class CustomerActivitiesVC: UIViewController {
     @IBOutlet weak var promotionsLabel: UILabel!
     @IBOutlet weak var returnButton: AnimatableButton!
     @IBOutlet weak var completeVisitButton: AnimatableButton!
+    @IBOutlet weak var salesOrderButton: UIButton!
+    @IBOutlet weak var salesOrderImageView: UIImageView!
+    
+    @IBOutlet weak var updateDetailsView: UIView!
+    @IBOutlet weak var updateDetailsViewRightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var custNoLabel: UILabel!
+    @IBOutlet weak var custNameLabel: UILabel!
     
     let globalInfo = GlobalInfo.shared
     var mainVC: MainVC!
@@ -49,6 +57,14 @@ class CustomerActivitiesVC: UIViewController {
     }
 
     func initUI() {
+        if let creditHold = customerDetail.creditHold, creditHold == "2" {
+            salesOrderImageView.alpha = 0.3
+            salesOrderButton.isEnabled = false
+        }
+        else {
+            salesOrderImageView.alpha = 1
+            salesOrderButton.isEnabled = true
+        }
         toDoObjectivesLabel.text = L10n.toDoObjectives()
         customerNotesLabel.text = L10n.customerNotes()
         updateDetailsLabel.text = L10n.updateDeatils()
@@ -62,6 +78,25 @@ class CustomerActivitiesVC: UIViewController {
         
         surveyCollectionView.delegate = self
         surveyCollectionView.dataSource = self
+        
+        if self.globalInfo.routeControl?.custaddNew == "2" {
+            updateDetailsView.isHidden = true
+            updateDetailsViewRightConstraint.constant = -updateDetailsView.bounds.width
+        }
+        else {
+            updateDetailsView.isHidden = false
+            updateDetailsViewRightConstraint.constant = 0
+        }
+        
+        let tagNo = customerDetail.getCustomerTag()
+        if customerDetail.altCustNo != "" {
+            custNoLabel.text = customerDetail.altCustNo
+        }
+        else {
+            custNoLabel.text = tagNo
+        }
+        custNameLabel.text = customerDetail.getShortenedCustomerTitle()
+    
     }
 
     func updateUI() {
@@ -291,7 +326,13 @@ class CustomerActivitiesVC: UIViewController {
         for orderHeader in notUploadedHeaderArray {
             orderHeader.scheduleUpload()
         }
-        customerDetail.isCompleted = true
+//        if let _customerDetail = CustomerDetail.getBy(context: globalInfo.managedObjectContext, chainNo: chainNo, custNo: custNo, isCompleted: true) {
+//            customerDetail.isCompleted = true
+//            CustomerDetail.delete(context: globalInfo.managedObjectContext, customerDetail: _customerDetail)
+//        }
+//        else {
+            customerDetail.isCompleted = true
+//        }
 
         let now = Date()
 

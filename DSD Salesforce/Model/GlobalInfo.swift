@@ -38,6 +38,7 @@ class GlobalInfo: NSObject {
 
     var selectedCustomer: CustomerDetail?
     var selectedPresoldOrHeader: PresoldOrHeader?
+    var preInvoiceFmt = "1"
     
     // XML
     var routeControl: RouteControl?
@@ -272,7 +273,7 @@ extension GlobalInfo {
         if pdfName == "" {
             return
         }
-        let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName)
+        let pdfPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName+"/"+pdfName)
         if CommData.isExistingFile(atPath: pdfPath) {
             CommData.deleteFileIfExist(pdfPath)
         }

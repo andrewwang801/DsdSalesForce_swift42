@@ -96,7 +96,7 @@ class UAsset: NSObject {
         }
         let nowString = Date().toDateString(format: kTightFullDateFormat) ?? ""
         let fileName = "Assets\(nowString).upl"
-        let filePath = CommData.getFilePathAppended(byCacheDir: fileName) ?? ""
+        let filePath = CommData.getFilePathAppended(byDocumentDir: fileName) ?? ""
         saveToXML(assetArray: assetArray, filePath: filePath)
         return filePath
     }

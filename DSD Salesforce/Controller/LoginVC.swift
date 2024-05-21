@@ -503,7 +503,7 @@ class LoginVC: UIViewController {
     }
 
     func updateLeftPanel() {
-        let companyLogoPath = CommData.getFilePathAppended(byCacheDir: kReportsDirName+"/"+kCompanyLogoFileName) ?? ""
+        let companyLogoPath = CommData.getFilePathAppended(byDocumentDir: kReportsDirName+"/"+kCompanyLogoFileName) ?? ""
         let image = UIImage.loadImageFromLocal(filePath: companyLogoPath)
         if image == nil {
             leftLogoImageView.image = UIImage(named: "Logo_Large")

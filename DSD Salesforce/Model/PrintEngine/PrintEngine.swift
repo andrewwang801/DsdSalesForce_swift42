@@ -40,7 +40,7 @@ class PrintEngine: NSObject {
     func prepareTermsPrint(filePath: String, name: String, customerDetail: CustomerDetail, equipment: Equipment) {
 
         dictionary = [:]
-        dictionary["logo"] = CommData.getFilePathAppended(byCacheDir: kReportsDirName+"/"+kCompanyLogoFileName)
+        dictionary["logo"] = CommData.getFilePathAppended(byDocumentDir: kReportsDirName+"/"+kCompanyLogoFileName)
         dictionary["Sign"] = filePath
 
         let docTextArray = DocText.getBy(context: globalInfo.managedObjectContext, textType: "6")
@@ -75,7 +75,7 @@ class PrintEngine: NSObject {
         dictionary = [:]
         dictionaryArray = [:]
 
-        dictionary["logo"] = CommData.getFilePathAppended(byCacheDir: kReportsDirName+"/"+kCompanyLogoFileName)
+        dictionary["logo"] = CommData.getFilePathAppended(byDocumentDir: kReportsDirName+"/"+kCompanyLogoFileName)
 
         let managedObjectContext = globalInfo.managedObjectContext!
         let chainNo = customerDetail.chainNo ?? ""
@@ -329,7 +329,7 @@ class PrintEngine: NSObject {
         dictionary = [:]
         dictionaryArray = [:]
 
-        dictionary["logo"] = CommData.getFilePathAppended(byCacheDir: kReportsDirName+"/"+kCompanyLogoFileName)
+        dictionary["logo"] = CommData.getFilePathAppended(byDocumentDir: kReportsDirName+"/"+kCompanyLogoFileName)
 
         let inventoryUOM = globalInfo.routeControl?.inventoryUOM ?? ""
         let isShowCase = inventoryUOM != "U"
@@ -859,9 +859,9 @@ class PrintEngine: NSObject {
 
     func createPDF(webView: UIWebView, isDuplicated: Bool, path: String, type: Int, shouldShowHUD: Bool, completion: ((Bool)->())?) {
 
-        let pdfDirPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName) ?? ""
+        let pdfDirPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName) ?? ""
         CommData.createDirectory(pdfDirPath)
-        let pdfLocalDirPath = CommData.getFilePathAppended(byCacheDir: kPDFLocalDirName) ?? ""
+        let pdfLocalDirPath = CommData.getFilePathAppended(byDocumentDir: kPDFLocalDirName) ?? ""
         CommData.createDirectory(pdfLocalDirPath)
 
         printPDFPath = path
@@ -888,9 +888,9 @@ class PrintEngine: NSObject {
 
     func createPDF(webView: UIWebView, isDuplicated: Bool, path: String, xmlDocument: GDataXMLDocument, shouldShowHUD: Bool, completion: ((Bool)->())?) {
 
-        let pdfDirPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName) ?? ""
+        let pdfDirPath = CommData.getFilePathAppended(byDocumentDir: kPDFDirName) ?? ""
         CommData.createDirectory(pdfDirPath)
-        let pdfLocalDirPath = CommData.getFilePathAppended(byCacheDir: kPDFLocalDirName) ?? ""
+        let pdfLocalDirPath = CommData.getFilePathAppended(byDocumentDir: kPDFLocalDirName) ?? ""
         CommData.createDirectory(pdfLocalDirPath)
 
         printPDFPath = path
@@ -964,7 +964,8 @@ class PrintEngine: NSObject {
 
     func createHTML(isDuplicated: Bool, type: Int) -> String {
 
-        let xmlDirPath = CommData.getFilePathAppended(byCacheDir: "\(kReportsDirName)") ?? ""
+//        let xmlDirPath = CommData.getFilePathAppended(byCacheDir: "\(kReportsDirName)") ?? ""
+        let xmlDirPath = CommData.getFilePathAppended(byDocumentDir: "\(kReportsDirName)") ?? ""
         var xmlFilePath = ""
 
         if type == kSalePrint {

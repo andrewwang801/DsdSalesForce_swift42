@@ -82,7 +82,8 @@ class FTPManager: NSObject {
         self.setupManager()
 
         let remotePath = "/\(root)/REPS/000000/Download/\(territory).zip"
-        let localPath = CommData.getFilePathAppended(byCacheDir: "\(territory).zip") ?? ""
+        //let localPath = CommData.getFilePathAppended(byCacheDir: "\(territory).zip") ?? ""
+        let localPath = CommData.getFilePathAppended(byDocumentDir: "\(territory).zip") ?? ""
         downloadRemotePath = remotePath
         downloadLocalPath = localPath
 
@@ -108,7 +109,8 @@ class FTPManager: NSObject {
         let startTime = CFAbsoluteTimeGetCurrent()
         
         // create catalog directory
-        let localDirPath = CommData.getFilePathAppended(byCacheDir: localDirName) ?? ""
+        //let localDirPath = CommData.getFilePathAppended(byCacheDir: localDirName) ?? ""
+        let localDirPath = CommData.getFilePathAppended(byDocumentDir: localDirName) ?? ""
         CommData.createDirectory(localDirPath)
         
         self.ftpHostName = hostname
@@ -147,7 +149,8 @@ class FTPManager: NSObject {
         }
 
         // create catalog directory
-        let localDirPath = CommData.getFilePathAppended(byCacheDir: localDirName) ?? ""
+        //let localDirPath = CommData.getFilePathAppended(byCacheDir: localDirName) ?? ""
+        let localDirPath = CommData.getFilePathAppended(byDocumentDir: localDirName) ?? ""
         CommData.createDirectory(localDirPath)
 
         self.ftpHostName = hostname
@@ -201,7 +204,8 @@ class FTPManager: NSObject {
     }
 
     func extractZipFile() {
-        let destinationPath = CommData.getFilePathAppended(byCacheDir: kXMLDirName) ?? ""
+        //let destinationPath = CommData.getFilePathAppended(byCacheDir: kXMLDirName) ?? ""
+        let destinationPath = CommData.getFilePathAppended(byDocumentDir: kXMLDirName) ?? ""
         CommData.deleteFileIfExist(destinationPath)
 
         SSZipArchive.unzipFile(atPath: downloadLocalPath, toDestination: destinationPath, overwrite: true, password: nil, progressHandler: nil) { (message, success, error) in
