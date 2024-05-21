@@ -11,17 +11,6 @@ import CoreData
 
 public class Pricing: NSManagedObject {
 
-    //use Dif as Loading Speed Issue
-    /*static var chainNoDic = [String: [Pricing]]()
-    typealias ChainNoDic = [String: [Pricing]]
-    static var custNoDic = [String: [ChainNoDic]]()
-    typealias CustNoDic = [String: [ChainNoDic]]
-    
-    static var chainNoExistingArray: [Pricing] = []
-    static  var custNoExistingArray: [ChainNoDic] = []
-    static var itemNoExistingArray: [CustNoDic] = []
-    static var pricingDicForToday = [String: [CustNoDic]]()*/
-    
     static var pricingDicForToday = [String: [Pricing]]()
     
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
@@ -145,37 +134,6 @@ public class Pricing: NSManagedObject {
             }
             existingArray.append(pricing)
             pricingDicForToday[dic["ItemNo"]!] = existingArray
-            
-            //Use Dic for Loading Speed Issue
-            //chainNo
-            /*if let _existingArray = chainNoDic[dic["ChainNo"]!] {
-                chainNoExistingArray = _existingArray
-            }
-            else {
-                chainNoExistingArray = []
-            }
-            chainNoExistingArray.append(pricing)
-            chainNoDic[dic["ChainNo"]!] = chainNoExistingArray
-            
-            //custNo
-            if let _existingArray = custNoDic[dic["CustNo"]!] {
-                custNoExistingArray = _existingArray
-            }
-            else {
-                custNoExistingArray = []
-            }
-            custNoExistingArray.append(chainNoDic)
-            custNoDic[dic["CustNo"]!] = custNoExistingArray
-            
-            //itemNo
-            if let _existingArray = pricingDicForToday[dic["ItemNo"]!] {
-                itemNoExistingArray = _existingArray
-            }
-            else {
-                itemNoExistingArray = []
-            }
-            itemNoExistingArray.append(custNoDic)
-            pricingDicForToday[dic["ItemNo"]!] = itemNoExistingArray*/
         }
         return pricingArray
     }

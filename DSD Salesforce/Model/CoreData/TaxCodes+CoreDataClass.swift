@@ -11,14 +11,8 @@ import CoreData
 
 public class TaxCodes: NSManagedObject {
     
-    static var taxCodesDic = [String: [String: [TaxCodes]]]()
-    
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
-    }
-
-    static func getByFromDic(custTaxCode: String, itemTaxCode: String) -> TaxCodes? {
-        return taxCodesDic[custTaxCode]?[itemTaxCode]?.first
     }
     
     static func getBy(context: NSManagedObjectContext, custTaxCode: String, itemTaxCode: String) -> TaxCodes? {
@@ -61,24 +55,10 @@ public class TaxCodes: NSManagedObject {
 
         let dicArray = Utils.loadFromXML(xmlName: "TAXCODES", xPath: "//TaxCodes/Records/TaxCodes")
         var taxCodesArray = [TaxCodes]()
-        
-        var taxCodesNestedDic = [String: [TaxCodes]]()
-        var existingArray: [TaxCodes]
-        
         for dic in dicArray {
             let taxCodes = TaxCodes(context: context, forSave: forSave)
             taxCodes.updateBy(xmlDictionary: dic)
             taxCodesArray.append(taxCodes)
-            
-            if let _existingArray = taxCodesNestedDic[dic["ItemTaxCode"]!] {
-                existingArray = _existingArray
-            }
-            else {
-                existingArray = []
-            }
-            existingArray.append(taxCodes)
-            taxCodesNestedDic[dic["CustTaxCode"]!] = existingArray
-            taxCodesDic[dic["ItemTaxCode"]!] = taxCodesNestedDic
         }
         return taxCodesArray
     }

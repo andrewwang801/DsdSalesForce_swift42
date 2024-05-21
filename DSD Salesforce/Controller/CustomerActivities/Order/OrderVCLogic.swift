@@ -274,20 +274,20 @@ extension OrderVC {
                 orderDetail.price = productDetail!.price
             }*/
 
-            //let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
-            let orderHistory = OrderHistory.getFirstByFromDic(chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+            let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+            //let orderHistory = OrderHistory.getFirstByFromDic(chainNo: chainNo, custNo: custNo, itemNo: itemNo)
             if orderHistory != nil {
                 let orderDate = orderHistory!.getDate()
                 let dateValue = Date.fromDateString(dateString: orderDate, format: kTightJustDateFormat)
                 orderDetail.lastOrder = dateValue?.toDateString(format: "dd/MM/yyyy") ?? ""
             }
 
-           //let _taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-            let taxRates = TaxRates.getByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+            let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+            //let taxRates = TaxRates.getByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
             var tax: UTax?
             if taxRates != nil {
                 tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-                tax = TaxRates.getUTaxByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+                //tax = TaxRates.getUTaxByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
             }
             orderDetail.tax = tax
 
@@ -657,20 +657,17 @@ extension OrderVC {
                 orderDetail.promotionSet.addObjects(from: promotionArray)
                 orderDetail.price = productDetail.price
 
-                //let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
-                let orderHistory = OrderHistory.getFirstByFromDic(chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+                let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
                 if orderHistory != nil {
                     let orderDate = orderHistory!.getDate()
                     let dateValue = Date.fromDateString(dateString: orderDate, format: kTightJustDateFormat)
                     orderDetail.lastOrder = dateValue?.toDateString(format: "dd/MM/yyyy") ?? ""
                 }
 
-                //let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-                let taxRates = TaxRates.getByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+                let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
                 var tax: UTax?
                 if taxRates != nil {
-                    //tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-                    tax = TaxRates.getUTaxByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+                    tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
                 }
                 orderDetail.tax = tax
 
@@ -712,20 +709,17 @@ extension OrderVC {
                 orderDetail.promotionSet.addObjects(from: promotionArray)
                 orderDetail.price = productDetail.price
 
-                //let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
-                let orderHistory = OrderHistory.getFirstByFromDic(chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+                let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
                 if orderHistory != nil {
                     let orderDate = orderHistory!.getDate()
                     let dateValue = Date.fromDateString(dateString: orderDate, format: kTightJustDateFormat)
                     orderDetail.lastOrder = dateValue?.toDateString(format: "dd/MM/yyyy") ?? ""
                 }
 
-                //let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-                let taxRates = TaxRates.getByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+                let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
                 var tax: UTax?
                 if taxRates != nil {
-                    //tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-                    tax = TaxRates.getUTaxByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+                    tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
                 }
                 orderDetail.tax = tax
 
@@ -800,20 +794,17 @@ extension OrderVC {
             orderDetail.promotionSet.addObjects(from: promotionArray)
             orderDetail.price = productDetail.price
 
-            //let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
-            let orderHistory = OrderHistory.getFirstByFromDic(chainNo: chainNo, custNo: custNo, itemNo: itemNo)
+            let orderHistory = OrderHistory.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
             if orderHistory != nil {
                 let orderDate = orderHistory!.getDate()
                 let dateValue = Date.fromDateString(dateString: orderDate, format: kTightJustDateFormat)
                 orderDetail.lastOrder = dateValue?.toDateString(format: "dd/MM/yyyy") ?? ""
             }
 
-            //let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-            let taxRates = TaxRates.getByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+            let taxRates = TaxRates.getByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
             var tax: UTax?
             if taxRates != nil {
-                //tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
-                tax = TaxRates.getUTaxByForTodayFromDic(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
+                tax = TaxRates.getUTaxByForToday(context: managedObjectContext, custTaxCode: taxCode, itemNo: itemNo)
             }
             orderDetail.tax = tax
 

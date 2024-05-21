@@ -262,8 +262,9 @@ public class ProductDetail: NSManagedObject {
         let itemNo = self.itemNo ?? ""
         //let _pricing = Pricing.getByForToday(context: context, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
         //let _priceGrp = PriceGroup.getByForToday(context: context, priceGroup: custNo, itemNo: itemNo)
+        
         let pricing = Pricing.getByForTodayFromDic(context: context, chainNo: chainNo, custNo: custNo, itemNo: itemNo)
-        let priceGrp = PriceGroup.getByForTodayFromDic(context: context, priceGroup: custNo, itemNo: itemNo)
+        let priceGrp = PriceGroup.getByForToday(context: context, priceGroup: custNo, itemNo: itemNo)
         if pricing != nil {
             price = (Double(pricing!.price ?? "") ?? 0) / Double(kXMLNumberDivider)
             priceFillRecord = pricing!.prcFilRecord ?? ""
