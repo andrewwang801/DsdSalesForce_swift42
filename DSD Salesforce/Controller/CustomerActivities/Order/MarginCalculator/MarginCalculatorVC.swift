@@ -9,7 +9,7 @@
 import UIKit
 import IBAnimatable
 
-class OrderSalesVC: UIViewController {
+class MarginCalculatorVC: UIViewController {
 
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var noDataLabel: UILabel!
@@ -17,13 +17,11 @@ class OrderSalesVC: UIViewController {
     @IBOutlet weak var filterOptionButton: AnimatableButton!
     @IBOutlet weak var codeSortButton: AnimatableButton!
     @IBOutlet weak var descSortButton: AnimatableButton!
-    @IBOutlet weak var lastOrderSortButton: AnimatableButton!
     @IBOutlet weak var priceSortButton: AnimatableButton!
     @IBOutlet weak var qtySortButton: AnimatableButton!
 
     @IBOutlet weak var codeSortLabel: UILabel!
     @IBOutlet weak var descSortLabel: UILabel!
-    @IBOutlet weak var lastOrderLabel: UILabel!
     @IBOutlet weak var priceSortLabel: UILabel!
     @IBOutlet weak var qtySortLabel: UILabel!
     @IBOutlet weak var subTotalTitleLabel: UILabel!
@@ -106,7 +104,7 @@ class OrderSalesVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        sortTypeButtonArray = [codeSortButton, descSortButton, lastOrderSortButton, priceSortButton, qtySortButton]
+        sortTypeButtonArray = [codeSortButton, descSortButton, priceSortButton, qtySortButton]
 
         initUI()
     }
@@ -115,10 +113,6 @@ class OrderSalesVC: UIViewController {
         super.viewWillAppear(animated)
         sortAndFilterOrders()
         refreshOrders()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -132,11 +126,10 @@ class OrderSalesVC: UIViewController {
     func initUI() {
         codeSortLabel.text = L10n.code()
         descSortLabel.text = L10n.description()
-        lastOrderLabel.text = L10n.lastOrder()
         priceSortLabel.text = L10n.price()
         qtySortLabel.text = L10n.qty()
-        subTotalTitleLabel.text = L10n.subtotal()
-        taxTitleLabel.text = L10n.tax()
+        subTotalTitleLabel.text = ""
+        taxTitleLabel.text = ""
         totalTitleLabel.text = L10n.total()
         noDataLabel.text = L10n.thereIsNoData()
         
@@ -146,11 +139,11 @@ class OrderSalesVC: UIViewController {
         orderTableView.dataSource = self
         orderTableView.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductSelected(notification:)), name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductSelected(notification:)), name: Notification.Name(rawValue: kOrderProductSelectedNotificationName), object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductAdd(notification:)), name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductAdd(notification:)), name: Notification.Name(rawValue: kOrderProductAddNotificationName), object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(OrderSalesVC.onProductUpdate(notification:)), name: Notification.Name(rawValue: kOrderProductUpdateNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MarginCalculatorVC.onProductUpdate(notification:)), name: Notification.Name(rawValue: kOrderProductUpdateNotificationName), object: nil)
 
         for (index, sortButton) in sortTypeButtonArray.enumerated() {
             sortButton.tag = index+500
@@ -164,7 +157,7 @@ class OrderSalesVC: UIViewController {
     }
 
     func refreshOrders() {
-
+        
         orderTableView.reloadData()
         if orderVC.orderDetailSetArray[selectedOrderType.rawValue].count > 0 {
             noDataLabel.isHidden = true
@@ -174,20 +167,28 @@ class OrderSalesVC: UIViewController {
         }
 
         // update bottom total and tax
-        var subTotal: Double = 0
-        var taxTotal: Double = 0
+        var subTotal: Double = 0.0
+        var taxTotal: Double = 0.0
+        var costTotal: Double = 0.0
 
         for i in 0...1 {
             for _orderDetail in orderVC.orderDetailSetArray[i] {
                 let orderDetail = _orderDetail as! OrderDetail
                 let qty = orderDetail.enterQty
                 let price = orderDetail.price
+                
+                let itemNo = orderDetail.itemNo ?? ""
+                //marginCalculator part
+                let prodLocn = ProductLocn.getBy(context: globalInfo.managedObjectContext, itemNo: itemNo).first
+                let cost = (Double(prodLocn?.costPrice ?? "0") ?? 0) / 100000 * Double(qty)
                 let budget = Double(qty)*price
                 if i == 0 {
                     subTotal += budget
+                    costTotal += cost
                 }
                 else {
                     subTotal -= budget
+                    costTotal -= cost
                 }
 
                 let taxRateString = orderDetail.tax?.taxRate ?? "0"
@@ -201,15 +202,19 @@ class OrderSalesVC: UIViewController {
                 }
             }
         }
+        var totalMargin = (subTotal - costTotal) / subTotal * 100
+        if totalMargin < 0.0 {
+            totalMargin = 0.0
+        }
         //orderVC.orderHeader
         orderVC.orderHeader.saleAmount = subTotal
         orderVC.orderHeader.taxAmount = taxTotal
 
         GlobalInfo.saveCache()
 
-        subTotalLabel.text = Utils.getMoneyString(moneyValue: subTotal)
-        taxLabel.text = Utils.getMoneyString(moneyValue: taxTotal)
-        totalLabel.text = Utils.getMoneyString(moneyValue: (subTotal+taxTotal))
+        subTotalLabel.text = ""
+        taxLabel.text = ""
+        totalLabel.text = Utils.getMarginString(moneyValue: totalMargin)
     }
 
     @objc func onProductSelected(notification: NSNotification) {
@@ -285,8 +290,6 @@ class OrderSalesVC: UIViewController {
             }
             return
         }
-        
-        globalInfo.orderDetailSetArray = orderVC.orderDetailSetArray
     }
 
     @objc func onProductAdd(notification: NSNotification) {
@@ -729,7 +732,7 @@ class OrderSalesVC: UIViewController {
     }
 }
 
-extension OrderSalesVC: UITableViewDataSource {
+extension MarginCalculatorVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orderDetailArray.count
@@ -737,14 +740,14 @@ extension OrderSalesVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderSalesOrderCell", for: indexPath) as! OrderSalesOrderCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MarginCalculatorOrderCell", for: indexPath) as! MarginCalculatorOrderCell
         cell.setupCell(parentVC: self, indexPath: indexPath)
         return cell
     }
 
 }
 
-extension OrderSalesVC: UITableViewDelegate {
+extension MarginCalculatorVC: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -757,13 +760,13 @@ extension OrderSalesVC: UITableViewDelegate {
 
 }
 
-extension OrderSalesVC: UIPopoverPresentationControllerDelegate {
+extension MarginCalculatorVC: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
 }
 
-extension OrderSalesVC: UITextFieldDelegate {
+extension MarginCalculatorVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
        textField.resignFirstResponder()
        return true

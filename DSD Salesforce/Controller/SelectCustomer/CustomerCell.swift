@@ -16,7 +16,9 @@ class CustomerCell: UITableViewCell {
     @IBOutlet weak var stopImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var bottomSeparatorLabel: UILabel!
-
+    
+    let globalInfo = GlobalInfo.shared
+    
     var parentVC: SelectCustomerVC?
     var indexPath: IndexPath?
 
@@ -137,6 +139,10 @@ class CustomerCell: UITableViewCell {
         let index = indexPath!.row
         let customer = parentVC!.customerDetailArray[index]
         let presoldOrHeader = parentVC!.presoldOrHeaderArray[index]
+        
+        globalInfo.selectedCustomer = customer
+        globalInfo.selectedPresoldOrHeader = presoldOrHeader
+        
         parentVC!.selectedCustomer = customer
         parentVC!.selectedPresoldOrHeader = presoldOrHeader
         parentVC!.onSelectedCustomer()

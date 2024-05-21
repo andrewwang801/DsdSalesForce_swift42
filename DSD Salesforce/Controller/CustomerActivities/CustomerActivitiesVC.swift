@@ -396,6 +396,10 @@ class CustomerActivitiesVC: UIViewController {
             if dismissOption == .done {
                 self.customerDetail.nextVisitDate = vc.nextVisitDate.toDateString(format: kTightJustDateFormat) ?? ""
                 self.customerDetail.visitNote = vc.visitNote
+                let visitFrequency = vc.deliveryFreq
+                let preferredVisitDay = vc.preferredVisitDay
+                self.customerDetail.visitFrequency = Int32(visitFrequency)
+                self.customerDetail.preferredVisitDay = Int32(preferredVisitDay)
 
                 // save visit end
                 let visitEndString = Date().toDateString(format: kTightFullDateFormat)

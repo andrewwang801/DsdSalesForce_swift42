@@ -106,6 +106,16 @@ class MainVC: UIViewController {
                 self.pushChild(newVC: tripStatusVC, containerView: self.containerView)
                 //self.cycleChild(newVC: tripStatusVC, containerView: self.containerView, isLeftSlide: true, isRemovePrevious: true)
             }
+            else if dismissOption == .marginCalculator {
+                let marginCalcVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "OrderVC") as! OrderVC
+                marginCalcVC.mainVC = self
+                guard let _customerDetail = self.globalInfo.selectedCustomer else {return}
+                marginCalcVC.customerDetail = _customerDetail
+                marginCalcVC.orderHeader = self.globalInfo.orderHeader
+                marginCalcVC.isFromMarginCalculator = 1
+                self.pushChild(newVC: marginCalcVC, containerView: self.containerView)
+                //self.cycleChild(newVC: tripStatusVC, containerView: self.containerView, isLeftSlide: true, isRemovePrevious: true)
+            }
             else if dismissOption == .visitPlanner {
                 let visitPlannerVC = UIViewController.getViewController(storyboardName: "VisitPlanner", storyboardID: "VisitPlannerVC") as! VisitPlannerVC
                 visitPlannerVC.mainVC = self

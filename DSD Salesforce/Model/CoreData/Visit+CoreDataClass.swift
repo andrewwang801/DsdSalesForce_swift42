@@ -11,7 +11,7 @@ import CoreData
 
 public class Visit: NSManagedObject {
 
-    static var keyArray = ["TrxnNo", "DocType", "ChainNo", "CustNo", "TrxnDate", "TrxnTime", "VoidFlag", "PrintedFlag", "Reference", "TCOMStatus", "SaleDate", "VisitStart", "VisitEnd", "VisitReason", "NextVisit", "VisitMessage", "CustomerUpdated", "RangeChecked", "OrderCreated", "SurveyCompleted", "AssetChecked", "AssetRequested"]
+    static var keyArray = ["TrxnNo", "DocType", "ChainNo", "CustNo", "TrxnDate", "TrxnTime", "VoidFlag", "PrintedFlag", "Reference", "TCOMStatus", "SaleDate", "VisitStart", "VisitEnd", "VisitReason", "NextVisit", "VisitMessage", "CustomerUpdated", "RangeChecked", "OrderCreated", "SurveyCompleted", "AssetChecked", "AssetRequested", "VisitFrequency", "PreferredVisitDay"]
 
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
@@ -80,6 +80,8 @@ public class Visit: NSManagedObject {
         self.surveyCompleted = theSource.surveyCompleted
         self.assetChecked = theSource.assetChecked
         self.assetRequested = theSource.assetRequested
+        self.visitFrequency = theSource.visitFrequency
+        self.preferredVisitDay = theSource.preferredVisitDay
     }
 
     func getDictionary() -> [String: String] {
@@ -107,6 +109,8 @@ public class Visit: NSManagedObject {
         dic["SurveyCompleted"] = surveyCompleted
         dic["AssetChecked"] = assetChecked
         dic["AssetRequested"] = assetRequested
+        dic["VisitFrequency"] = visitFrequency
+        dic["PreferredVisitDay"] = preferredVisitDay
 
         return dic
     }
@@ -150,6 +154,8 @@ public class Visit: NSManagedObject {
         visit.surveyCompleted = customerDetail.isSurveyCompleted.intString
         visit.assetChecked = customerDetail.isAssetsChecked.intString
         visit.assetRequested = customerDetail.isAssetRequested.intString
+        visit.visitFrequency = String(customerDetail.visitFrequency)
+        visit.preferredVisitDay = String(customerDetail.preferredVisitDay)
 
         return visit
     }
@@ -213,6 +219,7 @@ extension Visit {
     @NSManaged public var surveyCompleted: String?
     @NSManaged public var assetChecked: String?
     @NSManaged public var assetRequested: String?
-
+    @NSManaged public var visitFrequency: String?
+    @NSManaged public var preferredVisitDay: String?
 }
 

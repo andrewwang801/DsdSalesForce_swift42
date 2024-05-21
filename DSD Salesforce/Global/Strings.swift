@@ -4079,6 +4079,27 @@ internal enum L10n {
           return L10n.tr_en_us("Localizable", "imageSendToPrinterSuccessfully")
         }
     }
+    internal static func dataInputIsInvalid() -> String {
+        if (GlobalInfo.language == .en_gb) {
+          return L10n.tr("Localizable", "dataInputIsInvalid")
+        } else {
+          return L10n.tr_en_us("Localizable", "dataInputIsInvalid")
+        }
+    }
+    internal static func ValuesAreInputed() -> String {
+        if (GlobalInfo.language == .en_gb) {
+          return L10n.tr("Localizable", "ValuesAreInputed")
+        } else {
+          return L10n.tr_en_us("Localizable", "ValuesAreInputed")
+        }
+    }
+    internal static func invalid() -> String {
+        if (GlobalInfo.language == .en_gb) {
+          return L10n.tr("Localizable", "invalid")
+        } else {
+          return L10n.tr_en_us("Localizable", "invalid")
+        }
+    }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name

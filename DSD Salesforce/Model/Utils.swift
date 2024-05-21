@@ -27,7 +27,21 @@ class Utils {
         alertVC.dismissHandler = dismissHandler
         vc.present(alertVC, animated: true, completion: nil)
     }
-
+    
+    static func showAlert(vc: UIViewController, title: String, attMessage: NSMutableAttributedString, failed: Bool, customerName: String, leftString: String, middleString: String, rightString: String, dismissHandler: ((MessageDialogVC.ReturnCode) -> ())?) {
+        let alertVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "MessageDialogVC") as! MessageDialogVC
+        alertVC.setDefaultModalPresentationStyle()
+        alertVC.strTitle = title
+        alertVC.strAttributedMessage = attMessage
+        alertVC.isFailed = failed
+        alertVC.strCustomerName = customerName
+        alertVC.strLeft = leftString
+        alertVC.strMiddle = middleString
+        alertVC.strRight = rightString
+        alertVC.dismissHandler = dismissHandler
+        vc.present(alertVC, animated: true, completion: nil)
+    }
+    
     static func showInput(vc: UIViewController, title: String, placeholder: String, enteredString: String, leftString: String, middleString: String, rightString: String, dismissHandler: ((InputDialogVC.ReturnCode, String) -> ())?) {
         let alertVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "InputDialogVC") as! InputDialogVC
         alertVC.setDefaultModalPresentationStyle()
@@ -292,7 +306,39 @@ class Utils {
         let currencySymbol = globalInfo.routeControl?.currencySymbol ?? ""
         return "\(currencySymbol)\(result)"
     }
+    
+    static func getDecimalString(moneyValue: Double) -> String {
 
+        let numberFormat = NumberFormatter()
+        numberFormat.maximumFractionDigits = 2
+        numberFormat.minimumFractionDigits = 2
+        numberFormat.minimumIntegerDigits = 1
+        numberFormat.usesGroupingSeparator = true
+        numberFormat.groupingSeparator = ","
+        numberFormat.groupingSize = 3
+        let result = numberFormat.string(from: NSNumber(value: moneyValue)) ?? "0.00"
+
+        let globalInfo = GlobalInfo.shared
+        let currencySymbol = globalInfo.routeControl?.currencySymbol ?? ""
+        return "\(result)"
+    }
+    
+    static func getMarginString(moneyValue: Double) -> String {
+
+        let numberFormat = NumberFormatter()
+        numberFormat.maximumFractionDigits = 2
+        numberFormat.minimumFractionDigits = 2
+        numberFormat.minimumIntegerDigits = 1
+        numberFormat.usesGroupingSeparator = true
+        numberFormat.groupingSeparator = ","
+        numberFormat.groupingSize = 3
+        let result = numberFormat.string(from: NSNumber(value: moneyValue)) ?? "0.00"
+
+        let globalInfo = GlobalInfo.shared
+        let currencySymbol = globalInfo.routeControl?.currencySymbol ?? ""
+        return "\(result)%"
+    }
+    
     static func getCaseValue(itemNo: String) -> Int {
         let globalInfo = GlobalInfo.shared
         if caseDictionary.count == 0 {

@@ -39,7 +39,6 @@ extension OrderVC {
         loadReasonCodeDescType()
 
         loadTreeItems()
-
         initDataForSubVC()
     }
 
@@ -249,11 +248,18 @@ extension OrderVC {
             orderHeader.updateBy(context: managedObjectContext, theSource: originalOrderHeader!)
         }
         else {
-            loadSalesSamplesOrders()
-            loadReturnsOrders()
+            if isFromMarginCalculator == 0 {
+                loadSalesSamplesOrders()
+                loadReturnsOrders()
+            }
         }
-
-        orderDetailSetArray = [orderHeader.deliverySet, orderHeader.pickupSet, orderHeader.sampleSet]
+        
+        if isFromMarginCalculator == 0 {
+            orderDetailSetArray = [orderHeader.deliverySet, orderHeader.pickupSet, orderHeader.sampleSet]
+        }
+        else {
+            orderDetailSetArray = globalInfo.orderDetailSetArray ?? [orderHeader.deliverySet, orderHeader.pickupSet, orderHeader.sampleSet]
+        }
     }
 
     func loadSalesSamplesOrders() {

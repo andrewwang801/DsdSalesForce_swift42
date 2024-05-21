@@ -33,9 +33,19 @@ class OrderVC: UIViewController {
     @IBOutlet weak var returnButton: AnimatableButton!
     @IBOutlet weak var productCatalogButton: AnimatableButton!
     
+    @IBOutlet var marginCalculatorTab: UIView!
+    @IBOutlet var priceLabel: UITextField!
+    @IBOutlet var costLabel: UITextField!
+    @IBOutlet var marginLabel: UITextField!
+    var costVal = 0.0
+    var priceVal = 0.0
+    var marginVal = 0.0
+    
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet var topTabView: UIView!
     
     var hud: MBProgressHUD?
+    var isFromMarginCalculator = 0
     
     enum TopOption: Int {
         case sales = 0
@@ -98,28 +108,50 @@ class OrderVC: UIViewController {
     var rootItemArray = [TreeItem]()
 
     var productSeqDictionary = [String: Int]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         initData()
         initUI()
+        if isFromMarginCalculator == 1 {
+            let marginCalculatorVC = UIViewController.getViewController(storyboardName: "Order", storyboardID: "MarginCalculatorVC") as! MarginCalculatorVC
+            marginCalculatorVC.orderVC = self
+            self.changeChild(newVC: marginCalculatorVC, containerView: containerView, isRemovePrevious: true)
+        }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mainVC.setTitleBarText(title: L10n.order())
+        
+        if isFromMarginCalculator == 1 {
+            mainVC.setTitleBarText(title: "MARGIN CALCULATOR")
+            topTabView.isHidden = true
+            marginCalculatorTab.isHidden = false
+        }
+        else {
+            mainVC.setTitleBarText(title: L10n.order())
+            topTabView.isHidden = false
+            marginCalculatorTab.isHidden = true
+        }
         reloadProductTree()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let orderSalesVC = segue.destination as? OrderSalesVC {
             orderSalesVC.orderVC = self
         }
     }
-
+    
+    @IBAction func onCalc(_ sender: Any) {
+        getValAndStartCalculate()
+    }
+    
     @IBAction func onSearch(_ sender: Any) {
         if isReverseMode == false {
             let searchProductVC = UIViewController.getViewController(storyboardName: "Misc", storyboardID: "SearchProductVC") as! SearchProductVC
@@ -383,4 +415,88 @@ extension OrderVC: RATreeViewDelegate {
         treeView.reloadRows(forItems: [item], with: RATreeViewRowAnimationNone)
     }
     
+}
+
+extension OrderVC {
+    
+    func getValAndStartCalculate() {
+        if let _ = Double(priceLabel.text ?? ""), let _ = Double(costLabel.text ?? ""), let _ = Double(marginLabel.text ?? "") {
+            
+            let font:UIFont? = UIFont(name: "Helvetica", size:20)
+            let fontSuper:UIFont? = UIFont(name: "Helvetica", size:10)
+            let attString:NSMutableAttributedString = NSMutableAttributedString(string: L10n.ValuesAreInputed(), attributes: [.font:font!])
+            attString.setAttributes([.font:fontSuper!,.baselineOffset:10], range: NSRange(location:28,length:2))
+            
+            Utils.showAlert(vc: self, title: L10n.dataInputIsInvalid(), attMessage: attString, failed: false, customerName: "", leftString: "", middleString: L10n.ok(), rightString: "", dismissHandler: nil)
+            return
+        }
+        
+        if let _priceVal = Double(priceLabel.text ?? ""), let _costVal = Double(costLabel.text ?? "") {
+            priceVal = _priceVal
+            costVal = _costVal
+            doCalculateAndUpdateUI(1)
+            return
+        }
+        
+        if let _costVal = Double(costLabel.text ?? ""), let _marginVal = Double(marginLabel.text ?? "") {
+            costVal = _costVal
+            marginVal = _marginVal
+            doCalculateAndUpdateUI(2)
+            return
+        }
+        
+        if let _priceVal = Double(priceLabel.text ?? ""), let _marginVal = Double(marginLabel.text ?? "") {
+            priceVal = _priceVal
+            marginVal = _marginVal
+            doCalculateAndUpdateUI(3)
+            return
+        }
+    }
+    
+    func doCalculateAndUpdateUI(_ caseVal: Int) {
+        switch caseVal {
+        case 1:
+            if self.priceVal == 0 && self.costVal == 0 {
+                self.marginVal = 0.0
+            }
+            else if self.priceVal == 0 {
+                self.marginVal = kInitVal
+            }
+            else {
+                self.marginVal = (1 - self.costVal / self.priceVal) * 100
+            }
+            self.updateCalcUI()
+
+        case 2:
+            if self.marginVal == 100.0 {
+                self.priceVal = 0.0
+            }
+            else {
+                self.priceVal = self.costVal / (1 - self.marginVal / 100)
+            }
+            self.updateCalcUI()
+
+        case 3:
+            if self.marginVal == 0.0 {
+                self.costVal = self.priceVal
+            }
+            else {
+                self.costVal = self.priceVal * (1 - self.marginVal / 100)
+            }
+            self.updateCalcUI()
+        default:
+            break
+        }
+    }
+
+    func updateCalcUI() {
+        if marginVal == kInitVal {
+            marginLabel.text = "Invalid"
+        }
+        else {
+            marginLabel.text = Utils.getDecimalString(moneyValue: marginVal)
+        }
+        priceLabel.text = Utils.getDecimalString(moneyValue: priceVal)
+        costLabel.text = Utils.getDecimalString(moneyValue: costVal)
+    }
 }

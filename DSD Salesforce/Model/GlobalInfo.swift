@@ -31,6 +31,9 @@ class GlobalInfo: NSObject {
     var uploadManager: UploadManager!
     var productImageDownloadManager: ProductImageDownloadManager!
 
+    var selectedCustomer: CustomerDetail?
+    var selectedPresoldOrHeader: PresoldOrHeader?
+    
     // XML
     var routeControl: RouteControl?
     var target: Target?
@@ -60,6 +63,7 @@ class GlobalInfo: NSObject {
     var dCurrentTotalValue: Double = 0
     var pageHeightWhenZero: Double = 0
 
+    var orderDetailSetArray: [NSMutableOrderedSet]?
     var orderHeader: OrderHeader!
     // Zebra printer
     var selectedPrinter: EAAccessory?
