@@ -15,13 +15,15 @@ class ZebraPrintEngine: NSObject {
     static var selectedPrinter: EAAccessory?
     static var zebraPrinter: ZebraPrinter?
     static var pdfPath: String = ""
+    static var pdfRMAPath: String = ""
     static var hud: MBProgressHUD?
     static var viewController: UIViewController?
     static var completionHandler: ((Bool, String)->())?
 
-    static func tryPrint(vc: UIViewController, pdfPath: String, completionHandler: ((Bool, String)->())?) {
+    static func tryPrint(vc: UIViewController, pdfPath: String, pdfRMAPath: String = "",  completionHandler: ((Bool, String)->())?) {
 
         self.pdfPath = pdfPath
+        self.pdfRMAPath = pdfRMAPath
         self.viewController = vc
         self.completionHandler = completionHandler
 
@@ -118,6 +120,9 @@ class ZebraPrintEngine: NSObject {
             var success = false
             do {
                 try fileUtil.sendFileContents(self.pdfPath)
+                if self.pdfRMAPath != "" {
+                    try fileUtil.sendFileContents(self.pdfRMAPath)
+                }
                 success = true
             }
             catch let error {

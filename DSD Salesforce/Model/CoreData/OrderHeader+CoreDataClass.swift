@@ -9,7 +9,7 @@
 import UIKit
 
 class OrderHeader: NSManagedObject {
-
+    
     convenience init(context: NSManagedObjectContext, forSave: Bool = true) {
         self.init(managedObjectContext: context, forSave: forSave)
         trxnNo = "0"
@@ -40,8 +40,12 @@ class OrderHeader: NSManagedObject {
         dTaxAmount = 0
         dPromotionAmount = 0
         pickupAmount = 0
+        saleQuantity = 0
         saleAmount = 0
+        saleAmountOri = 0
         taxAmount = 0
+        saleTax = 0.0
+        pickupTax = 0.0
         promotionAmount = 0
         signatureFilePath = ""
         printedFlag = "0"
@@ -57,6 +61,7 @@ class OrderHeader: NSManagedObject {
         dTotalFree = 0
 
         invoiceUpload = ""
+        invoiceUploadRMA = ""
         photoUpload = ""
         zipUpload = ""
 
@@ -152,8 +157,12 @@ class OrderHeader: NSManagedObject {
         self.dTaxAmount = theSource.dTaxAmount
         self.dPromotionAmount = theSource.dPromotionAmount
         self.saleAmount = theSource.saleAmount
+        self.saleAmountOri = theSource.saleAmountOri
         self.pickupAmount = theSource.pickupAmount
+        self.saleQuantity = theSource.saleQuantity
         self.taxAmount = theSource.taxAmount
+        self.saleTax = theSource.saleTax
+        self.pickupTax = theSource.pickupTax
         self.promotionAmount = theSource.promotionAmount
         self.signatureFilePath = theSource.signatureFilePath
         self.printedFlag = theSource.printedFlag
@@ -171,6 +180,7 @@ class OrderHeader: NSManagedObject {
         self.dTotalFree = theSource.dTotalFree
 
         self.invoiceUpload = theSource.invoiceUpload
+        self.invoiceUploadRMA = theSource.invoiceUploadRMA
         self.photoUpload = theSource.photoUpload
         self.zipUpload = theSource.zipUpload
 
@@ -262,6 +272,10 @@ class OrderHeader: NSManagedObject {
             let fileNameArray = invoiceUpload.components(separatedBy: ",")
             uploadManager.scheduleUpload(localFileName: fileNameArray[0], remoteFileName: fileNameArray[1], uploadItemType: .normalCustomerFile)
         }
+        if invoiceUploadRMA != "" {
+            let fileNameArray = invoiceUploadRMA.components(separatedBy: ",")
+            uploadManager.scheduleUpload(localFileName: fileNameArray[0], remoteFileName: fileNameArray[1], uploadItemType: .normalCustomerFile)
+        }
         if photoUpload != "" {
             let fileNameArray = photoUpload.components(separatedBy: ",")
             uploadManager.scheduleUpload(localFileName: fileNameArray[0], remoteFileName: fileNameArray[1], uploadItemType: .normalCustomerFile)
@@ -285,7 +299,7 @@ class OrderHeader: NSManagedObject {
                 CommData.deleteFileIfExist(filePath)
                 self.invoiceUpload = ""
             }
-
+            
             // photo file
             let photoFileNameArray = photoUpload.components(separatedBy: ",")
             if photoFileNameArray.count == 2 {
@@ -304,6 +318,16 @@ class OrderHeader: NSManagedObject {
                 self.zipUpload = ""
             }
         }
+        if invoiceUploadRMA != nil {
+            let invoiceRMAFileNameArray = invoiceUploadRMA.components(separatedBy: ",")
+            if invoiceRMAFileNameArray.count == 2 {
+                // remove local file
+                let filePath = CommData.getFilePathAppended(byCacheDir: invoiceRMAFileNameArray[0])
+                CommData.deleteFileIfExist(filePath)
+                self.invoiceUploadRMA = ""
+            }
+        }
+
     }
 
     static func delete(context: NSManagedObjectContext, orderHeader: OrderHeader) {
@@ -354,6 +378,7 @@ extension OrderHeader {
     @NSManaged public var trxnTime: String!
     @NSManaged public var totalAmount: Int32
     @NSManaged public var totalSale: Int32
+    @NSManaged public var saleQuantity: Int32
     @NSManaged public var totalDump: Int32
     @NSManaged public var totalBuyback: Int32
     @NSManaged public var totalFree: Int32
@@ -371,9 +396,12 @@ extension OrderHeader {
     @NSManaged public var dSaleAmount: Double
     @NSManaged public var dTaxAmount: Double
     @NSManaged public var dPromotionAmount: Double
+    @NSManaged public var saleAmountOri: Double
     @NSManaged public var saleAmount: Double
     @NSManaged public var pickupAmount: Double
     @NSManaged public var taxAmount: Double
+    @NSManaged public var saleTax: Double
+    @NSManaged public var pickupTax: Double
     @NSManaged public var promotionAmount: Double
     @NSManaged public var signatureFilePath: String!
     @NSManaged public var printedFlag: String!
@@ -388,6 +416,7 @@ extension OrderHeader {
     @NSManaged public var dTotalBuybacks: Double
     @NSManaged public var dTotalFree: Double
     @NSManaged public var invoiceUpload: String!
+    @NSManaged public var invoiceUploadRMA: String!
     @NSManaged public var photoUpload: String!
     @NSManaged public var zipUpload: String!
     @NSManaged public var realPayment: Double
@@ -415,5 +444,6 @@ extension OrderHeader {
     var sampleSet: NSMutableOrderedSet {
         return self.mutableOrderedSetValue(forKey: "samples")
     }
+    
 }
 

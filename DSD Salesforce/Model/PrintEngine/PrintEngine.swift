@@ -26,6 +26,7 @@ class PrintEngine: NSObject {
     var printMetaData = PrintMetaData()
     var printPDFPath = ""
     var htmlContent = ""
+    var isRMA = false
     static var templatePath = ""
     var isForOnePage = false
 
@@ -662,7 +663,19 @@ class PrintEngine: NSObject {
 
         dictionary["Item"] = itemDictionaryArray
 
-        var nSalesAmount = globalInfo.orderHeader.saleAmount
+        var nSalesAmount = 0.0
+        if customerDetail.invoiceFmt == "2" {
+            if isRMA {
+                nSalesAmount -= globalInfo.orderHeader.pickupAmount
+            }
+            else {
+                nSalesAmount = globalInfo.orderHeader.saleAmountOri
+            }
+        }
+        else {
+            nSalesAmount = globalInfo.orderHeader.saleAmount
+        }
+        
         var nQty = 0
         var nUnit = 0
         var dValue: Double = 0
@@ -703,7 +716,11 @@ class PrintEngine: NSObject {
                 nQty -= item.enterQty.int
             }
         }
-
+        
+        if customerDetail.invoiceFmt == "2" && isRMA {
+            nQty = abs(nQty)
+        }
+        
         if isShowCase == true {
             if salEntryMode == "B" {
                 if dValue > 0 && (nUnit > 0 || nQty > 0) {
@@ -762,7 +779,19 @@ class PrintEngine: NSObject {
         }
 
         var gstValueArray = [String]()
-        let nTaxAmount = globalInfo.orderHeader.taxAmount
+        var nTaxAmount = 0.0
+        if customerDetail.invoiceFmt == "2" {
+            if isRMA {
+                nTaxAmount -= globalInfo.orderHeader.pickupTax
+            }
+            else {
+                nTaxAmount = globalInfo.orderHeader.saleTax
+            }
+        }
+        else {
+            nTaxAmount = globalInfo.orderHeader.taxAmount
+        }
+        
         gstValueArray.append(nTaxAmount.exactTwoDecimalString)
         dictionary["GST"] = gstValueArray
 
@@ -807,7 +836,8 @@ class PrintEngine: NSObject {
                 let orderTemp = textArray[0]
                 nStart = orderTemp.length
             }
-            dictionary["InvoiceNote"] = specialInstrument.subString(startIndex: nStart+2, length: specialInstrument.length-nStart-2)
+//            dictionary["InvoiceNote"] = specialInstrument.subString(startIndex: nStart+2, length: specialInstrument.length-nStart-2)
+            dictionary["InvoiceNote"] = specialInstrument
         }
 
         var footerDocText = [String]()
@@ -941,7 +971,12 @@ class PrintEngine: NSObject {
             xmlFilePath = xmlDirPath+"/"+kPrintTemplateInvoiceFmtFileName
         }
         else if type == kSaleAcknowledgePrint {
-            xmlFilePath = xmlDirPath+"/"+kPrintOrderAcknowledgeTemplateFileName
+            if isRMA {
+                xmlFilePath = xmlDirPath+"/"+kPrintRMATemplateFileName
+            }
+            else {
+                xmlFilePath = xmlDirPath+"/"+kPrintOrderAcknowledgeTemplateFileName
+            }
         }
         else if type == kSaleVehiclePrint {
             xmlFilePath = xmlDirPath+"/"+kPrintVehicleTemplateFileName

@@ -50,6 +50,7 @@ let kPrintPickSlipTemplateFileName = "PICKSLIPFMT.xml"
 let kPrintTermsTemplateFileName = "TERMSFMT.xml"
 let kPrintSalesPlanTemplateFileName = "PRINTSALESFMT.xml"
 let kPrintOrderAcknowledgeTemplateFileName = "ORDERACKFMT.xml"
+let kPrintRMATemplateFileName = "RMA.xml"
 let kPrintVehicleTemplateFileName = "VEHICLEFMT.xml"
 let kPrintCashTemplateFileName = "CASHRECEIPTFMT.xml"
 let kPrintCollectionConfirmTemplateFileName = "COLLECTIONFMT.xml"
@@ -58,7 +59,7 @@ let kPrintTextFontName = "Arial"
 
 let kSignatureFileName = "signature.jpg"
 
-let kReportsFileNameArray = [kCompanyLogoFileName, kPrintTemplateInvoiceFmtFileName, kPrintTemplateDeliveryFmtFileName, kPrintLoadSheetTemplateFileName, kPrintTruckInventoryTemplateFileName, kPrintLoadRequestTemplateFileName, kPrintLoadAdjustmentTemplateFileName, kPrintStockTakeCountTemplateFileName, kPrintPickSlipTemplateFileName, kPrintTermsTemplateFileName, kPrintSalesPlanTemplateFileName, kPrintOrderAcknowledgeTemplateFileName, kPrintVehicleTemplateFileName, kPrintCashTemplateFileName, kPrintCollectionConfirmTemplateFileName]
+let kReportsFileNameArray = [kCompanyLogoFileName, kPrintTemplateInvoiceFmtFileName, kPrintTemplateDeliveryFmtFileName, kPrintLoadSheetTemplateFileName, kPrintTruckInventoryTemplateFileName, kPrintLoadRequestTemplateFileName, kPrintLoadAdjustmentTemplateFileName, kPrintStockTakeCountTemplateFileName, kPrintPickSlipTemplateFileName, kPrintTermsTemplateFileName, kPrintSalesPlanTemplateFileName, kPrintOrderAcknowledgeTemplateFileName, kPrintRMATemplateFileName, kPrintVehicleTemplateFileName, kPrintCashTemplateFileName, kPrintCollectionConfirmTemplateFileName]
 
 let kHamburgerDashboardName = L10n.dashboard()
 let kHamburgerViewVehicleStockName = L10n.viewVehicleStock()

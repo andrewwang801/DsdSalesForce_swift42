@@ -175,7 +175,7 @@ class Utils {
         let tripNumber = globalInfo.routeControl?.trip ?? ""
         let pattern = globalInfo.routeControl?.invoiceNumFormat ?? ""
         let pdfSequenceNoKey = kPdfSequenceNoPrefix+tripNumber
-        let pdfSequenceNo = Utils.getIntSetting(key: pdfSequenceNoKey)+1
+        let pdfSequenceNo = Utils.getIntSetting(key: pdfSequenceNoKey)+2
 
         // kk value
         let rrr = globalInfo.routeControl?.routeNumber ?? ""

@@ -57,8 +57,27 @@ extension OrderSummaryVC  {
             i += 1
             theDay = theDay.getDateAddedBy(days: 1)
         }
-
+        zipFilePathArray = []
+        
         summarizeOrderHeader()
+        
+        //if orderVC.orderDetailSetArray[0].count == 0  && orderVC.orderDetailSetArray[2].count == 0 {
+        if orderVC.orderHeader.saleQuantity == 0 {
+            hasSales = false
+        }
+        else {
+            hasSales = true
+        }
+        
+        //if orderVC.orderDetailSetArray[1].count == 0 {
+        if orderVC.orderHeader.totalDump == 0 {
+            hasPickup = false
+        }
+        else {
+            hasPickup = true
+        }
+        
+
     }
 
     func initUI() {
@@ -456,9 +475,13 @@ extension OrderSummaryVC  {
         orderVC.orderHeader.totalDump = pickupQuantity.int32
         orderVC.orderHeader.totalBuyback = buybackQuantity.int32
         orderVC.orderHeader.totalSale = caseArray[0].int32+caseArray[2].int32
+        orderVC.orderHeader.saleQuantity = (quantityArray[0]+quantityArray[2]).int32
         orderVC.orderHeader.saleAmount = subTotalArray[0]-subTotalArray[1]
         orderVC.orderHeader.taxAmount = taxArray[0]-taxArray[1]
         orderVC.orderHeader.pickupAmount = subTotalArray[1]
+        orderVC.orderHeader.saleAmountOri = subTotalArray[0]
+        orderVC.orderHeader.saleTax = taxArray[0]
+        orderVC.orderHeader.pickupTax = taxArray[1]
         
         if selectedFulfilbyOption == .warehouse {
             if customerDetail.payType == "B" {
@@ -769,12 +792,16 @@ extension OrderSummaryVC  {
 
         var orderDetailArray = [OrderDetail]()
         for i in 0..<3 {
+            if customerDetail.invoiceFmt == "2" && i == 1 {
+                continue
+            }
             let orderDetailSet = orderVC.orderDetailSetArray[i]
             let detailArray = orderDetailSet.array as! [OrderDetail]
             orderDetailArray.append(contentsOf: detailArray)
         }
 
         self.printEngine = PrintEngine()
+        self.printEngine.isRMA = false
 
         let pdfName = self.pdfFileName
         orderVC.orderHeader.docNo = pdfName.subString(startIndex: 0, length: pdfName.length-4)
@@ -811,13 +838,111 @@ extension OrderSummaryVC  {
 
                 self.printEngine.createPDF(webView: self.webView, isDuplicated: true, path: pdfLocalPath, type: nPrintType, shouldShowHUD: true, completion: { (success) in
 
+                    self.onPDFCompleted(success: success, pdfPath: self.printEngine.printPDFPath)
                 })
 
-                self.onPDFCompleted(success: success, pdfPath: self.printEngine.printPDFPath)
             })
         }
-
     }
+    
+    func doCreateRMAPdfTask() {
+        do {
+            sleep(1)
+        }
+         let pdfFormat = self.globalInfo.routeControl?.uploadInvFmt ?? ""
+
+         var fmtFileName = ""
+         var nPrintType = 0
+         var shortDescForFile = ""
+         var longDescForFile = ""
+         let showPrice = self.customerDetail.showPrice ?? ""
+
+         if selectedFulfilbyOption == .warehouse {
+             fmtFileName = kPrintRMATemplateFileName
+             nPrintType = kSaleAcknowledgePrint
+             shortDescForFile = "RMA"
+             longDescForFile = "ORDER RMA"
+         }
+         else if selectedFulfilbyOption == .vehicle {
+             fmtFileName = kPrintVehicleTemplateFileName
+             nPrintType = kSaleVehiclePrint
+             shortDescForFile = "INVOICE"
+             longDescForFile = "TAX INVOICE"
+         }
+         else if selectedFulfilbyOption == .distributor {
+             if showPrice == "1" || showPrice == "0" {
+                 fmtFileName = kPrintTemplateInvoiceFmtFileName
+                 nPrintType = kSalePrint
+                 shortDescForFile = "INVOICE"
+                 longDescForFile = "TAX INVOICE"
+             }
+             else if showPrice == "2" {
+                 fmtFileName = kPrintTemplateDeliveryFmtFileName
+                 nPrintType = kSaleDocketPrint
+                 shortDescForFile = "DELIVERY"
+                 longDescForFile = "DELIVERY DOCKET"
+             }
+             else {
+                 fmtFileName = kPrintTemplateInvoiceFmtFileName
+                 nPrintType = kSalePrint
+                 shortDescForFile = "INVOICE"
+                 longDescForFile = "TAX INVOICE"
+             }
+         }
+
+         self.shortDescForFile = shortDescForFile
+         self.longDescForFile = longDescForFile
+
+         var orderDetailArray = [OrderDetail]()
+         let orderDetailSet = orderVC.orderDetailSetArray[1]
+         let detailArray = orderDetailSet.array as! [OrderDetail]
+         orderDetailArray.append(contentsOf: detailArray)
+        
+         self.printEngine = PrintEngine()
+         self.printEngine.isRMA = true
+
+         let pdfName = self.pdfRMAFileName
+         orderVC.orderHeader.docNo = pdfName.subString(startIndex: 0, length: pdfName.length-4)
+
+         let fmtFilePath = CommData.getFilePathAppended(byCacheDir: kReportsDirName + "/" + fmtFileName)
+
+         globalInfo.orderHeader = orderVC.orderHeader
+
+         if CommData.isExistingFile(atPath: fmtFilePath) == true {
+             self.printEngine.preparePrint(customerDetail: self.customerDetail, printArray: orderDetailArray, nPayType: self.selectedPaybyOption.rawValue+1, previousInvoiceAmount: previousInvoices)
+         }
+
+         globalInfo.pageHeightWhenZero = kInvoiceEmptyDataHeight
+         self.printEngine.isForOnePage = true
+
+         let pdfPath = CommData.getFilePathAppended(byCacheDir: kPDFDirName+"/"+pdfName) ?? ""
+         let pdfLocalPath = CommData.getFilePathAppended(byCacheDir: kPDFLocalDirName+"/"+pdfName) ?? ""
+
+         if pdfFormat == "1" {
+             let showPrice = self.customerDetail.showPrice ?? "0"
+             if showPrice == "2" {
+                self.printEngine.createPDF(webView: self.webView, isDuplicated: false, path: pdfPath, type: nPrintType ,shouldShowHUD: true, completion: { (success) in
+                     self.onRMAPDFCompleted(success: success, pdfPath: self.printEngine.printPDFPath)
+                 })
+             }
+             else {
+                 self.printEngine.createPDF(webView: self.webView, isDuplicated: false, path: pdfPath, type: nPrintType, shouldShowHUD: true, completion: { (success) in
+                     self.onRMAPDFCompleted(success: success, pdfPath: self.printEngine.printPDFPath)
+                 })
+             }
+         }
+         else {
+             self.printEngine.createPDF(webView: self.webView, isDuplicated: false, path: pdfPath, type: nPrintType, shouldShowHUD: true, completion: { (success) in
+
+                 self.printEngine.createPDF(webView: self.webView, isDuplicated: true, path: pdfLocalPath, type: nPrintType, shouldShowHUD: true, completion: { (success) in
+
+                 })
+
+                 self.onRMAPDFCompleted(success: success, pdfPath: self.printEngine.printPDFPath)
+             })
+         }
+
+     }
     
     // schedule upload with postpone
     func scheduleUOrderUploadWithPostpone() {
@@ -883,7 +1008,7 @@ extension OrderSummaryVC  {
         let transaction1 = fileTransaction.makeTransaction()
         transactionArray.append(transaction1)
         
-        orderVC.orderHeader.invoiceUpload = "\(kPDFDirName+"/"+fileTransaction.fileFileName),\(fileTransaction.fileFileName)"
+        //orderVC.orderHeader.invoiceUpload = "\(kPDFDirName+"/"+fileTransaction.fileFileName),\(fileTransaction.fileFileName)"
         
         // order
         updateUOrder()
@@ -891,7 +1016,8 @@ extension OrderSummaryVC  {
         transactionArray.append(orderTransaction)
         
         // upload transaction
-        var zipFilePathArray = [String]()
+        //var zipFilePathArray = [String]()
+        zipFilePathArray = []
         
         // File UTransaction
         let fileTransactionPath = FileTransaction.saveToXML(fileTransactionArray: fileTransactionArray)
@@ -917,9 +1043,91 @@ extension OrderSummaryVC  {
         
         GlobalInfo.saveCache()
     }
+    
+    // schedule upload with postpone
+    func scheduleRMAUOrderUploadWithPostpone() {
+        
+        let uploadManager = globalInfo.uploadManager
+        
+        let managedObjectContext = globalInfo.managedObjectContext!
+        let chainNo = customerDetail.chainNo ?? ""
+        let custNo = customerDetail.custNo ?? ""
+        let trip = globalInfo.routeControl?.trip ?? ""
+        
+        var fileTransactionArray = [FileTransaction]()
+        var transactionArray = [UTransaction]()
+        
+        let fileTrxnDate = Date()
+        let fileTrxnDateString = fileTrxnDate.toDateString(format: kTightJustDateFormat) ?? ""
+        let fileTrxnTimeString = fileTrxnDate.toDateString(format: kTightJustTimeFormat) ?? ""
+        
+        //let presoldOrHeader = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
+        //let orderNo = presoldOrHeader?.orderNo ?? ""
 
+        var docNo = ""
+        if pdfRMAFileName.length > 4 {
+            docNo = pdfRMAFileName.subString(startIndex: 0, length: pdfRMAFileName.length-4)
+        }
+        else {
+            docNo = pdfRMAFileName
+        }
+        
+        var fileTransaction: FileTransaction!
+        if pdfRMAFileName.length > 4 {
+            fileTransaction = FileTransaction.make(chainNo: chainNo, custNo: custNo, docType: "FARC", fileTrxnDate: fileTrxnDate, trip: trip, trnxDate: Date(), fileDocNo: docNo, fileShortDesc: shortDescForFile, fileLongDesc: longDescForFile, fileCreateDate: fileTrxnDateString, fileCreateTime: fileTrxnTimeString, fileName: pdfRMAFileName)
+            fileTransactionArray.append(fileTransaction)
+        }
+        else {
+            fileTransaction = FileTransaction.make(chainNo: chainNo, custNo: custNo, docType: "FARC", fileTrxnDate: fileTrxnDate, trip: trip, trnxDate: Date(), fileDocNo: docNo, fileShortDesc: shortDescForFile, fileLongDesc: longDescForFile, fileCreateDate: fileTrxnDateString, fileCreateTime: fileTrxnTimeString, fileName: pdfRMAFileName)
+            fileTransactionArray.append(fileTransaction)
+        }
+        
+        let transaction1 = fileTransaction.makeTransaction()
+        transactionArray.append(transaction1)
+        
+        //orderVC.orderHeader.invoiceUploadRMA = "\(kPDFDirName+"/"+fileTransaction.fileFileName),\(fileTransaction.fileFileName)"
+
+        // RMA
+        if customerDetail.invoiceFmt == "2" {
+            updateUOrderRMA()
+            let orderRMATransaction = uOrderRMA!.makeTransaction()
+            transactionArray.append(orderRMATransaction)
+        }
+        
+        // upload transaction
+        //var zipFilePathArray = [String]()
+        zipFilePathArray = []
+        
+        // File UTransaction
+        let fileTransactionPath = FileTransaction.saveToXML(fileTransactionArray: fileTransactionArray)
+        if fileTransactionPath.isEmpty == false {
+            zipFilePathArray.append(fileTransactionPath)
+        }
+        
+        // RMA Order
+        if customerDetail.invoiceFmt == "2" {
+            let orderPath = UOrder.saveToXML(orderArray: [self.uOrderRMA!])
+            if orderPath.isEmpty == false {
+                zipFilePathArray.append(orderPath)
+            }
+        }
+        
+        // UTransaction
+        let transactionPath = UTransaction.saveToXML(transactionArray: transactionArray, shouldIncludeLog: true)
+        zipFilePathArray.append(transactionPath)
+        
+        let zipFileName = uploadManager?.zipFiles(filePathArray: zipFilePathArray) ?? ""
+        orderVC.orderHeader.zipUpload = "\(zipFileName),\(zipFileName)"
+        
+        orderVC.orderHeader.photoUpload = ""
+        
+        orderVC.orderHeader.isPostponed = true
+        
+        GlobalInfo.saveCache()
+    }
+    
     func doFinalizeOrder() {
-
+        zipFilePathArray = []
         let uploadManager = globalInfo.uploadManager
 
         let managedObjectContext = globalInfo.managedObjectContext!
@@ -927,10 +1135,10 @@ extension OrderSummaryVC  {
         let custNo = customerDetail.custNo ?? ""
         let trip = globalInfo.routeControl?.trip ?? ""
 
-        var fileTransactionArray = [FileTransaction]()
-        var cameraTransactionArray = [CameraTransaction]()
-        var transactionArray = [UTransaction]()
-        var uarArray = [UAR]()
+        fileTransactionArray = []
+        transactionArray = []
+        cameraTransactionArray = []
+        uarArray = []
 
         let fileTrxnDate = Date()
         let fileTrxnDateString = fileTrxnDate.toDateString(format: kTightJustDateFormat) ?? ""
@@ -986,7 +1194,7 @@ extension OrderSummaryVC  {
         }
 
         orderVC.orderHeader.deleteUploadFiles()
-
+        
         var fileTransaction: FileTransaction!
         if pdfFileName.length > 4 {
             fileTransaction = FileTransaction.make(chainNo: chainNo, custNo: custNo, docType: "FARC", fileTrxnDate: fileTrxnDate, trip: trip, trnxDate: Date(), fileDocNo: docNo, fileShortDesc: shortDescForFile, fileLongDesc: longDescForFile, fileCreateDate: fileTrxnDateString, fileCreateTime: fileTrxnTimeString, fileName: pdfFileName)
@@ -999,10 +1207,8 @@ extension OrderSummaryVC  {
 
         let transaction1 = fileTransaction.makeTransaction()
         transactionArray.append(transaction1)
-
         orderVC.orderHeader.invoiceUpload = "\(kPDFDirName+"/"+fileTransaction.fileFileName),\(fileTransaction.fileFileName)"
-        /*
-         uploadManager?.scheduleUpload(localFileName: kPDFDirName+"/"+fileTransaction.fileFileName, remoteFileName: fileTransaction.fileFileName, uploadItemType: .normalCustomerFile)*/
+        
         // photo
         if photoPath.isEmpty == false {
 
@@ -1022,10 +1228,7 @@ extension OrderSummaryVC  {
         updateUOrder()
         let orderTransaction = uOrder!.makeTransaction()
         transactionArray.append(orderTransaction)
-
-        // upload transaction
-        var zipFilePathArray = [String]()
-
+        
         // GPS
         let gpsLog = GPSLog.make(chainNo: chainNo, custNo: custNo, docType: "GPS", date: Date(), location: globalInfo.getCurrentLocation())
         let gpsLogTransaction = gpsLog.makeTransaction()
@@ -1041,12 +1244,6 @@ extension OrderSummaryVC  {
             zipFilePathArray.append(cameraTransactionPath)
         }
 
-        // File UTransaction
-        let fileTransactionPath = FileTransaction.saveToXML(fileTransactionArray: fileTransactionArray)
-        if fileTransactionPath.isEmpty == false {
-            zipFilePathArray.append(fileTransactionPath)
-        }
-
         let uarPath = UAR.saveToXML(uarArray: uarArray)
         if uarPath.isEmpty == false {
             zipFilePathArray.append(uarPath)
@@ -1056,15 +1253,221 @@ extension OrderSummaryVC  {
         if orderStatusPath.isEmpty == false {
             zipFilePathArray.append(orderStatusPath)
         }
-
-        let orderPath = UOrder.saveToXML(orderArray: [self.uOrder!])
-        if orderPath.isEmpty == false {
-            zipFilePathArray.append(orderPath)
-        }
-
+        
         // GPS
         let gpsLogPath = GPSLog.saveToXML(gpsLogArray: [gpsLog])
         zipFilePathArray.append(gpsLogPath)
+        
+        if (customerDetail.invoiceFmt == "2" && !hasPickup) || customerDetail.invoiceFmt != "2" {
+            let orderPath = UOrder.saveToXML(orderArray: [self.uOrder!])
+            if orderPath.isEmpty == false {
+                zipFilePathArray.append(orderPath)
+            }
+            
+            // File UTransaction
+            let fileTransactionPath = FileTransaction.saveToXML(fileTransactionArray: fileTransactionArray)
+            if fileTransactionPath.isEmpty == false {
+                zipFilePathArray.append(fileTransactionPath)
+            }
+            
+            // UTransaction
+            let transactionPath = UTransaction.saveToXML(transactionArray: transactionArray, shouldIncludeLog: true)
+            zipFilePathArray.append(transactionPath)
+        }
+
+        /*
+         uploadManager?.zipAndScheduleUpload(filePathArray: zipFilePathArray)*/
+        let zipFileName = uploadManager?.zipFiles(filePathArray: zipFilePathArray) ?? ""
+        orderVC.orderHeader.zipUpload = "\(zipFileName),\(zipFileName)"
+
+        // save order header and details
+        if orderVC.originalOrderHeader == nil {
+            orderVC.orderHeader.saveHeader()
+        }
+        else {
+            orderVC.originalOrderHeader!.updateBy(context: managedObjectContext, theSource: orderVC.orderHeader)
+            orderVC.originalOrderHeader!.saveHeader()
+            orderVC.orderHeader.saveHeader()
+        }
+
+        orderVC.orderHeader.isPostponed = true
+        
+        customerDetail.isOrderCreated = true
+        GlobalInfo.saveCache()
+
+        if (customerDetail.invoiceFmt == "2" && !hasPickup) || customerDetail.invoiceFmt != "2" {
+            mainVC.popChild(containerView: mainVC.containerView) { (finished) in
+                self.dismissHandler?(self, .confirmed)
+            }
+        }
+    }
+    
+
+    func doFinalizeRMAOrder() {
+
+        if !hasSales {
+            zipFilePathArray = []
+            fileTransactionArray = []
+            transactionArray = []
+        }
+        let uploadManager = globalInfo.uploadManager
+
+        let managedObjectContext = globalInfo.managedObjectContext!
+        let chainNo = customerDetail.chainNo ?? ""
+        let custNo = customerDetail.custNo ?? ""
+        let trip = globalInfo.routeControl?.trip ?? ""
+
+        //var fileTransactionArray = [FileTransaction]()
+        //var transactionArray = [UTransaction]()
+
+        let fileTrxnDate = Date()
+        let fileTrxnDateString = fileTrxnDate.toDateString(format: kTightJustDateFormat) ?? ""
+        let fileTrxnTimeString = fileTrxnDate.toDateString(format: kTightJustTimeFormat) ?? ""
+
+        // finalize uar if needed
+        // for pdf upload
+        let presoldOrHeader = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
+        let orderNo = presoldOrHeader?.orderNo ?? ""
+        if pdfRMAFileName == "" {
+            let invoiceNum = globalInfo.routeControl?.invoiceNum ?? ""
+            if invoiceNum == "" {
+                if orderNo.length > 3 {
+                    pdfRMAFileName = orderNo + ".pdf"
+                }
+                else {
+                    pdfRMAFileName = Utils.getPDFFileName()
+                }
+            }
+            else {
+                if presoldOrHeader != nil {
+                    let qty = presoldOrHeader?.nQty ?? 0
+                    pdfRMAFileName = Utils.getOrderNo(value: "\(qty)", format: invoiceNum) + ".pdf"
+                }
+                else {
+                    pdfRMAFileName = Utils.getPDFFileName()
+                }
+            }
+        }
+        
+        var docNo = ""
+        if pdfRMAFileName.length > 4 {
+            docNo = pdfRMAFileName.subString(startIndex: 0, length: pdfRMAFileName.length-4)
+        }
+        else {
+            docNo = pdfRMAFileName
+        }
+        
+        if !hasSales {
+            orderVC.orderHeader.uar = uar
+            if uar != nil {
+                uar!.docNo = docNo
+                uar!.updateInvNoForPayments(invNo: docNo)
+                /*
+                for _uarPayment in uar!.uarPaymentSet {
+                    let uarPayment = _uarPayment as! UARPayment
+                    if uarPayment.arHeader == nil {
+                        uarPayment.invNo = docNo
+                    }
+                }*/
+                uarArray.append(uar!)
+                let transaction = uar!.makeTransaction()
+                transactionArray.append(transaction)
+            }
+        }
+        
+        if !hasSales {
+            orderVC.orderHeader.deleteUploadFiles()
+        }
+
+        var fileTransaction: FileTransaction!
+        if pdfRMAFileName.length > 4 {
+            fileTransaction = FileTransaction.make(chainNo: chainNo, custNo: custNo, docType: "FARC", fileTrxnDate: fileTrxnDate, trip: trip, trnxDate: Date(), fileDocNo: docNo, fileShortDesc: shortDescForFile, fileLongDesc: longDescForFile, fileCreateDate: fileTrxnDateString, fileCreateTime: fileTrxnTimeString, fileName: pdfRMAFileName)
+            fileTransactionArray.append(fileTransaction)
+        }
+        else {
+            fileTransaction = FileTransaction.make(chainNo: chainNo, custNo: custNo, docType: "FARC", fileTrxnDate: fileTrxnDate, trip: trip, trnxDate: Date(), fileDocNo: docNo, fileShortDesc: shortDescForFile, fileLongDesc: longDescForFile, fileCreateDate: fileTrxnDateString, fileCreateTime: fileTrxnTimeString, fileName: pdfRMAFileName)
+            fileTransactionArray.append(fileTransaction)
+        }
+        let transaction1 = fileTransaction.makeTransaction()
+        transactionArray.append(transaction1)
+
+        // File UTransaction
+        let fileTransactionPath = FileTransaction.saveToXML(fileTransactionArray: fileTransactionArray)
+        if fileTransactionPath.isEmpty == false {
+            zipFilePathArray.append(fileTransactionPath)
+        }
+        
+        if !hasSales {
+            // photo
+            if photoPath.isEmpty == false {
+
+                let cameraTransaction = CameraTransaction.make(chainNo: chainNo, custNo: custNo, docType: "CAM", photoPath: photoPath, reference: "", trip: trip, date: fileTrxnDate)
+                cameraTransactionArray.append(cameraTransaction)
+                let transaction1 = cameraTransaction.makeTransaction()
+                transactionArray.append(transaction1)
+
+                let fileTransaction = FileTransaction.make(chainNo: chainNo, custNo: custNo, docType: "FARC", fileTrxnDate: fileTrxnDate, trip: trip, trnxDate: Date(), fileDocNo: "", fileShortDesc: shortDescForFile, fileLongDesc: longDescForFile, fileCreateDate: fileTrxnDateString, fileCreateTime: fileTrxnTimeString, fileName: cameraTransaction.reference)
+                fileTransactionArray.append(fileTransaction)
+
+                orderVC.orderHeader.photoUpload = "\(cameraTransaction.reference),\(cameraTransaction.reference)"
+                /*uploadManager?.scheduleUpload(localFileName: cameraTransaction.reference, remoteFileName: cameraTransaction.reference, uploadItemType: .normalCustomerFile)*/
+            }
+        }
+
+        // RMA Order
+        if customerDetail.invoiceFmt == "2"  {
+            updateUOrderRMA()
+            let orderTransaction = uOrderRMA!.makeTransaction()
+            transactionArray.append(orderTransaction)
+        }
+        
+        // RMA Order
+        if customerDetail.invoiceFmt == "2"  {
+            var orderPath = ""
+            if hasSales {
+                orderPath = UOrder.saveToXML(orderArray: [self.uOrder!, self.uOrderRMA!])
+            }
+            else {
+                orderPath = UOrder.saveToXML(orderArray: [self.uOrderRMA!])
+            }
+            if orderPath.isEmpty == false {
+                zipFilePathArray.append(orderPath)
+            }
+        }
+        
+        if !hasSales {
+            // GPS
+            let gpsLog = GPSLog.make(chainNo: chainNo, custNo: custNo, docType: "GPS", date: Date(), location: globalInfo.getCurrentLocation())
+            let gpsLogTransaction = gpsLog.makeTransaction()
+            transactionArray.append(gpsLogTransaction)
+
+            // Order Status
+            let orderStatus = OrderStatusS.make(customerDetails: customerDetail, date: Date(), docType: "IVUP", reference: "", status: "1")
+            transactionArray.append(orderStatus.makeTransaction())
+
+            
+            // Camera UTransaction
+            let cameraTransactionPath = CameraTransaction.saveToXML(cameraArray: cameraTransactionArray)
+            if cameraTransactionPath.isEmpty == false {
+                zipFilePathArray.append(cameraTransactionPath)
+            }
+
+            let uarPath = UAR.saveToXML(uarArray: uarArray)
+            if uarPath.isEmpty == false {
+                zipFilePathArray.append(uarPath)
+            }
+
+            let orderStatusPath = OrderStatusS.saveToXML(orderStatusArray: [orderStatus])
+            if orderStatusPath.isEmpty == false {
+                zipFilePathArray.append(orderStatusPath)
+            }
+            
+            // GPS
+            let gpsLogPath = GPSLog.saveToXML(gpsLogArray: [gpsLog])
+            zipFilePathArray.append(gpsLogPath)
+        }
+
+        orderVC.orderHeader.invoiceUploadRMA = "\(kPDFDirName+"/"+fileTransaction.fileFileName),\(fileTransaction.fileFileName)"
 
         // UTransaction
         let transactionPath = UTransaction.saveToXML(transactionArray: transactionArray, shouldIncludeLog: true)
@@ -1148,7 +1551,27 @@ extension OrderSummaryVC  {
                 }
             }
         }
-
+        
+        if pdfRMAFileName == "" {
+            if pdfFileName.length > 4 {
+                let start = pdfFileName.index(pdfFileName.startIndex, offsetBy: 0)
+                let end = pdfFileName.index(pdfFileName.endIndex, offsetBy: -4)
+                let range = start..<end
+                 
+                let subStr = pdfFileName[range]
+                
+                var pdfFileNameNo = Int64(subStr) ?? 0
+                if pdfFileNameNo != 0 {
+                    pdfFileNameNo += 1
+                    pdfRMAFileName = String(pdfFileNameNo)
+                    pdfRMAFileName += ".pdf"
+                }
+            }
+            else {
+                pdfRMAFileName = pdfFileName
+            }
+        }
+        
         let trxnDateValue = Date()
         
         orderVC.orderHeader.chainNo = chainNo
@@ -1206,7 +1629,7 @@ extension OrderSummaryVC  {
         let trxnNo = "\(now.getTimestamp())"
         let trxnDateString = now.toDateString(format: kTightJustDateFormat) ?? ""
         let trxnTimeString = now.toDateString(format: kTightJustTimeFormat) ?? ""
-
+ 
         let pdfName = self.pdfFileName
         var docNo = ""
         if pdfName.length > 4 {
@@ -1257,10 +1680,20 @@ extension OrderSummaryVC  {
         order.completedTime = trxnTimeString
 
         var totalPromotionAmount = 0
-        let totalAmount = quantityArray[0] + quantityArray[1] + quantityArray[2]
+        var saleAmount = 0.0
+        var totalAmount = 0
+        if customerDetail.invoiceFmt == "2" {
+            totalAmount = quantityArray[0] + quantityArray[2]
+            order.totalDumps = Utils.getXMLMultipliedString(value: 0)
+            saleAmount = subTotalArray[0]
+        }
+        else {
+            totalAmount = quantityArray[0] + quantityArray[1] + quantityArray[2]
+            order.totalDumps = Utils.getXMLMultipliedString(value: self.pickupQuantity.double)
+            saleAmount = subTotalArray[0] - subTotalArray[1]
+        }
         let saleQuantity = quantityArray[0] + quantityArray[2]
         order.totalAmount = Utils.getXMLMultipliedString(value: totalAmount.double)
-        order.totalDumps = Utils.getXMLMultipliedString(value: self.pickupQuantity.double)
         order.totalBuyBack = Utils.getXMLMultipliedString(value: self.buybackQuantity.double)
         order.saleAmount = Utils.getXMLMultipliedString(value: saleQuantity.double)
         order.dTotalAmount = "0"
@@ -1268,10 +1701,15 @@ extension OrderSummaryVC  {
         order.dTotalBuyBack = "0"
         order.dTotalSales = "0"
         order.previousBal = ""
-        let saleAmount = subTotalArray[0] - subTotalArray[1]
         order.saleAmount = Utils.getXMLMultipliedString(value: saleAmount)
         order.promotionAmount = "0"
-        let taxAmount = taxArray[0] - taxArray[1]
+        var taxAmount = 0.0
+        if customerDetail.invoiceFmt == "2" {
+            taxAmount = taxArray[0]
+        }
+        else {
+            taxAmount = taxArray[0] - taxArray[1]
+        }
         order.taxAmount = Utils.getXMLMultipliedString(value: taxAmount)
         order.centsRounding = "0"
         let invoiceTotal = saleAmount+taxAmount
@@ -1322,6 +1760,9 @@ extension OrderSummaryVC  {
         order.orderContact = nameText.text ?? ""
 
         for i in 0..<3 {
+            if customerDetail.invoiceFmt == "2" && i == 1 {
+                continue
+            }
             for _orderDetail in orderVC.orderDetailSetArray[i] {
                 let detail = _orderDetail as! OrderDetail
                 let orderDetail = UOrderDetail()
@@ -1440,4 +1881,227 @@ extension OrderSummaryVC  {
         order.promotionAmount = Utils.getXMLMultipliedString(value: totalPromotionAmount.double)
         self.uOrder = order
     }
+    
+   func updateUOrderRMA() {
+
+       let managedObjectContext = globalInfo.managedObjectContext!
+       let chainNo = customerDetail.chainNo ?? ""
+       let custNo = customerDetail.custNo ?? ""
+       let now = Date()
+       let trxnNo = "\(now.getTimestamp() + 1)"
+       let trxnDateString = now.toDateString(format: kTightJustDateFormat) ?? ""
+       let trxnTimeString = now.toDateString(format: kTightJustTimeFormat) ?? ""
+
+       let pdfName = self.pdfRMAFileName
+       var docNo = ""
+       if pdfName.length > 4 {
+           docNo = pdfName.subString(startIndex: 0, length: pdfName.length-4)
+       }
+       else {
+           docNo = pdfName
+       }
+
+//       if orderVC.originalOrderHeader == nil {
+//           orderVC.orderHeader.orderNo = docNo
+//       }
+//
+//       if ( orderVC.originalOrderHeader != nil && orderVC.originalOrderHeader?.orderName == "" ) {
+//
+//           orderVC.originalOrderHeader?.orderNo = docNo
+//           orderVC.orderHeader.orderNo = docNo
+//       }
+       
+       let presoldOrHeader = PresoldOrHeader.getFirstBy(context: managedObjectContext, chainNo: chainNo, custNo: custNo)
+
+       let order = UOrder()
+       order.docNo = docNo
+//       let salesAmount = orderVC.orderHeader.pickupAmount
+//       let fulfilby = orderVC.orderHeader.fulfilby ?? ""
+       order.docType = "RMA"
+
+       order.voidFlag = "0"
+       order.printedFlag = isPrinted ? "1" : "0"
+       order.trxnDate = trxnDateString
+       order.trxnTime = trxnTimeString
+       order.reference = ""
+       order.tCOMStatus = "0"
+       order.saleDate = trxnDateString
+       order.trxnNo = trxnNo
+       order.chainNo = chainNo
+       order.custNo = custNo
+       order.orderNo = orderVC.orderHeader.orderNo
+       order.dayNo = orderVC.orderHeader.dayNo
+       order.completedDate = trxnDateString
+       order.completedTime = trxnTimeString
+
+       var totalPromotionAmount = 0
+       let totalAmount = quantityArray[1]
+       let saleQuantity = quantityArray[0] + quantityArray[2]
+       order.totalAmount = Utils.getXMLMultipliedString(value: totalAmount.double)
+       order.totalDumps = Utils.getXMLMultipliedString(value: self.pickupQuantity.double)
+       order.totalBuyBack = Utils.getXMLMultipliedString(value: self.buybackQuantity.double)
+       order.saleAmount = Utils.getXMLMultipliedString(value: 0)
+       order.dTotalAmount = "0"
+       order.dTotalDumps = "0"
+       order.dTotalBuyBack = "0"
+       order.dTotalSales = "0"
+       order.previousBal = ""
+       let saleAmount = subTotalArray[1]
+       order.saleAmount = Utils.getXMLMultipliedString(value: saleAmount)
+       order.promotionAmount = "0"
+       let taxAmount = taxArray[1]
+       order.taxAmount = Utils.getXMLMultipliedString(value: taxAmount)
+       order.centsRounding = "0"
+       let invoiceTotal = saleAmount+taxAmount
+       order.invoiceTotal = Utils.getXMLMultipliedString(value: invoiceTotal)
+       order.discDumps = ""
+       order.discBuybacks = ""
+       order.discBuybacks = ""
+       order.discSales = Utils.getXMLMultipliedString(value: diffPriceTotal)
+       order.netDumps = ""
+       order.netBuybacks = ""
+       order.netSales = ""
+       order.taxableAmount = Utils.getXMLMultipliedString(value: saleAmount)
+       order.changeFlag = ""
+       order.deliveryDate = orderVC.orderHeader.deliveryDate
+       order.period = customerDetail.periodNo ?? ""
+       order.driverNumber = globalInfo.routeControl?.routeNumber ?? ""
+       order.detailFile = ""
+       order.user1 = presoldOrHeader?.user1 ?? ""
+       order.user2 = presoldOrHeader?.user2 ?? ""
+       if saleAmount >= 0 {
+           order.poRef = referenceNumberText.text ?? ""
+           order.credRef = ""
+       }
+       else {
+           order.poRef = ""
+           order.credRef = referenceNumberText.text ?? ""
+       }
+       order.dsd = ""
+       order.instrs = notesTextView.text
+       order.arBeforeTrxnNo = ""
+       order.distr = orderVC.orderHeader.distributor
+       let distributorDesc = DescType.getBy(context: globalInfo.managedObjectContext, descTypeID: kDistributorDescTypeID, numericKey: order.distr)
+       order.distrName = distributorDesc?.desc ?? ""
+
+       order.splitNett = ""
+       order.totalSamples = Utils.getXMLMultipliedString(value: samplesQuantity.double)
+       order.totalFree = Utils.getXMLMultipliedString(value: freeQuantity.double)
+       order.totalExchangeDU = ""
+       order.discExchangeDU = ""
+       order.netExchangeDU = ""
+       order.dexStatus = ""
+       order.sourceType = ""
+       order.presoldChgd = "Y"
+       order.reversed = ""
+       order.discInLieuAmt = ""
+       order.pallTrxnNo = ""
+       order.ticketType = ""
+       order.orderContact = nameText.text ?? ""
+
+       for _orderDetail in orderVC.orderDetailSetArray[1] {
+           let detail = _orderDetail as! OrderDetail
+           let orderDetail = UOrderDetail()
+           let itemNo = detail.itemNo!
+           orderDetail.trxnNo = trxnNo
+           orderDetail.trxnType = "\(detail.trxnType)"
+           orderDetail.locnNo = detail.locnNo
+           orderDetail.itemNo = itemNo
+           orderDetail.priceOverride = ""
+
+           let enterQty = detail.enterQty.int
+           orderDetail.quantity = Utils.getXMLMultipliedString(value: enterQty.double)
+
+           orderDetail.sales = "0"
+           orderDetail.dumps = Utils.getXMLMultipliedString(value: enterQty.double)
+
+           orderDetail.grossPrice = Utils.getXMLMultipliedString(value: detail.basePrice)
+           orderDetail.totalAllowance = ""
+           orderDetail.retailPrice = Utils.getXMLMultipliedString(value: detail.price)
+           orderDetail.retailOverride = ""
+           orderDetail.reasonCode = detail.reasonCode
+           orderDetail.weightedItem = ""
+
+           let qty = detail.enterQty.int
+           let price = detail.price
+           let budget = Double(qty)*price
+
+           let taxRateString = detail.tax?.taxRate ?? ""
+           let taxRateValue = Utils.getXMLDivided(valueString: taxRateString)
+           let taxAmount = budget*taxRateValue/100
+           orderDetail.taxAmount = Utils.getXMLMultipliedString(value: taxAmount)
+
+           if detail.isFromPresoldOrDetail == false {
+               orderDetail.presoldQuantity = ""
+           }
+           else {
+               orderDetail.presoldQuantity = Utils.getXMLMultipliedString(value: detail.planQty.int.double)
+           }
+
+           orderDetail.printOnOrder = ""
+           orderDetail.isKitItem = ""
+           orderDetail.extendAmount = Utils.getXMLMultipliedString(value: budget)
+           orderDetail.user1 = ""
+           orderDetail.user2 = ""
+           orderDetail.totalWeight = ""
+           orderDetail.forecastStartDate = ""
+           orderDetail.forecastEndDate = ""
+           orderDetail.origForecastQty = ""
+           orderDetail.priceDiscFlag = ""
+           orderDetail.retailPriceFlag = ""
+           orderDetail.discRateEntered = ""
+           orderDetail.user3 = ""
+           orderDetail.custPrice = Utils.getXMLMultipliedString(value: detail.price)
+           orderDetail.offInvPromoAmtDtl = ""
+           orderDetail.totalAllowExtended = ""
+           orderDetail.quantityCompl = ""
+           orderDetail.caseFactor = "1"
+           orderDetail.discInLieuAmtDtl = ""
+           orderDetail.custRetailPrice = Utils.getXMLMultipliedString(value: detail.price)
+           orderDetail.custPriceExtended = ""
+           orderDetail.extendAmount = "0"
+
+           // tax
+           let tax = detail.tax
+           if tax != nil {
+               tax!.trxnNo = trxnNo
+               tax!.trxnType = "\(detail.trxnType)"
+               tax!.locnNo = detail.locnNo
+               tax!.itemNo = itemNo
+               //tax!.taxRateCode = taxRates!.taxRateCode ?? ""
+               tax!.taxAmount = Utils.getXMLMultipliedString(value: taxAmount)
+               //tax.cumulativeFlag = taxRates!.cumulativeFlag ?? ""
+               //tax.taxRate = taxRates!.taxRate ?? ""
+               tax!.reasonCode = detail.reasonCode
+
+               orderDetail.taxArray.append(tax!)
+           }
+
+           // promotion
+           for _promotion in detail.promotionSet {
+               let promotion = _promotion as! UPromotion
+               promotion.trxnNo = trxnNo
+               promotion.itemNo = itemNo
+               //promotion.planNo = promotionPlan.promotionHeader.planNo ?? ""
+               //promotion.assignNo = promotionPlan.promotionHeader.assignNo ?? ""
+               promotion.trxnType = "\(detail.trxnType)"
+               let promotionAmount = Utils.getXMLDivided(valueString: promotion.amount)
+               totalPromotionAmount += Int(promotionAmount)
+               //promotion.amount = "\(promotionAmount)"
+               promotion.priceDiscFlag = "0"
+               promotion.reasonCode = detail.reasonCode
+               //promotion.promoAppMethod = promotionPlan.promotionAss?.promoAppMethod ?? ""
+               //promotion.promoType = promotionPlan.promotionAss?.promoType ?? ""
+               //promotion.promoMethod = promotionPlan.promotionAss?.promoMethod ?? ""
+               //promotion.discAmt = promotionPlan.promotionNoVo.promoDiscount ?? "0"
+               promotion.trxnAmt = ""
+               //promotion.dateStart = promotionPlan.promotionHeader.dateStart ?? ""
+
+               orderDetail.promotionArray.append(promotion)
+           }
+           order.uOrderDetailArray.append(orderDetail)
+       }
+       order.promotionAmount = Utils.getXMLMultipliedString(value: totalPromotionAmount.double)
+       self.uOrderRMA = order
+   }
 }
